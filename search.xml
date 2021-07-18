@@ -3,14 +3,18 @@
   <entry>
     <title>MySQL初步</title>
     <url>/2021/07/14/MySQL%E5%88%9D%E6%AD%A5/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>常见的数据库SQLlite、MySQL、 SQLServer、postgreSQL、Oracle</p>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h2><p>MySQL 是最流行的关系型数据库管理系统，后端必会！！</p>
+<p>下面我们对MySQL做一个系统的介绍：</p>
+<span id="more"></span>
+
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>常见的数据库SQLlite、MySQL、 SQLServer、postgreSQL、Oracle</p>
 <p>主流的关系型数据库，类似的还有posygreSQL</p>
 <p>关系型数据库：</p>
 <p>用表来存一类数据。</p>
 <p>表结构设计的三大范式：《漫画数据库》</p>
 <h3 id="MySQL知识点"><a href="#MySQL知识点" class="headerlink" title="MySQL知识点"></a>MySQL知识点</h3><p>SQL语句</p>
 <p>DDL: 操作数据库的</p>
-<p>DML：标的增删改查</p>
+<p>DML: 表的增删改查</p>
 <p>DCL：用户及权限</p>
 <h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><p><em>MySQL 支持插件式的存储引擎。</em></p>
 <p><em>常见的存储引擎：MylSAM和InnoDB</em></p>
@@ -137,24 +141,6 @@
       <tags>
         <tag>MySQL</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2021/03/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>go_web(1)</title>
@@ -488,6 +474,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2021/03/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>你好-hexo</title>
     <url>/2021/03/23/%E4%BD%A0%E5%A5%BD-hexo/</url>
     <content><![CDATA[]]></content>
@@ -498,7 +502,11 @@
   <entry>
     <title>gin框架</title>
     <url>/2021/07/14/gin%E6%A1%86%E6%9E%B6/</url>
-    <content><![CDATA[<h1 id="gin框架"><a href="#gin框架" class="headerlink" title="gin框架"></a>gin框架</h1><h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><h3 id="web简介："><a href="#web简介：" class="headerlink" title="web简介："></a>web简介：</h3><p>web是基于http协议进行交互的应用网络</p>
+    <content><![CDATA[<h1 id="gin框架"><a href="#gin框架" class="headerlink" title="gin框架"></a>gin框架</h1><h2 id="摘要："><a href="#摘要：" class="headerlink" title="摘要："></a>摘要：</h2><p>Gin是一个golang的微框架，封装比较优雅，API友好，源码注释比较明确，已经发布了1.0版本。具有快速灵活，容错方便等特点。其实对于golang而言，web框架的依赖要远比Python，Java之类的要小。自身的net/http足够简单，性能也非常不错。框架更像是一些常用函数或者工具的集合。借助框架开发，不仅可以省去很多常用的封装带来的时间，也有助于团队的编码风格和形成规范。</p>
+<p>下面就Gin的用法做系统的讲解。</p>
+<span id="more"></span>
+
+<h3 id="web简介："><a href="#web简介：" class="headerlink" title="web简介："></a>web简介：</h3><p>web是基于http协议进行交互的应用网络</p>
 <p>web就是通过使用浏览器/app访问的各种资源</p>
 <p>浏览器——（request）——》服务器</p>
 <p>服务器——（response）——》浏览器</p>
@@ -508,7 +516,6 @@
 <p>hello.txt(html)</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&#x27;color:orange&#x27;</span>&gt;</span>welcome!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>how are you?<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&#x27;i1&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;https://img1.baidu.com/it/u=1980119653,2367229126&amp;fm=11&amp;fmt=auto&amp;gp=0.jpg&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h3><p><a href="https://www.cnblogs.com/an-wen/p/11180076.html">https://www.cnblogs.com/an-wen/p/11180076.html</a></p>
 <h2 id="使用特点"><a href="#使用特点" class="headerlink" title="使用特点"></a>使用特点</h2><p>1）go的web框架</p>
 <p>2）性能比较好</p>
 <p>3）使用简单</p>
