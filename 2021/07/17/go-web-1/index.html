@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Polaris6G&#39;s blog">
 <meta property="og:description" content="摘要介绍使用Go开发web应用的方法，并阐明Go的相对优势； 对HTTP协议等构成Web应用的关键概念做深入浅出的介绍。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://www.iots.vip/.vip//01.png">
-<meta property="og:image" content="https://www.iots.vip/.vip//02.png">
+<meta property="og:image" content="https://www.iots.vip/.vip//07/17/go-web-1/01.png">
+<meta property="og:image" content="https://www.iots.vip/.vip//07/17/go-web-1/02.png">
 <meta property="article:published_time" content="2021-07-17T10:52:29.000Z">
-<meta property="article:modified_time" content="2021-07-17T12:44:26.191Z">
+<meta property="article:modified_time" content="2021-07-18T01:08:15.171Z">
 <meta property="article:author" content="Zhao.W.L">
 <meta property="article:tag" content="go_web">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.iots.vip/.vip//01.png">
+<meta name="twitter:image" content="https://www.iots.vip/.vip//07/17/go-web-1/01.png">
 
 <link rel="canonical" href="https://www.iots.vip/2021/07/17/go-web-1/">
 
@@ -220,10 +220,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-07-17 18:52:29 / Modified: 20:44:26" itemprop="dateCreated datePublished" datetime="2021-07-17T18:52:29+08:00">2021-07-17</time>
+              <time title="Created: 2021-07-17 18:52:29" itemprop="dateCreated datePublished" datetime="2021-07-17T18:52:29+08:00">2021-07-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-18 09:08:15" itemprop="dateModified" datetime="2021-07-18T09:08:15+08:00">2021-07-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -279,7 +285,8 @@
 <h1 id="1-3-HTTP简介"><a href="#1-3-HTTP简介" class="headerlink" title="1.3 HTTP简介"></a>1.3 HTTP简介</h1><p>HTTP：万维网的应用层通信协议，Web页面中的所有数据都是通过这个看似简单的文本协议进行传输的。</p>
 <p>HTTP版本有很多，最初版本为HTTP 0.9, HTTP 1.0由大量特性合并而成，HTTP 1.1是目前使用最广泛的版本。这里主要对HTTP 1.1进行讨论，但也适当介绍HTTP 2.0的相关信息。</p>
 <p><strong>HTTP定义</strong>：是一种<strong>无状态</strong>、<strong>由文本构成</strong>的<strong>请求-响应（request-response</strong>）协议，这种协议使用的是<strong>客户端-服务器（client-server）</strong>计算模型。</p>
-<p><img src="/.vip//01.png" alt="01"></p>
+<img src="/.vip//07/17/go-web-1/01.png" class width="01">
+
 <p>客户端向服务器发起<strong>对话</strong>，服务器为客户端提供<strong>服务</strong>。</p>
 <p>在HTTP协议中，客户端也被称为<strong>用户代理（user-agent)<strong>，而服务器通常被称为</strong>Web服务器</strong>。</p>
 <p>大多数情况下，HTTP客户端都是一个<strong>Web浏览器</strong>。</p>
@@ -562,7 +569,22 @@
 <h1 id="1-9-Hello-Go"><a href="#1-9-Hello-Go" class="headerlink" title="1.9 Hello Go"></a>1.9 Hello Go</h1><p>实例使用Go语言构建Web应用：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handler</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;<span class="comment">//responsewriter接口，指向request结构的指针</span></span><br><span class="line">	fmt.Fprintf(w,<span class="string">&quot;Hello World, %s!&quot;</span>,r.URL.Path[<span class="number">1</span>:])<span class="comment">//三个参数，最后一个提取request结构里的路径信息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/ping&quot;</span>,handler)<span class="comment">//把handler函数设置成URL（/ping）被访问时的处理器</span></span><br><span class="line">	http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>,<span class="literal">nil</span>)<span class="comment">//启动服务器监听系统的8080端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.vip//02.png" alt="02"></p>
+<img src="/.vip//07/17/go-web-1/02.png" class width="02">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
 

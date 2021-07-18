@@ -139,24 +139,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2021/03/19/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>go_web(1)</title>
     <url>/2021/07/17/go-web-1/</url>
     <content><![CDATA[<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>介绍使用Go开发web应用的方法，并阐明Go的相对优势；</p>
@@ -179,7 +161,8 @@
 <h1 id="1-3-HTTP简介"><a href="#1-3-HTTP简介" class="headerlink" title="1.3 HTTP简介"></a>1.3 HTTP简介</h1><p>HTTP：万维网的应用层通信协议，Web页面中的所有数据都是通过这个看似简单的文本协议进行传输的。</p>
 <p>HTTP版本有很多，最初版本为HTTP 0.9, HTTP 1.0由大量特性合并而成，HTTP 1.1是目前使用最广泛的版本。这里主要对HTTP 1.1进行讨论，但也适当介绍HTTP 2.0的相关信息。</p>
 <p><strong>HTTP定义</strong>：是一种<strong>无状态</strong>、<strong>由文本构成</strong>的<strong>请求-响应（request-response</strong>）协议，这种协议使用的是<strong>客户端-服务器（client-server）</strong>计算模型。</p>
-<p><img src="/.vip//01.png" alt="01"></p>
+<img src="/.vip//07/17/go-web-1/01.png" class width="01">
+
 <p>客户端向服务器发起<strong>对话</strong>，服务器为客户端提供<strong>服务</strong>。</p>
 <p>在HTTP协议中，客户端也被称为<strong>用户代理（user-agent)<strong>，而服务器通常被称为</strong>Web服务器</strong>。</p>
 <p>大多数情况下，HTTP客户端都是一个<strong>Web浏览器</strong>。</p>
@@ -462,7 +445,22 @@
 <h1 id="1-9-Hello-Go"><a href="#1-9-Hello-Go" class="headerlink" title="1.9 Hello Go"></a>1.9 Hello Go</h1><p>实例使用Go语言构建Web应用：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handler</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;<span class="comment">//responsewriter接口，指向request结构的指针</span></span><br><span class="line">	fmt.Fprintf(w,<span class="string">&quot;Hello World, %s!&quot;</span>,r.URL.Path[<span class="number">1</span>:])<span class="comment">//三个参数，最后一个提取request结构里的路径信息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/ping&quot;</span>,handler)<span class="comment">//把handler函数设置成URL（/ping）被访问时的处理器</span></span><br><span class="line">	http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>,<span class="literal">nil</span>)<span class="comment">//启动服务器监听系统的8080端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/.vip//02.png" alt="02"></p>
+<img src="/.vip//07/17/go-web-1/02.png" class width="02">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ]]></content>
       <categories>
         <category>go</category>
@@ -470,6 +468,24 @@
       <tags>
         <tag>go_web</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2021/03/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>你好-hexo</title>
@@ -515,7 +531,8 @@
 <p>我们知道，go项目的目录格式推荐在工作区的文件夹下添加名为bin，pkg，src的三个文件夹；</p>
 <p>注意：每个项目放到src子文件夹中最优。</p>
 <p>由于gin是github上的开源项目，我们直接拉取可能会连接超时，所以我们需要梯子或代理，我选择使用代理。</p>
-<p><img src="/.vip//gin%E5%AD%A6%E4%B9%A0(1).png" alt="gin学习(1)"></p>
+.png)
+
 <p><strong>代理：</strong></p>
 <p>查看环境变量：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">go env</span><br></pre></td></tr></table></figure>
@@ -530,7 +547,8 @@
 
 <p>这样，就会自动添加go.sum。</p>
 <p>有关gin的主体代码会放在ginproject\pkg\mod文件夹中。</p>
-<p><img src="/.vip//gin%E5%AD%A6%E4%B9%A0(2).png" alt="gin学习(2)"></p>
+.png)
+
 <p>运行程序：</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">   <span class="string">&quot;fmt&quot;</span></span><br><span class="line">   <span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   <span class="keyword">var</span> r = gin.Default()</span><br><span class="line">   r.GET(<span class="string">&quot;/ping&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">      c.JSON(</span><br><span class="line">         <span class="number">200</span>,</span><br><span class="line">         gin.H&#123;</span><br><span class="line">         <span class="string">&quot;message&quot;</span>: <span class="string">&quot;pong&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      )</span><br><span class="line">   &#125;)</span><br><span class="line">   err := r.Run()</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">      fmt.Printf(<span class="string">&quot;http serve failed, err:%v\n&quot;</span>,err)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   &#125; <span class="comment">// listen and serve on 0.0.0.0:8080</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -627,7 +645,8 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span> = <span class="string">&quot;zh-CN&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello &#123;&#123; .u1.Name -&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>年龄：&#123;&#123;.u1.Age&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：&#123;&#123;.u1.Gender&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello &#123;&#123;.m1.Name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>年龄：&#123;&#123;.m1.Age&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>性别：&#123;&#123;.m1.Gender&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--定义变量--&gt;</span></span><br><span class="line">&#123;&#123; $v1 := 100&#125;&#125;</span><br><span class="line">&#123;&#123; $age := .m1.Age&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--if--&gt;</span></span><br><span class="line">&#123;&#123;if $v1&#125;&#125;</span><br><span class="line">&#123;&#123; $v1 &#125;&#125;</span><br><span class="line">&#123;&#123;else&#125;&#125;</span><br><span class="line">啥也没有</span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--lt--&gt;</span></span><br><span class="line">&#123;&#123;if lt .m1.Age 22&#125;&#125;</span><br><span class="line">好好上学</span><br><span class="line">&#123;&#123;else&#125;&#125;</span><br><span class="line">好好工作</span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--range--&gt;</span></span><br><span class="line">&#123;&#123;range $idx, $hobby := .hobby&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;$idx&#125;&#125;-&#123;&#123;$hobby&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;&#123;else&#125;&#125;</span><br><span class="line">    没啥爱好</span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--with--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>m1<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;&#123;with .m1&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;.Name&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;.Age&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;.Gender&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;&#123;end&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="comment">&lt;!--index--&gt;</span></span><br><span class="line">&#123;&#123;index .hobby 2&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>结果展示：</p>
-<p><img src="/.vip//gin%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89.png" alt="gin学习（3）"></p>
+<img src="/.vip//07/14/gin%E6%A1%86%E6%9E%B6/gin%E5%AD%A6%E4%B9%A0%EF%BC%883%EF%BC%89.png" class title="gin学习（3）">
+
 <h4 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h4><p>main.go</p>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">   <span class="string">&quot;fmt&quot;</span></span><br><span class="line">   <span class="string">&quot;net/http&quot;</span></span><br><span class="line">   <span class="string">&quot;text/template&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f1</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</span><br><span class="line">   <span class="comment">//定义函数kua</span></span><br><span class="line">   <span class="comment">//要么有一个返回值，要么有两个，第二个返回值必须是error</span></span><br><span class="line">   k := <span class="function"><span class="keyword">func</span><span class="params">(name <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span> , error)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name + <span class="string">&quot;年轻又帅气&quot;</span>, <span class="literal">nil</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//定义模板</span></span><br><span class="line">   t := template.New(<span class="string">&quot;hello.tmpl&quot;</span>)</span><br><span class="line">   <span class="comment">//告诉模板，我现在多定义了一个函数kua</span></span><br><span class="line">   t.Funcs(template.FuncMap&#123;</span><br><span class="line">      <span class="string">&quot;kua&quot;</span>: k,</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">   <span class="comment">//解析模板</span></span><br><span class="line">   _, err := t.ParseFiles(<span class="string">&quot;./hello.tmpl&quot;</span>)</span><br><span class="line">   <span class="keyword">if</span> err != <span class="literal">nil</span>&#123;</span><br><span class="line">      fmt.Printf(<span class="string">&quot;parse template failed,err:%v\n&quot;</span>,err)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//渲染模板</span></span><br><span class="line">   name := <span class="string">&quot;Polaris6G&quot;</span></span><br><span class="line">   t.Execute(w,name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">   http.HandleFunc(<span class="string">&quot;/&quot;</span>,f1)</span><br><span class="line">   err := http.ListenAndServe(<span class="string">&quot;:9090&quot;</span>,<span class="literal">nil</span>)</span><br><span class="line">   <span class="keyword">if</span> err !=<span class="literal">nil</span>&#123;</span><br><span class="line">      fmt.Println(<span class="string">&quot;server started failed&quot;</span>)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -646,7 +665,8 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span>&#123;&#123;/*单独的文件*/&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>注释<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>日志<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>结果：</p>
-<p><img src="/.vip//gin%EF%BC%884%EF%BC%89.png" alt="gin（4）"></p>
+<img src="/.vip//07/14/gin%E6%A1%86%E6%9E%B6/gin%EF%BC%884%EF%BC%89.png" class title="gin（4）">
+
 ]]></content>
       <categories>
         <category>go</category>
