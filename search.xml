@@ -13,7 +13,7 @@
 </ul>
 <span id="more"></span>
 
-<h1 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h1><p>**HTML（HyperText Markup Language, 超文本标记语言)**，用于构建页面基本结构机器内容的标记语言。</p>
+<h1 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h1><p> <strong>HTML（HyperText Markup Language, 超文本标记语言)</strong>  ，用于构建页面基本结构机器内容的标记语言。</p>
 <p>超文本：文本中包含指向其他文本的链接。</p>
 <p>标记语言：将文本机器文本相关的其他信息结合起来，展现出关于文档结构，如：HTML、XML、KML、Markdown等。</p>
 <h1 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h1><ul>
@@ -97,7 +97,7 @@
 <li>通常包含作者、版权、发布/修改时间、引用数据等信息</li>
 <li>footer 内的元素不属于章节内容，不包含在大纲中</li>
 </ul>
-<img src="/2021/08/16/HTML/07.png" alt="07">
+<img src="/2021/08/16/HTML/05.png" alt="07">
 
 <h2 id="figure-figcaption"><a href="#figure-figcaption" class="headerlink" title="figure / figcaption"></a>figure / figcaption</h2><p>figure包裹被独立引用的内容，如图表、插图、代码等</p>
 <figcaption> 与其引用内容相关的标题或描述，通常位于 <figure> 之前或之后
