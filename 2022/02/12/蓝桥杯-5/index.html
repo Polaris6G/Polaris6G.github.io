@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="学习回溯法与剪枝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝桥杯-5">
+<meta property="og:url" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="学习回溯法与剪枝">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220211233428466.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212092938883.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212105923444.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112256424.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112755793.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112801976.png">
+<meta property="article:published_time" content="2022-02-12T03:28:52.000Z">
+<meta property="article:modified_time" content="2022-02-12T03:28:52.222Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="算法与数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220211233428466.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>蓝桥杯-5 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          蓝桥杯-5
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-02-12 11:28:52" itemprop="dateCreated datePublished" datetime="2022-02-12T11:28:52+08:00">2022-02-12</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习回溯法与剪枝</p>
+<span id="more"></span>
+
+<h1 id="回溯法"><a href="#回溯法" class="headerlink" title="回溯法"></a>回溯法</h1><h2 id="1-求子集问题"><a href="#1-求子集问题" class="headerlink" title="1.求子集问题"></a>1.求子集问题</h2><p><strong>有一个含n个整数的数组a，所有元素均不相同，设计一个算法求其所有子集（幂集）。</strong></p>
+<p><strong>思路</strong>：解空间为子集树。</p>
+<p>使用x[]表示解向量：</p>
+<ul>
+<li>不选择a[i]元素-&gt;下一个状态为(x[i]=0, i+1)</li>
+<li>选择a[i]元素-&gt;下一个状态为(x[i]=1, i+1)</li>
+</ul>
+<p>深搜+回溯</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dispasolution</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n,<span class="keyword">int</span> x[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;(&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		<span class="keyword">if</span>(x[i]==<span class="number">1</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;)&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n,<span class="keyword">int</span> i,<span class="keyword">int</span> x[])</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;=n)</span><br><span class="line">		dispasolution(a,n,x);</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		x[i]=<span class="number">0</span>;dfs(a,n,i+<span class="number">1</span>,x); <span class="comment">//不选择a[i] </span></span><br><span class="line">		x[i]=<span class="number">1</span>;dfs(a,n,i+<span class="number">1</span>,x); <span class="comment">//选择a[i] </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> n = <span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">	<span class="keyword">int</span> x[MAXN];</span><br><span class="line">	<span class="built_in">memset</span>(x,<span class="number">0</span>,<span class="keyword">sizeof</span>(x));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;求解结果\n&quot;</span>);</span><br><span class="line">	dfs(a,n,<span class="number">0</span>,x);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="2-符号插入凑整"><a href="#2-符号插入凑整" class="headerlink" title="2. 符号插入凑整"></a>2. 符号插入凑整</h2><p><strong>设计一个算法在1，2，…，9（顺序不能变）数字之间插入+或-或什么都</strong></p>
+<p><strong>不插入，使得计算结果总是100的程序，并输出所有的可能性。</strong></p>
+<p><strong>例如：1+2+34-5+67-8+9=100.</strong></p>
+<p><strong>思路</strong>：</p>
+<p>利用回溯法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 9</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">char</span> op[],<span class="keyword">int</span> sum,<span class="keyword">int</span> pre,<span class="keyword">int</span> a[],<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i==N)&#123;</span><br><span class="line">		<span class="keyword">if</span>(sum==<span class="number">100</span>)&#123;<span class="comment">//打印 </span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a[<span class="number">0</span>]);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;N;j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(op[j]!=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">					<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,op[j]);</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a[j]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;=100\n&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span>;<span class="comment">//递归出口 </span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	op[i]=<span class="string">&#x27;+&#x27;</span>;</span><br><span class="line">	sum+=a[i];</span><br><span class="line">	fun(op,sum,a[i],a,i+<span class="number">1</span>);</span><br><span class="line">	sum-=a[i];<span class="comment">//回溯 </span></span><br><span class="line">	</span><br><span class="line">	op[i]=<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">	sum-=a[i];</span><br><span class="line">	fun(op,sum,a[i],a,i+<span class="number">1</span>);</span><br><span class="line">	sum+=a[i];<span class="comment">//回溯 </span></span><br><span class="line">	</span><br><span class="line">	op[i]=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">	sum-=pre;</span><br><span class="line">	<span class="keyword">int</span> tmp;</span><br><span class="line">	tmp = pre*<span class="number">10</span> + a[i];</span><br><span class="line">	sum+=tmp;</span><br><span class="line">	fun(op,sum,tmp,a,i+<span class="number">1</span>);</span><br><span class="line">	sum-=tmp;</span><br><span class="line">	sum+=pre;<span class="comment">//回溯 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[N]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> op[N];</span><br><span class="line">	fun(op,a[<span class="number">0</span>],a[<span class="number">0</span>],a,<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<h2 id="3-全排列问题"><a href="#3-全排列问题" class="headerlink" title="3.全排列问题"></a>3.全排列问题</h2><p><strong>有一个含n个整数的数组a，所有元素均不相同，求其所有元素的全排列。例如，a[]={1,2,3}，得到结果是（1,2,3）、（1,3,2）、（2,3,1）、（2,3,1）</strong></p>
+<p>思路：</p>
+<img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220211233428466.png" class title="image-20220211233428466">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;(&quot;</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d,&quot;</span>,a[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d)&quot;</span>,a[n<span class="number">-1</span>]);</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> n,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;=n)display(a,n);</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;n;j++)&#123;</span><br><span class="line">			swap(a[i],a[j]);</span><br><span class="line">			dfs(a,n,i+<span class="number">1</span>);</span><br><span class="line">			swap(a[i],a[j]);<span class="comment">//回溯恢复 </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> n=<span class="keyword">sizeof</span>(a)/<span class="keyword">sizeof</span>(a[<span class="number">0</span>]);</span><br><span class="line">	dfs(a,n,<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="回溯法与深搜的异同"><a href="#回溯法与深搜的异同" class="headerlink" title="回溯法与深搜的异同"></a>回溯法与深搜的异同</h1><h2 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h2><ul>
+<li>都遵循深度优先，即一步一步向前探索</li>
+</ul>
+<h2 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h2><ul>
+<li>访问序不同：深度优先遍历目的是遍历，本质无序；回溯法目的是求解过程，本质有序</li>
+<li>访问次数不同：回溯法访问过的节点可能再次访问</li>
+<li>剪值的不同：回溯算法可采用剪枝条件剪除不必要的分枝以提高效能</li>
+</ul>
+<h1 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0/1背包问题"></a>0/1背包问题</h1><p><strong>有n个重量分别为<code>&#123;w1,w2,...wn&#125;</code>的物品，它们的价值分别为{v1,v2,…vn}，给定一个容量为W的背包。设计从这些物品中选取一部分物品放入该背包的方案，每个物品要么选中要么不选中，要求选中的物品不仅能够放在背包中，而且满足重量限制具有最大的价值。</strong></p>
+<p>思路：</p>
+<img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212092938883.png" class title="image-20220212092938883">
+
+<p><strong>考虑装入背包中物品重量和恰好为W：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 5</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">4</span>;<span class="comment">//四件物品</span></span><br><span class="line"><span class="keyword">int</span> W=<span class="number">6</span>;<span class="comment">//书包最大总重量</span></span><br><span class="line"><span class="keyword">int</span> w[]=&#123;<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> v[]=&#123;<span class="number">0</span>,<span class="number">4</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">1</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> x[MAXN];<span class="comment">//存放最终解 </span></span><br><span class="line"><span class="keyword">int</span> maxv;<span class="comment">//存放最有解的总价值 </span></span><br><span class="line"><span class="comment">//int maxw;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> tw,<span class="keyword">int</span> tv,<span class="keyword">int</span> op[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(tw==W&amp;&amp;tv&gt;maxv)&#123;</span><br><span class="line">			maxv=tv;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">				x[j]=op[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		op[i]=<span class="number">1</span>;</span><br><span class="line">		dfs(i+<span class="number">1</span>,tw+w[i],tv+v[i],op);</span><br><span class="line">		</span><br><span class="line">		op[i]=<span class="number">0</span>;</span><br><span class="line">		dfs(i+<span class="number">1</span>,tw,tv,op);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> op[<span class="number">5</span>];</span><br><span class="line">	dfs(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,op);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;maxv&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(i!=n)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;x[i]&lt;&lt;<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;x[i]&lt;&lt;<span class="built_in">endl</span>;	</span><br><span class="line">	&#125;	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>改进1</strong></p>
+<p>左剪枝：</p>
+<p>仅仅扩展满足<code>tw+w[i]&lt;=W</code>的节点</p>
+<p><strong>改进2</strong></p>
+<p>右剪枝：</p>
+<p><code>rw=w[i]+w[i+1]+...+w[n]</code></p>
+<p>仅仅扩展满足<code>tw+rw-w[i]&gt;=W</code>的节点                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> tw,<span class="keyword">int</span> tv,<span class="keyword">int</span> rw,<span class="keyword">int</span> op[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;n)&#123;</span><br><span class="line">		<span class="keyword">if</span>(tw==W&amp;&amp;tv&gt;maxv)&#123;</span><br><span class="line">			maxv=tv;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">				x[j]=op[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(tw+w[i]&lt;=W)&#123;<span class="comment">//进行左剪枝</span></span><br><span class="line">            op[i]=<span class="number">1</span>;</span><br><span class="line">			dfs(i+<span class="number">1</span>,tw+w[i],tv+v[i],rw-w[i],op);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">if</span>(tw+rw-w[i]&gt;=W)</span><br><span class="line">        &#123;</span><br><span class="line">         	op[i]=<span class="number">0</span>;</span><br><span class="line">			dfs(i+<span class="number">1</span>,tw,tv,rw-w[i],op);  </span><br><span class="line">        &#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>考虑装入背包中物品重量和不超过W：</strong></p>
+<ul>
+<li>左剪枝相同</li>
+<li>右剪枝修改：</li>
+</ul>
+<p>上界函数<code>bound(i)=tv+r</code>表示沿着该方向选择得到物品的价值上界，r表示剩余物品的总价值。</p>
+<p>若当前<code>bound(i)&lt;=maxv</code>，则右剪枝，否则继续扩展。</p>
+<p>显然r越小，bound(i)也越小，剪枝越多，为了构造更小的r，将所有物品以单位重量价值递减排列。</p>
+<img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212105923444.png" class title="image-20220212105923444">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bound</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> tw,<span class="keyword">int</span> tv)</span><span class="comment">//求上界</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    i++;<span class="comment">//从i+1开始</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;=n &amp;&amp; tw+A[i].w&lt;=W)&#123;<span class="comment">//若序号为i的物品可以整个放入</span></span><br><span class="line">        tw+=A[i].w;</span><br><span class="line">        tv+=A[i].v;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;=n)</span><br><span class="line">        <span class="keyword">return</span> tv+(W-tw)*A[i].p;<span class="comment">//序号为i的物品不能整个放入</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> tv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>右剪枝：仅仅扩展<code>bound(i,tw,tv)&gt;maxv</code>的右孩子节点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> tw,<span class="keyword">int</span> tv,<span class="keyword">int</span> rw,<span class="keyword">int</span> op[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&gt;n)</span><br><span class="line">	&#123;</span><br><span class="line">		maxv=tv;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)</span><br><span class="line">			x[j]=op[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(tw+A[i].w&lt;=W)&#123;<span class="comment">//进行左剪枝</span></span><br><span class="line">            op[i]=<span class="number">1</span>;</span><br><span class="line">			dfs(i+<span class="number">1</span>,tw+A[i].w,tv+A[i].v,op);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="keyword">if</span>(bound(i,tw,tv)&gt;maxv)<span class="comment">//进行右剪枝</span></span><br><span class="line">        &#123;</span><br><span class="line">         	op[i]=<span class="number">0</span>;</span><br><span class="line">			dfs(i+<span class="number">1</span>,tw,tv,op);  </span><br><span class="line">        &#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112256424.png" class title="image-20220212112256424">
+
+
+
+<h1 id="求解装载问题"><a href="#求解装载问题" class="headerlink" title="求解装载问题"></a>求解装载问题</h1><img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112755793.png" class title="image-20220212112755793">
+
+<img src="/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/image-20220212112801976.png" class title="image-20220212112801976">
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2022/02/12/%E8%93%9D%E6%A1%A5%E6%9D%AF-5/" title="蓝桥杯-5">https://polaris6g.github.io/2022/02/12/蓝桥杯-5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 算法与数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/20/%E8%93%9D%E6%A1%A5%E6%9D%AF-2/" rel="prev" title="蓝桥杯-2">
+      <i class="fa fa-chevron-left"></i> 蓝桥杯-2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/" rel="next" title="蓝桥杯-4">
+      蓝桥杯-4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">回溯法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B1%82%E5%AD%90%E9%9B%86%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">1.求子集问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%AC%A6%E5%8F%B7%E6%8F%92%E5%85%A5%E5%87%91%E6%95%B4"><span class="nav-number">1.2.</span> <span class="nav-text">2. 符号插入凑整</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">3.全排列问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E6%B3%95%E4%B8%8E%E6%B7%B1%E6%90%9C%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-number">2.</span> <span class="nav-text">回溯法与深搜的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="nav-number">2.1.</span> <span class="nav-text">相同点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="nav-number">2.2.</span> <span class="nav-text">不同点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">0&#x2F;1背包问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">求解装载问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

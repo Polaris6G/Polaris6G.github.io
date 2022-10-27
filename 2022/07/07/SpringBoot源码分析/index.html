@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="UML图 springboot核心流程源码 springboot企业扩展最佳实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot源码分析">
+<meta property="og:url" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="UML图 springboot核心流程源码 springboot企业扩展最佳实践">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706100302008.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706100403673.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706101009490.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706101955802.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101448574.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101720910.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101829471.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707110901000.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707111910879.png">
+<meta property="article:published_time" content="2022-07-07T03:41:38.000Z">
+<meta property="article:modified_time" content="2022-07-07T13:07:59.795Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="思特奇培训课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706100302008.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>SpringBoot源码分析 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringBoot源码分析
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-07 11:41:38 / Modified: 21:07:59" itemprop="dateCreated datePublished" datetime="2022-07-07T11:41:38+08:00">2022-07-07</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>UML图</li>
+<li>springboot核心流程源码</li>
+<li>springboot企业扩展最佳实践</li>
+</ul>
+<span id="more"></span>
+
+<p><em>自我测评：</em></p>
+<ol>
+<li><em>基于spingboot，谈谈springloc底层原理：</em><ul>
+<li><em>三个平面的关系和创建过程</em></li>
+<li><em>appcontext和bean工厂平面的内部细节，怎么加载bean定义，和bean如何实例化、初始化</em></li>
+</ul>
+</li>
+<li><em>描述一下bean生命周期：</em><ul>
+<li><em>实例化bean的实现-反射；填充bean过程-循环依赖+三级缓存</em></li>
+<li><em>调用aware接口，调用beanPostProcessor方法，调用initmethod方法</em></li>
+</ul>
+</li>
+<li><em>spring是如何解决循环依赖的问题：</em><ul>
+<li><em>怎么产生的；实例化和初始化分离；流程</em></li>
+</ul>
+</li>
+<li><em>BeanFactory与FactroyBean从底层源码层面解读它们的区别：</em><ul>
+<li><em>第三平面的源码实现</em></li>
+</ul>
+</li>
+<li><em>基于springboot，怎么进行插件开发：</em><ul>
+<li><em>扩展线</em></li>
+</ul>
+</li>
+</ol>
+<h2 id="课程架构"><a href="#课程架构" class="headerlink" title="课程架构"></a>课程架构</h2><img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706100302008.png" class title="image-20220706100302008">
+
+<p><strong>UML-DEMO制作</strong></p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706100403673.png" class title="image-20220706100403673">
+
+<p><strong>spring到springboot演进</strong></p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706101009490.png" class title="image-20220706101009490">
+
+<p><strong>spring源码课程边界</strong></p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220706101955802.png" class title="image-20220706101955802">
+
+
+
+<h2 id="三大平面"><a href="#三大平面" class="headerlink" title="三大平面"></a>三大平面</h2><ul>
+<li><p>SpringApplication平面：Springboot.jar</p>
+<ul>
+<li><p>前置处理</p>
+<ul>
+<li>事件触发</li>
+<li>环境配置</li>
+<li>预装IOC</li>
+</ul>
+</li>
+<li><p>进入第二平面处理refreshContext()</p>
+</li>
+<li><p>后置处理</p>
+<ul>
+<li>事件触发</li>
+<li>异常处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ApplicationContext平面：Springcontext.jar</p>
+<p>完成bean定义加载</p>
+<ul>
+<li>前置处理<ul>
+<li>第三平面的预处理</li>
+</ul>
+</li>
+<li>自动装配<ul>
+<li>第二平面事件触发</li>
+<li>处理自动配置类、注解、扫包</li>
+<li>完成bean定义加载</li>
+<li>对bean定义的后置处理</li>
+</ul>
+</li>
+<li>对接tomcat</li>
+<li>进入第三平面处理refreshContext()</li>
+</ul>
+</li>
+<li><p>BeanFactory平面：springbean.jar</p>
+<p>对所有bean定义轮询处理（完成bean的实例化）</p>
+<ul>
+<li>三级缓存</li>
+<li>创建bean</li>
+<li>填充属性</li>
+<li>bean初始化</li>
+</ul>
+</li>
+</ul>
+<h2 id="三大注解"><a href="#三大注解" class="headerlink" title="三大注解"></a>三大注解</h2><img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101448574.png" class title="image-20220707101448574">
+
+<p>容器内加组件</p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101720910.png" class title="image-20220707101720910">
+
+<p>组件给属性</p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707101829471.png" class title="image-20220707101829471">
+
+<h2 id="面向平面插件深度扩展"><a href="#面向平面插件深度扩展" class="headerlink" title="面向平面插件深度扩展"></a>面向平面插件深度扩展</h2><ul>
+<li>前两个平面以事件为主</li>
+<li>bean工厂平面扩展线分析<ul>
+<li>配置中心、属性注入</li>
+<li>常见配件开发的注入点</li>
+</ul>
+</li>
+</ul>
+<h2 id="面向技术组件化插件沉淀"><a href="#面向技术组件化插件沉淀" class="headerlink" title="面向技术组件化插件沉淀"></a>面向技术组件化插件沉淀</h2><img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707110901000.png" class title="image-20220707110901000">
+
+<h2 id="某springboot框架组件分布"><a href="#某springboot框架组件分布" class="headerlink" title="某springboot框架组件分布"></a>某springboot框架组件分布</h2><p>整体基于模块化快速服务开发（功能开箱即用，配置简单，测试简单）、多协议发布（支持HTTP,SOAP,DUBBO协议，一次编写多种协议调用，架构切换业务代码复用），内置各种监控指标的服务层开发框架。</p>
+<p><strong>服务开发及运行框架功能</strong></p>
+<img src="/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/image-20220707111910879.png" class title="image-20220707111910879">
+
+<p><strong>开发流程</strong></p>
+<ul>
+<li>开发环境准备<ul>
+<li>JDK1.8以上</li>
+<li>maven私服配置</li>
+<li>IDEA开发工具配置</li>
+</ul>
+</li>
+<li>业务功能建模<ul>
+<li>新建Maven工程</li>
+<li>确定系统需要的组件</li>
+<li>引入组件对应的starter</li>
+</ul>
+</li>
+<li>服务开发<ul>
+<li>编写InDto</li>
+<li>编写服务接口</li>
+<li>实现服务逻辑</li>
+</ul>
+</li>
+<li>配置相关组件<ul>
+<li>连接池配置</li>
+<li>mybatis配置</li>
+<li>服务发布配置</li>
+</ul>
+</li>
+<li>测试<ul>
+<li>单元测试</li>
+<li>打包运行</li>
+</ul>
+</li>
+</ul>
+<p><strong>可视化监控</strong></p>
+<p><em>ps:</em></p>
+<ol>
+<li><em>看源码经常用到类图和时序图两个UML图</em></li>
+<li><em>针对bean实例化的beanfactory平面，常见扩展手段是：实现接口</em></li>
+<li><em>spring.factories的扩展机制是仿照java中的SPI思想</em></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2022/07/07/SpringBoot%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="SpringBoot源码分析">https://polaris6g.github.io/2022/07/07/SpringBoot源码分析/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%9D%E7%89%B9%E5%A5%87%E5%9F%B9%E8%AE%AD%E8%AF%BE%E7%A8%8B/" rel="tag"># 思特奇培训课程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/" rel="prev" title="SpringBoot实战">
+      <i class="fa fa-chevron-left"></i> SpringBoot实战
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/" rel="next" title="SpringCloud实战">
+      SpringCloud实战 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BE%E7%A8%8B%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">课程架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E5%B9%B3%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">三大平面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E6%B3%A8%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">三大注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%B9%B3%E9%9D%A2%E6%8F%92%E4%BB%B6%E6%B7%B1%E5%BA%A6%E6%89%A9%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">面向平面插件深度扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E6%8A%80%E6%9C%AF%E7%BB%84%E4%BB%B6%E5%8C%96%E6%8F%92%E4%BB%B6%E6%B2%89%E6%B7%80"><span class="nav-number">5.</span> <span class="nav-text">面向技术组件化插件沉淀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%90springboot%E6%A1%86%E6%9E%B6%E7%BB%84%E4%BB%B6%E5%88%86%E5%B8%83"><span class="nav-number">6.</span> <span class="nav-text">某springboot框架组件分布</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

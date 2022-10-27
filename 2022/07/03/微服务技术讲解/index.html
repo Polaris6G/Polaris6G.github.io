@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="微服务的产生 微服务原理 微服务的实践 微服务其他">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务技术讲解">
+<meta property="og:url" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="微服务的产生 微服务原理 微服务的实践 微服务其他">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220702234549878.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703082420878.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703083622771.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703083730741.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703084203827.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090123180.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092616529.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090412203.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090758339.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090840717.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091513131.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091639666.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091705670.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091822183.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092010416.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092040814.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092205439.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092307267.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092418975.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092451023.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093209181-16568119300121.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093241877.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093428452.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093514198.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093716892.png">
+<meta property="article:published_time" content="2022-07-03T02:51:50.000Z">
+<meta property="article:modified_time" content="2022-07-03T02:51:50.344Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="思特奇培训课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220702234549878.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>微服务技术讲解 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微服务技术讲解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-03 10:51:50" itemprop="dateCreated datePublished" datetime="2022-07-03T10:51:50+08:00">2022-07-03</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>微服务的产生</li>
+<li>微服务原理</li>
+<li>微服务的实践</li>
+<li>微服务其他</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="微服务的产生"><a href="#微服务的产生" class="headerlink" title="微服务的产生"></a>微服务的产生</h1><p>SOA解决的三个问题：</p>
+<ul>
+<li>信息孤岛</li>
+<li>互联互通</li>
+<li>业务重用</li>
+</ul>
+<h3 id="微服务框架"><a href="#微服务框架" class="headerlink" title="微服务框架"></a>微服务框架</h3><p>简称：MSA</p>
+<p><strong>特征</strong>：</p>
+<ul>
+<li>由一组小的服务组成一个完整的应用（或网站）</li>
+<li>每个服务围绕一个相对独立的业务领域（领域模型）构建</li>
+<li>服务之间通过轻量级的通信机制相互沟通</li>
+<li>完全去中心化</li>
+<li>每个服务都可以独立无数</li>
+<li>每个服务可以使用不同的编程语言实现</li>
+</ul>
+<p><strong>发展历程</strong>：</p>
+<ol>
+<li>单体程序</li>
+<li>Pre-SOA(紧耦合)</li>
+<li>Traditional SOA(松耦合)</li>
+<li>Microsevices(解耦和）</li>
+</ol>
+<p>SOA和微服务的<strong>区别</strong>:</p>
+<ul>
+<li><p>微服务不再强调传统SOA架构里面比较重的ESB企业服务总线</p>
+</li>
+<li><p>SOA的思想进入到单个业务系统内部实现真正的组件化</p>
+</li>
+</ul>
+<p>SOA和微服务的<strong>共同点</strong>:</p>
+<ul>
+<li><p>服务化</p>
+</li>
+<li><p>敏捷快速</p>
+</li>
+</ul>
+<p><strong>架构设计发展</strong>：</p>
+<ul>
+<li>MVC（视图、业务逻辑前后端分离）</li>
+<li>SOA（大型系统分层解耦）</li>
+<li>Micro services （云计算产物，关注敏捷交付）</li>
+</ul>
+<p>最大优点:</p>
+<ol>
+<li><p>所有功能(服务)可以单独小应用部署，实现真正意义上的“横向扩充”(理论上对服务进行各种方式单独或组合部署)，解决“数据<br>库瓶颈”、”不同模块(服务)对硬件资源冲突的隔离</p>
+</li>
+<li><p>因为独立，所以可以快速迭代，易部署</p>
+</li>
+</ol>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220702234549878.png" class title="image-20220702234549878">
+
+<p><strong>功能</strong>：</p>
+<ol>
+<li><p>服务自动注册：</p>
+<p>（1）告诉API网关有这么一个服务可以对外供调用了</p>
+<p>（2）自动加入复杂均衡副本机制</p>
+</li>
+<li><p>服务优雅降级，与”服务自动注册”相反</p>
+</li>
+<li><p>负载均衡</p>
+</li>
+<li><p>流量管控、访问黑名单机制</p>
+</li>
+<li><p>基于容器（如Docker）小应用（AP）部署</p>
+</li>
+<li><p>提供一个总服务来对其他服务进行组合调用（对组合中成员实现同步执行、异步执行机制）</p>
+</li>
+<li><p>实现分布式事务</p>
+</li>
+</ol>
+<h1 id="微服务的实现"><a href="#微服务的实现" class="headerlink" title="微服务的实现"></a>微服务的实现</h1><p><strong>微服务架构工作流程</strong>：</p>
+<ul>
+<li>设计阶段：<ul>
+<li>将产品功能拆分为若干服务</li>
+<li>为每个服务设计API接口</li>
+</ul>
+</li>
+<li>开发阶段：<ul>
+<li>实现API接口（包括单元测试）</li>
+<li>开发UI原型（页面）</li>
+</ul>
+</li>
+<li>测试阶段：<ul>
+<li>前后端集成</li>
+<li>验证产品功能</li>
+</ul>
+</li>
+<li>部署阶段<ul>
+<li>发布测试环境</li>
+<li>发布生产环境</li>
+</ul>
+</li>
+</ul>
+<p><strong>基础知识</strong>：</p>
+<ul>
+<li>领域驱动设计（Domain Driven Design）</li>
+</ul>
+<p>DDD是一种以<strong>领域</strong>为核心的设计和开发理念。DDD通过维护一个深度反映领域概念的模型，以及提供了可行的经过实践检验的大梁模型来硬度领域的复杂性，偏向代码实现的（领域）对象。</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703082420878.png" class title="image-20220703082420878">
+
+<ul>
+<li><p>Restful API 的设计</p>
+</li>
+<li><p>一种开发框架：</p>
+<ul>
+<li>Java</li>
+<li>.NET</li>
+<li>Node.js</li>
+<li>Python</li>
+<li>Ruby</li>
+</ul>
+</li>
+</ul>
+<p><strong>微服务与GRASP</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703083622771.png" class title="image-20220703083622771">
+
+<p><strong>微服务与GRASP基本原则</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703083730741.png" class title="image-20220703083730741">
+
+<h3 id="微服务主要技术"><a href="#微服务主要技术" class="headerlink" title="微服务主要技术"></a>微服务主要技术</h3><ol>
+<li><strong>Dubbo</strong>（开源分布式服务框架）:</li>
+</ol>
+<p>阿里公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的RPC实现服务的输出和输入功能</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703084203827.png" class title="image-20220703084203827">
+
+<p>Remoting：网络通信框架，实现了sync-over-async和Logo request-response消息机制</p>
+<p>RPC：一个远程过程调用的抽象，支持复杂均衡、容灾和集群功能</p>
+<p>Registry：服务目录框架用于服务的注册和服务时间发布和订阅</p>
+<ol start="2">
+<li><strong>Spring Cloud</strong>:</li>
+</ol>
+<p>一系列框架的有序集合：</p>
+<ul>
+<li>利用Spring Boot的开发便利性</li>
+<li>Spring Cloud Eureka（服务治理）</li>
+<li>Spring Cloud Netflix（服务发现、注册、负载就能、断路器、REST客户端、请求路由）、</li>
+<li>Spring Cloud Zookeeper （注册中心）</li>
+<li>Spring Cloud Bus （实现可靠消息）</li>
+<li>Spring Cloud Config （将配置信息中央化保存）</li>
+<li>Spring Cloud Security （实现服务安全）</li>
+</ul>
+<ol start="3">
+<li><strong>Docker</strong>：</li>
+</ol>
+<p>Docker是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可一直的容器中，然后发布到任何流行的Linux机器上，也可以实现虚拟化。容器是完全使用沙箱机制，相互之间不会有任何接口。</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090123180.png" class title="image-20220703090123180">
+
+<p>应用场景：</p>
+<ul>
+<li>使应用的打包与部署自动化</li>
+<li>创建轻量、私密的PAAS环境</li>
+<li>实现自动化测试和持续的集成/部署</li>
+<li>部署与扩展webapp、数据库和后台服务</li>
+</ul>
+<p>优势：</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092616529.png" class title="image-20220703092616529">
+
+<ol start="4">
+<li><strong>jenkins</strong>：</li>
+</ol>
+<p>是一个开源软件项目，是基于Java开发的一种<strong>持续集成</strong>工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成编程可能。</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090412203.png" class title="image-20220703090412203">
+
+<p>功能：</p>
+<ul>
+<li>持续的软件版本发布/测试项目</li>
+<li>监控外部调用执行的工作</li>
+</ul>
+<p>微服务应用平台总体架构</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090758339.png" class title="image-20220703090758339">
+
+<p>微服务应用平台运行架构</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703090840717.png" class title="image-20220703090840717">
+
+<p><strong>微服务应用设计原则</strong></p>
+<ul>
+<li><p>AKF扩展拆分</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091513131.png" class title="image-20220703091513131"></li>
+<li><p>前后端分离</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091639666.png" class title="image-20220703091639666"></li>
+<li><p>无状态服务</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091705670.png" class title="image-20220703091705670"></li>
+<li><p>Rest通讯风格</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703091822183.png" class title="image-20220703091822183"></li>
+</ul>
+<p><strong>服务之间选择轻量级的通信协议</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092010416.png" class title="image-20220703092010416">
+
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092040814.png" class title="image-20220703092040814">
+
+<p><strong>选择编程语言</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092205439.png" class title="image-20220703092205439">
+
+<p><strong>服务的独立部署</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092307267.png" class title="image-20220703092307267">
+
+<p><strong>服务的去中心化</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092418975.png" class title="image-20220703092418975">
+
+<p><strong>解决大量微服务引入的运维成本</strong></p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703092451023.png" class title="image-20220703092451023">
+
+<h1 id="微服务扩展知识"><a href="#微服务扩展知识" class="headerlink" title="微服务扩展知识"></a>微服务扩展知识</h1><p>微服务带来挑战：</p>
+<ul>
+<li>依赖服务接口变更<ul>
+<li>服务接口如何管理</li>
+<li>接口变更跟踪难</li>
+<li>依赖服务调试麻烦</li>
+</ul>
+</li>
+<li>部分模块重复构建<ul>
+<li>安全认证</li>
+<li>配置日志</li>
+</ul>
+</li>
+<li>分布式带来的问题<ul>
+<li>分布式事务问题</li>
+<li>依赖服务不稳定’</li>
+<li>需要引入异步模式</li>
+</ul>
+</li>
+<li>运维复杂度陡增<ul>
+<li>部署物数量倍增</li>
+<li>监控进程倍增</li>
+<li>故障定位难</li>
+<li>问题追溯难</li>
+</ul>
+</li>
+</ul>
+<p>关键问题：</p>
+<ul>
+<li><p>服务注册和路由</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093209181-16568119300121.png" class title="image-20220703093209181"></li>
+<li><p>安全认证</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093241877.png" class title="image-20220703093241877"></li>
+<li><p>集中配置</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093428452.png" class title="image-20220703093428452"></li>
+<li><p>分布式事务</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093514198.png" class title="image-20220703093514198"></li>
+<li><p>同步调用</p>
+<p>用异步模拟来同步</p>
+<img src="/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/image-20220703093716892.png" class title="image-20220703093716892"></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2022/07/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8A%80%E6%9C%AF%E8%AE%B2%E8%A7%A3/" title="微服务技术讲解">https://polaris6g.github.io/2022/07/03/微服务技术讲解/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%9D%E7%89%B9%E5%A5%87%E5%9F%B9%E8%AE%AD%E8%AF%BE%E7%A8%8B/" rel="tag"># 思特奇培训课程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/01/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F%E5%88%86%E6%9E%90/" rel="prev" title="软件架构模式分析">
+      <i class="fa fa-chevron-left"></i> 软件架构模式分析
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/" rel="next" title="SpringBoot实战">
+      SpringBoot实战 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-number">1.</span> <span class="nav-text">微服务的产生</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%A1%86%E6%9E%B6"><span class="nav-number">1.0.1.</span> <span class="nav-text">微服务框架</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">微服务的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%BB%E8%A6%81%E6%8A%80%E6%9C%AF"><span class="nav-number">2.0.1.</span> <span class="nav-text">微服务主要技术</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86"><span class="nav-number">3.</span> <span class="nav-text">微服务扩展知识</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

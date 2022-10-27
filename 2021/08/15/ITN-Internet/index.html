@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="摘要这是我在思科平台上学习的“网络简介”课程。 这里展示我的学习笔记，较精简地总结了其相关知识。 本课程主要介绍内容可分为一下三个方面：  互联网以及其他计算机网络的体系结构、架构、功能呢、组件和模型 IP寻址的原则和结构 以太网的概念、介质和操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ITN_Internet(1)">
+<meta property="og:url" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="摘要这是我在思科平台上学习的“网络简介”课程。 这里展示我的学习笔记，较精简地总结了其相关知识。 本课程主要介绍内容可分为一下三个方面：  互联网以及其他计算机网络的体系结构、架构、功能呢、组件和模型 IP寻址的原则和结构 以太网的概念、介质和操作">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/01.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/02.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/03.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/04.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/05.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/06.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/07.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/08.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/09.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/10.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/11.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/12.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/13.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/14.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/15.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/16.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/17.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/18.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/19.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/20.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/21.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/22.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/23.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/24.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/25.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/26.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/27.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/28.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/29.png">
+<meta property="article:published_time" content="2021-08-15T13:13:34.000Z">
+<meta property="article:modified_time" content="2021-08-15T13:13:34.853Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="ITN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2021/08/15/ITN-Internet/01.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2021/08/15/ITN-Internet/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>ITN_Internet(1) | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2021/08/15/ITN-Internet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ITN_Internet(1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-08-15 21:13:34" itemprop="dateCreated datePublished" datetime="2021-08-15T21:13:34+08:00">2021-08-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">计网</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/08/15/ITN-Internet/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/15/ITN-Internet/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>这是我在<strong>思科平台</strong>上学习的“网络简介”课程。</p>
+<p>这里展示我的学习笔记，较精简地总结了其相关知识。</p>
+<p>本课程主要介绍内容可分为一下三个方面：</p>
+<ul>
+<li>互联网以及其他计算机网络的体系结构、架构、功能呢、组件和模型</li>
+<li>IP寻址的原则和结构</li>
+<li>以太网的概念、介质和操作</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="第一章-当今网络"><a href="#第一章-当今网络" class="headerlink" title="第一章 当今网络"></a>第一章 当今网络</h1><h2 id="内容大纲："><a href="#内容大纲：" class="headerlink" title="内容大纲："></a>内容大纲：</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>主题标题</strong></th>
+<th align="left">主题目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>网络组件</strong></td>
+<td align="left">说明主机和网络设备的用途。</td>
+</tr>
+<tr>
+<td align="left"><strong>网络表示方式和网络拓扑</strong></td>
+<td align="left">说明网络的表示方式，以及这些表示方式在网络拓扑中的 具体运用。</td>
+</tr>
+<tr>
+<td align="left"><strong>常见网络类型</strong></td>
+<td align="left">比较各类常见网络的特征。</td>
+</tr>
+<tr>
+<td align="left"><strong>Internet 连接</strong></td>
+<td align="left">说明 LAN（局域网）和 WAN（广域网）连接互联网的方式。</td>
+</tr>
+<tr>
+<td align="left"><strong>可靠网络</strong></td>
+<td align="left">描述可靠网络的四个基本要求。</td>
+</tr>
+<tr>
+<td align="left"><strong>网络趋势</strong></td>
+<td align="left">说明 BYOD（自带设备）、在线协作、视频和云 计算等新兴趋势如何改变人们的互动方式。</td>
+</tr>
+<tr>
+<td align="left"><strong>网络安全</strong></td>
+<td align="left">明确网络普遍面临的一些基本安全威胁及相关解决方案。</td>
+</tr>
+</tbody></table>
+<p>Packet Tracer入门详见<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Xb411Y7i7?from=search&amp;seid=7592654199180219167">https://www.bilibili.com/video/BV1Xb411Y7i7?from=search&amp;seid=7592654199180219167</a></p>
+<h2 id="01-网络组件"><a href="#01-网络组件" class="headerlink" title="01 网络组件"></a>01 网络组件</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>主机：所有直接参与网络通信的连接到网络的计算机，还被称为终端设备，某些主机也称为客户端。</p>
+<p>IP地址：互联网协议地址，是一串数字，用来表示特定网络的主机。</p>
+<p>服务器：装有特殊软件，可以为网络上其他终端设备提供信息（比如电子邮件或网页）的计算机。</p>
+<p>终端设备：终端设备是指通过网络传输的消息的来源或目的地。</p>
+<p>中间设备：中间设备可以将单个终端连接到网络中。它们可以将多个独立的网络连接起来，形成互联网络。这些中间设备提供连接并确保数据在网络中传输。例如：无线路由器、LAN交换机、路由器、多层交换机、防火墙设备。</p>
+<p>中间网络设备执行以下部分或全部功能：</p>
+<ul>
+<li>重新生成并传输通信信号</li>
+<li>维护有关网络和互联网络中存在哪些路径的信息</li>
+<li>将错误和通信故障通知其他设备</li>
+<li>发生链路故障是按照备用路径转发数据</li>
+<li>根据优先级被分类和转发消息</li>
+<li>根据安全设置允许或拒绝数据的通行</li>
+</ul>
+<p>Web浏览器是典型的客户端软件，一台计算机也可以运行多种类型的客户端软件，从而同一时间可实现多种多样的交互功能。</p>
+<h3 id="对等网络"><a href="#对等网络" class="headerlink" title="对等网络"></a>对等网络</h3><p>对等网络：客户端和服务器软件通常运行在单独的服务器上，但一台计算机也可以同时兼任两个角色。在小企业和家庭中，许多计算机在网络中既是服务器又是客户端。这种网络称为对等网络。</p>
+<p>栗子：传输文件，文件共享</p>
+<h3 id="网络介质"><a href="#网络介质" class="headerlink" title="网络介质"></a>网络介质</h3><p>通信通过介质在网络上传输。介质为消息从源设备传送到目的设备提供了通道。</p>
+<p>现代网络中三大主要的连接设备的介质：</p>
+<ul>
+<li>金属线电缆（电脉冲）</li>
+<li>玻璃或塑料光纤（光脉冲）</li>
+<li>无线传输（特定频率的电磁波）</li>
+</ul>
+<p>安装时选择介质标准：</p>
+<ul>
+<li>传送信号最大距离</li>
+<li>安装环境</li>
+<li>必须传输数据量和速率</li>
+<li>安装成本</li>
+</ul>
+<h2 id="02-网络表示方式和网络拓扑"><a href="#02-网络表示方式和网络拓扑" class="headerlink" title="02 网络表示方式和网络拓扑"></a>02 网络表示方式和网络拓扑</h2><h3 id="网络表示方式"><a href="#网络表示方式" class="headerlink" title="网络表示方式"></a>网络表示方式</h3><p>网络图通过使用图标（如图所示）来表示构成网络的不同设备和连接。</p>
+<img src="/2021/08/15/ITN-Internet/01.png" alt="01">
+
+<p>用来描述这些设备和介质是如何连接的术语：</p>
+<ul>
+<li><strong>网络接口卡（NIC/网卡）</strong>：是一块被设计用来允许计算机在计算机玩过上进行通讯的计算机硬件</li>
+<li><strong>物理端口</strong>：网络设备上的接口或插口，介质通过它连接到终端设备或其他网络设备</li>
+<li><strong>接口</strong>：网络设备上连接到独立网络的专用端口。由于路由器连接了不同网络，路由器上的端口称为网络接口（端口和接口可不做区分啦）</li>
+</ul>
+<h3 id="拓扑图"><a href="#拓扑图" class="headerlink" title="拓扑图"></a>拓扑图</h3><p>图可以让人轻松了解大型网络中的设备连接方式，这种图被称为“拓扑谱图”，其可提供直观的网络连接图。</p>
+<p>有两种类型的拓扑图，物理图和逻辑图。</p>
+<p><strong>物理拓扑图</strong>：</p>
+<p>说明了中间设备和电缆安装的物理位置。</p>
+<img src="/2021/08/15/ITN-Internet/02.png" alt="02">
+
+<p><strong>逻辑拓扑图</strong>：</p>
+<p>说明了设备、端口和网络的编址方案。</p>
+<p>如图，可以看到哪些终端设备连接到哪些终端设备以及正在使用哪些介质。</p>
+<img src="/2021/08/15/ITN-Internet/03.png" alt="03">
+
+<h2 id="03-常见网络类型"><a href="#03-常见网络类型" class="headerlink" title="03 常见网络类型"></a>03 常见网络类型</h2><h3 id="多种规模的网络"><a href="#多种规模的网络" class="headerlink" title="多种规模的网络"></a>多种规模的网络</h3><p>网络没有大小限制。它们的范围可以是小到两台计算机组成的简易网络，也可以是大到连接数百万台设备的超级网络。</p>
+<p>类型主要有四种：</p>
+<ul>
+<li>小型家庭网络：将少量的几台计算机互联并将它们连接到互联网。</li>
+<li>小型办公室/家庭办公室网络：可让一个家庭办公室或远程办公室内的计算机连接到企业网络或访问集中的共享资源。</li>
+<li>大中型网络：可能有许多站点，包含成百上千台相互连接的主机。</li>
+<li>全球网络：互联网是由网络组成的网络，连接全球亿万台计算机。</li>
+</ul>
+<h3 id="LAN和WAN"><a href="#LAN和WAN" class="headerlink" title="LAN和WAN"></a>LAN和WAN</h3><p>两种最常见的网络基础设施类型是局域网 (LAN) 和广域网 (WAN)。</p>
+<p>如图显示了连接到广域网的局域网。</p>
+<img src="/2021/08/15/ITN-Internet/04.png" alt="04">
+
+<p><strong>LAN</strong>：</p>
+<p>LAN 是覆盖较小地理区域的网络基础设施。</p>
+<p>局域网具有如下特点:</p>
+<ul>
+<li>LAN 在<strong>有限区域</strong>（如家庭、学校、办公大楼或园区）内互连终端设备。</li>
+<li>LAN 通常<strong>由一个组织或个人管理</strong>。实行网络级管控、安全控制并制定访问控制策略。</li>
+<li>LAN 为内部终端设备和中间设备<strong>提供高速带宽</strong>，如图所示。</li>
+</ul>
+<p><strong>WAN</strong>：</p>
+<p>WAN 是覆盖广泛地理区域的网络基础设施。WAN 通常由服务提供商 (SP) 或互联网服务提供商 (ISP) 管理。</p>
+<p>WAN 具有如下特点:</p>
+<ul>
+<li>WAN <strong>互连广泛地理区域</strong>（例如各大城市、州、省、国家/地区或大陆之间）<strong>内的 LAN</strong>。</li>
+<li>WAN 通常<strong>由多个服务提供商管理</strong>。</li>
+<li>WAN 通常提供 <strong>LAN 之间</strong>的<strong>较慢链路</strong>。（内部快，外部慢）</li>
+</ul>
+<h3 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h3><p>互联网是一个遍及全球的互相连接的网络（简称互联网络或互联网）的集合。</p>
+<p>一些 LAN 示例通过 WAN 连接相互连接。然后 WAN 彼此连接。</p>
+<p>互联网不属于任何个人或团体。要确保通过这种多元化基础设施有效通信，需要采用<strong>统一的公认技术和标准</strong>，也需要众多<strong>网络管理机构</strong>相互协作。</p>
+<h3 id="内部网和外联网"><a href="#内部网和外联网" class="headerlink" title="内部网和外联网"></a>内部网和外联网</h3><p><strong>内部网</strong>：</p>
+<p>表示一个组织的私有LAN和WAN连接。</p>
+<p>仅允许该组织的成员、员工或其他获得授权的人员进行访问。</p>
+<p><strong>外联网</strong>：</p>
+<p>组织可以使用外联网为在其他组织工作。如供应商、客户、协作者。</p>
+<img src="/2021/08/15/ITN-Internet/05.png" alt="05">
+
+<h2 id="04-Internet连接"><a href="#04-Internet连接" class="headerlink" title="04 Internet连接"></a>04 Internet连接</h2><h3 id="Internet-访问技术"><a href="#Internet-访问技术" class="headerlink" title="Internet 访问技术"></a>Internet 访问技术</h3><p>现在说明客户和组织如何实际连接到互联网。</p>
+<p><strong>客户</strong>（家庭用户、远程工作者、小型办公室）通常需要连接互联网服务供应商（ISP）才能访问互联网。不同ISP和地理位置的连接选项各不相同。常见服务：宽带电缆、宽带数字用户线路、无线WAN和移动服务。</p>
+<img src="/2021/08/15/ITN-Internet/06.png" alt="06">
+
+<p><strong>组织</strong>通常需要访问企业站点和互联网。企业可能需要更高带宽、专用带宽和托管服务。服务提供商 （SP）提供企业互联。常见企业级服务：业务DSL、租用线路和城域以太网。</p>
+<img src="/2021/08/15/ITN-Internet/07.png" alt="07">
+
+<p>一些解释：</p>
+<ul>
+<li><p><strong>DSL</strong> ：数字用户线也可提供高带宽、高可用性和始终在线的互联网连接。DSL 通过电话线路运行。</p>
+</li>
+<li><p><strong>蜂窝网</strong>：蜂窝网互联网接入使用手机网络进行连接。只要您能收到蜂窝网信号，就能获得蜂窝网互联网接入。性能会受手机功能和手机基站的限制。</p>
+</li>
+<li><p><strong>城域以太网</strong> ：有时被称为以太网 WAN. 在本模块中，我们把它称为城域以太网。城域以太网将 LAN 访问技术扩展到 WAN 中。以太网是一种 LAN 技术，您将在后面的模块中学习。</p>
+</li>
+</ul>
+<h3 id="融合网络"><a href="#融合网络" class="headerlink" title="融合网络"></a>融合网络</h3><p>就理解为由各个独立的网络（计算机网络、电话网络、广播网络）（互不连通）融合在了一起。</p>
+<p>与专用网络不同，融合网络能够通过相同的网络基础设施，在许多不同类型的设备之间传输数据、语音和视频。此网络基础设施采用<strong>一组相同的规则、协议和实施标准</strong>。融合数据网络在一个网络中传送多种服务。</p>
+<p>融合数据网络在一个网络中承载多种服务。</p>
+<h2 id="05-可靠网络"><a href="#05-可靠网络" class="headerlink" title="05 可靠网络"></a>05 可靠网络</h2><h3 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h3><p>网络架构需要解决的一下四个基本特性：</p>
+<ul>
+<li>容错能力</li>
+<li>可扩展性</li>
+<li>服务质量（QoS）</li>
+<li>安全性</li>
+</ul>
+<h3 id="容错能力"><a href="#容错能力" class="headerlink" title="容错能力"></a>容错能力</h3><p>容错网络是在发生故障时限制受影响设备数量的网络。</p>
+<p>这种网络能在发生故障是快速恢复，其依赖于消息的源与目的地之间的多条路径。</p>
+<p>如果一条路径失败，消息将立即通过不同的链路发送。有多条路径到达目的地被称为<strong>冗余</strong>。</p>
+<p>实施<strong>分组交换网络</strong>是可靠网络提供冗余的一种方法。</p>
+<p>分组交换：分组交换将流量分割成通过共享网络发送的数据包。单个消息，例如一份电子邮件或一段视频流，会分割成多个消息块，称为数据包。每个数据包拥有所需的消息源和目的地的编址信息。网络内的路由器基于当前的网络状况交换数据包。</p>
+<p>这意味着，单个消息中的所有数据包中，可采用完全不同的路径到达目的地。所有某一条链路发生故障，路由器动态改变路由时，用户并没有发觉而且没有受到影响。</p>
+<img src="/2021/08/15/ITN-Internet/08.png" alt="08">
+
+<h3 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h3><p>可扩展的网络可快速拓展，以支持新用户和应用程序。</p>
+<p>网络具有扩展能力，因为设计人员可以遵循广为接受的标准和协议。这使得软件和硬件供应商可以集中精力改进产品和服务，而无需为在网络内的运行设计一套新的规则。</p>
+<img src="/2021/08/15/ITN-Internet/09.png" alt="09">
+
+<h3 id="服务质量"><a href="#服务质量" class="headerlink" title="服务质量"></a>服务质量</h3><p>当带宽需求超过可用量时，就会造成拥塞。</p>
+<p>如果流量规模大于可通过网络传输的量（出现拥塞），设备会将数据包保存在内存中，直至有资源可以传输它们。这就是网络服务质量（QoS）策略。QoS 成为了用于管理拥塞和确保向所有用户可靠传输内容的主要机制。</p>
+<p>下图以一个视频通话（语音、图像）的例子来说明优先级：</p>
+<img src="/2021/08/15/ITN-Internet/10.png" alt="10">
+
+<h3 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h3><p>网络基础设施、服务以及联网设备上的数据是极为重要的个人和企业资产。网络管理员必须解决两种网络安全问题：<strong>网络基础设施安全</strong>和<strong>信息安全</strong>。</p>
+<ul>
+<li>网络基础设施安全：</li>
+</ul>
+<p>一方面要保护提供网络连接的设备的安全，另一方面要防止有人未经授权访问网络上的管理软件。</p>
+<img src="/2021/08/15/ITN-Internet/11.png" alt="11">
+
+<ul>
+<li>信息安全：</li>
+</ul>
+<p><strong>机密性</strong> - 意味着只有预定和授权收件人可以访问并读取数据。</p>
+<p><strong>完整性</strong> - 表示保证信息在从源到目的地的传输过程中不会被更改。</p>
+<p><strong>可用性</strong> - 表示保证授权用户及时可靠地访问数据服务。</p>
+<h2 id="06-网络趋势"><a href="#06-网络趋势" class="headerlink" title="06 网络趋势"></a>06 网络趋势</h2><h3 id="近期趋势"><a href="#近期趋势" class="headerlink" title="近期趋势"></a>近期趋势</h3><ul>
+<li><p>自带设备（BYOD）：任何设备以任何方式连接到任何内容的概念是一种全球趋势。BYOD 使最终用户能够自由地使用个人工具通过企业或园区网络访问信息和相互通信。</p>
+</li>
+<li><p>在线协作</p>
+</li>
+<li><p>视频通信</p>
+</li>
+<li><p>云计算：云计算是我们访问和存储数据的方式之一，包含有如公有、私有、社区和混合云。</p>
+</li>
+<li><p>家庭中：智能家居。</p>
+</li>
+<li><p>电力线网络：使用电源插座将设备连接到网络。通过使用供电的同一线路，电力线网络通过按一定频率发送数据来发送信息。</p>
+</li>
+<li><p>无线宽带：这个解决方案与智能手机使用了相同的蜂窝技术。无线互联网服务提供商 (WISP) 是使用类似家庭无线局域网 (WLAN) 的无线技术，将用户连接到专用的接入点或热点的 ISP。</p>
+</li>
+</ul>
+<h2 id="07-网络安全"><a href="#07-网络安全" class="headerlink" title="07 网络安全"></a>07 网络安全</h2><h3 id="安全威胁"><a href="#安全威胁" class="headerlink" title="安全威胁"></a>安全威胁</h3><p>网络常见几种外部威胁：</p>
+<ul>
+<li>病毒、蠕虫和特洛伊木马：在用户设备上运行的恶意软件或代码</li>
+<li>间谍软件和广告软件</li>
+<li>零日攻击：在出现漏洞的第一天发起的攻击</li>
+<li>威胁发起者攻击</li>
+<li>拒绝服务攻击：使网络设备上的应用和进程减缓或崩溃的攻击</li>
+<li>数据拦截和盗窃</li>
+<li>身份盗窃</li>
+</ul>
+<p>内部威胁：</p>
+<ul>
+<li>设备丢失或失窃</li>
+<li>员工意外误用</li>
+<li>企业环境中员工的恶意行为</li>
+</ul>
+<h3 id="安全解决方案"><a href="#安全解决方案" class="headerlink" title="安全解决方案"></a>安全解决方案</h3><p><strong>家庭或小型办公室</strong>网络的基本安全组件：</p>
+<ul>
+<li>防病毒和反间谍软件</li>
+<li>防火墙过滤：过滤组织未经授权的进出网络访问</li>
+</ul>
+<p><strong>企业网络</strong>的基本安全组件：（包括以上两种）</p>
+<ul>
+<li>专用防火墙系统</li>
+<li>访问控制列表（ACL）：基于IP地址和应用程序，进一步过滤访问和流量转发</li>
+<li>入侵防御系统（IPS）：识别快速扩散的威胁，例如零日攻击或零小时攻击</li>
+<li>虚拟专用网络（VPN）：为远程工作人员提供对组织机构的安全访问</li>
+</ul>
+<h1 id="第二章-交换机和终端设备的基本配置"><a href="#第二章-交换机和终端设备的基本配置" class="headerlink" title="第二章 交换机和终端设备的基本配置"></a>第二章 交换机和终端设备的基本配置</h1><h2 id="内容大纲：-1"><a href="#内容大纲：-1" class="headerlink" title="内容大纲："></a>内容大纲：</h2><table>
+<thead>
+<tr>
+<th align="left">主题标题</th>
+<th align="left">主题目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>思科 IOS 访问</strong></td>
+<td align="left">说明如何访问思科 IOS 设备以进行配置。</td>
+</tr>
+<tr>
+<td align="left"><strong>IOS 导航</strong></td>
+<td align="left">说明如何在思科 IOS 中导航，以配置网络设备。</td>
+</tr>
+<tr>
+<td align="left"><strong>命令结构</strong></td>
+<td align="left">描述思科 IOS 软件的命令结构。</td>
+</tr>
+<tr>
+<td align="left"><strong>基本设备配置</strong></td>
+<td align="left">使用 CLI（命令行接口）配置思科 IOS 设备。</td>
+</tr>
+<tr>
+<td align="left"><strong>保存配置</strong></td>
+<td align="left">使用 IOS 命令来保存当前运行的配置。</td>
+</tr>
+<tr>
+<td align="left"><strong>端口和地址</strong></td>
+<td align="left">说明设备如何通过网络介质进行通信。</td>
+</tr>
+<tr>
+<td align="left"><strong>配置 IP 地址</strong></td>
+<td align="left">为主机设备配置 IP 地址。</td>
+</tr>
+<tr>
+<td align="left"><strong>验证连接</strong></td>
+<td align="left">验证两个终端设备之间的连接。</td>
+</tr>
+</tbody></table>
+<h2 id="01-思科IOS访问"><a href="#01-思科IOS访问" class="headerlink" title="01 思科IOS访问"></a>01 思科IOS访问</h2><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>所有终端设备和网络设备都需要操作系统（OS）。</p>
+<img src="/2021/08/15/ITN-Internet/12.png" alt="12">
+
+<p><strong>外壳</strong>：允许用户从计算机去请求特定任务的用户界面。这些请求可以通过CLI（命令行界面）或GUI界面发起。</p>
+<p><strong>内核</strong>：在计算机的硬件和软件之间进行通信，并对如何使用硬件资源满足软件要求进行管理。</p>
+<p><strong>硬件</strong>：计算机的物理组成部分，包括下层的电子元件。</p>
+<h3 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h3><p>GUI（比如Windows、OS X、 Apple iOS 或Android）允许用户利用图形图标、菜单和窗口环境和系统交互。GUI用户友好性更高，许多用户都依赖于GUI环境（包括桌面）。</p>
+<p>GUI 并不总是能够提供 CLI 上可用的所有功能。GUI 也可能发生故障、崩溃，或者就是无法按照指示运行。因此，通常通过 CLI 访问网络设备。与 GUI 相比，CLI 消耗资源更少，而且非常稳定。</p>
+<p>许多思科设备上使用的网络操作系统称为思科互联网络操作系统（IOS）。许多思科路由器和交换机，无论其大小和种类如何，都离不开Cisco IOS。</p>
+<p><strong>注意</strong>：家用路由器的操作系统通常称为固件。配置家用路由器的常用方法是使用基于Web浏览器的GUI。</p>
+<h3 id="操作系统的用途"><a href="#操作系统的用途" class="headerlink" title="操作系统的用途"></a>操作系统的用途</h3><p>通过GUI，PC操作系统使用户能：</p>
+<ul>
+<li>使用鼠标选择和运行程序</li>
+<li>输入文本或命令</li>
+<li>在显示器查看输出</li>
+</ul>
+<p>基于CLI的操作系统，是网络技术人员能：</p>
+<ul>
+<li>使用键盘运行基于CLI的网络程序</li>
+<li>输入文本或命令</li>
+<li>在显示器查看输出</li>
+</ul>
+<h3 id="访问方法"><a href="#访问方法" class="headerlink" title="访问方法"></a>访问方法</h3><p>默认情况下，交换机将转发流量，无需配置即可工作。例如，连接到同一<strong>新交换机</strong>的两个已配置了的主机能够进行通信。</p>
+<p>由于新交换机没有任何初始配置，因此智能通过控制台端口进行配置。</p>
+<p>无论新交换机的默认特性如何，都应配置并保护所有交换机。</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>方法</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>控制台 (Console)</strong></td>
+<td align="left">这是一种<strong>物理管理端口</strong>，可通过该端口对思科设备进行<strong>带外访问</strong>。带外访问是指通过仅用于设备维护的专用管理通道进行访问。使用控制台端口的优势在于，<strong>即使没有配置任何网络服务，也可以访问设备</strong>，例如执行初始配置时。控制台连接需要运行终端仿真软件的计算机和用于连接设备的<strong>特殊控制台电缆</strong>。</td>
+</tr>
+<tr>
+<td align="left"><strong>安全外壳(SSH)</strong></td>
+<td align="left">SSH 是一种<strong>带内且被推荐</strong>的方法，它使用<strong>虚拟接口通过网络远程建立安全的 CLI连接</strong>。不同于控制台连接，SSH 连接需要设备上具有有效的<strong>网络服务</strong>，包括配置了地址的有效接口。大部分思科 IOS 版本配备了 SSH 服务器和 SSH 客户端，可用于与其他设备建立 SSH 会话。</td>
+</tr>
+<tr>
+<td align="left"><strong>Telnet</strong></td>
+<td align="left">Telnet 使用<strong>虚拟接口通过网络远程建立 CLI 会话</strong>，这种带内方法<strong>并不安全</strong>。与 SSH 不同，Telnet 不提供安全的加密连接，只能在实验室环境中使用。用户身份验证、密码和命令通过网络以<strong>明文形式</strong>发送。最好的做法是使用 SSH 而不是 Telnet。思科 IOS 包括 Telnet 服务器和 Telnet 客户端。</td>
+</tr>
+</tbody></table>
+<p><strong>注意:</strong> 某些设备，比如路由器，还可以支持传统辅助端口，这种辅助端口可使用调制解调器<strong>通过电话连接</strong>远程建立 CLI 会话。类似于控制台连接，<strong>AUX 端口</strong>也是<strong>带外连接</strong>，且不需要配置或提供网络服务。</p>
+<h2 id="02-IOS导航"><a href="#02-IOS导航" class="headerlink" title="02 IOS导航"></a>02 IOS导航</h2><h3 id="主要命令模式"><a href="#主要命令模式" class="headerlink" title="主要命令模式"></a>主要命令模式</h3><p>本主体讨论如何用CLI来导航思科IOS。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><strong>命令模式</strong></th>
+<th align="center"><strong>描述</strong></th>
+<th align="left"><strong>默认设备提示符</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>用户 EXEC 模式（用户模式）</strong></td>
+<td align="center">该模式仅允许访问数量有限的基本监控 命令，不允许执行任何可能改变设备配置的命令。它通常被称为“仅查看”模式。</td>
+<td align="left"><code>Switch&gt; Router&gt;</code></td>
+</tr>
+<tr>
+<td align="center"><strong>特权 EXEC 模式（特权模式/使能模式）</strong></td>
+<td align="center">该模式允许访问所有命令和功能。用户可以使用任何监控命令以及执行配置 和管理命令。较高级别的配置模式，比如全局配置模式，只能通过特权 EXEC 模式访问。</td>
+<td align="left"><code>Switch</code>#<code>、Router</code>#</td>
+</tr>
+</tbody></table>
+<h3 id="配置模式和子配置模式"><a href="#配置模式和子配置模式" class="headerlink" title="配置模式和子配置模式"></a>配置模式和子配置模式</h3><p>用配置设备，用户必须进入全局配置模式。</p>
+<p><strong>全局配置模式</strong>由在设备名称之后加(config)#结尾的提示符标识，比如Switch(config)#。</p>
+<p>在全局配置模式下，用户可以进入不同的<strong>子配置模式</strong>。</p>
+<p>两个常见的子配置模式包括：</p>
+<ul>
+<li><strong>线路配置模式</strong> - 用于配置控制台、SSH、Telnet 或 AUX 访问。</li>
+<li><strong>接口配置模式</strong> - 用于配置交换机端口或路由器网络接口。</li>
+</ul>
+<p>当使用 CLI 时，每种模式由该模式独有的命令提示符来标识。默认情况下，每个提示符都以设备名称开头。命令提示符中设备名称后的部分用于表明模式。例如，<strong>线路配置模式</strong>的默认提示符是 <strong>Switch(config-line)#</strong> 默认的<strong>接口配置模式</strong>提示符是 **Switch(config-if)#**。</p>
+<img src="/2021/08/15/ITN-Internet/13.png" alt="13" style="zoom:150%;">
+
+<h3 id="在IOS模式之间导航"><a href="#在IOS模式之间导航" class="headerlink" title="在IOS模式之间导航"></a>在IOS模式之间导航</h3><p>用户模式-&gt;特权模式：<code>enable</code></p>
+<p>特权模式-&gt;用户模式：<code>disable</code></p>
+<p>进入全局配置模式：<code>configure terminal</code></p>
+<p>全局配置模式-&gt;特权模式：<code>exit</code></p>
+<p>全局配置模式&lt;-&gt;子配置模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# line console 0 &#x2F;&#x2F;进入子配置模式</span><br><span class="line">Switch(conig-line)# exit  &#x2F;&#x2F;返回全局配置模式</span><br><span class="line">Switch(config)#  </span><br></pre></td></tr></table></figure>
+
+<p>全局配置模式的任何自配置模式-&gt;模式层级中的上一级模式：<code>exit</code></p>
+<p>子配置模式-&gt;特权模式：<code>end</code>或Ctrl+Z</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-line)# end</span><br><span class="line">Switch#</span><br></pre></td></tr></table></figure>
+
+<p>行子配置模式-&gt;接口子配置模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-line)# interface FastEthernet 0&#x2F;1</span><br><span class="line">Switch(config-if)#</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-命令结构"><a href="#03-命令结构" class="headerlink" title="03 命令结构"></a>03 命令结构</h2><h3 id="基本IOS命令结构"><a href="#基本IOS命令结构" class="headerlink" title="基本IOS命令结构"></a>基本IOS命令结构</h3><img src="/2021/08/15/ITN-Internet/14.png" alt="14">
+
+<ul>
+<li><strong>关键字</strong> - 这些是在操作系统中定义的特定参数。（在图中为 ip protocols）。</li>
+<li><strong>参数</strong> - 这些没有预先定义，它是由用户来定义的值或变量。（在图中为 192.168.10.5）。</li>
+</ul>
+<h3 id="快捷方式（热键）"><a href="#快捷方式（热键）" class="headerlink" title="快捷方式（热键）"></a>快捷方式（热键）</h3><p>命令和关键字可缩写为可唯一确定该命令或关键字的最短字符数。例如，<strong>configure</strong>命令可缩写为<strong>conf</strong>，因为<strong>configure</strong>是唯一一个以<strong>conf</strong>开头的命令。不能缩写为<strong>con</strong>，因为以<strong>con</strong>开头的命令不止一个。关键字也可缩写。</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>键盘输入</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Tab</strong></td>
+<td align="left">补全部分输入的命令项。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl-A</strong></td>
+<td align="left">将光标移至行首。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl-E</strong></td>
+<td align="left">将光标移至命令行尾。</td>
+</tr>
+<tr>
+<td align="left"><strong>向上箭头</strong> 或 <strong>Ctrl+P</strong></td>
+<td align="left">调出历史记录缓冲区中的命令， 从最近输入的命令开始。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl+R</strong> 或 <strong>Ctrl+I</strong> 或 <strong>Ctrl+L</strong></td>
+<td align="left">收到控制台消息后重新显示系统提示符和 命令行。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl-C</strong></td>
+<td align="left">处于任何配置模式下时，用于结束该配置模式并返回 特权模式。处于设置模式下时，用于中止并返回命令 提示符。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl-Z</strong></td>
+<td align="left">处于任何配置模式下时，用于结束该配置模式并返回 特权模式。</td>
+</tr>
+<tr>
+<td align="left"><strong>Ctrl-Shift-6</strong></td>
+<td align="left">通用中断序列用于中止 DNS lookup、traceroutes、 <strong>pings</strong>等。</td>
+</tr>
+</tbody></table>
+<h2 id="04-基本设备配置"><a href="#04-基本设备配置" class="headerlink" title="04 基本设备配置"></a>04 基本设备配置</h2><h3 id="设备名称"><a href="#设备名称" class="headerlink" title="设备名称"></a>设备名称</h3><p>名称命名要求：默认主机名应更改为更具描述性的名称。</p>
+<ul>
+<li>以字母开头</li>
+<li>不包含空格</li>
+<li>以字母或数字结尾</li>
+<li>仅使用字母、数字和破折号</li>
+<li>长度少于64个字符</li>
+</ul>
+<p>CLI命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Switch# configure terminal</span><br><span class="line">Switch(config)# hostname Sw-Floor-1   &#x2F;&#x2F;全局配置模式下</span><br><span class="line">Sw-Floor-1(config)# no hostname   &#x2F;&#x2F;返回默认提示符</span><br><span class="line">Switch(config)#</span><br></pre></td></tr></table></figure>
+
+<h3 id="密码准则"><a href="#密码准则" class="headerlink" title="密码准则"></a>密码准则</h3><p>使用弱密码或容易被猜到的密码仍然是组织最大的安全问题。网络设备，包括家用无线路由器，应始终配置密码以限制管理访问。</p>
+<p>当选择密码时，请使用不容易猜到的强密码。选择密码时请考虑下列关键因素：</p>
+<ul>
+<li>密码长度应大于 8 个字符。</li>
+<li>使用大写字母、小写字母、数字、特殊字符和/或数字序列组合。</li>
+<li>避免为所有设备使用同一个密码。</li>
+<li>不要使用常用词语，因为这些词语容易被猜到。</li>
+</ul>
+<h3 id="配置密码"><a href="#配置密码" class="headerlink" title="配置密码"></a>配置密码</h3><p><strong>保护用户EXEC模式的安全：</strong></p>
+<p>使用全局配置命令 <strong>line console 0</strong> 进入线路控制台配置模式，0用来代表第一个（而且在多数情况下是唯一的一个）控制台接口。接下来，使用<strong>password</strong> <em>password</em> 命令指定EXEC模式密码。最后，使用login命令启用用户EXEC访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1 # configure terminal</span><br><span class="line">Sw-Floor-1(config)# line console 0</span><br><span class="line">Sw-Floor-1(config-line)# password cisco</span><br><span class="line">Sw-Floor-1(config-line)# login</span><br><span class="line">Sw-Floor-1(config-line)# end</span><br><span class="line">Sw-Floor-1#</span><br></pre></td></tr></table></figure>
+
+<p>现在控制台访问需要输入密码，然后才能访问用户 EXEC 模式。</p>
+<p>保护特权EXEC访问：</p>
+<p>使用<strong>enable secret</strong> <em>password</em>全局配置命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1# configure terminal</span><br><span class="line">Sw-Floor-1(config)# enable secret class</span><br><span class="line">Sw-Floor-1(config)# exit</span><br><span class="line">Sw-Floor-1#</span><br></pre></td></tr></table></figure>
+
+<p>虚拟终端 (VTY) 线路支持通过Telnet或SSH对设备的远程访问。许多思科交换机支持第 0 到 15 的 16 条 VTY 线路。</p>
+<p>要保护 VTY 线路的安全，请使用 <strong>line vty 0 15</strong> 全局配置命令进入线路 VTY 模式。接下来，使用<strong>password</strong> <em>password</em> 命令指定VTY密码。最后，使用<strong>login</strong>命令启用 VTY 访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1 # configure terminal</span><br><span class="line">Sw-Floor-1(config)# line vty 0 15</span><br><span class="line">Sw-Floor-1(config-line)# password cisco </span><br><span class="line">Sw-Floor-1(config-line)# login </span><br><span class="line">Sw-Floor-1(config-line)# end</span><br><span class="line">Sw-Floor-1#</span><br></pre></td></tr></table></figure>
+
+<h3 id="加密密码"><a href="#加密密码" class="headerlink" title="加密密码"></a>加密密码</h3><p>启动配置文件和运行配置文件以明文显示大多数密码。这会带来安全威胁，因为任何人如果访问这些文件，就可以发现这些密码。</p>
+<p><strong>加密所有明文密码：</strong></p>
+<p>使用全局配置命令<strong>service password-encryption</strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1 # configure terminal</span><br><span class="line">Sw-Floor-1(config)# service password-encryption</span><br><span class="line">Sw-Floor-1(config)#</span><br></pre></td></tr></table></figure>
+
+<p>该命令对所有未加密的密码进行弱加密。这种加密仅适用于配置文件中的密码，而不适用于通过网络发送的密码。</p>
+<p>使用<strong>show running-config</strong>命令验证密码现在是否已加密:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1(config)# end</span><br><span class="line">Sw-Floor-1# show running-config</span><br><span class="line">!</span><br><span class="line"></span><br><span class="line">!</span><br><span class="line">line con 0</span><br><span class="line"> password 7 0822455D0A16</span><br><span class="line"> login</span><br><span class="line">!</span><br><span class="line">line vty 0 4</span><br><span class="line"> password 7 0822455D0A16</span><br><span class="line"> login</span><br><span class="line">line vty 5 15</span><br><span class="line"> password 7 0822455D0A16</span><br><span class="line"> login</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">!</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<h3 id="横幅消息"><a href="#横幅消息" class="headerlink" title="横幅消息"></a>横幅消息</h3><p>尽管要求用户输入密码是防止未经授权的人员进入网络的有效方法，但同时必须向试图访问设备的人员声明仅授权人员才可访问设备。出于此目的，可向设备输出中加入一条标语。</p>
+<p>要在网络设备上创建当日消息标语，请使用**banner motd #<strong>当日消息</strong>#**全局配置命令。命令语法中的“#”称为定界符。它会在消息前后输入。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1#configure terminal</span><br><span class="line">Sw-Floor-1(config)#banner motd #Authorized Access Only#</span><br></pre></td></tr></table></figure>
+
+<h2 id="05-保存配置"><a href="#05-保存配置" class="headerlink" title="05 保存配置"></a>05 保存配置</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>展示如何保存您的配置：</p>
+<p>有两种系统文件用于存储设备配置：</p>
+<ul>
+<li><strong>startup-config(启动配置文件)</strong> -存储在非易失性内存（NVRAM） 中的配置文件。它包含在启动时或重启时用到的所有命令。当设备断电后，其中的内容不会消失。</li>
+<li><strong>running-config(运行配置文件)</strong> -存储在易失性内存（RAM）中。它反映了当前的配置。修改运行配置会立即影响思科设备的运行。RAM 是易失性存储器。如果设备断电或重新启动，则它会丢失所有内容。</li>
+</ul>
+<p>特权 EXEC 模式命令<strong>show running-config</strong>（缩写：show run）用于查看正在运行的配置。</p>
+<p>要查看启动配置文件，请使用特权 EXEC 命令<strong>show startup-config</strong>。</p>
+<p>要将对运行配置所作的更改<strong>保存</strong>到启动配置文件中，请使用特权 EXEC 模式命令<strong>copy running-config startup-config</strong>（缩写 copy run start）</p>
+<p>查看NVRAM的修改：<strong>dir NVRAM</strong></p>
+<p>注意：一旦将配置命令输入到路由器中，它们就会立即修改设备。运行配置文件<strong>不能被删除</strong>，也<strong>不能自动保存</strong>。</p>
+<h3 id="修改运行配置"><a href="#修改运行配置" class="headerlink" title="修改运行配置"></a>修改运行配置</h3><p>如果对运行配置所作的更改未能实现预期的效果，而且运行配置文件尚未保存，可以将设备恢复到以前的配置。</p>
+<p>单独删除更改的命令，或使用特权 EXEC 模式命令 <strong>reload</strong>重新加载设备都能恢复启动配置。这样有个缺点是，在一段很短的时间内设备将会离线，导致网络中断。</p>
+<p>如果将不理想的更改保存到了启动配置文件中，则可能需要清除所有配置。这需要删除启动配置文件并重新启动设备。</p>
+<p>使用特权 EXEC 模式命令<strong>erase startup-config</strong>可删除启动配置。</p>
+<p>从 NVRAM 中删除启动配置后，请重新加载设备以从内存中清除当前的运行配置文件。重新加载时，交换机将会加载设备出厂默认的启动配置。</p>
+<p>注意：<strong>路由器和交换机配置的更改在输入命令后立即生效。</strong>因此，对实时生产设备的更改在实施之前总是要仔细计划，这一点非常重要。如果输入的命令导致设备不稳定或无法访问，则可能需要重新加载设备，从而导致网络停机。</p>
+<h2 id="06-端口和地址"><a href="#06-端口和地址" class="headerlink" title="06 端口和地址"></a>06 端口和地址</h2><h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>使用IP地址，是设备能够相互查找并在Internet上建立端到端通信的主要方式。</p>
+<p>终端设备有如下：</p>
+<ul>
+<li>计算机（工作站、笔记本、文件服务器、Web服务器）</li>
+<li>网络打印机</li>
+<li>VoLP电话</li>
+<li>安全摄像机</li>
+<li>智能手机</li>
+<li>移动手持设备（如无线条码扫描仪）</li>
+</ul>
+<p>**IPv4： **</p>
+<p>IPv4地址的结构称为<strong>点分十进制</strong>记法，用 0 到 255 之间的四个十进制数字表示，数字之间以句点分隔。IPv4 地址会分配给连接到网络的各个设备。</p>
+<p><strong>子网掩码</strong>对IPv4也是必要设置。其是将地址的网络部分与主机部分区分开来的32位值。子网掩码与IPv4地址相结合，可用于确定设备属于哪个子网。</p>
+<p><strong>默认网关</strong>地址是主机将用于访问远程网络（包括Internet）的路由器的IP地址。</p>
+<img src="/2021/08/15/ITN-Internet/15.png" alt="15">
+
+<p><strong>IPv6</strong> ：</p>
+<p>是 IP 的最新版本，正在替换更常见的 IPv4。</p>
+<p>其地址长度为128位，写作<strong>十六进制字符串</strong>。</p>
+<p>由四个十六进制数字组以<strong>冒号（：）分隔</strong>。</p>
+<p>不区分大小写。</p>
+<img src="/2021/08/15/ITN-Internet/16.png" alt="16">
+
+<h3 id="虚拟接口"><a href="#虚拟接口" class="headerlink" title="虚拟接口"></a>虚拟接口</h3><p>思科 IOS 第 2 层交换机有物理端口，可用于连接设备。这些端口不支持第 3 层 IP 地址。因此，交换机有一个或多个交换机虚拟接口 (SVI)。这些是虚拟接口，是因为<strong>设备上没有任何物理硬件与之关联</strong>。SVI 会在软件中创建。</p>
+<p>虚拟接口可以让您使用 IPv4和IPv6 通过网络远程管理交换机。每台交换机的默认配置中都“现成”带有一个 SVI。默认 SVI 是接口 VLAN1。</p>
+<p><strong>注意</strong>: 第2 层交换机不需要 IP 地址。分配给 SVI 的 IP 地址用于远程访问交换机。2层交换机无需使用 IP 地址就可以工作。</p>
+<h2 id="07-配置IP地址"><a href="#07-配置IP地址" class="headerlink" title="07 配置IP地址"></a>07 配置IP地址</h2><h3 id="为终端设备进行手动IP地址配置"><a href="#为终端设备进行手动IP地址配置" class="headerlink" title="为终端设备进行手动IP地址配置"></a>为终端设备进行手动IP地址配置</h3><p>DNS服务器地址是域名系统（DNS）服务器的IPv4和IPv6地址，用于将IP地址转换为域名。例如<a target="_blank" rel="noopener" href="http://www.cisco.com./">www.cisco.com。</a></p>
+<h3 id="自动配置终端的IP地址"><a href="#自动配置终端的IP地址" class="headerlink" title="自动配置终端的IP地址"></a>自动配置终端的IP地址</h3><p><strong>DHCP</strong>：终端通常默认使用的<strong>进行IPv4地址自动配置</strong>的网络技术。</p>
+<p>DHCP给主机提供动态的和自动分配的IP地址。</p>
+<img src="/2021/08/15/ITN-Internet/17.png" alt="17">
+
+<p><strong>注意</strong>: IPv6 使用 DHCPv6 和 SLAAC（无状态地址自动配置）进行动态地址分配。</p>
+<p>在命令提示符下使用<strong>ipconfig</strong>命令，可以显示 Windows PC 上的 IP 配置设置。输出将显示从 DHCP 服务器接收的 IPv4 地址、子网掩码和网关信息。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt;ipconfig</span><br><span class="line">Windows IP Configuration  </span><br><span class="line">  </span><br><span class="line">Ethernet adapter Local Area Connection:  </span><br><span class="line">  </span><br><span class="line">Connection-specific DNS Suffix . : cisco.com  </span><br><span class="line">Link-local IPv6 Address . . . . . : fe80::b0ef:ca42:af2c:c6c7%16  </span><br><span class="line">IPv4 Address. . . . . . . . . . . : 192.168.1.10  </span><br><span class="line">Subnet Mask . . . . . . . . . . . : 255.255.255.0  </span><br><span class="line">Default Gateway . . . . . . . . . : 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="交换机虚拟接口（SVI）配置"><a href="#交换机虚拟接口（SVI）配置" class="headerlink" title="交换机虚拟接口（SVI）配置"></a>交换机虚拟接口（SVI）配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sw-Floor-1# configure terminal</span><br><span class="line">Sw-Floor-1(config)# interface vlan 1 #Vlan1是一个虚拟接口</span><br><span class="line">Sw-Floor-1(config-if)# ip address 192.168.1.20 255.255.255.0 #IP地址 子网掩码</span><br><span class="line">Sw-Floor-1(config-if)# no shutdown #启用虚拟接口</span><br><span class="line">Sw-Floor-1(config-if)# exit</span><br><span class="line">Sw-Floor-1(config)# ip default-gateway 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<p>在这些命令配置后，交换机即可使用所有 IPv4 要素进行网络通信。</p>
+<p><strong>show ip interface brief</strong>命令适用于检验交换机接口的状况。<strong>ping</strong>命令可用于测试与网络上的另一设备或互联网上的一个网站的连接。</p>
+<h1 id="第三章-协议与模型"><a href="#第三章-协议与模型" class="headerlink" title="第三章 协议与模型"></a>第三章 协议与模型</h1><h2 id="内容大纲"><a href="#内容大纲" class="headerlink" title="内容大纲"></a>内容大纲</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>主题标题</strong></th>
+<th align="left"><strong>主题目标</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>规则</strong></td>
+<td align="left">描述确保成功通信所需的规则类型。</td>
+</tr>
+<tr>
+<td align="left"><strong>协议</strong></td>
+<td align="left">说明为什么协议对网络通信不可或缺。</td>
+</tr>
+<tr>
+<td align="left"><strong>协议簇</strong></td>
+<td align="left">说明遵守协议簇的意义所在。</td>
+</tr>
+<tr>
+<td align="left"><strong>标准组织</strong></td>
+<td align="left">阐述标准组织在建立网络互通协议方面 发挥的作用。</td>
+</tr>
+<tr>
+<td align="left"><strong>参考模型</strong></td>
+<td align="left">阐述 TCP/IP 模型和 OSI 模型如何帮助促进通信过程的标准化。</td>
+</tr>
+<tr>
+<td align="left"><strong>数据封装</strong></td>
+<td align="left">说明数据封装如何实现跨网络数据传输。</td>
+</tr>
+<tr>
+<td align="left"><strong>数据访问</strong></td>
+<td align="left">说明本地主机如何访问本地网络中的资源。</td>
+</tr>
+</tbody></table>
+<h2 id="01-规则"><a href="#01-规则" class="headerlink" title="01 规则"></a>01 规则</h2><h3 id="通信基本知识"><a href="#通信基本知识" class="headerlink" title="通信基本知识"></a>通信基本知识</h3><p>所有通信方法三大共同要素：</p>
+<ul>
+<li>消息源（发送方）</li>
+<li>消息目的地（接收方）</li>
+<li>信道（由提供路径的介质组成）</li>
+</ul>
+<h3 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h3><p>无论是面对面通信还是通过网络通信，消息的发送都是由被称为<strong>协议</strong>的规则来管理的。</p>
+<p>不同类型的通信方式，会有不同的特定协议。</p>
+<p>对协议的要求：</p>
+<ul>
+<li>标识出发送方和接收方</li>
+<li><strong>通用</strong>语言和语法</li>
+<li>传递的速度和时间</li>
+<li>证实或确认要求</li>
+</ul>
+<h3 id="网络协议要求"><a href="#网络协议要求" class="headerlink" title="网络协议要求"></a>网络协议要求</h3><ul>
+<li>识别源和目的地</li>
+<li>消息编码</li>
+<li>消息格式和封装</li>
+<li>消息大小</li>
+<li>消息时序</li>
+<li>消息传输选项</li>
+</ul>
+<h3 id="消息编码"><a href="#消息编码" class="headerlink" title="消息编码"></a>消息编码</h3><p><strong>编码</strong>是将信息转化为另一种广为接受的形式的过程，目的是为了便于传输信息。</p>
+<p><strong>解码</strong>是编码的逆向过程，用来解释信息。</p>
+<p>主机之间的编码必须采用适合介质的<strong>格式</strong>。通过网络发送的消息先由发送主机转换成位。每个位被编码成铜线上的电压模式、光纤中的红外光或无线系统的微波。目的主机接收并解码信号，解释收到的消息。</p>
+<h3 id="消息格式和封装"><a href="#消息格式和封装" class="headerlink" title="消息格式和封装"></a>消息格式和封装</h3><p>消息格式取决于消息的类型和传递信道。</p>
+<p>通过计算机网络发送的消息必须采用正确的格式，一遍传递和处理。正确表示消息的来源及其目的地是格式化过程的一部分。</p>
+<p>互联网协议 (IP)是一种具有与信封示例类似功能的协议。在图中，互联网协议版本 6 (IPv6) 数据包的字段标识数据包的来源及其目的地。IP 负责通过一个或多个网络将消息从消息源发送到目的地。</p>
+<img src="/2021/08/15/ITN-Internet/18.png" alt="18">
+
+<h3 id="消息大小"><a href="#消息大小" class="headerlink" title="消息大小"></a>消息大小</h3><p>发送的消息通常会分成较小的部分或较短的句子。这些句子的大小限制为接收方一次可以处理的大小。</p>
+<h3 id="消息时序"><a href="#消息时序" class="headerlink" title="消息时序"></a>消息时序</h3><p>消息时序包括：</p>
+<ul>
+<li>流量控制：用于管理数据传输速率。定义了可以发送的信息量以及传递信息的速率。</li>
+<li>响应超时：指定未获得接收方响应的等待时长，以及在响应超时的情况下执行什么操作。</li>
+<li>访问方法：决定发送方可以发送消息的时间。避免同时发送消息造成信息冲突。</li>
+</ul>
+<h3 id="消息传输方式"><a href="#消息传输方式" class="headerlink" title="消息传输方式"></a>消息传输方式</h3><p>有三种类型的数据通信传输方式：</p>
+<ul>
+<li>单播（单个终端设备）</li>
+<li>组播（一或多个终端设备）</li>
+<li>广播（所有终端设备）</li>
+</ul>
+<img src="/2021/08/15/ITN-Internet/19.png" alt="19">
+
+<h2 id="02-协议"><a href="#02-协议" class="headerlink" title="02 协议"></a>02 协议</h2><h3 id="网络协议概述"><a href="#网络协议概述" class="headerlink" title="网络协议概述"></a>网络协议概述</h3><p>要使终端设备能够通过网络进行通信，每个设备都必须遵守相同的一套<strong>规则</strong>，这些规则被称为协议。</p>
+<p>它们在网络中有许多功能。本主题概述了网络协议。</p>
+<p>协议类型：</p>
+<ul>
+<li>网络通信协议：使两个或多个设备能在一个或多个网络上通信。</li>
+</ul>
+<p>例：IP、<strong>传输控制协议（TCP）</strong>、<strong>超文本传输协议（HTTP）</strong>等。</p>
+<ul>
+<li>网络安全协议：保护数据以提供身份验证、数据完整性和数据加密。</li>
+</ul>
+<p>包括：安全外壳协议（SSH）、安全套接字层协议(SSL)和传输层安全协议（TLS）。</p>
+<ul>
+<li>路由协议：使路由器能够交换路由信息，比较路径信息，然后选择到达目标网络的最佳路径。</li>
+</ul>
+<p>包括：开放最短路径优先协议（OSPF）和便捷网关协议（BGP）。</p>
+<ul>
+<li>服务发现协议：用于设备或服务的自动监测。服务发现协议的实例包括发现用于<strong>IP地址分配服务的动态主机配置协议（DHCP）</strong>，和用于<strong>执行域名到IP地址转换的域名系统（DNS）</strong>。</li>
+</ul>
+<h3 id="网络协议功能："><a href="#网络协议功能：" class="headerlink" title="网络协议功能："></a>网络协议功能：</h3><ul>
+<li>编址：这使用已定义的编址方案来标识消息的发送者 和预期的接收者。提供编址的协议示例 包括以太网，IPv4和IPv6。</li>
+<li>可靠性： 此功能提供了有保证的传输机制， 以防消息在传输过程中丢失或损坏。TCP 提供可靠的传输。</li>
+<li>流量控制：此功能可确保数据在两个通信设备之间 高效传输。TCP 提供流量控制服务。</li>
+<li>排序：此功能唯一地标记每个传输的数据段。接收设备 使用排序信息正确地 重组信息。如果数据段丢失，延迟或未按顺序接收， 这将很有用。TCP 提供排序服务。</li>
+<li>差错检测：此功能用于确定传输过程中数据 是否已损坏。提供差错检测的各种协议包括 以太网，IPv4，IPv6和TCP。</li>
+<li>应用接口：此功能包含用于网络应用程序之间的进程间 通信的信息。例如，访问网页时， 使用HTTP或HTTPS协议在客户端和服务器Web进程之间进行通信。</li>
+</ul>
+<h3 id="协议交互"><a href="#协议交互" class="headerlink" title="协议交互"></a>协议交互</h3><p>设备向web服务器发送web页面请求时使用的一些常见网络协议：</p>
+<p>HTTP、TCP、IP、以太网。</p>
+<ul>
+<li>HTTP（超文本传输协议）：该协议控制Web服务器和Web客户端进行交互的方式。HTTP定义了客户端和服务器之鉴交换的请求和响应的内容与可是。客户端软件和Web服务器软件都将HTTP作为应用程序的一部分来实现。HTTP依靠其他协议来控制客户端和服务器之间传输消息的方式。</li>
+<li>TCP（传输控制协议）：此协议管理各个回话。TCP负责保证信息的可靠传递和管理终端设备之间的流量控制。</li>
+<li>IP（互联网协议）：负责将消息从发送方传递给接收方。路由器使用IP来夸多个网络转发消息。</li>
+<li>以太网：负责将消息从一个NIC传递到同一个以太网局域网（LAN）上的另一个NIC。</li>
+</ul>
+<h3 id="网络协议簇："><a href="#网络协议簇：" class="headerlink" title="网络协议簇："></a>网络协议簇：</h3><p>协议簇旨在不同玩过协议相互无缝协作。</p>
+<p>执行某种通信功能所需的一组内在相关协议称为协议簇。</p>
+<p>将协议簇理解成一个堆栈：</p>
+<p>协议显示为分层结构，每种上层服务都依赖于其余下层协议所定义的功能。协议栈的下层负责通过网络传输数据和向上层提供服务，而上层则负责处理发送的消息内容。</p>
+<p>栗子：</p>
+<p>针对这个通话活动，底层是物理层，确定两人以说话的方式进行；中间是规则层，规定了通话的要求，如都使用汉语；顶部是内容层，是说出话的内容。</p>
+<img src="/2021/08/15/ITN-Internet/20.png" alt="20">
+
+<p>协议簇是共同作用，帮助解决某个问题的规则集。</p>
+<h3 id="TCP-IP协议示例"><a href="#TCP-IP协议示例" class="headerlink" title="TCP/IP协议示例"></a>TCP/IP协议示例</h3><p>TCP/IP协议可用于应用层、传输层和互联网层。网络接入层中没有 TCP/IP 协议。最常见的网络接入层LAN协议是以太网和WLAN(无线LAN)协议。网络接入层协议负责通过物理介质传输 IP 数据包。</p>
+<p>图中显示了用于在主机的web浏览器和web服务器之间发送数据包的三种TCP/IP协议的示例。HTTP、TCP 和 IP 是所使用的 TCP/IP 协议。在网络接入层，示例中使用了以太网。然而，这里也可以使用一种无线标准，如WLAN或蜂窝服务。</p>
+<img src="/2021/08/15/ITN-Internet/21.png" alt="21">
+
+<h3 id="TCP-IP协议簇"><a href="#TCP-IP协议簇" class="headerlink" title="TCP/IP协议簇"></a>TCP/IP协议簇</h3><p>当今TCP/IP协议簇包含许多协议，如图较为常见的：</p>
+<img src="/2021/08/15/ITN-Internet/22.png" alt="22">
+
+<p>TCP/IP协议特性：</p>
+<p>开放标准：对公众免费，任何供应商都可在硬件或软件中使用它。</p>
+<p>基于标准：已经受到网络行业认可并获得标准组织的批准。着确保了不同制造商的产品能成功地互操作。</p>
+<p><strong>应用层</strong></p>
+<p>域名系统</p>
+<ul>
+<li><strong>DNS</strong> - 域名系统。将域名（例如 cisco.com）转换为 IP 地址。</li>
+</ul>
+<p>主机配置</p>
+<ul>
+<li><strong>DHCPv4</strong> - IPv4动态主机配置协议。DHCPv4 服务器在启动时动态地将 IPv4 编址信息分配给 DHCPv4 客户端，并允许在不再需要时重新使用这些地址。</li>
+<li><strong>DHCPv6</strong> - IPv6动态主机配置协议。DHCPv6类似于DHCPv4。DHCPv6服务器在启动时动态地将IPv6编址信息分配给DHCPv6客户端。</li>
+<li><strong>SLAAC</strong> - 无状态地址自动配置。一种允许设备在不使用DHCPv6服务器的情况下获得其IPv6编址信息的方法。</li>
+</ul>
+<p>邮件</p>
+<ul>
+<li><strong>SMTP</strong> - 简单邮件传输协议。使客户端能够将邮件发送到邮件服务器，并使服务器能够将邮件发送到其他服务器。</li>
+<li><strong>POP3</strong> - 邮局协议第 3 版。使客户端能够从邮件服务器检索电子邮件并将电子邮件下载到客户端本地邮件应用程序。</li>
+<li><strong>IMAP</strong> - 互联网消息访问协议。使客户端能够访问存储在邮件服务器上的电子邮件，并在服务器上维护电子邮件。</li>
+</ul>
+<p>文件传输</p>
+<ul>
+<li><strong>FTP</strong> - 文件传输协议。它设置规则，使得一台主机上的用户能够通过网络访问另一台主机或向其传输文件。FTP是一种可靠、面向连接且进行确认的文件传输协议。</li>
+<li><strong>SFTP</strong> - SSH文件传输协议。作为安全外壳 (SSH)协议的扩展，SFTP可用于建立安全的文件传输会话，在该会话中对文件传输进行加密。SSH 是一种安全远程登录的方法，通常用于访问设备的命令行。</li>
+<li><strong>TFTP</strong> - 简单文件传输协议。这是一个简单的，无连接的文件传输协议，使用尽最大努力、无需确认的文件传输方式。它使用的开销比FTP少。</li>
+</ul>
+<p>Web和Web服务</p>
+<ul>
+<li><strong>HTTP</strong> - 超文本传输协议。这是有关在万维网上交换文本、图形图像、音频、视频以及其他多媒体文件的一组规则集。</li>
+<li><strong>HTTPS</strong> - 安全 HTTP。这是一种安全的HTTP形式，它对在万维网上交换的数据进行加密。</li>
+<li><strong>REST</strong> - 具象状态传输协议。它使用应用程序编程接口 (API) 和 HTTP 请求创建 Web 应用程序的 Web 服务。</li>
+</ul>
+<p><strong>传输层</strong></p>
+<p>面向连接</p>
+<ul>
+<li><strong>TCP</strong> - 传输控制协议。它使运行在不同主机上的进程之间能够进行可靠的通信，并提供可靠的、需要确认的传输，以确保传输成功。</li>
+</ul>
+<p>无连接</p>
+<ul>
+<li><strong>UDP</strong> - 用户数据报协议。它允许一台主机上运行的进程向另一台主机上运行的进程发送数据包。但是，UDP不会确认数据报传输是否成功。</li>
+</ul>
+<p><strong>互联网层</strong></p>
+<p>Internet 协议</p>
+<ul>
+<li><strong>IPv4</strong> - 互联网协议第 4 版。它接收来自传输层的消息段，将消息打包成数据包，并为通过网络进行端到端传递的数据包进行地址分配。IPv4 使用 32 位地址。</li>
+<li><strong>IPv6</strong> - 互联网协议第 6 版。与 IPv4 类似，但使用 128 位地址。</li>
+<li><strong>NAT</strong> - 网络地址转换。将私有网络 IPv4 地址转换为全球唯一的公有 IPv4 地址。</li>
+</ul>
+<p>消息传递</p>
+<ul>
+<li><strong>ICMPv4</strong> - IPv4 互联网控制消息协议。目的主机针对数据包传输中出现的错误，向源主机提供反馈。</li>
+<li><strong>ICMPv6</strong> - 用于 IPv6 的ICMP。与 ICMPv4 类似的功能，但用于 IPv6 数据包。</li>
+<li><strong>ICMPv6 ND</strong> - IPv6 邻居发现。包括用于地址解析和重复地址检测的四个协议消息。</li>
+</ul>
+<p>路由协议</p>
+<ul>
+<li><strong>OSPF</strong> - 开放最短路径优先协议。它使用基于区域的分层设计的链路状态路由协议。OSPF是一种开放式标准内部路由协议。</li>
+<li><strong>EIGRP</strong> — 增强型内部网关路由协议这是一种思科开发的开放标准路由协议，使用基于带宽、延迟、负载和可靠性的复合度量。</li>
+<li><strong>BGP</strong> - 边界网关协议。这是一种开放标准的外部网关路由协议，用于互联网服务提供商(ISP)之间。BGP 还通常用于 ISP 与其大型私有客户端之间来交换路由信息。</li>
+</ul>
+<p><strong>网络接入层</strong></p>
+<p>地址解析</p>
+<ul>
+<li><strong>ARP</strong> - 地址解析协议。提供 IPv4 地址与硬件地址之间的动态地址映射。</li>
+</ul>
+<p><strong>注意</strong>：您可能会看到其他文档状态，表明 ARP 在互联网层（OSI 第 3 层）运行。但是，在本课程中，我们声明 ARP 在网络接入层（OSI 第 2 层）运行，因为它的主要目的是发现目标的 MAC 地址。MAC 地址是第 2 层地址。</p>
+<p>数据链路协议</p>
+<ul>
+<li><strong>以太网</strong> - 为网络接入层的布线和信令标准定义规则。</li>
+<li><strong>WLAN</strong> - 无线局域网。定义 2.4 GHz 和 5 GHz 无线电频率的无线信号规则。</li>
+</ul>
+<h3 id="TCP-IP通信过程"><a href="#TCP-IP通信过程" class="headerlink" title="TCP/IP通信过程"></a>TCP/IP通信过程</h3><p>最内&lt;———————-&gt;最外</p>
+<p>数据 — TCP — IP — 以太网</p>
+<p>封装过程：由内到外</p>
+<p>解码过程：由外到内</p>
+<h2 id="03-参考模型"><a href="#03-参考模型" class="headerlink" title="03 参考模型"></a>03 参考模型</h2><h3 id="使用分层模型"><a href="#使用分层模型" class="headerlink" title="使用分层模型"></a>使用分层模型</h3><p>诸如网络运行方式之类的复杂概念可能很难解释和理解。因此，可以使用分层模型将网络的运行模块化为可管理的层。</p>
+<img src="/2021/08/15/ITN-Internet/23.png" alt="23">
+
+<h3 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h3><table>
+<thead>
+<tr>
+<th align="left"><strong>OSI 模型层</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>7 - 应用层</strong></td>
+<td align="left">应用层包含用于进程间通信 的协议。</td>
+</tr>
+<tr>
+<td align="left"><strong>6 - 表示层</strong></td>
+<td align="left">表示层用常用方式表示数据在应用层服务之间的传输。</td>
+</tr>
+<tr>
+<td align="left"><strong>5 - 会话层</strong></td>
+<td align="left">会话层向表示层提供服务，组织对话并管理数据交换。</td>
+</tr>
+<tr>
+<td align="left"><strong>4 - 传输层</strong></td>
+<td align="left">传输层定义服务以对数据进行分段，传输和 重组，以进行终端设备之间的单独 通信。</td>
+</tr>
+<tr>
+<td align="left"><strong>3 - 网络层</strong></td>
+<td align="left">网络层为所标识的终端设备之间通过网络交换独立的数据的片段提供服务。</td>
+</tr>
+<tr>
+<td align="left"><strong>2 - 数据链路层</strong></td>
+<td align="left">数据链路层协议描述了设备之间通过公共介质交换数据帧的方法。</td>
+</tr>
+<tr>
+<td align="left"><strong>1 - 物理层</strong></td>
+<td align="left">物理层协议描述了机械的、电气的、功能的 和程序化的方法，以激活，维护和解除物理连接， 实现与网络设备之间的位设备。</td>
+</tr>
+</tbody></table>
+<p><strong>注意</strong>: 我们提及 TCP/IP 模型的各层时只使用其名称，而提及 OSI 模型的七个层时则通常使用编号而非名称。例如，物理层指 OSI 模型的第 1 层，数据链路层指第2层，诸如此类。</p>
+<h3 id="TCP-IP协议模型"><a href="#TCP-IP协议模型" class="headerlink" title="TCP/IP协议模型"></a>TCP/IP协议模型</h3><table>
+<thead>
+<tr>
+<th align="left"><strong>TCP/IP 模型层</strong></th>
+<th align="left"><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>4 - 应用层</strong></td>
+<td align="left">向用户提供数据，以及编码和对话控制。</td>
+</tr>
+<tr>
+<td align="left"><strong>3 - 传输层</strong></td>
+<td align="left">支持各种设备之间通过不同网络通信。</td>
+</tr>
+<tr>
+<td align="left"><strong>2 - 互联网层</strong></td>
+<td align="left">确定通过网络的最佳路径。</td>
+</tr>
+<tr>
+<td align="left"><strong>1 - 网络接入层</strong></td>
+<td align="left">控制组成网络的硬件设备和介质。</td>
+</tr>
+</tbody></table>
+<h3 id="OSI-模型与-TCP-IP-模型的比较"><a href="#OSI-模型与-TCP-IP-模型的比较" class="headerlink" title="OSI 模型与 TCP/IP 模型的比较"></a>OSI 模型与 TCP/IP 模型的比较</h3><p>还可以根据 OSI 参考模型描述构成 TCP/IP 协议簇的协议。在 OSI 模型中，TCP/IP 模型的网络接入层和应用层被进一步划分，用于描述这些协议层需要实现的不同功能。</p>
+<p>TCP/IP 协议簇在网络接入层并没有指定通过物理介质传输时使用的协议，而只是描述了从互联网层到物理网络协议的传递。而 OSI 模型第 1 层和第 2 层则论述了接入介质所需的步骤以及通过网络发送数据的物理手段。</p>
+<h2 id="04-数据封装"><a href="#04-数据封装" class="headerlink" title="04 数据封装"></a>04 数据封装</h2><h3 id="对消息分段"><a href="#对消息分段" class="headerlink" title="对消息分段"></a>对消息分段</h3><p>消息分段的必要性：</p>
+<ul>
+<li>高容量信息传输会导致严重延迟</li>
+<li>一旦链路出现故障整个重传</li>
+</ul>
+<p>消息分段：将数据例会划分为更小的单元，以便在通过网络传输的过程。这个单元被称为<strong>数据包</strong>。包含统一目的地数据段的数据包可以通过不同的路径发送。</p>
+<p><strong>多路复用</strong>：允许许多不同的对话在同一网络传输路径传输。</p>
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>使用分段和多路复用在网络上传输消息要面临的挑战是增加了该过程的复杂程度。为确保接收方接受到的信息可以顺利重新组装，需要对信息传输顺序进行排序。</p>
+<img src="/2021/08/15/ITN-Internet/24.png" alt="24">
+
+<h3 id="协议数据单元"><a href="#协议数据单元" class="headerlink" title="协议数据单元"></a>协议数据单元</h3><p><strong>封装过程</strong>：在通过网络介质传输应用程序数据的过程中，随着数据沿协议栈向下传递，每层都要添加各种协议信息。在网络中发送消息时，封装过程自上而下工作。在各层，上层信息被视为封装协议内的数据。</p>
+<p><strong>协议数据单元（PDU）</strong>：一段数据在任意协议层的表示形式。</p>
+<p>在封装过程中，后续的每一层都根据使用的协议封装其从上一层接收的 PDU。</p>
+<img src="/2021/08/15/ITN-Internet/25.png" alt="25" style="zoom:150%;">
+
+
+
+<ul>
+<li>数据：泛指应用层使用的PDU</li>
+<li>数据段：传输层PDU</li>
+<li>数据包：网络层PDU</li>
+<li>帧：数据链路层PDU</li>
+<li>位：通过介质实际传输数据时使用的物理层PDU</li>
+</ul>
+<p><strong>解封过程</strong>：解封是接收设备用来删除一个或多个协议报头的过程。数据在朝着最终用户应用程序沿协议栈向上移动的过程中被解封。</p>
+<h2 id="05-数据访问"><a href="#05-数据访问" class="headerlink" title="05 数据访问"></a>05 数据访问</h2><h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><p>为了让网络传输行之有效，需要有效正确的对分段消息编址。</p>
+<p><strong>网络层</strong>和<strong>数据链路层</strong>负责将数据从源设备传输到目的设备。如图所示，两层中的协议都包含源地址和目的地址，但它们的地址具有不同的用途。</p>
+<ul>
+<li>网络层源地址和目的地址-负责将IP数据包从原始原设备传输到可能处于统一网络或远程网络中的最终目的设备。</li>
+<li>数据链路层源地址和目的地址-负责将数据链路帧从一个网络接口卡（NIC）传输到同一网络上的另一个NIC。</li>
+</ul>
+<img src="/2021/08/15/ITN-Internet/26.png" alt="26">
+
+<h3 id="第3层逻辑地址-IP地址"><a href="#第3层逻辑地址-IP地址" class="headerlink" title="第3层逻辑地址(IP地址)"></a>第3层逻辑地址(IP地址)</h3><p>IP地址是网路层（第三层）逻辑地址，用于将IP数据包从原始源设备传输到最终目的设备。</p>
+<img src="/2021/08/15/ITN-Internet/27.png" alt="27">
+
+<p>IP数据包包换两个IP地址：</p>
+<ul>
+<li>源IP地址</li>
+<li>目的IP地址</li>
+</ul>
+<p>IP地址包含两部分：</p>
+<ul>
+<li>网络部分（IPV4）或前缀（IPV6）：地址最左边部分，表示IP地址是哪个网络的成员。统一网络中所有设备的地址都有相同的网络部分。</li>
+<li>主机部分（IPV4）或接口ID（IPV6）：地址的其余部分，用于识别网络上的特定设备。这部分对于网络中的每个设备或接口都是唯一的。</li>
+</ul>
+<h3 id="同一网络中的设备"><a href="#同一网络中的设备" class="headerlink" title="同一网络中的设备"></a>同一网络中的设备</h3><p>客户端计算机PC1与同一IP网络中额的FTP服务器进行通信。</p>
+<img src="/2021/08/15/ITN-Internet/28.png" alt="28">
+
+<p><strong>数据链路层地址作用：相同的IP网络</strong></p>
+<p>当 IP 数据包的发送方和接收方处于同一网络中时，数据链路帧将直接发送到接收设备。在以太网中，数据链路地址称为以太网介质访问控制（MAC）地址，在图中突出显示。</p>
+<p><strong>MAC地址是以太网网卡的物理地址，长度为48位或12个十六进制数字。IPv4地址和IPv6地址是逻辑的地址。IPv4是32位，而IPv6是128位。</strong></p>
+<p>源MAC地址：PC1 以太网网卡的 MAC 地址为 AA-AA-AA-AA-AA-AA，以十六进制表示法表示。</p>
+<p>目的MAC地址：FTP服务器的MAC地址： CC-CC-CC-CC-CC-CC-CC，用十六进制记法表示。</p>
+<h3 id="远程网络中的设备"><a href="#远程网络中的设备" class="headerlink" title="远程网络中的设备"></a>远程网络中的设备</h3><p>客户端计算机PC1与另一IP网络中名为Web服务器的服务器进行通信。</p>
+<p><strong>网络层地址的作用</strong>：</p>
+<p>当数据包的发送方与接收方位于不同网络时，源 IP 地址和目的 IP 地址将代表位于不同网络的主机。这将由目的主机 IP 地址的网络部分来表明。</p>
+<ul>
+<li><strong>源IPv4地址</strong> – 发送设备的IPv4地址，即客户端计算机PC1： 192.168.1.110。</li>
+<li><strong>目的IPv4地址</strong> – 接收设备的IPv4地址，即服务器，Web服务器：172.16.1.99。</li>
+</ul>
+<img src="/2021/08/15/ITN-Internet/29.png" alt="29">
+
+<h3 id="数据链路层地址"><a href="#数据链路层地址" class="headerlink" title="数据链路层地址"></a>数据链路层地址</h3><p>作用将数据链路层帧从一个网络接口传输到同一网络中的另一个网络接口。</p>
+<p>当 IP 数据包的发送方和接收方位于不同网络时，以太网数据链路帧不能直接发送到目的主机，因为在发送方的网络中无法直接到达该主机。必须将以太网帧发送到称为路由器或默认网关的另一设备。在我们的示例中，默认网关是 R1。R1 有一个以太网数据链路地址与 PC1 位于同一网络中。这使 PC1 能够直接到达路由器。</p>
+<p>现在可以将封装有 IP 数据包的以太网帧传送到 R1。R1 将数据包转发到目的地（Web 服务器）。这可能意味着 R1 会将数据包转发到另一个路由器，或者如果目的地所在的网络与 R1 相连的话直接转发到 Web 服务器。</p>
+<p><strong>过程：主机-&gt;路由器 路由器-&gt;路由器 路由器-&gt;服务器</strong></p>
+<p>当 IP 数据包从主机到路由器、从路由器到路由器和最终从路由器到主机传输时，沿途中的每个点上都会将 <strong>IP 数据包</strong>封装到新的数据链路层帧中。每个数据链路层帧包含发送帧的 NIC 卡的源数据链路层地址和接收帧的 NIC 卡的目的数据链路层地址。</p>
+<p>数据链路层帧地址字段<strong>按顺序</strong>由<strong>目的</strong>和<strong>源MAC地址</strong>组成。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2021/08/15/ITN-Internet/" title="ITN_Internet(1)">https://polaris6g.github.io/2021/08/15/ITN-Internet/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ITN/" rel="tag"># ITN</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/17/go-web-1/" rel="prev" title="go_web(1)">
+      <i class="fa fa-chevron-left"></i> go_web(1)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/16/HTML/" rel="next" title="HTML学习">
+      HTML学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BD%93%E4%BB%8A%E7%BD%91%E7%BB%9C"><span class="nav-number">2.</span> <span class="nav-text">第一章 当今网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">内容大纲：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E7%BD%91%E7%BB%9C%E7%BB%84%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">01 网络组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E7%AD%89%E7%BD%91%E7%BB%9C"><span class="nav-number">2.2.2.</span> <span class="nav-text">对等网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%BB%8B%E8%B4%A8"><span class="nav-number">2.2.3.</span> <span class="nav-text">网络介质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F%E5%92%8C%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91"><span class="nav-number">2.3.</span> <span class="nav-text">02 网络表示方式和网络拓扑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.1.</span> <span class="nav-text">网络表示方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E6%89%91%E5%9B%BE"><span class="nav-number">2.3.2.</span> <span class="nav-text">拓扑图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E5%B8%B8%E8%A7%81%E7%BD%91%E7%BB%9C%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">03 常见网络类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E7%A7%8D%E8%A7%84%E6%A8%A1%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-number">2.4.1.</span> <span class="nav-text">多种规模的网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LAN%E5%92%8CWAN"><span class="nav-number">2.4.2.</span> <span class="nav-text">LAN和WAN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="nav-number">2.4.3.</span> <span class="nav-text">互联网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E7%BD%91%E5%92%8C%E5%A4%96%E8%81%94%E7%BD%91"><span class="nav-number">2.4.4.</span> <span class="nav-text">内部网和外联网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-Internet%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.5.</span> <span class="nav-text">04 Internet连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Internet-%E8%AE%BF%E9%97%AE%E6%8A%80%E6%9C%AF"><span class="nav-number">2.5.1.</span> <span class="nav-text">Internet 访问技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%9E%8D%E5%90%88%E7%BD%91%E7%BB%9C"><span class="nav-number">2.5.2.</span> <span class="nav-text">融合网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E5%8F%AF%E9%9D%A0%E7%BD%91%E7%BB%9C"><span class="nav-number">2.6.</span> <span class="nav-text">05 可靠网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="nav-number">2.6.1.</span> <span class="nav-text">网络架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E9%94%99%E8%83%BD%E5%8A%9B"><span class="nav-number">2.6.2.</span> <span class="nav-text">容错能力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="nav-number">2.6.3.</span> <span class="nav-text">可扩展性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F"><span class="nav-number">2.6.4.</span> <span class="nav-text">服务质量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="nav-number">2.6.5.</span> <span class="nav-text">网络安全</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-%E7%BD%91%E7%BB%9C%E8%B6%8B%E5%8A%BF"><span class="nav-number">2.7.</span> <span class="nav-text">06 网络趋势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%91%E6%9C%9F%E8%B6%8B%E5%8A%BF"><span class="nav-number">2.7.1.</span> <span class="nav-text">近期趋势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8"><span class="nav-number">2.8.</span> <span class="nav-text">07 网络安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="nav-number">2.8.1.</span> <span class="nav-text">安全威胁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.8.2.</span> <span class="nav-text">安全解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%92%8C%E7%BB%88%E7%AB%AF%E8%AE%BE%E5%A4%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">第二章 交换机和终端设备的基本配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2%EF%BC%9A-1"><span class="nav-number">3.1.</span> <span class="nav-text">内容大纲：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E6%80%9D%E7%A7%91IOS%E8%AE%BF%E9%97%AE"><span class="nav-number">3.2.</span> <span class="nav-text">01 思科IOS访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.2.1.</span> <span class="nav-text">操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI"><span class="nav-number">3.2.2.</span> <span class="nav-text">GUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%94%A8%E9%80%94"><span class="nav-number">3.2.3.</span> <span class="nav-text">操作系统的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.4.</span> <span class="nav-text">访问方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-IOS%E5%AF%BC%E8%88%AA"><span class="nav-number">3.3.</span> <span class="nav-text">02 IOS导航</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">主要命令模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%AD%90%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.3.2.</span> <span class="nav-text">配置模式和子配置模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8IOS%E6%A8%A1%E5%BC%8F%E4%B9%8B%E9%97%B4%E5%AF%BC%E8%88%AA"><span class="nav-number">3.3.3.</span> <span class="nav-text">在IOS模式之间导航</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.</span> <span class="nav-text">03 命令结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%ACIOS%E5%91%BD%E4%BB%A4%E7%BB%93%E6%9E%84"><span class="nav-number">3.4.1.</span> <span class="nav-text">基本IOS命令结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F%EF%BC%88%E7%83%AD%E9%94%AE%EF%BC%89"><span class="nav-number">3.4.2.</span> <span class="nav-text">快捷方式（热键）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E5%9F%BA%E6%9C%AC%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE"><span class="nav-number">3.5.</span> <span class="nav-text">04 基本设备配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%90%8D%E7%A7%B0"><span class="nav-number">3.5.1.</span> <span class="nav-text">设备名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%87%86%E5%88%99"><span class="nav-number">3.5.2.</span> <span class="nav-text">密码准则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">3.5.3.</span> <span class="nav-text">配置密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%AF%86%E5%AF%86%E7%A0%81"><span class="nav-number">3.5.4.</span> <span class="nav-text">加密密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%AA%E5%B9%85%E6%B6%88%E6%81%AF"><span class="nav-number">3.5.5.</span> <span class="nav-text">横幅消息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E4%BF%9D%E5%AD%98%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.</span> <span class="nav-text">05 保存配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.6.1.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE"><span class="nav-number">3.6.2.</span> <span class="nav-text">修改运行配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-%E7%AB%AF%E5%8F%A3%E5%92%8C%E5%9C%B0%E5%9D%80"><span class="nav-number">3.7.</span> <span class="nav-text">06 端口和地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.7.1.</span> <span class="nav-text">IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E6%8E%A5%E5%8F%A3"><span class="nav-number">3.7.2.</span> <span class="nav-text">虚拟接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E9%85%8D%E7%BD%AEIP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.8.</span> <span class="nav-text">07 配置IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E7%BB%88%E7%AB%AF%E8%AE%BE%E5%A4%87%E8%BF%9B%E8%A1%8C%E6%89%8B%E5%8A%A8IP%E5%9C%B0%E5%9D%80%E9%85%8D%E7%BD%AE"><span class="nav-number">3.8.1.</span> <span class="nav-text">为终端设备进行手动IP地址配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E7%BB%88%E7%AB%AF%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.8.2.</span> <span class="nav-text">自动配置终端的IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E6%9C%BA%E8%99%9A%E6%8B%9F%E6%8E%A5%E5%8F%A3%EF%BC%88SVI%EF%BC%89%E9%85%8D%E7%BD%AE"><span class="nav-number">3.8.3.</span> <span class="nav-text">交换机虚拟接口（SVI）配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">第三章 协议与模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%A4%A7%E7%BA%B2"><span class="nav-number">4.1.</span> <span class="nav-text">内容大纲</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E8%A7%84%E5%88%99"><span class="nav-number">4.2.</span> <span class="nav-text">01 规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">4.2.1.</span> <span class="nav-text">通信基本知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.2.2.</span> <span class="nav-text">通信协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E8%A6%81%E6%B1%82"><span class="nav-number">4.2.3.</span> <span class="nav-text">网络协议要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%BC%96%E7%A0%81"><span class="nav-number">4.2.4.</span> <span class="nav-text">消息编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F%E5%92%8C%E5%B0%81%E8%A3%85"><span class="nav-number">4.2.5.</span> <span class="nav-text">消息格式和封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%A7%E5%B0%8F"><span class="nav-number">4.2.6.</span> <span class="nav-text">消息大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%97%B6%E5%BA%8F"><span class="nav-number">4.2.7.</span> <span class="nav-text">消息时序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E6%96%B9%E5%BC%8F"><span class="nav-number">4.2.8.</span> <span class="nav-text">消息传输方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.3.</span> <span class="nav-text">02 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="nav-number">4.3.1.</span> <span class="nav-text">网络协议概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%8A%9F%E8%83%BD%EF%BC%9A"><span class="nav-number">4.3.2.</span> <span class="nav-text">网络协议功能：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E4%BA%A4%E4%BA%92"><span class="nav-number">4.3.3.</span> <span class="nav-text">协议交互</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%B0%87%EF%BC%9A"><span class="nav-number">4.3.4.</span> <span class="nav-text">网络协议簇：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.3.5.</span> <span class="nav-text">TCP&#x2F;IP协议示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE%E7%B0%87"><span class="nav-number">4.3.6.</span> <span class="nav-text">TCP&#x2F;IP协议簇</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="nav-number">4.3.7.</span> <span class="nav-text">TCP&#x2F;IP通信过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.4.</span> <span class="nav-text">03 参考模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.4.1.</span> <span class="nav-text">使用分层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.4.2.</span> <span class="nav-text">OSI参考模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">4.4.3.</span> <span class="nav-text">TCP&#x2F;IP协议模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-%E6%A8%A1%E5%9E%8B%E4%B8%8E-TCP-IP-%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">4.4.4.</span> <span class="nav-text">OSI 模型与 TCP&#x2F;IP 模型的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E6%95%B0%E6%8D%AE%E5%B0%81%E8%A3%85"><span class="nav-number">4.5.</span> <span class="nav-text">04 数据封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%B6%88%E6%81%AF%E5%88%86%E6%AE%B5"><span class="nav-number">4.5.1.</span> <span class="nav-text">对消息分段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-number">4.5.2.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83"><span class="nav-number">4.5.3.</span> <span class="nav-text">协议数据单元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE"><span class="nav-number">4.6.</span> <span class="nav-text">05 数据访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80"><span class="nav-number">4.6.1.</span> <span class="nav-text">地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC3%E5%B1%82%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80-IP%E5%9C%B0%E5%9D%80"><span class="nav-number">4.6.2.</span> <span class="nav-text">第3层逻辑地址(IP地址)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E4%B8%80%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E8%AE%BE%E5%A4%87"><span class="nav-number">4.6.3.</span> <span class="nav-text">同一网络中的设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%9A%84%E8%AE%BE%E5%A4%87"><span class="nav-number">4.6.4.</span> <span class="nav-text">远程网络中的设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E5%9C%B0%E5%9D%80"><span class="nav-number">4.6.5.</span> <span class="nav-text">数据链路层地址</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

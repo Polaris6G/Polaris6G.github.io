@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="前言：统一概念 技术架构和设计原则 技术开发指导 前端工程性能安全">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue实战">
+<meta property="og:url" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="前言：统一概念 技术架构和设计原则 技术开发指导 前端工程性能安全">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709093336928.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709094222447.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709094237007.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709100316501.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709110912091.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709112238398.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709114346240.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709114723187.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115110076.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115217104.png">
+<meta property="og:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115529005.png">
+<meta property="article:published_time" content="2022-07-09T04:06:57.000Z">
+<meta property="article:modified_time" content="2022-07-09T04:06:57.621Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="思特奇培训课程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709093336928.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>vue实战 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vue实战
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-07-09 12:06:57" itemprop="dateCreated datePublished" datetime="2022-07-09T12:06:57+08:00">2022-07-09</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2022/07/09/vue%E5%AE%9E%E6%88%98/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/09/vue%E5%AE%9E%E6%88%98/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>前言：统一概念</li>
+<li>技术架构和设计原则</li>
+<li>技术开发指导</li>
+<li>前端工程性能安全</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="vue工程开发"><a href="#vue工程开发" class="headerlink" title="vue工程开发"></a>vue工程开发</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="统一概念"><a href="#统一概念" class="headerlink" title="统一概念"></a>统一概念</h3><ul>
+<li><p>UI：用户界面</p>
+</li>
+<li><p>UE：用户设计体验</p>
+</li>
+</ul>
+<p>前端开发整体流程：</p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709093336928.png" class title="image-20220709093336928">
+
+<h2 id="设计架构和设计原则"><a href="#设计架构和设计原则" class="headerlink" title="设计架构和设计原则"></a>设计架构和设计原则</h2><h3 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h3><p>上下文：</p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709094222447.png" class title="image-20220709094222447">
+
+<p>前端框架总体架构：</p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709094237007.png" class title="image-20220709094237007">
+
+
+
+<h3 id="设计原则与规范交付"><a href="#设计原则与规范交付" class="headerlink" title="设计原则与规范交付"></a>设计原则与规范交付</h3><h4 id="开发规范"><a href="#开发规范" class="headerlink" title="开发规范"></a>开发规范</h4><ol>
+<li><p>模块化</p>
+<ul>
+<li>AMD：<ul>
+<li>Requirejs</li>
+<li>浏览器端、异步加载、依赖前置</li>
+</ul>
+</li>
+<li>CMD：<ul>
+<li>Seajs</li>
+<li>浏览器端、串行加载、就近依赖</li>
+</ul>
+</li>
+<li>CommonJS：<ul>
+<li>Nodejs</li>
+<li>服务器端、同步加载、依赖前置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>组件化</p>
+<p>标准性、组合性、复用性、维护性</p>
+</li>
+<li><p>规范化</p>
+<ul>
+<li>目的：为了提供工作效率，便于后续人员添加功能、优化维护</li>
+<li>原则：符合web标准，使结构、表现、行为分离，兼容性优良</li>
+</ul>
+</li>
+<li><p>自动化</p>
+<ul>
+<li>目的：提高生产效率，凡是可以由机器来完成的就让机器完成</li>
+<li>原则：请求资源合并、持续集成、自动化构建、自动化部署</li>
+</ul>
+</li>
+<li><p>质量安全</p>
+<ul>
+<li>目的：提高生产系统安全性</li>
+<li>在设计、开发过程中要规避安全问题，满足开发安全规范</li>
+</ul>
+</li>
+</ol>
+<p><strong>技术栈全景</strong></p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709100316501.png" class title="image-20220709100316501">
+
+<h4 id="设计文档规范"><a href="#设计文档规范" class="headerlink" title="设计文档规范"></a>设计文档规范</h4><ol>
+<li><p>功能描述及重点</p>
+<p>例如：描述：连通国际用户登录自主门户，办理业务并完成缴费</p>
+<p>重点：余额支付、银行支付、银行托收支付</p>
+</li>
+<li><p>界面设计</p>
+<p>界面布局，对界面设计是否合理</p>
+</li>
+<li><p>业务流程</p>
+<p>描述该业务处理流程，使用VISIO图或者XMIND图描述</p>
+</li>
+<li><p>交互时间</p>
+<p>事件响应时间标准：</p>
+<p>3G网络反应：大概100 ms</p>
+<p>4G网络反应：20~80 ms</p>
+<p>5G网络反应：1 ms</p>
+</li>
+<li><p>交互流程</p>
+<p>描述与其它产品平台/技术平台的交互流程，使用时序图描述</p>
+</li>
+<li><p>接口说明</p>
+<p>描述设计到的接口极其相关出入参，可以保存与后端协定的出、入参文档</p>
+</li>
+<li><p>测试资源</p>
+<p>环境：测试/生产/准生产</p>
+<p>测试号：XXX</p>
+</li>
+</ol>
+<h2 id="技术开发指导"><a href="#技术开发指导" class="headerlink" title="技术开发指导"></a>技术开发指导</h2><p>技术能力图</p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709110912091.png" class title="image-20220709110912091">
+
+<h3 id="技术开发规范指导"><a href="#技术开发规范指导" class="headerlink" title="技术开发规范指导"></a>技术开发规范指导</h3><p>全家桶：</p>
+<ul>
+<li>vue-cli：<ul>
+<li>脚手架</li>
+<li>降低了构建难度，引入了各种模块工具，前端人员只需要关注开发即可</li>
+</ul>
+</li>
+<li>vuex：<ul>
+<li>状态管理</li>
+<li>大型页面应用多个组件高效状态管理，弥补单向数据流很容易被破坏的不足</li>
+</ul>
+</li>
+<li>axios：<ul>
+<li>数据交互</li>
+<li>基于promise的HTTP库，支持拦截请求和响应，请求数据的封装转换</li>
+<li>vue-resource已经停止更新</li>
+</ul>
+</li>
+<li>vue-router：<ul>
+<li>路由规则</li>
+<li>vue路由框架通过组合组件来组成aoo应用程序</li>
+</ul>
+</li>
+<li>vue：<ul>
+<li>vue基础</li>
+<li>专注于MVVM模型的ViewModel层，通过双向数据绑定把View层和Model层连接</li>
+</ul>
+</li>
+</ul>
+<p><strong>vue的优势</strong></p>
+<p>文件小，可复用性，性能快，渲染强，跨平台</p>
+<p><strong>生命周期说明与对比</strong></p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709112238398.png" class title="image-20220709112238398">
+
+<h3 id="调试方案"><a href="#调试方案" class="headerlink" title="调试方案"></a>调试方案</h3><p><strong>vue-devtool</strong></p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709114346240.png" class title="image-20220709114346240">
+
+<p><strong>手机端：vConsole</strong></p>
+<p><strong>Fiddler调试</strong></p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709114723187.png" class title="image-20220709114723187">
+
+<h3 id="运营插码方案"><a href="#运营插码方案" class="headerlink" title="运营插码方案"></a>运营插码方案</h3><p>采集用户操作，便于后台分析用户行为</p>
+<img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115110076.png" class title="image-20220709115110076">
+
+<h2 id="前端工程性能安全"><a href="#前端工程性能安全" class="headerlink" title="前端工程性能安全"></a>前端工程性能安全</h2><h3 id="前端性能规范"><a href="#前端性能规范" class="headerlink" title="前端性能规范"></a>前端性能规范</h3><img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115217104.png" class title="image-20220709115217104">
+
+<h3 id="安全规范"><a href="#安全规范" class="headerlink" title="安全规范"></a>安全规范</h3><img src="/2022/07/09/vue%E5%AE%9E%E6%88%98/image-20220709115529005.png" class title="image-20220709115529005">
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2022/07/09/vue%E5%AE%9E%E6%88%98/" title="vue实战">https://polaris6g.github.io/2022/07/09/vue实战/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%9D%E7%89%B9%E5%A5%87%E5%9F%B9%E8%AE%AD%E8%AF%BE%E7%A8%8B/" rel="tag"># 思特奇培训课程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/" rel="prev" title="SpringCloud实战">
+      <i class="fa fa-chevron-left"></i> SpringCloud实战
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/" rel="next" title="hadoop时代背景">
+      hadoop时代背景 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue%E5%B7%A5%E7%A8%8B%E5%BC%80%E5%8F%91"><span class="nav-number">1.</span> <span class="nav-text">vue工程开发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.</span> <span class="nav-text">统一概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84%E5%92%8C%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">1.2.</span> <span class="nav-text">设计架构和设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="nav-number">1.2.1.</span> <span class="nav-text">总体架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E4%B8%8E%E8%A7%84%E8%8C%83%E4%BA%A4%E4%BB%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">设计原则与规范交付</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">开发规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3%E8%A7%84%E8%8C%83"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">设计文档规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E6%8C%87%E5%AF%BC"><span class="nav-number">1.3.</span> <span class="nav-text">技术开发指导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E6%8C%87%E5%AF%BC"><span class="nav-number">1.3.1.</span> <span class="nav-text">技术开发规范指导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.2.</span> <span class="nav-text">调试方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%90%A5%E6%8F%92%E7%A0%81%E6%96%B9%E6%A1%88"><span class="nav-number">1.3.3.</span> <span class="nav-text">运营插码方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E6%80%A7%E8%83%BD%E5%AE%89%E5%85%A8"><span class="nav-number">1.4.</span> <span class="nav-text">前端工程性能安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E8%A7%84%E8%8C%83"><span class="nav-number">1.4.1.</span> <span class="nav-text">前端性能规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E8%A7%84%E8%8C%83"><span class="nav-number">1.4.2.</span> <span class="nav-text">安全规范</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

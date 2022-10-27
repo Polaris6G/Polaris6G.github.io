@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简述综设项目滴需求，这里就开个坑吧 hhh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序开发简述">
+<meta property="og:url" content="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="简述综设项目滴需求，这里就开个坑吧 hhh">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/01.png">
+<meta property="article:published_time" content="2021-10-23T12:56:33.000Z">
+<meta property="article:modified_time" content="2021-10-27T16:29:50.504Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/01.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>微信小程序开发简述 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微信小程序开发简述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-23 20:56:33" itemprop="dateCreated datePublished" datetime="2021-10-23T20:56:33+08:00">2021-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-10-28 00:29:50" itemprop="dateModified" datetime="2021-10-28T00:29:50+08:00">2021-10-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Wx-Programming/" itemprop="url" rel="index"><span itemprop="name">Wx-Programming</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>综设项目滴需求，这里就开个坑吧 hhh</p>
+<span id="more"></span>
+
+<h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><p>微信原生组件JS API （WeixinJSBridge)–》 JS-SDK （开发了功能多样的API）</p>
+<p>JS-SDK特点：</p>
+<ul>
+<li>对内开放-&gt;开源，全部开放</li>
+<li>通过暴露微信的接口是的Web开发者能够拥有更多能力</li>
+</ul>
+<p>为了更好的用户体验，通过采用小程序的方式达到分工明确，高效简单的开发，从而使用户体验更丝滑~</p>
+<p>优势：</p>
+<ul>
+<li>快速地加载</li>
+<li>更强大的能力</li>
+<li>原生的体验</li>
+<li>易用且安全的微信数据开放</li>
+<li>高效和简单的开发</li>
+</ul>
+<p>小程序开发特点：</p>
+<ul>
+<li><p>主要开发语言是JS</p>
+</li>
+<li><p>网页开发渲染线程和脚本线程是分开的</p>
+</li>
+<li><p>没有一个完整浏览器对象，因而缺乏相关的DOM API和BOM API</p>
+</li>
+<li><p>一些前端开发的库(jQuery）无法使用</p>
+</li>
+<li><p>一些NPM包无法运行</p>
+</li>
+<li><p>面对两大操作系统：iOS &amp; Android</p>
+</li>
+<li><p>开发环境：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>运行环境</strong></th>
+<th align="left"><strong>逻辑层</strong></th>
+<th align="left"><strong>渲染层</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">iOS</td>
+<td align="left">JavaScriptCore</td>
+<td align="left">WKWebView</td>
+</tr>
+<tr>
+<td align="left">安卓</td>
+<td align="left">V8</td>
+<td align="left">chromium定制内核</td>
+</tr>
+<tr>
+<td align="left">小程序开发者工具</td>
+<td align="left">NWJS</td>
+<td align="left">Chrome WebView</td>
+</tr>
+</tbody></table>
+<ul>
+<li>开发流程：申请小程序账号、安装小程序开发工具、配置项目等</li>
+</ul>
+<p>小程序的开发框架：</p>
+<ul>
+<li>wepy</li>
+<li>mpvue</li>
+<li>taro</li>
+</ul>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>小程序包含一个描述整体程序的 <code>app</code> 和多个描述各自页面的 <code>page</code>。</p>
+<p>一个小程序主体部分由三个文件组成，必须放在项目的根目录，如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">文件</th>
+<th align="left">必需</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/app.html">app.js</a></td>
+<td align="left">是</td>
+<td align="left">小程序逻辑</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">app.json</a></td>
+<td align="left">是</td>
+<td align="left">小程序公共配置</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">app.wxss</a></td>
+<td align="left">否</td>
+<td align="left">小程序公共样式表</td>
+</tr>
+</tbody></table>
+<p>一个小程序页面由四个文件组成，分别是：</p>
+<table>
+<thead>
+<tr>
+<th align="left">文件类型</th>
+<th align="left">必需</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html">js</a></td>
+<td align="left">是</td>
+<td align="left">页面逻辑</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/">wxml</a></td>
+<td align="left">是</td>
+<td align="left">页面结构</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE">json</a></td>
+<td align="left">否</td>
+<td align="left">页面配置</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">wxss</a></td>
+<td align="left">否</td>
+<td align="left">页面样式表</td>
+</tr>
+</tbody></table>
+<p><strong>注意：为了方便开发者减少配置项，描述页面的四个文件必须具有相同的路径与文件名。</strong></p>
+<h2 id="小程序代码构成"><a href="#小程序代码构成" class="headerlink" title="小程序代码构成"></a>小程序代码构成</h2><ul>
+<li><code>.json</code></li>
+<li><code>.wxml</code></li>
+<li><code>.wxss</code></li>
+<li><code>.js</code></li>
+</ul>
+<p><strong>json数据</strong>：小程序中的json数据格式和JS对象表达方式有所不同：</p>
+<ul>
+<li>JSON文件都是被包裹在一个大括号中 {}，通过key-value的方式来表达数据。</li>
+<li>JSON的Key必须包裹在一个双引号中</li>
+<li>JSON的值只能是以下几种数据格式：<ol>
+<li>数字，包含浮点数和整数</li>
+<li>字符串，需要包裹在双引号中</li>
+<li>Bool值，true 或者 false</li>
+<li>数组，需要包裹在方括号中 []</li>
+<li>对象，需要包裹在大括号中 {}</li>
+<li>Null</li>
+</ol>
+</li>
+<li>JSON文件无法使用注释</li>
+</ul>
+<h3 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h3><p>小程序的全局配置：所有页面路径、界面表现、网络超时时间、底部tab等。</p>
+<ol>
+<li><code>pages</code>字段 —— 用于描述当前小程序所有页面路径，这是为了让微信客户端知道当前你的小程序页面定义在哪个目录。</li>
+<li><code>window</code>字段 —— 定义小程序所有页面的顶部背景颜色，文字颜色定义等。</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;pages&quot;</span>:[</span><br><span class="line">    <span class="string">&quot;pages/index/index&quot;</span>,</span><br><span class="line">    <span class="string">&quot;pages/logs/logs&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;window&quot;</span>:&#123;</span><br><span class="line">    <span class="attr">&quot;backgroundTextStyle&quot;</span>:<span class="string">&quot;light&quot;</span>,<span class="comment">//导航栏标题颜色</span></span><br><span class="line">    <span class="attr">&quot;navigationBarBackgroundColor&quot;</span>: <span class="string">&quot;#fff&quot;</span>,<span class="comment">//窗口的背景色	</span></span><br><span class="line">    <span class="attr">&quot;navigationBarTitleText&quot;</span>: <span class="string">&quot;Weixin&quot;</span>,<span class="comment">//导航栏标题文字内容</span></span><br><span class="line">    <span class="attr">&quot;navigationBarTextStyle&quot;</span>:<span class="string">&quot;black&quot;</span><span class="comment">//导航栏背景颜色</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="project-config-json"><a href="#project-config-json" class="headerlink" title="project.config.json"></a>project.config.json</h3><p>工具配置：其中会包括编辑器的颜色、代码上传时自动压缩等等一系列选项。</p>
+<h3 id="page-json"><a href="#page-json" class="headerlink" title="page.json"></a>page.json</h3><p>页面配置：具体到每一个页面（如index.json)的配置。</p>
+<h3 id="WXML模板"><a href="#WXML模板" class="headerlink" title="WXML模板"></a>WXML模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;userinfo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;!hasUserInfo &amp;&amp; canIUse&#125;&#125;&quot;</span>&gt;</span> 获取头像昵称 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:else</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123;userInfo.avatarUrl&#125;&#125;&quot;</span> <span class="attr">background-size</span>=<span class="string">&quot;cover&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;userinfo-nickname&quot;</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;usermotto&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;user-motto&quot;</span>&gt;</span>&#123;&#123;motto&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>与html的区别：</p>
+<ul>
+<li>标签名字：从上边的例子可以看到，小程序的 <code>WXML</code> 用的标签是 <code>view</code>, <code>button</code>, <code>text</code> 等等，这些标签就是小程序给开发者包装好的基本能力，还提供了地图、视频、音频等等组件能力。</li>
+<li>多了一些 <code>wx:if</code> 这样的属性以及 <code>&#123;&#123; &#125;&#125;</code> 这样的表达式</li>
+</ul>
+<p><em>React、Vue体长把渲染和逻辑分离，就是不让<code>JS</code>直接操控<code>DOM</code>，<code>JS</code> 只需要管理状态即可，然后再通过一种模板语法来描述状态和界面结构的关系即可。</em></p>
+<p>小程序的框架也是用到了这个思路，如果你需要把一个 <code>Hello World</code> 的字符串显示在界面上。</p>
+<p>WXML 是这么写 :</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>JS 只需要管理状态即可:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.setData(&#123; <span class="attr">msg</span>: <span class="string">&quot;Hello World&quot;</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过 <code>&#123;&#123; &#125;&#125;</code> 的语法把一个变量绑定到界面上，我们称为<strong>数据绑定</strong>。仅仅通过数据绑定还不够完整的描述状态和界面的关系，还需要 <code>if</code>/<code>else</code>, <code>for</code>等控制能力，在小程序里边，这些控制能力都用 <code>wx:</code> 开头的属性来表达。</p>
+<h3 id="WXSS样式"><a href="#WXSS样式" class="headerlink" title="WXSS样式"></a>WXSS样式</h3><p>与CSS相比的一些扩充和修改：</p>
+<ul>
+<li><p>新增了尺寸单位。<code>rpx</code></p>
+</li>
+<li><p>提供了全局的样式（<code>app.wxss</code>）和局部样式（<code>page.wss</code>）</p>
+</li>
+<li><p>WXSS仅支持部分CSS选择器</p>
+</li>
+</ul>
+<h3 id="JS逻辑交互"><a href="#JS逻辑交互" class="headerlink" title="JS逻辑交互"></a>JS逻辑交互</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">&quot;clickMe&quot;</span>&gt;</span>点击我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>点击 <code>button</code> 按钮的时候，我们希望把界面上 <code>msg</code> 显示成 <code>&quot;Hello World&quot;</code>，于是我们在 <code>button</code> 上声明一个属性: <code>bindtap</code> ，在 JS 文件里边声明了 <code>clickMe</code> 方法来响应这次点击操作：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  clickMe: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.setData(&#123; <span class="attr">msg</span>: <span class="string">&quot;Hello World&quot;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p>小程序的运行环境也称为宿主环境，由微信客户端提供。</p>
+<p>其分为<strong>渲染层</strong>（WXML、WXSS）和<strong>逻辑层</strong>（JS）。</p>
+<ul>
+<li>渲染层的界面使用了WebView 进行渲染（多个页面多个线程）</li>
+<li>逻辑层采用JsCore线程运行JS脚本</li>
+<li>Native指微信客户端</li>
+</ul>
+<img src="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/01.png" alt="01">
+
+<h2 id="程序与页面"><a href="#程序与页面" class="headerlink" title="程序与页面"></a>程序与页面</h2><p><code>app.json</code>中写在<code>pages</code>的字段的第一个页面就是小程序的首页。</p>
+<p>两个回调：</p>
+<ol>
+<li><code>app.js</code>中定义的<code>App</code>实例的<code>onLaunch</code>回调会被执行：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 小程序启动之后 触发</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>整个小程序只有一个 App 实例，是全部页面共享的。</p>
+<ol start="2">
+<li>page.json-&gt;page.wxml、page.wess-&gt;page.js</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123; <span class="comment">// 参与页面渲染的数据</span></span><br><span class="line">    logs: []</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 页面渲染后 执行</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>Page</code> 是一个页面构造器，这个构造器就生成了一个页面。在生成页面的时候，小程序框架会把 <code>data</code> 数据和 <code>index.wxml</code> 一起渲染出最终的结构，于是就得到了你看到的小程序的样子。</p>
+<p>在渲染完界面之后，页面实例就会收到一个 <code>onLoad</code> 的回调，<strong>在这个回调处理逻辑</strong>。</p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>相当于HTML中的标签</p>
+<p>显示地图：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>希望地图一开始的中心的经纬度是广州：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">longitude</span>=<span class="string">&quot;广州经度&quot;</span> <span class="attr">latitude</span>=<span class="string">&quot;广州纬度&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用户点击了地图上的某个标记：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">bindmarkertap</span>=<span class="string">&quot;markertap&quot;</span> <span class="attr">longitude</span>=<span class="string">&quot;广州经度&quot;</span> <span class="attr">latitude</span>=<span class="string">&quot;广州纬度&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>小程序提供了很多API给开发者使用。</p>
+<p>获取用户地理位置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wx.getLocation(&#123;</span><br><span class="line">    type: <span class="string">&#x27;wgs84&#x27;</span>,</span><br><span class="line">    success: <span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> latitude = res.latitude<span class="comment">//纬度</span></span><br><span class="line">        <span class="keyword">var</span> longtitude = res.longitude<span class="comment">//经度</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>微信扫一扫：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.scanCode(&#123;</span><br><span class="line">  success: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：多数 API 的回调都是异步，你需要处理好代码逻辑的异步问题。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" title="微信小程序开发简述">https://polaris6g.github.io/2021/10/23/微信小程序开发框架/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/31/go-web-2/" rel="prev" title="go-web-2">
+      <i class="fa fa-chevron-left"></i> go-web-2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/28/Wx-Programming-1/" rel="next" title="Wx-Programming_1">
+      Wx-Programming_1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">发展历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81%E6%9E%84%E6%88%90"><span class="nav-number">1.3.</span> <span class="nav-text">小程序代码构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#app-json"><span class="nav-number">1.3.1.</span> <span class="nav-text">app.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#project-config-json"><span class="nav-number">1.3.2.</span> <span class="nav-text">project.config.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#page-json"><span class="nav-number">1.3.3.</span> <span class="nav-text">page.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WXML%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.3.4.</span> <span class="nav-text">WXML模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WXSS%E6%A0%B7%E5%BC%8F"><span class="nav-number">1.3.5.</span> <span class="nav-text">WXSS样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS%E9%80%BB%E8%BE%91%E4%BA%A4%E4%BA%92"><span class="nav-number">1.3.6.</span> <span class="nav-text">JS逻辑交互</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="nav-number">1.4.</span> <span class="nav-text">运行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%8E%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.5.</span> <span class="nav-text">程序与页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">1.6.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">1.7.</span> <span class="nav-text">API</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

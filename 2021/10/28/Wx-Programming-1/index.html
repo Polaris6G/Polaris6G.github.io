@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简述根据微信小程序官方文档来学习WXML、WXSS吧！开干~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wx-Programming_1">
+<meta property="og:url" content="https://polaris6g.github.io/2021/10/28/Wx-Programming-1/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="简述根据微信小程序官方文档来学习WXML、WXSS吧！开干~">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-27T16:15:38.000Z">
+<meta property="article:modified_time" content="2021-12-11T16:42:19.187Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://polaris6g.github.io/2021/10/28/Wx-Programming-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Wx-Programming_1 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2021/10/28/Wx-Programming-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Wx-Programming_1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-10-28 00:15:38" itemprop="dateCreated datePublished" datetime="2021-10-28T00:15:38+08:00">2021-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-12 00:42:19" itemprop="dateModified" datetime="2021-12-12T00:42:19+08:00">2021-12-12</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/10/28/Wx-Programming-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/10/28/Wx-Programming-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>根据微信小程序官方文档来学习WXML、WXSS吧！开干~</p>
+<span id="more"></span>
+
+<h1 id="WXML-模板"><a href="#WXML-模板" class="headerlink" title="WXML 模板"></a>WXML 模板</h1><h2 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h2><p>用户界面呈现会因为当前时刻数据不同而有所不同，或者是因为用户的操作发生动态改变，这就要求程序的运行过程中，要有动态的去改变渲染界面的能力。</p>
+<p>在 Web 开发中，开发者使用 JavaScript 通过Dom 接口来完成界面的实时更新。在小程序中，使用 WXML 语言所提供的数据绑定功能，来完成此项功能。</p>
+<p>栗子：</p>
+<p>1.</p>
+<p>index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    time: (<span class="keyword">new</span> <span class="built_in">Date</span>()).toString()</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>index.wxml</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>当前时间：&#123;&#123;time&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过 来绑定。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 正确的写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">data-test</span>=<span class="string">&quot;&#123;&#123;test&#125;&#125;&quot;</span>&gt;</span> hello world<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 错误的写法  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">text</span> <span class="attr">data-test</span>=<span class="string">&#123;&#123;test&#125;&#125;</span>&gt;</span> hello world &lt;/text &gt;</span><br></pre></td></tr></table></figure>
+
+<p>属性值也可以动态的去改变，有所不同的是，属性值必须被包裹在双引号中。</p>
+<p><strong>变量名是大小写敏感的，  和  是两个不同的变量</strong>。</p>
+<h2 id="逻辑语法"><a href="#逻辑语法" class="headerlink" title="逻辑语法"></a>逻辑语法</h2><p>三元运算：<code>&#123;&#123; a === 10? "变量 a 等于10": "变量 a 不等于10"&#125;&#125;</code></p>
+<p>算数运算：<code>&#123;&#123;a + b&#125;&#125;</code></p>
+<p>字符串拼接：<code>&#123;&#123;"hello " + name&#125;&#125;</code></p>
+<p>常量：<code>&#123;&#123;"hello world"&#125;&#125;</code></p>
+<h2 id="条件逻辑"><a href="#条件逻辑" class="headerlink" title="条件逻辑"></a>条件逻辑</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;length &gt; 5&#125;&#125;&quot;</span>&gt;</span> 1 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:elif</span>=<span class="string">&quot;&#123;&#123;length &gt; 2&#125;&#125;&quot;</span>&gt;</span> 2 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>&gt;</span> 3 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>block封装：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;true&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> view1 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> view2 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h2><p>index.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    array: [&#123;</span><br><span class="line">      message: <span class="string">&#x27;foo&#x27;</span>,</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      message: <span class="string">&#x27;bar&#x27;</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>index.wxml：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  &#123;&#123;index&#125;&#125;: &#123;&#123;item.message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> wx:for-index 指定数组当前下标的变量名</p>
+<p> wx:for-item 指定数组当前元素的变量名</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;array&#125;&#125;&quot;</span> <span class="attr">wx:for-index</span>=<span class="string">&quot;idx&quot;</span> <span class="attr">wx:for-item</span>=<span class="string">&quot;itemName&quot;</span>&gt;</span></span><br><span class="line">  &#123;&#123;idx&#125;&#125;: &#123;&#123;itemName.message&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>类似 <code>block wx:if</code> ，也可以将 <code>wx:for</code> 用在 <code>&lt;block/&gt;</code> 标签上，以渲染一个包含多节点的结构块。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;[1, 2, 3]&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;index&#125;&#125;: <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>wx:key</strong></p>
+<p>如果列表中项目的位置会动态改变或者有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态（如 <code>&lt;input/&gt;</code> 中的输入内容， <code>&lt;switch/&gt;</code> 的选中状态），需要使用 <code>wx:key</code> 来指定列表中项目的唯一的标识符。</p>
+<p><code>wx:key</code> 的值以两种形式提供：</p>
+<ol>
+<li>字符串，代表在 for 循环的 array 中 item 的某个 property，该 property 的值需要是列表中<strong>唯一</strong>的字符串或数字，且<strong>不能动态改变</strong>。</li>
+<li>保留关键字 this 代表在 for 循环中的 item 本身，这种表示需要 item 本身是一个唯一的字符串或者数字，如：</li>
+</ol>
+<p>当数据改变触发渲染层重新渲染的时候，会校正带有 key 的组件，框架会确保他们被重新排序，而不是重新创建，以确保使组件保持自身的状态，并且提高列表渲染时的效率。</p>
+<p>大栗子：</p>
+<p>index.wxml:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">switch</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;objectArray&#125;&#125;&quot;</span> <span class="attr">wx:key</span>=<span class="string">&quot;unique&quot;</span> &gt;</span> &#123;&#123;item.id&#125;&#125; <span class="tag">&lt;/<span class="name">switch</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">&quot;switch&quot;</span>&gt;</span> Switch <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">&quot;addToFront&quot;</span>&gt;</span> Add to the front <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">switch</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;numberArray&#125;&#125;&quot;</span> <span class="attr">wx:key</span>=<span class="string">&quot;*this&quot;</span> &gt;</span> &#123;&#123;item&#125;&#125; <span class="tag">&lt;/<span class="name">switch</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">&quot;addNumberToFront&quot;</span>&gt;</span> Add Number to the front <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>index.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    objectArray: [</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">5</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_5&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">4</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_4&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">3</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_3&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_2&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_1&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">id</span>: <span class="number">0</span>, <span class="attr">unique</span>: <span class="string">&#x27;unique_0&#x27;</span>&#125;,</span><br><span class="line">    ],</span><br><span class="line">    numberArray: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">switch</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> length = <span class="built_in">this</span>.data.objectArray.length</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; ++i) &#123;</span><br><span class="line">      <span class="keyword">const</span> x = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * length)</span><br><span class="line">      <span class="keyword">const</span> y = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * length)</span><br><span class="line">      <span class="keyword">const</span> temp = <span class="built_in">this</span>.data.objectArray[x]</span><br><span class="line">      <span class="built_in">this</span>.data.objectArray[x] = <span class="built_in">this</span>.data.objectArray[y]</span><br><span class="line">      <span class="built_in">this</span>.data.objectArray[y] = temp</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">      objectArray: <span class="built_in">this</span>.data.objectArray</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  addToFront: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> length = <span class="built_in">this</span>.data.objectArray.length</span><br><span class="line">    <span class="built_in">this</span>.data.objectArray = [&#123;<span class="attr">id</span>: length, <span class="attr">unique</span>: <span class="string">&#x27;unique_&#x27;</span> + length&#125;].concat(<span class="built_in">this</span>.data.objectArray)</span><br><span class="line">    <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">      objectArray: <span class="built_in">this</span>.data.objectArray</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  addNumberToFront: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.data.numberArray = [     <span class="built_in">this</span>.data.numberArray.length + <span class="number">1</span> ].concat(<span class="built_in">this</span>.data.numberArray)</span><br><span class="line">    <span class="built_in">this</span>.setData(&#123;</span><br><span class="line">      numberArray: <span class="built_in">this</span>.data.numberArray</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><p>模板定义：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;msgItem&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span> &#123;&#123;index&#125;&#125;: &#123;&#123;msg&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span> Time: &#123;&#123;time&#125;&#125; <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>模板使用：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;msgItem&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;...item&#125;&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中index.js中的data有：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">item: &#123;</span><br><span class="line">  index: <span class="number">0</span>,</span><br><span class="line">  msg: <span class="string">&#x27;this is a template&#x27;</span>,</span><br><span class="line">  time: <span class="string">&#x27;2016-06-18&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模板的选择：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;odd&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> odd <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;even&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span>&gt;</span> even <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;[1, 2, 3, 4, 5]&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;&#123;&#123;item % 2 == 0 ? &#x27;even&#x27; : &#x27;odd&#x27;&#125;&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 输出</span></span><br><span class="line"><span class="comment">odd</span></span><br><span class="line"><span class="comment">even</span></span><br><span class="line"><span class="comment">odd</span></span><br><span class="line"><span class="comment">even</span></span><br><span class="line"><span class="comment">odd</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>WXML 提供两种文件引用方式import和include。</p>
+<ul>
+<li>import：在该文件中使用目标文件定义的 template</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- item.wxml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">name</span>=<span class="string">&quot;item&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--index.wxml--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">src</span>=<span class="string">&quot;item.wxml&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">is</span>=<span class="string">&quot;item&quot;</span> <span class="attr">data</span>=<span class="string">&quot;&#123;&#123;text: &#x27;forbar&#x27;&#125;&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：import 有作用域的概念，即只会 import 目标文件中定义的 template，而不会 import 目标文件中 import 的 template，简言之就是 import 不具有递归的特性。</strong></p>
+<ul>
+<li>include：可以将目标文件中除了 <code>&lt;template/&gt; &lt;wxs/&gt;</code> 外的整个代码引入，相当于是拷贝到 include 位置</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- header.wxml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> header <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- footer.wxml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> footer <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- index.wxml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">src</span>=<span class="string">&quot;header.wxml&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span> body <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">src</span>=<span class="string">&quot;footer.wxml&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="共同属性"><a href="#共同属性" class="headerlink" title="共同属性"></a>共同属性</h2><p>所有wxml标签均支持：</p>
+<table>
+<thead>
+<tr>
+<th align="left"><strong>属性名</strong></th>
+<th align="left"><strong>类型</strong></th>
+<th align="left"><strong>描述</strong></th>
+<th align="left"><strong>注解</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">id</td>
+<td align="left">String</td>
+<td align="left">组件的唯一标识</td>
+<td align="left">整个页面唯一</td>
+</tr>
+<tr>
+<td align="left">class</td>
+<td align="left">String</td>
+<td align="left">组件的样式类</td>
+<td align="left">在对应的 WXSS 中定义的样式类</td>
+</tr>
+<tr>
+<td align="left">style</td>
+<td align="left">String</td>
+<td align="left">组件的内联样式</td>
+<td align="left">可以动态设置的内联样式</td>
+</tr>
+<tr>
+<td align="left">hidden</td>
+<td align="left">Boolean</td>
+<td align="left">组件是否显示</td>
+<td align="left">所有组件默认显示</td>
+</tr>
+<tr>
+<td align="left">data-*</td>
+<td align="left">Any</td>
+<td align="left">自定义属性</td>
+<td align="left">组件上触发的事件时，会发送给事件处理函数</td>
+</tr>
+<tr>
+<td align="left">bind*/catch*</td>
+<td align="left">EventHandler</td>
+<td align="left">组件的事件</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h1 id="WXSS样式"><a href="#WXSS样式" class="headerlink" title="WXSS样式"></a>WXSS样式</h1><p>为了更适合小程序开发，WXSS对CSS做了一些补充以及修改。</p>
+<h2 id="文件组成"><a href="#文件组成" class="headerlink" title="文件组成"></a>文件组成</h2><ul>
+<li>项目公共样式：根目录中的app.wxss为项目公共样式，它会被注入到小程序的每个页面</li>
+<li>其它样式：其它样式可以被项目公共样式和页面样式引用</li>
+</ul>
+<h2 id="尺寸单位"><a href="#尺寸单位" class="headerlink" title="尺寸单位"></a>尺寸单位</h2><p>为了应对因不同型号手机大小不同的问题，引入rpx（response pixel）尺寸单位。</p>
+<p>小程序编译后，rpx会做一次px换算。换算是以375个物理像素为基准，也就是在一个宽度为375物理像素的屏幕下，1rpx = 1px。</p>
+<p>举个例子：iPhone6屏幕宽度为375px，共750个物理像素，那么1rpx = 375 / 750 px = 0.5px。</p>
+<p>即会按固定的比例进行缩放以适应屏幕。</p>
+<h2 id="WXSS引用"><a href="#WXSS引用" class="headerlink" title="WXSS引用"></a>WXSS引用</h2><p>CSS引用另一个样式文件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> url(<span class="string">&#x27;./test_0.css&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>WXSS依然可以实现样式的引用，格式有所不同：(必须使用相对路径)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;./test_0.wxss&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="内联样式"><a href="#内联样式" class="headerlink" title="内联样式"></a>内联样式</h2><p>与Web开发基本一致（但不支持通配符* 如下）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*&#123;</span><br><span class="line">	<span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">	<span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">	<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>小程序中：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;color: red; font-size: 48rpx&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>小程序支持动态更新内联样式</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  eleColor: &#x27;red&#x27;,</span></span><br><span class="line"><span class="comment">  eleFontsize: &#x27;48rpx&#x27;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;color: &#123;&#123;eleColor&#125;&#125;; font-size: &#123;&#123;eleFontsize&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><table>
+<thead>
+<tr>
+<th align="left"><strong>类型</strong></th>
+<th align="left"><strong>选择器</strong></th>
+<th align="left"><strong>样例</strong></th>
+<th align="left"><strong>样例描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">类选择器</td>
+<td align="left">.class</td>
+<td align="left">.intro</td>
+<td align="left">选择所有拥有 class=”intro” 的组件</td>
+</tr>
+<tr>
+<td align="left">id选择器</td>
+<td align="left">#id</td>
+<td align="left">#firstname</td>
+<td align="left">选择拥有 id=”firstname” 的组件</td>
+</tr>
+<tr>
+<td align="left">元素选择器</td>
+<td align="left">element</td>
+<td align="left">view checkbox</td>
+<td align="left">选择所有文档的 view 组件和所有的 checkbox 组件</td>
+</tr>
+<tr>
+<td align="left">伪元素选择器</td>
+<td align="left">::after</td>
+<td align="left">view::after</td>
+<td align="left">在 view 组件后边插入内容</td>
+</tr>
+<tr>
+<td align="left">伪元素选择器</td>
+<td align="left">::before</td>
+<td align="left">view::before</td>
+<td align="left">在 view 组件前边插入内容</td>
+</tr>
+</tbody></table>
+<p><strong>优先级</strong>：</p>
+<p><code>!important</code>:无穷&gt;<code>style=&quot;&quot;</code>（1000）&gt;<code>#id</code>（100）&gt;<code>.class</code>（10）&gt;<code>element</code>（1）</p>
+<p>在优先级相同的情况下，后设置的样式优先级高于先设置的样式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">view&#123; // 权重为 <span class="number">1</span></span><br><span class="line">  <span class="attribute">color</span>: blue</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.ele</span>&#123; // 权重为 <span class="number">10</span></span><br><span class="line">  <span class="attribute">color</span>: red</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#ele</span>&#123; // 权重为 <span class="number">100</span></span><br><span class="line">  <span class="attribute">color</span>: pink</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">view#ele&#123; // 权重为 1 + 100 = 101，优先级最高，元素颜色为orange</span><br><span class="line">  <span class="attribute">color</span>: orange</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">view.ele&#123; // 权重为 1 + 10 = 11</span><br><span class="line">  <span class="attribute">color</span>: green</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>官方文档：</p>
+<p>上链接：<a target="_blank" rel="noopener" href="https://github.com/Tencent/weui-wxss">https://github.com/Tencent/weui-wxss</a></p>
+<p>简单学了WXML、CSS，就先酱</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2021/10/28/Wx-Programming-1/" title="Wx-Programming_1">https://polaris6g.github.io/2021/10/28/Wx-Programming-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/" rel="prev" title="微信小程序开发简述">
+      <i class="fa fa-chevron-left"></i> 微信小程序开发简述
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/12/10/Wx-Programming-2/" rel="next" title="Wx-Programming-2">
+      Wx-Programming-2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">简述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WXML-%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">WXML 模板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%91%E5%AE%9A"><span class="nav-number">2.1.</span> <span class="nav-text">数据绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%AF%AD%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">逻辑语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E9%80%BB%E8%BE%91"><span class="nav-number">2.3.</span> <span class="nav-text">条件逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93"><span class="nav-number">2.4.</span> <span class="nav-text">列表渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.5.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">2.6.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E5%90%8C%E5%B1%9E%E6%80%A7"><span class="nav-number">2.7.</span> <span class="nav-text">共同属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WXSS%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">WXSS样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%84%E6%88%90"><span class="nav-number">3.1.</span> <span class="nav-text">文件组成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BA%E5%AF%B8%E5%8D%95%E4%BD%8D"><span class="nav-number">3.2.</span> <span class="nav-text">尺寸单位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WXSS%E5%BC%95%E7%94%A8"><span class="nav-number">3.3.</span> <span class="nav-text">WXSS引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%81%94%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.4.</span> <span class="nav-text">内联样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="nav-number">3.5.</span> <span class="nav-text">选择器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

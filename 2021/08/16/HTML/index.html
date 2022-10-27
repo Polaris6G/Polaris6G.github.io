@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="大纲：这是在字节跳动前端青训营所学的前端知识-&gt;HTML精简内容:  HTML简介 HTML结构 HTML标签 语义化 HTML解析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML学习">
+<meta property="og:url" content="https://polaris6g.github.io/2021/08/16/HTML/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="大纲：这是在字节跳动前端青训营所学的前端知识-&gt;HTML精简内容:  HTML简介 HTML结构 HTML标签 语义化 HTML解析">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/16/HTML/02.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/16/HTML/01.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/16/HTML/05.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/16/HTML/03.png">
+<meta property="og:image" content="https://polaris6g.github.io/2021/08/16/HTML/04.png">
+<meta property="article:published_time" content="2021-08-16T04:12:01.000Z">
+<meta property="article:modified_time" content="2021-08-31T08:57:57.090Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2021/08/16/HTML/02.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2021/08/16/HTML/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>HTML学习 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2021/08/16/HTML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-08-16 12:12:01" itemprop="dateCreated datePublished" datetime="2021-08-16T12:12:01+08:00">2021-08-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-08-31 16:57:57" itemprop="dateModified" datetime="2021-08-31T16:57:57+08:00">2021-08-31</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2021/08/16/HTML/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/08/16/HTML/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="大纲："><a href="#大纲：" class="headerlink" title="大纲："></a>大纲：</h1><p>这是在字节跳动前端青训营所学的前端知识-&gt;<strong>HTML</strong>精简内容:</p>
+<ul>
+<li>HTML简介</li>
+<li>HTML结构</li>
+<li>HTML标签</li>
+<li>语义化</li>
+<li>HTML解析</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="HTML简介"><a href="#HTML简介" class="headerlink" title="HTML简介"></a>HTML简介</h1><p> <strong>HTML（HyperText Markup Language, 超文本标记语言)</strong>  ，用于构建页面基本结构机器内容的标记语言。</p>
+<p>超文本：文本中包含指向其他文本的链接。</p>
+<p>标记语言：将文本机器文本相关的其他信息结合起来，展现出关于文档结构，如：HTML、XML、KML、Markdown等。</p>
+<h1 id="HTML结构"><a href="#HTML结构" class="headerlink" title="HTML结构"></a>HTML结构</h1><ul>
+<li>HTML文档包含多个HTML元素（标签）</li>
+<li>HTML元素 = 开始标签 +结束标签 +元素内容</li>
+<li>一些元素只要一个标签，如img、input、br等</li>
+<li>HTML元素标签不区分大小写</li>
+<li>元素可以嵌套在其他元素中</li>
+<li>元素可以拥有属性，属性包含元素的额外信息（id, class, src)</li>
+</ul>
+<h1 id="HTML标签"><a href="#HTML标签" class="headerlink" title="HTML标签"></a>HTML标签</h1><h2 id="DOCTYPE-html"><a href="#DOCTYPE-html" class="headerlink" title="DOCTYPE html"></a>DOCTYPE html</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>放在html文档最前面的位置，加上之后就按照W3C的HTML标椎来解析渲染页面。</p>
+<h2 id="html"><a href="#html" class="headerlink" title="html"></a>html</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>根元素</strong>，包含整个页面的内容</p>
+<h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span>定义文档字符编码</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;HTML&quot;</span>&gt;</span>关键字</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;discription&quot;</span> <span class="attr">content</span>=<span class="string">&quot;HTML基础&quot;</span>&gt;</span>页面描述</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0,maximun-scale=1.0,user-scalable=0&quot;</span>&gt;</span>主要用于移动端，定义设备屏幕上用来显示网页的区域</span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> &quot;<span class="attr">http-equiv</span>=<span class="string">expires</span>&quot; <span class="attr">content</span>=<span class="string">&quot;31 Dec 2021&quot;</span>&gt;</span>http头部</span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span>网页标题</span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;<span class="name">CSS</span></span>样式</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;favicon.ioc&quot;</span><span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span>&gt;</span>定义当前页面图标</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span><span class="attr">href</span>=<span class="string">&quot;my-css-file.css&quot;</span>&gt;</span>链接到样式表</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">&quot;fancy.css&quot;</span><span class="attr">rel</span>=<span class="string">&quot;alternate stylesheet&quot;</span><span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span><span class="attr">title</span>=<span class="string">&quot;Fancy&quot;</span>&gt;</span>可替换的样式表</span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>对用户不可见，其中包含例如面向搜索引擎的关键字（keyWord)、页面描述（discription）、字编码声明、CSS样式等。</p>
+<h2 id="body"><a href="#body" class="headerlink" title="body"></a>body</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>该元素包含能够被用户访问到的内容，包含文本、图像、视频、游戏、音频等.</p>
+<h2 id="内联元素inline"><a href="#内联元素inline" class="headerlink" title="内联元素inline"></a><strong>内联元素inline</strong></h2><ul>
+<li>只占据对应标签的边框所包含的空间</li>
+<li>只能容纳文本或其它内联元素</li>
+<li>只能通过修改内边距、边框、行高修改尺寸</li>
+</ul>
+<p>常见元素：a、span、br、i、em、strong</p>
+<h2 id="块级元素block"><a href="#块级元素block" class="headerlink" title="块级元素block"></a><strong>块级元素block</strong></h2><ul>
+<li>占据父元素整行，总是从新行开始</li>
+<li>能容纳其它元素</li>
+<li>可控制宽高、内外边距、边框等改变尺寸</li>
+</ul>
+<p>常见元素：div、p、main、h1-h6、form、dl、table</p>
+<h2 id="行内块级元素inline-block"><a href="#行内块级元素inline-block" class="headerlink" title="行内块级元素inline-block"></a><strong>行内块级元素inline-block</strong></h2><ul>
+<li>元素在行内排列，不会独占一行</li>
+<li>可控制宽高、内外边距、边框</li>
+</ul>
+<p>常见元素：img、input、td</p>
+<img src="/2021/08/16/HTML/02.png" alt="02">
+
+<h2 id="script"><a href="#script" class="headerlink" title="script"></a><strong>script</strong></h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;hello.js&#x27;</span>/&gt;</span></span><br><span class="line"><span class="handlebars"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;hello.js&#x27;</span> <span class="attr">defer</span> /&gt;</span></span></span></span><br><span class="line"><span class="handlebars"><span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;hello.js&#x27;</span> <span class="attr">async</span> /&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>属性：</p>
+<ul>
+<li>defer：立即下载，延迟执行，表示脚本可以等到dom被完全解析和显示之后再执行，只对外部脚本有效。</li>
+<li>async：立即下载脚本（不妨碍其他操作），在DomContentLoaded事件后立刻执行。只对外部脚本有效。</li>
+</ul>
+<img src="/2021/08/16/HTML/01.png" alt="01" style="zoom:200%;">
+
+<p><strong>一般放在body结束标签上引用。</strong></p>
+<h1 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h1><p>根据内容的结构，选择合适的标签以构建便于开发者阅读、可维护性更好的代码结构，同时便于机器的解析</p>
+<h2 id="header"><a href="#header" class="headerlink" title="header"></a>header</h2><ul>
+<li>展现介绍性信息</li>
+<li>通常包含一组介绍性或辅助导航的元素</li>
+<li>不可放在 footer、address、或另一个 header 的内部</li>
+</ul>
+<h2 id="nav"><a href="#nav" class="headerlink" title="nav"></a>nav</h2><ul>
+<li>展示目录、菜单、索引等</li>
+<li>放置一些热门的链接</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span><span class="attr">CSS</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span>&gt;</span>JS<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="article"><a href="#article" class="headerlink" title="article"></a>article</h2><ul>
+<li>独立的文档，如页面、应用、站点</li>
+<li>可独立分配或可服用的结构，如论坛帖子、新闻、用户评论等</li>
+</ul>
+<h2 id="section"><a href="#section" class="headerlink" title="section"></a>section</h2><ul>
+<li>按主题将内容分组，通常有标题</li>
+<li>不建议用作普通容器，美化作用可使用 div 代替</li>
+<li>如果元素里是单独的整块内容，可使用 article 代替</li>
+</ul>
+<h2 id="aside"><a href="#aside" class="headerlink" title="aside"></a>aside</h2><ul>
+<li>表示一个和其余页面几乎无关的部分，或者单独拆开不影响整体的内容</li>
+<li>如广告、提示语、banner 等</li>
+</ul>
+<h2 id="footer"><a href="#footer" class="headerlink" title="footer"></a>footer</h2><ul>
+<li>表示一个章节的页脚</li>
+<li>通常包含作者、版权、发布/修改时间、引用数据等信息</li>
+<li>footer 内的元素不属于章节内容，不包含在大纲中</li>
+</ul>
+<img src="/2021/08/16/HTML/05.png" alt="07">
+
+<h2 id="figure-figcaption"><a href="#figure-figcaption" class="headerlink" title="figure / figcaption"></a>figure / figcaption</h2><p>figure包裹被独立引用的内容，如图表、插图、代码等</p>
+<figcaption> 与其引用内容相关的标题或描述，通常位于 <figure> 之前或之后
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span> 包裹被独立引用的内容，如图表、插图、代码等</span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>Example<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="blockquote"><a href="#blockquote" class="headerlink" title="blockquote"></a>blockquote</h2><ul>
+<li>块级引用内容</li>
+<li>cite 属性表示来源 URL</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">figure</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span> <span class="attr">cite</span>=<span class="string">&quot;https://www.polaris6g.cn&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>An awesome Webpage<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">figcaption</span>&gt;</span>Bravo!<span class="tag">&lt;/<span class="name">figcaption</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">figure</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="dl-dt-dd"><a href="#dl-dt-dd" class="headerlink" title="dl / dt / dd"></a>dl / dt / dd</h2><ul>
+<li>用于描述一组键值对</li>
+<li>通常用于元数据、术语定义等场景</li>
+<li>dt:关键字(keyword)</li>
+<li>dd:描述（description)</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Firefox<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Mozilla Firefox<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dt</span>&gt;</span>Fx<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dd</span>&gt;</span>A free, open source, cross-platform, graphical web browser</span><br><span class="line">      developed by the Mozilla Corporation and hundreds of volunteers.<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/2021/08/16/HTML/03.png" alt="03" style="zoom:200%;">
+
+<h2 id="cite"><a href="#cite" class="headerlink" title="cite"></a>cite</h2><p>表示引用作品标题，如论文、电影、书籍等</p>
+<h2 id="time"><a href="#time" class="headerlink" title="time"></a>time</h2><ul>
+<li>机器可读的时间或日期</li>
+<li>dateime 属性表示与元素关联的时间日期，若不执行则元素不会解析成日期</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The concert took place on <span class="tag">&lt;<span class="name">time</span> <span class="attr">datatime</span>=<span class="string">&quot;2021-10-2&quot;</span><span class="attr">20:00</span>&gt;</span>May 15<span class="tag">&lt;/<span class="name">time</span>&gt;</span><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="address"><a href="#address" class="headerlink" title="address"></a>address</h2><p>某人或组织的联系信息</p>
+<h2 id="mark"><a href="#mark" class="headerlink" title="mark"></a>mark</h2><p>在引用中使用，表示需要引起注意</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><p>代码片段</p>
+<h2 id="small"><a href="#small" class="headerlink" title="small"></a>small</h2><p>免责声明、注意事项等</p>
+<h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><h2 id="img"><a href="#img" class="headerlink" title="img"></a>img</h2><ul>
+<li>src：图片资源路径</li>
+<li>alt：对图像的文本描述。在屏幕阅读器上会将这个描述读给使用者听，在图片无法加载时，浏览器会显示 alt 的文本</li>
+<li>decoding 解码方式：异步、同步； 可选值：auto（默认）/ async / sync</li>
+<li>loading 懒加载 可选值：eager（默认）/ lazy</li>
+</ul>
+<h2 id="picture"><a href="#picture" class="headerlink" title="picture"></a>picture</h2><ul>
+<li>元素通过包含零个或多个 <source> 元素和一个的 <img> 元素来为不同的显示设备提供相应的图片版本，若未匹配到则使用 <img> 替代</li>
+<li>media：匹配条件，类似媒介查询</li>
+<li>type：MIME 类型，根据浏览器支持性渲染相应图片</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">picture</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">srcset</span>=<span class="string">&quot;/image/f05.jpg&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">media</span>=<span class="string">&quot;(min-width: 800px)&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;/image/f02.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">picture</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="音视频"><a href="#音视频" class="headerlink" title="音视频"></a>音视频</h1><h2 id="video-audio"><a href="#video-audio" class="headerlink" title="video / audio"></a>video / audio</h2><ul>
+<li>src：资源路径</li>
+<li>controls：是否显示浏览器自带控件</li>
+<li>autoplay：是否自动播放</li>
+<li>source 元素表示视频的可代替资源（不同格式、清晰度、读取失败或无法解码时可依次尝试）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="string">&quot;250&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;/media/cc0-videos/flower.webm&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/webm&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&quot;/media/cc0-videos/flower.mp4&quot;</span> <span class="attr">type</span>=<span class="string">&quot;video/mp4&quot;</span>&gt;</span></span><br><span class="line">    Sorry, your browser doesn&#x27;t support embedded videos.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="HTML-解析"><a href="#HTML-解析" class="headerlink" title="HTML 解析"></a>HTML 解析</h1><ol>
+<li>浏览器获取文档以及文档所引用的资源后，主进程将开始构建一个 DOM 树</li>
+<li>在遇到 script 标签时，会将阻塞解析，主进程处理脚本在 Chrome 中，如果因 script 解析的阻塞，会开启一个轻量的 Parser，解析还没构建的标签，若有标签包含 src、href 属性则先下载，等 script 执行完后就可以直接引用这些资源了</li>
+<li>主线程根据 CSS 计算每个节点的样式，构建一个 CSSOM 树</li>
+<li>通过遍历每一个节点，并忽略掉 display:none 节点，合并 DOM 树和 CSSDOM 树为渲染树（render）</li>
+<li>浏览器根据渲染树开始进行布局，将渲染树的每个节点转换为屏幕的实际像素</li>
+<li>合成帧</li>
+</ol>
+<img src="/2021/08/16/HTML/04.png" alt="04">
+</figure></figcaption>
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2021/08/16/HTML/" title="HTML学习">https://polaris6g.github.io/2021/08/16/HTML/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/08/15/ITN-Internet/" rel="prev" title="ITN_Internet(1)">
+      <i class="fa fa-chevron-left"></i> ITN_Internet(1)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/31/go-web-2/" rel="next" title="go-web-2">
+      go-web-2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E7%BA%B2%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">大纲：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">HTML简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">HTML结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E6%A0%87%E7%AD%BE"><span class="nav-number">4.</span> <span class="nav-text">HTML标签</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOCTYPE-html"><span class="nav-number">4.1.</span> <span class="nav-text">DOCTYPE html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#html"><span class="nav-number">4.2.</span> <span class="nav-text">html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-number">4.3.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#body"><span class="nav-number">4.4.</span> <span class="nav-text">body</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%81%94%E5%85%83%E7%B4%A0inline"><span class="nav-number">4.5.</span> <span class="nav-text">内联元素inline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0block"><span class="nav-number">4.6.</span> <span class="nav-text">块级元素block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0inline-block"><span class="nav-number">4.7.</span> <span class="nav-text">行内块级元素inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#script"><span class="nav-number">4.8.</span> <span class="nav-text">script</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">语义化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#header"><span class="nav-number">5.1.</span> <span class="nav-text">header</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nav"><span class="nav-number">5.2.</span> <span class="nav-text">nav</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#article"><span class="nav-number">5.3.</span> <span class="nav-text">article</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">5.4.</span> <span class="nav-text">section</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#aside"><span class="nav-number">5.5.</span> <span class="nav-text">aside</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#footer"><span class="nav-number">5.6.</span> <span class="nav-text">footer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#figure-figcaption"><span class="nav-number">5.7.</span> <span class="nav-text">figure &#x2F; figcaption</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blockquote"><span class="nav-number">5.8.</span> <span class="nav-text">blockquote</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dl-dt-dd"><span class="nav-number">5.9.</span> <span class="nav-text">dl &#x2F; dt &#x2F; dd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cite"><span class="nav-number">5.10.</span> <span class="nav-text">cite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#time"><span class="nav-number">5.11.</span> <span class="nav-text">time</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#address"><span class="nav-number">5.12.</span> <span class="nav-text">address</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mark"><span class="nav-number">5.13.</span> <span class="nav-text">mark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">5.14.</span> <span class="nav-text">code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#small"><span class="nav-number">5.15.</span> <span class="nav-text">small</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%89%87"><span class="nav-number">6.</span> <span class="nav-text">图片</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#img"><span class="nav-number">6.1.</span> <span class="nav-text">img</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#picture"><span class="nav-number">6.2.</span> <span class="nav-text">picture</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9F%B3%E8%A7%86%E9%A2%91"><span class="nav-number">7.</span> <span class="nav-text">音视频</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#video-audio"><span class="nav-number">7.1.</span> <span class="nav-text">video &#x2F; audio</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML-%E8%A7%A3%E6%9E%90"><span class="nav-number">8.</span> <span class="nav-text">HTML 解析</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
