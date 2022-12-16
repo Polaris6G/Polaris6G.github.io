@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://polaris6g.github.io/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211212631378.png">
 <meta property="og:image" content="https://polaris6g.github.io/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211213154825.png">
 <meta property="article:published_time" content="2022-12-16T12:59:27.000Z">
-<meta property="article:modified_time" content="2022-12-16T13:01:47.263Z">
+<meta property="article:modified_time" content="2022-12-16T13:56:19.979Z">
 <meta property="article:author" content="Zhao.W.L">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -238,7 +238,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-12-16 20:59:27 / Modified: 21:01:47" itemprop="dateCreated datePublished" datetime="2022-12-16T20:59:27+08:00">2022-12-16</time>
+              <time title="Created: 2022-12-16 20:59:27 / Modified: 21:56:19" itemprop="dateCreated datePublished" datetime="2022-12-16T20:59:27+08:00">2022-12-16</time>
             </span>
 
           
@@ -275,10 +275,7 @@
 </ul>
 <span id="more"></span>
 
-
-
-<ol>
-<li><h2 id="Java运行机制"><a href="#Java运行机制" class="headerlink" title="Java运行机制"></a>Java运行机制</h2><p>既是解释性语言，又是编译性语言</p>
+<h2 id="Java运行机制"><a href="#Java运行机制" class="headerlink" title="Java运行机制"></a>Java运行机制</h2><p>既是解释性语言，又是编译性语言</p>
 <ol>
 <li><p>编写<code>.java</code></p>
 </li>
@@ -293,17 +290,18 @@
 <li><p>Java虚拟机：编译后的Java程序指令不在计算机的CPU上执行，而是在JVM上执行</p>
 </li>
 </ol>
-</li>
-<li><h2 id="JVM的位置"><a href="#JVM的位置" class="headerlink" title="JVM的位置"></a>JVM的位置</h2><p>运行在操作系统之上，JVM用C写的</p>
+<h2 id="JVM的位置"><a href="#JVM的位置" class="headerlink" title="JVM的位置"></a>JVM的位置</h2><p>运行在操作系统之上，JVM用C写的</p>
 <p>JRE包含了JVM</p>
 <p>默认hotspot实现</p>
-<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206221807943.png" class title="image-20221206221807943"></li>
-<li><h2 id="JVM的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h2><p>栈和程序计数器不会存在垃圾</p>
+<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206221807943.png" class title="image-20221206221807943">
+
+<h2 id="JVM的体系结构"><a href="#JVM的体系结构" class="headerlink" title="JVM的体系结构"></a>JVM的体系结构</h2><p>栈和程序计数器不会存在垃圾</p>
 <p>JVM调优仅存在在堆中</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206222335659.png" class title="image-20221206222335659">
 
-<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206231258003.png" class title="image-20221206231258003"></li>
-<li><h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>作用：加载class文件~ new Student();</p>
+<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206231258003.png" class title="image-20221206231258003">
+
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>作用：加载class文件~ new Student();</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206232803873.png" class title="image-20221206232803873">
 
 <ol>
@@ -316,9 +314,7 @@
 <li><p>应用程序(系统类)加载器<code>当前应用的classpath下的所有类</code></p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221206234850251.png" class title="image-20221206234850251"></li>
 </ol>
-</li>
-<li><p>双亲委派机制</p>
-<ol>
+<h2 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h2><ol>
 <li><p>用户自定义类加载器 User (继承classLoader重写findclass方法,加载对应类)</p>
 </li>
 <li><p>类加载器收到类加载的请求    Application app</p>
@@ -339,9 +335,7 @@
 <li>保证安全性：bootstrap ClassLoader被加载时，只会加载JAVA_HOME/lib中的jar包的类，那么这些类不会被随意替换，避免有人自定义一个有破坏功能的java.lang.<em>被加载。可以*<em>有效防止核心JAVA API被篡改</em></em></li>
 </ol>
 <p>有时也需要打破双亲委派机制：</p>
-</li>
-<li><p>沙箱安全机制</p>
-<p>沙箱机制就是将java代码限定在虚拟机(jvm)特定的运行范围中，并且严格限制代码对本地系统资源的访问，通过这样的措施来保证对代码的有效隔离，防止对系统造成破坏</p>
+<h2 id="沙箱安全机制"><a href="#沙箱安全机制" class="headerlink" title="沙箱安全机制"></a>沙箱安全机制</h2><p>沙箱机制就是将java代码限定在虚拟机(jvm)特定的运行范围中，并且严格限制代码对本地系统资源的访问，通过这样的措施来保证对代码的有效隔离，防止对系统造成破坏</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWnRDbGluZw==,size_20,color_FFFFFF,t_70,g_se,x_16.png" class title="img">
 
 <p>沙箱的基本组件：</p>
@@ -351,23 +345,15 @@
 <li><p>类装载器</p>
 </li>
 </ul>
-</li>
-<li><p>Native关键字</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line"></span><br><span class="line">        &#125;, <span class="string">&quot;my thread&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// native: 凡是带了native关键字的，说明java的作用范围达不到了，会调用底层C语言的库</span></span><br><span class="line">    <span class="comment">// 会进入本地方法栈</span></span><br><span class="line">    <span class="comment">// 调用本地方法接口 JNI</span></span><br><span class="line">    <span class="comment">// JNI作用: 扩展Java的使用，融合不同的编程语言为Java所用</span></span><br><span class="line">    <span class="comment">// 在内存区域中专门开辟了一块标记区域 : Native Method Stack, 登记native方法</span></span><br><span class="line">    <span class="comment">// 在最终执行的时候，通过JNI加载本地方法库中的方法</span></span><br><span class="line">    <span class="comment">// Java程序驱动打印机,管理系统,当我即可,在企业级应用中较为少见</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">start0</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 调用其他接口: Socket WebService http</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Native关键字"><a href="#Native关键字" class="headerlink" title="Native关键字"></a>Native关键字</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(()-&gt;&#123;</span><br><span class="line"></span><br><span class="line">        &#125;, <span class="string">&quot;my thread&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// native: 凡是带了native关键字的，说明java的作用范围达不到了，会调用底层C语言的库</span></span><br><span class="line">    <span class="comment">// 会进入本地方法栈</span></span><br><span class="line">    <span class="comment">// 调用本地方法接口 JNI</span></span><br><span class="line">    <span class="comment">// JNI作用: 扩展Java的使用，融合不同的编程语言为Java所用</span></span><br><span class="line">    <span class="comment">// 在内存区域中专门开辟了一块标记区域 : Native Method Stack, 登记native方法</span></span><br><span class="line">    <span class="comment">// 在最终执行的时候，通过JNI加载本地方法库中的方法</span></span><br><span class="line">    <span class="comment">// Java程序驱动打印机,管理系统,当我即可,在企业级应用中较为少见</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">start0</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 调用其他接口: Socket WebService http</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>Native Method Area/Stack</p>
 <p>它具体做法是Native Method Stack中登记native方法，在执行引擎执行的时候加载Native Libraies</p>
-</li>
-<li><p>PC寄存器</p>
-<p>每个线程都有一个程序计数器，是线程私有的，就是一个指针，指向方法区中的方法字节码（用来存储指向一条指令的地址，即即将要执行的指令代码）在执行引擎读取下一条指令，是一个非常小的内存空间，几乎可以忽略不计</p>
-</li>
-<li><p>方法区</p>
-<p>Method Area</p>
+<h2 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h2><p>每个线程都有一个程序计数器，是线程私有的，就是一个指针，指向方法区中的方法字节码（用来存储指向一条指令的地址，即即将要执行的指令代码）在执行引擎读取下一条指令，是一个非常小的内存空间，几乎可以忽略不计</p>
+<h2 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h2><p>Method Area</p>
 <p>方法区是被所有线程共享的，所有字段和方法字节码，以及一些特殊方法，如构造函数，接口代码也在此定义，简单说，所有定义的方法的信息都保存在该区域，<strong>此区域属于共享区间</strong></p>
 <p><strong>静态变量static、常量final、类信息Class（构造方法、接口定义）、运行时的常量池存在方法区中，但是实例变量存在堆内存中，和方法区无关</strong></p>
-</li>
-<li><p>栈</p>
-<p>程序 = 数据结构 + 算法：持续学习</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p>程序 = 数据结构 + 算法：持续学习</p>
 <p>程序 = 框架 + 业务逻辑：吃饭用</p>
 <p>为什么main()限制性，最后结束</p>
 <p>栈：栈内存，主管程序的运行，生命周期和线程同步</p>
@@ -388,21 +374,17 @@
 <p>画出一个对象在内存中实例化的过程</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43430343/article/details/119709715">https://blog.csdn.net/qq_43430343/article/details/119709715</a></p>
 <p><a target="_blank" rel="noopener" href="https://yangyongli.blog.csdn.net/article/details/126465785">https://yangyongli.blog.csdn.net/article/details/126465785</a></p>
-</li>
-<li><p>三种JVM</p>
-<ul>
+<h2 id="三种JVM"><a href="#三种JVM" class="headerlink" title="三种JVM"></a>三种JVM</h2><ul>
 <li>Sun公司 <code>HotSpot</code></li>
 <li>BEA <code>JRockit</code></li>
 <li>IBM <code>J9 VM</code></li>
 </ul>
 <p>我们学习都是HotSpot</p>
-</li>
-<li><p>堆</p>
-<p>Heap，一个JVM只有一个堆内存，被所有线程所共享，堆内存的大小是可以调节的，通过-Xmx(堆的最大容量)和-Xms(堆的初始容量)控制</p>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>Heap，一个JVM只有一个堆内存，被所有线程所共享，堆内存的大小是可以调节的，通过-Xmx(堆的最大容量)和-Xms(堆的初始容量)控制</p>
 <p>类加载器读取了类文件后，一般会把：类、方法、常量、变量等 保存我们所有引用类型的展示对象</p>
-<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211114432689.png" class title="image-20221211114432689"></li>
-<li><p>新生代(young)、老年代(old)、元空间</p>
-<p>新生代：被细分为Eden和两个Survior区域，这两个Survivor区域分别被命名为from和to以示区分（默认Edem:from:to=8:1:1)</p>
+<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211114432689.png" class title="image-20221211114432689">
+
+<h2 id="新生代-young-、老年代-old-、元空间"><a href="#新生代-young-、老年代-old-、元空间" class="headerlink" title="新生代(young)、老年代(old)、元空间"></a>新生代(young)、老年代(old)、元空间</h2><p>新生代：被细分为Eden和两个Survior区域，这两个Survivor区域分别被命名为from和to以示区分（默认Edem:from:to=8:1:1)</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211112921863.png" class title="image-20221211112921863">
 
 <p>GC垃圾回收，主要是在伊甸园区和养老区</p>
@@ -419,9 +401,9 @@
 <p>元空间逻辑上存在，物理上不存在</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//返回虚拟机视图使用的最大内存</span></span><br><span class="line">        <span class="keyword">long</span> max = Runtime.getRuntime().maxMemory();</span><br><span class="line">        <span class="comment">//返回jvm总内存</span></span><br><span class="line">        <span class="keyword">long</span> total = Runtime.getRuntime().totalMemory();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;max=&quot;</span>+ max + <span class="string">&quot;字节\t&quot;</span> + (max/(<span class="keyword">double</span>)<span class="number">1024</span>*<span class="number">1024</span>) + <span class="string">&quot;MB&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;total=&quot;</span> + total + <span class="string">&quot;字节\t&quot;</span> + (total/(<span class="keyword">double</span>)<span class="number">1024</span>*<span class="number">1024</span>) + <span class="string">&quot;MB&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//默认情况下: 分配的总内存是电脑内存的1/4, 而初始化的内存: 1/64</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//OOM:</span></span><br><span class="line">            <span class="comment">//1.尝试扩大堆内存看结果</span></span><br><span class="line">            <span class="comment">//2. 分析内存,看一下哪个地方出了问题(专业工具)</span></span><br><span class="line">            <span class="comment">//3. 修改代码</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// -Xms1024m -Xmx1024m -XX:+PrintGCDetails</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211202644542.png" class title="image-20221211202644542"></li>
-<li><p>堆内存调优</p>
-<p>在一个项目中，突然出现了OOM故障，那么该如何排除研究为什么出错</p>
+<img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211202644542.png" class title="image-20221211202644542">
+
+<h2 id="堆内存调优"><a href="#堆内存调优" class="headerlink" title="堆内存调优"></a>堆内存调优</h2><p>在一个项目中，突然出现了OOM故障，那么该如何排除研究为什么出错</p>
 <ul>
 <li>能够看到代码第几行出错：内存快照分析工具（MAT，Jprofier)</li>
 <li>Debug，一行行分析代码</li>
@@ -434,9 +416,7 @@
 </ul>
 <p><code>// -Xms1024m -Xmx1024m -XX:+PrintGCDetails</code>查看GC详细信息</p>
 <p><code>-Xms1m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError</code>生成对应JProfile文件查看OOM故障原因（JVM在发生内存溢出时自动的生成堆内存快照）</p>
-</li>
-<li><p>GC(垃圾回收机制)</p>
-<p>GC的作用区域：堆、方法区</p>
+<h2 id="GC-垃圾回收机制"><a href="#GC-垃圾回收机制" class="headerlink" title="GC(垃圾回收机制)"></a>GC(垃圾回收机制)</h2><p>GC的作用区域：堆、方法区</p>
 <p>JVM在进行GC时，并不是对这三个区域统一回收。大部分时候，回收都是新生代</p>
 <ul>
 <li>新生代</li>
@@ -451,9 +431,7 @@
 <li><em>GC的算法有哪些？标记清除法，标记压缩，复制算法，引用计数器在，怎么用的？</em></li>
 <li><em>轻GC和重GC分别在什么时候发生？</em></li>
 </ul>
-<ol>
-<li><p>常有算法</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37288522/article/details/103944956">https://blog.csdn.net/weixin_37288522/article/details/103944956</a></p>
+<h2 id="常有算法"><a href="#常有算法" class="headerlink" title="常有算法"></a>常有算法</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_37288522/article/details/103944956">https://blog.csdn.net/weixin_37288522/article/details/103944956</a></p>
 <ul>
 <li><p><strong>引用计数法</strong>（每个对象分配一个计数器记录调用次数）</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211203340493.png" class title="image-20221211203340493"></li>
@@ -482,13 +460,7 @@
 <p>再优化：1.标记 2.压缩 3.清除</p>
 <img src="/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/image-20221211210547595.png" class title="image-20221211210547595"></li>
 </ul>
-</li>
-</ol>
-</li>
-<li><p>总结</p>
-</li>
-</ol>
-<p>内存效率：</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>内存效率：</p>
 <p>复制算法&gt;标记清除算法&gt;标记压缩算法（时间复杂度）</p>
 <p>内存整齐度：</p>
 <p>复制算法=标记压缩算法&gt;标记清除算法</p>
@@ -507,10 +479,7 @@
 <li>标记清除（内存碎片不是太多） + 标记压缩混合实现</li>
 </ul>
 <p>推荐书籍《深入理解JVM》</p>
-<ol start="17">
-<li>JMM（Java Memory Model）</li>
-</ol>
-<ul>
+<h2 id="JMM（Java-Memory-Model）"><a href="#JMM（Java-Memory-Model）" class="headerlink" title="JMM（Java Memory Model）"></a>JMM（Java Memory Model）</h2><ul>
 <li><p>什么是JMM</p>
 <p>Java内存模型</p>
 </li>
@@ -627,7 +596,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">Java运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">JVM的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">JVM的体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">类加载器</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">Java运行机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">JVM的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">JVM的体系结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="nav-number">4.</span> <span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">双亲委派机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B2%99%E7%AE%B1%E5%AE%89%E5%85%A8%E6%9C%BA%E5%88%B6"><span class="nav-number">6.</span> <span class="nav-text">沙箱安全机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Native%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">7.</span> <span class="nav-text">Native关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">8.</span> <span class="nav-text">PC寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8C%BA"><span class="nav-number">9.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88"><span class="nav-number">10.</span> <span class="nav-text">栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8DJVM"><span class="nav-number">11.</span> <span class="nav-text">三种JVM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86"><span class="nav-number">12.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3-young-%E3%80%81%E8%80%81%E5%B9%B4%E4%BB%A3-old-%E3%80%81%E5%85%83%E7%A9%BA%E9%97%B4"><span class="nav-number">13.</span> <span class="nav-text">新生代(young)、老年代(old)、元空间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98"><span class="nav-number">14.</span> <span class="nav-text">堆内存调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-number">15.</span> <span class="nav-text">GC(垃圾回收机制)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E6%9C%89%E7%AE%97%E6%B3%95"><span class="nav-number">16.</span> <span class="nav-text">常有算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">17.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JMM%EF%BC%88Java-Memory-Model%EF%BC%89"><span class="nav-number">18.</span> <span class="nav-text">JMM（Java Memory Model）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
