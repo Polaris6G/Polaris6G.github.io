@@ -5006,15 +5006,17 @@
   <entry>
     <title>jvm学习</title>
     <url>/2022/12/16/jvm%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<ul>
+    <content><![CDATA[<ul>
 <li>请你谈谈对JVM的理解？java8虚拟机和之前的变化更新</li>
 <li>什么是OOM，什么是栈溢出StackOverFlowError?怎么分析</li>
 <li>JVM的常用调优参数有哪些</li>
 <li>内存快照如何抓取，怎么分析Dump文件？</li>
 <li>谈谈JVM中，类加载器你的认识</li>
 </ul>
+<span id="more"></span>
+
+
+
 <ol>
 <li><h2 id="Java运行机制"><a href="#Java运行机制" class="headerlink" title="Java运行机制"></a>Java运行机制</h2><p>既是解释性语言，又是编译性语言</p>
 <ol>
