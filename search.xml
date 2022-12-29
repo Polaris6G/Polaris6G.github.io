@@ -6226,6 +6226,8 @@
 </ul>
 <span id="more"></span>
 
+<h2 id="看数据范围知算法"><a href="#看数据范围知算法" class="headerlink" title="看数据范围知算法"></a>看数据范围知算法</h2><img src="/2022/09/06/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%8001/image-20221229215448578.png" class title="image-20221229215448578">
+
 <h2 id="快速排序-（分治）平均nlogn"><a href="#快速排序-（分治）平均nlogn" class="headerlink" title="快速排序    （分治）平均nlogn"></a>快速排序    （分治）平均nlogn</h2><ul>
 <li>确定分界点：q[l], q[r],q[(l+r)/2], 随机</li>
 <li>调整区间：保证左边所有的数小于等于x，右边所有的数大于等于x</li>
