@@ -285,7 +285,6 @@
 <li>Hive实操</li>
 </ul>
 <span id="more"></span>
-
 <h1 id="Hive介绍"><a href="#Hive介绍" class="headerlink" title="Hive介绍"></a>Hive介绍</h1><h2 id="Hive是什么"><a href="#Hive是什么" class="headerlink" title="Hive是什么"></a>Hive是什么</h2><p>Hive是建立在Hadoop上的数据仓库基础构架，它提供了一系列的工具，可以用来进行数据提取转化加载（ETL），这是一种可以存储、查询和分析存储在Hadoop中的大规模数据的极致，它允许熟悉SQL的用户查询数据</p>
 <ul>
 <li>由facebook开源，最初用于解决海量结构化的日志数据统计问题</li>
@@ -322,20 +321,15 @@
 <li>Hadoop（用MapReduce进行计算，用HDFS进行存储）</li>
 </ul>
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719160914765.png" class title="image-20220719160914765">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719160935518.png" class title="image-20220719160935518">
-
 <h2 id="Hive部署架构"><a href="#Hive部署架构" class="headerlink" title="Hive部署架构"></a>Hive部署架构</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161053402.png" class title="image-20220719161053402">
-
 <ul>
 <li>客户端（beeline（JDB实现），JDBC，Python）</li>
 <li>Metastore（使用MySQL作为元数据库）</li>
 <li>Hiveserver2（用于接受用户请求，解析SQL，执行SQL并返回结果）</li>
 </ul>
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220724203253445.png" class title="image-20220724203253445">
-
 <h2 id="Hive特点"><a href="#Hive特点" class="headerlink" title="Hive特点"></a>Hive特点</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161316317.png" class title="image-20220719161316317">
-
 <ul>
 <li>支持提供类似于SQL的查询语言（HQL），基于用户使用</li>
 <li>支持针对海量数据的高性能查询和分析</li>
@@ -343,57 +337,60 @@
 <li>支持众多计算框架，如MapReduce、Tez、Spark等</li>
 <li>支持灵活的扩展数据类型，自定义函数（UDF）和脚本</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">查询语言</th>
-<th align="center">HQL</th>
-<th align="center">SQL</th>
+<th style="text-align:center">查询语言</th>
+<th style="text-align:center">HQL</th>
+<th style="text-align:center">SQL</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">数据存储位置</td>
-<td align="center">HDFS</td>
-<td align="center">Raw Device或者Local FS</td>
+<tbody>
+<tr>
+<td style="text-align:center">数据存储位置</td>
+<td style="text-align:center">HDFS</td>
+<td style="text-align:center">Raw Device或者Local FS</td>
 </tr>
 <tr>
-<td align="center">数据格式</td>
-<td align="center">用户定义</td>
-<td align="center">系统决定</td>
+<td style="text-align:center">数据格式</td>
+<td style="text-align:center">用户定义</td>
+<td style="text-align:center">系统决定</td>
 </tr>
 <tr>
-<td align="center">数据更新</td>
-<td align="center">不支持</td>
-<td align="center">支持</td>
+<td style="text-align:center">数据更新</td>
+<td style="text-align:center">不支持</td>
+<td style="text-align:center">支持</td>
 </tr>
 <tr>
-<td align="center">索引</td>
-<td align="center">无</td>
-<td align="center">有</td>
+<td style="text-align:center">索引</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">有</td>
 </tr>
 <tr>
-<td align="center">执行</td>
-<td align="center">MapReduce</td>
-<td align="center">Executor</td>
+<td style="text-align:center">执行</td>
+<td style="text-align:center">MapReduce</td>
+<td style="text-align:center">Executor</td>
 </tr>
 <tr>
-<td align="center">执行延迟</td>
-<td align="center">高</td>
-<td align="center">低</td>
+<td style="text-align:center">执行延迟</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">低</td>
 </tr>
 <tr>
-<td align="center">可扩展性</td>
-<td align="center">高</td>
-<td align="center">低</td>
+<td style="text-align:center">可扩展性</td>
+<td style="text-align:center">高</td>
+<td style="text-align:center">低</td>
 </tr>
 <tr>
-<td align="center">数据规模</td>
-<td align="center">大</td>
-<td align="center">小</td>
+<td style="text-align:center">数据规模</td>
+<td style="text-align:center">大</td>
+<td style="text-align:center">小</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="Hive应用场景"><a href="#Hive应用场景" class="headerlink" title="Hive应用场景"></a>Hive应用场景</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161449400.png" class title="image-20220719161449400">
-
 <ul>
 <li>日志分析<ul>
 <li>统计网站一个时间段内的pv、uv</li>
@@ -408,63 +405,51 @@
 </li>
 </ul>
 <h1 id="Hive实操"><a href="#Hive实操" class="headerlink" title="Hive实操"></a>Hive实操</h1><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161741766.png" class title="image-20220719161741766">
-
 <h2 id="Hive数据模型"><a href="#Hive数据模型" class="headerlink" title="Hive数据模型"></a>Hive数据模型</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161811844.png" class title="image-20220719161811844">
-
 <h2 id="Hive数据类型"><a href="#Hive数据类型" class="headerlink" title="Hive数据类型"></a>Hive数据类型</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161849839.png" class title="image-20220719161849839">
-
 <h2 id="DDL（数据库定义语言"><a href="#DDL（数据库定义语言" class="headerlink" title="DDL（数据库定义语言)"></a>DDL（数据库定义语言)</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719161956170.png" class title="image-20220719161956170">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220724205729182.png" class title="image-20220724205729182">
-
 <p>默认分隔符：/001 -&gt;SOH</p>
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220724210023404.png" class title="image-20220724210023404">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719162006608.png" class title="image-20220719162006608">
-
-
-
 <h2 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h2><img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220719162014290.png" class title="image-20220719162014290">
-
-
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220720220646183.png" class title="image-20220720220646183">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220720220707865.png" class title="image-20220720220707865">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220720220729305.png" class title="image-20220720220729305">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220720220749498.png" class title="image-20220720220749498">
-
-<h2 id="Hive配置"><a href="#Hive配置" class="headerlink" title="Hive配置"></a>Hive配置</h2><table>
+<h2 id="Hive配置"><a href="#Hive配置" class="headerlink" title="Hive配置"></a>Hive配置</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="center">IP</th>
+<th style="text-align:center">IP</th>
 <th>主机名</th>
-<th align="left">作用</th>
+<th style="text-align:left">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">192.168.80.132</td>
+<tbody>
+<tr>
+<td style="text-align:center">192.168.80.132</td>
 <td>e3base01</td>
-<td align="left">QuorumPeerMain、Namenode、datanode、zkfc、journalnode、resourcemanager、nodemanager</td>
+<td style="text-align:left">QuorumPeerMain、Namenode、datanode、zkfc、journalnode、resourcemanager、nodemanager</td>
 </tr>
 <tr>
-<td align="center">192.168.80.133</td>
+<td style="text-align:center">192.168.80.133</td>
 <td>e3base02</td>
-<td align="left">QuorumPeerMain、Namenode、datanode、zkfc、journalnode、resourcemanager、nodemanager</td>
+<td style="text-align:left">QuorumPeerMain、Namenode、datanode、zkfc、journalnode、resourcemanager、nodemanager</td>
 </tr>
 <tr>
-<td align="center">192.168.80.134</td>
+<td style="text-align:center">192.168.80.134</td>
 <td>e3base03</td>
-<td align="left">QuorumPeerMain、datanode、journalnode、nodemanager、<strong>metastore、hiveserver2</strong></td>
+<td style="text-align:left">QuorumPeerMain、datanode、journalnode、nodemanager、<strong>metastore、hiveserver2</strong></td>
 </tr>
 <tr>
-<td align="center">192.168.80.131</td>
+<td style="text-align:center">192.168.80.131</td>
 <td>mysql01</td>
-<td align="left">mysql</td>
+<td style="text-align:left">mysql</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>1、安装包解压配置</p>
 <p>将安装程序apache-hive-2.3.3-bin-e3base3.0.0.tar.gz拷贝到对应的一台主机如e3base01的/e3base/cdh5140/目录下</p>
 <p>使用<code>tar zxvf apache-hive-2.3.3-bin-e3base3.0.0.tar.gz</code>命令进行解压</p>
@@ -472,50 +457,36 @@
 <p>创建/e3base/cdh5140/e3-info/hive/logs目录 <code>mkdir -p /e3base/hive/logs</code></p>
 <p>2、配置环境变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export HIVE_HOME=$IN_HOME/hive</span><br><span class="line">export PATH=$HIVE_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>3、修改hive-env.sh文件（/e3base/hive/conf/hive-env.sh）</p>
 <p><em>请注意修改这些参数中的-Xms -Xms -Xmn值符合当前主机环境，如堆内存值配置过大超过系统可用内存，会导致服务启动失败</em></p>
 <p>4、修改hive-site.sh文件（/e3base/hive/conf/hive-site.sh）</p>
 <p>在mysql对应的主机上创建hivedb数据库，hive用户，密码hive123，并授权：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create database hivedb;</span><br><span class="line">show databases;</span><br><span class="line">create user hive@&#39;%&#39; identified by &#39;polaris6g&#39;;</span><br><span class="line">grant all on hivedb.* to hive@&#39;%&#39;;</span><br><span class="line">flush privileges;</span><br><span class="line">select user,host from mysql.user;</span><br></pre></td></tr></table></figure>
-
 <p>hive-site.sh：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>hive.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base01,e3base02,e3base03<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>hive.zookeeper.client.port<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>11001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>hive.metastore.uris<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>thrift://192.168.229.134:15001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionURL<span class="tag">&lt;/<span class="name">name</span>&gt;</span> <span class="tag">&lt;<span class="name">value</span>&gt;</span>jdbc:mysql://192.168.229.131:3306/hivedb?createDatabaseIfNotExist=true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionUserName<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>hive<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">name</span>&gt;</span>javax.jdo.option.ConnectionPassword<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">value</span>&gt;</span>polaris6g<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>5、修改hive-log4j.properties</p>
 <p>hive.log.dir=/e3base/e3-info/hive/logs  hive运行日志路径</p>
 <p>6、<strong>Hive启停</strong></p>
 <p>（1）初始化hive元数据库</p>
 <p>使用mysql作为hive元数据数据库，执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schematool -initSchema -dbType mysql</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721180957611.png" class title="image-20220721180957611">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721181300479.png" class title="image-20220721181300479">
-
 <p>初始化成功后会在mysql数据库中生成相应的元数据库及表，在mysql中给常用的元数据表加索引，以保证其性能。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">create index ind_part_name_tbl_id on partitions(part_name,tbl_id);</span><br><span class="line">create index ind_tbl_name on tbls (tbl_name);</span><br><span class="line">create index ind_tbl_id on partitions (tbl_id);</span><br><span class="line">create index ind_tbl_integer_idx on partition_keys (tbl_id,integer_idx);</span><br><span class="line">create index ind_cd_integer_idx on columns_v2 (cd_id,integer_idx);</span><br><span class="line">create index ind_name on dbs (name);</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721181436621.png" class title="image-20220721181436621">
-
 <p>检查新增索引是否添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">show index from partitions;</span><br><span class="line"></span><br><span class="line">show index from tbls;</span><br><span class="line"></span><br><span class="line">show index from partition_keys;</span><br><span class="line"></span><br><span class="line">show index from columns_v2;</span><br><span class="line"></span><br><span class="line">show index from dbs;</span><br></pre></td></tr></table></figure>
-
 <p>（2）启动hive服务</p>
 <p>确定hivedb库已初始化成功</p>
 <p>启动metastore服务：（metastore需启动在15001端口）-&gt;通过metastore建立元数据与MySQL的映射关系</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup hive --service metastore -p 15001 2&gt;&amp;1 &gt;&gt; $E3_INFO_HOME/hive/logs/metastore.log &amp;</span><br></pre></td></tr></table></figure>
-
 <p>启动hiveserver2服务：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup hive --service hiveserver2 2&gt;&amp;1 &gt;&gt; $E3_INFO_HOME/hive/logs/hiveserver2.log &amp;</span><br></pre></td></tr></table></figure>
-
 <p>验证是否启动：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep hive</span><br><span class="line">netstat -anp |grep port</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721182908499.png" class title="image-20220721182908499">
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721184810039.png" class title="image-20220721184810039">
-
 <p>（3）停止hive服务</p>
 <p>使用ps -ef | grep hive找到hive相关的进程，使用kill指令后接进程号杀掉进程</p>
 <p>（4）进程查看</p>
@@ -523,40 +494,26 @@
 <p>（5）连接hive</p>
 <p>方式一：Hive Cli客户端验证</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hive</span><br></pre></td></tr></table></figure>
-
 <p>方式二：Hive Beeline客户端验证（推荐）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">beeline -u jdbc:hive2://e3base03:15002/default -n e3base</span><br></pre></td></tr></table></figure>
-
 <p>（6）应用示例：</p>
 <p>1&gt;创建库test</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0: jdbc:hive2:&#x2F;&#x2F;e3base03:15002&#x2F;default&gt; create database test;</span><br></pre></td></tr></table></figure>
-
 <p>2&gt;创建表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create table test.events(</span><br><span class="line">number STRING, country STRING, client STRING, action STRING</span><br><span class="line">) ROW FORMAT DELIMITED FIELDS TERMINATED BY &#39;,&#39;;</span><br></pre></td></tr></table></figure>
-
 <p>3&gt;创建本地数据文件到/e3base/cdh5140</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /e3base/events.csv</span><br><span class="line"></span><br><span class="line">10123,US,android,createNote</span><br><span class="line">10200,FR,windows,updateNote</span><br><span class="line">10123,US,android,updateNote</span><br><span class="line">10200,FR,ios,createNote</span><br><span class="line">1015,US,windows,updateTag</span><br></pre></td></tr></table></figure>
-
 <p>4&gt;向表events导入数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0: jdbc:hive2:&#x2F;&#x2F;e3base03:15002&#x2F;default&gt; LOAD DATA LOCAL INPATH &#39;&#x2F;e3base&#x2F;events.csv&#39; overwrite into table test.events;</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721214421601.png" class title="image-20220721214421601">
-
 <p>5&gt;show语法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> schemas;</span><br><span class="line"></span><br><span class="line">use test; <span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> tables <span class="keyword">in</span> test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> formated tablename; <span class="comment">--查看一张表的元数据信息 </span></span><br></pre></td></tr></table></figure>
-
 <p>5&gt;统计各系统使用情况</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT client,count(*) FROM test.events GROUP BY client;</span><br></pre></td></tr></table></figure>
-
 <img src="/2022/07/22/Hive%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/image-20220721215337967.png" class title="image-20220721215337967">
-
 <p>（7）退出hive模式</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!quit</span><br></pre></td></tr></table></figure>
-
-
-
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> cardb.cars(</span><br><span class="line">ID <span class="type">INT</span> COMMENT <span class="string">&#x27;编号&#x27;</span>,</span><br><span class="line">NUMBER <span class="type">VARCHAR</span>(<span class="number">10</span>) COMMENT <span class="string">&#x27;车牌号&#x27;</span>,</span><br><span class="line">BRAND STRING COMMENT <span class="string">&#x27;品牌&#x27;</span>,</span><br><span class="line">IF_RENTED <span class="type">BOOLEAN</span> COMMENT <span class="string">&#x27;是否租出&#x27;</span>,</span><br><span class="line">TIMES <span class="type">INT</span> COMMENT <span class="string">&#x27;已租出次数&#x27;</span></span><br><span class="line">)<span class="type">ROW</span> FORMAT DELIMITED FIELDS TERMINATED <span class="keyword">BY</span> <span class="string">&#x27;,&#x27;</span>; </span><br></pre></td></tr></table></figure>
-
 
     </div>
 
