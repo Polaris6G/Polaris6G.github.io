@@ -263,6 +263,7 @@
 <li>HDFS工作流程与机制</li>
 </ul>
 <span id="more"></span>
+
 <h1 id="HDFS重要特性"><a href="#HDFS重要特性" class="headerlink" title="HDFS重要特性"></a>HDFS重要特性</h1><ul>
 <li><p>主从架构（master/slave）</p>
 <ul>
@@ -285,11 +286,9 @@
 <li><p>元数据记录</p>
 <ul>
 <li><p>文件自身属性信息</p>
-<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103436808.png" class title="image-20220717103436808">
-</li>
+<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103436808.png" class title="image-20220717103436808"></li>
 <li><p>文件块位置映射信息</p>
-<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103524044.png" class title="image-20220717103524044">
-</li>
+<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103524044.png" class title="image-20220717103524044"></li>
 </ul>
 </li>
 <li><p>抽象统一的目录树结构（namespace）</p>
@@ -298,8 +297,7 @@
 <li>NameNode负责维护</li>
 <li>客户端通过路径来访问文件，如：<code>hdfs://namenode:port/dir-a/dir-b/dir-c/file.data</code></li>
 </ul>
-<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103558942.png" class title="image-20220717103558942">
-</li>
+<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717103558942.png" class title="image-20220717103558942"></li>
 <li><p>数据块存储</p>
 <ul>
 <li>各个block的具体存储管理由DataNode节点承担</li>
@@ -308,7 +306,9 @@
 </ul>
 <p><strong>HDFS架构</strong></p>
 <img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717102834690.png" class title="image-20220717102834690">
+
 <h1 id="HDFS-shell操作"><a href="#HDFS-shell操作" class="headerlink" title="HDFS shell操作"></a>HDFS shell操作</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls file:/// #操作本地文件系统</span><br><span class="line">hadoop fs -ls hdfs:///mode1:8020/ #操作HDFS分布式文件系统</span><br><span class="line">hadoop fs -ls / #直接根目录，没有指定协议 讲加载读取fs.defaultFS值（core-site.xml)</span><br><span class="line">hadoop fs -ls gfs:/// #操作谷歌文件系统</span><br><span class="line">hadoop fs -ls tfs:/// #操作淘宝文件系统</span><br></pre></td></tr></table></figure>
+
 <p>ps：<code>hdfs dfs</code> = <code>hadoop fs</code></p>
 <ol>
 <li><p>创建文件夹</p>
@@ -350,12 +350,12 @@
 <p>NameNode所在机器通常会配置有大量内存（RAM）</p>
 <p>NameNode是Hadoop集群中的单点故障</p>
 <img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717122203040.png" class title="image-20220717122203040">
+
 <ul>
 <li><p>NameNode内部通过<strong>内存</strong>和<strong>磁盘</strong>文件两种方式管理元数据</p>
 </li>
 <li><p>其中磁盘上的元数据文件包括Fsimage内存元数据镜像文件和edits log（Journal）编辑日志</p>
-<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717122700250.png" class title="image-20220717122700250">
-</li>
+<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717122700250.png" class title="image-20220717122700250"></li>
 </ul>
 <p>从角色：DataNode</p>
 <p>DataNode负责具体的数据块存储，其数量决定了HDFS集群的整体数据存储能力</p>
@@ -365,11 +365,13 @@
 <p>Secondary NameNode充当NameNode的辅助节点</p>
 <p>帮助NameNode进行元数据文件的合并动作</p>
 <img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717122749398.png" class title="image-20220717122749398">
+
 <h2 id="写数据流程"><a href="#写数据流程" class="headerlink" title="写数据流程"></a>写数据流程</h2><img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717123442713.png" class title="image-20220717123442713">
+
 <ol>
 <li><p>HDFS客户端创建对象实例<strong>DistributedFileSystem</strong>，该对象中封装了与HDFS文件系统操作的相关方法</p>
 </li>
-<li><p>调用DistributedFileSystem对象的<strong>create()</strong>方法，通过RPC请求NameNode创建文件</p>
+<li><p>调用DistributedFileSystem对象的**create()**方法，通过RPC请求NameNode创建文件</p>
 <ul>
 <li>NameNode执行克重检查判断：目标文件是否存在、父目录是否存在、客户端是否具有创建该文件的权限。检查通过，NameNode就会为本次请求记下一条记录，返回FSDataOutputStream输出流对象给客户端用于写数据</li>
 </ul>
@@ -396,6 +398,7 @@
 </li>
 </ul>
 <img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717123750968.png" class title="image-20220717123750968">
+
 <ul>
 <li><p>默认三副本存储策略（不能把所有副本放在一台机器上）</p>
 <p>由BlockPlacementPolicyDefault指定</p>
@@ -405,8 +408,7 @@
 <li><p>第二块副本：不同于第一块副本的不同机架</p>
 </li>
 <li><p>第三块副本：第二块副本相同机架不同机器</p>
-<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717124201019.png" class title="image-20220717124201019">
-</li>
+<img src="/2022/07/17/hdfs%E5%AE%9E%E6%93%8D/image-20220717124201019.png" class title="image-20220717124201019"></li>
 </ul>
 </li>
 </ul>

@@ -256,27 +256,38 @@
       
         <p>  学习图的广搜~</p>
 <span id="more"></span>
+
 <h1 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h1><p>邻接矩阵：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(MGragh g,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="built_in">queue</span> &lt;<span class="keyword">int</span>&gt; qu;</span><br><span class="line">    <span class="keyword">int</span> visited[MAXV];</span><br><span class="line">    <span class="keyword">int</span> w,i;</span><br><span class="line">    <span class="built_in">memset</span>(visited,<span class="number">0</span>,<span class="keyword">sizeof</span>(visited));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,v);</span><br><span class="line">    visited[v]=<span class="number">1</span>;</span><br><span class="line">    qu.push(v);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!qu.empty())&#123;</span><br><span class="line">        w=qu.front();qu.pop();</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;g.n;i++)<span class="comment">//中出顶点w相邻的顶点</span></span><br><span class="line">            <span class="keyword">if</span>(g.edges[w][i]!=<span class="number">0</span>&amp;&amp;g.edges[w][i]!=INF&amp;&amp;visited[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,i);</span><br><span class="line">                visited[i]=<span class="number">1</span>;</span><br><span class="line">                qu.push(i);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>邻接表：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">(ALGragh g,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    ArcNode *p;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; qu;</span><br><span class="line">    <span class="keyword">int</span> visited[MAXV],w;</span><br><span class="line">    <span class="built_in">memset</span>(visited,<span class="number">0</span>,<span class="keyword">sizeof</span>(visited));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>,v);</span><br><span class="line">    visited[v]==<span class="number">1</span>;</span><br><span class="line">    qu.push(v);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(!qu.empty())&#123;</span><br><span class="line">        w=qu.front();</span><br><span class="line">        qu.pop();</span><br><span class="line">        p=G-&gt;adjlist[w].firstarc;</span><br><span class="line">        <span class="keyword">while</span>(p!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(visited[p-&gt;adjvex]==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;3d&quot;</span>,p-&gt;adjvex);</span><br><span class="line">                visited[p-&gt;adjvex]=<span class="number">1</span>;</span><br><span class="line">                qu.push(p-&gt;adjvex);</span><br><span class="line">            &#125;</span><br><span class="line">            p=p-&gt;nextarc;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <p>栗子：</p>
 <ol>
 <li>假设图G采用邻接表存储，设计一个算法，求不带权无向连通图G中从顶点u到顶点v的一条最短路径。</li>
 </ol>
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/6BCAD322B32CB9CBE03763E0842FB60A.jpg" class title="img">
+
 <p>这里注意要使用一个数组记录父节点便于路径回溯</p>
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/3D8C8887755CFF53BB74DDE35CA78EFB.jpg" class title="img">
-<ol>
+
+<ol start="2">
 <li>最优配餐问题</li>
 </ol>
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/E46462D4057B27DC77AD5D9749FA8E93.jpg" class title="img">
+
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/FB9CC75562AD60FBC49DA128D8ACAB05.jpg" class title="img">
+
 <p>遍历方式：广度优先遍历</p>
 <p>​    方案1：从每个分店搜索最近送餐客户（×）</p>
 <p>​    方案2：从每个客户搜索最近送餐分店（√）</p>
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/F25C019B3064CF0E87B3C00DCD0C6ABD.jpg" class title="img">
+
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/AEDFE67724E782935DA1BDDF2086DEDA.jpg" class title="img">
+
 <img src="/2022/04/03/%E8%93%9D%E6%A1%A5%E6%9D%AF-4/8A515AFD2518E6DEF5E8EB6BB4036353.jpg" class title="img">
 
     </div>

@@ -271,11 +271,12 @@
 </li>
 </ul>
 <span id="more"></span>
+
 <h1 id="SpringBoot后端"><a href="#SpringBoot后端" class="headerlink" title="SpringBoot后端"></a>SpringBoot后端</h1><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ol>
 <li>约定优先配置</li>
 </ol>
 <p>SpringBoot是所有基于Spring开发项目的起点。SpringBoot的设计是为了尽可能快的跑起来Spring应用程序并且尽可能减少配置文件。</p>
-<ol>
+<ol start="2">
 <li>起步依赖：</li>
 </ol>
 <p>起步依赖就是将具有某种功能的坐标打包到一起，并提供一些默认的功能。</p>
@@ -293,32 +294,40 @@
 </ul>
 <p><strong>注解</strong>：</p>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704184912247.png" class title="image-20220704184912247">
+
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704184928101.png" class title="image-20220704184928101">
+
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704184947011.png" class title="image-20220704184947011">
+
 <h3 id="框架整合"><a href="#框架整合" class="headerlink" title="框架整合"></a>框架整合</h3><p>SpringBoot整合MyBatis-Plus</p>
 <ul>
 <li>在pom.xml导入依赖包</li>
 </ul>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704185343035.png" class title="image-20220704185343035">
+
 <ul>
 <li>在applicaion.yml文件里面进行配置：</li>
 </ul>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704185642426.png" class title="image-20220704185642426">
+
 <ul>
 <li>编写实体类：</li>
 </ul>
 <p>sys/entity/SysCaptchaEntity</p>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704185820741.png" class title="image-20220704185820741">
+
 <ul>
 <li>编写Dao层，加入注解@Mapper</li>
 </ul>
 <p>sys/dao/SysConfigDao</p>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704190026868.png" class title="image-20220704190026868">
+
 <ul>
 <li>编写Mapper.xml映射文件</li>
 </ul>
 <p>resouces/mapper/sys/SysConfigDao.xml</p>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704190311528.png" class title="image-20220704190311528">
+
 <h3 id="vue-element-UI前端"><a href="#vue-element-UI前端" class="headerlink" title="vue+element-UI前端"></a>vue+element-UI前端</h3><ul>
 <li>路由跳转</li>
 </ul>
@@ -326,6 +335,9 @@
 <p>全局路由展示：</p>
 <p>src/router/index.js</p>
 <img src="/2022/07/05/SpringBoot%E5%AE%9E%E6%88%98/image-20220704191023753.png" class title="image-20220704191023753">
+
+
+
 <p><em>ps：</em></p>
 <ol>
 <li><em>Springboot使用maven作为包管理工具</em></li>
