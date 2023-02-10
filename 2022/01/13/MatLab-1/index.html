@@ -332,85 +332,51 @@
 <li>矩阵元素的引用</li>
 </ul>
 <span id="more"></span>
-
 <h1 id="A-MATLAB系统环境"><a href="#A-MATLAB系统环境" class="headerlink" title="A MATLAB系统环境"></a>A MATLAB系统环境</h1><h2 id="A-a-MATLAB操作界面的组成"><a href="#A-a-MATLAB操作界面的组成" class="headerlink" title="A. a MATLAB操作界面的组成"></a>A. a MATLAB操作界面的组成</h2><h3 id="1-Matlab主窗口"><a href="#1-Matlab主窗口" class="headerlink" title="1 Matlab主窗口"></a>1 Matlab主窗口<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70.png" class title="在这里插入图片描述"></h3><p>功能区：提供三个选项卡（主页，绘图，应用程序），各自有不同的工具可供使用。<br>快速访问工具栏：包含一些常用按钮<br>当前文件夹工具栏：用于实现当前文件夹的操作</p>
 <h3 id="2-命令行窗口"><a href="#2-命令行窗口" class="headerlink" title="2 命令行窗口"></a>2 命令行窗口</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-16420387311952.png" class title="在这里插入图片描述">
-
 <p>命令行窗口用于输入命令并显示命令的执行结果。在命令提示符&gt; &gt; &gt;&gt;&gt;&gt;后输入命令并按下回车键，Matlab就会解释执行输入的命令并显示结果</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-16420387489254.png" class title="在这里插入图片描述">
-
 <h3 id="3-当前文件夹窗口"><a href="#3-当前文件夹窗口" class="headerlink" title="3 当前文件夹窗口"></a>3 当前文件夹窗口</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-16420387976388.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-16420387655886.png" class title="在这里插入图片描述">
-
 <p>注意：一定要先建立文件夹，再将文件夹设为当前文件夹。</p>
 <img src="/2022/01/13/MatLab-1/20200225165715889.png" class title="在这里插入图片描述">
-
 <h3 id="4-工作区窗口"><a href="#4-工作区窗口" class="headerlink" title="4 工作区窗口"></a>4 工作区窗口</h3><p>是Matlab用于存储各种变量和结果的空间，可用于变量的显示和操作。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164203884473911.png" class title="在这里插入图片描述">
-
 <p>在工作区以表格形式显示变量a与x的名称，取值等信息。在工作区还可以对变量进行保存、编辑、删除等操作。</p>
 <h2 id="A-b-MATLAB的搜索路径"><a href="#A-b-MATLAB的搜索路径" class="headerlink" title="A. b MATLAB的搜索路径"></a>A. b MATLAB的搜索路径</h2><p>1 用户在命令行窗口输入一条命令后，MATLAB将按照一定顺序依次寻找命令对象。<br>顺序（当以下都同名时）：</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164203886285913.png" class title="在这里插入图片描述">
-
 <p>如（clear清楚工作区的全部变量）：</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164203887654415.png" class title="在这里插入图片描述">
-
 <p>所以定义变量名时要避免与文件名和函数名重复。</p>
 <p>2 设置文件搜索路径</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164203890714317.png" class title="在这里插入图片描述">
-
 <p>在命令行输入文件名后，MATLAB是在当前文件夹与搜索路径文件夹中寻找这个文件并执行文件内容的，所以要执行的文件必须放在这两类文件夹中。<br>如果两个文件夹种有同名的M文件，在命令行输入这个文件名执行顺序：当前文件夹&gt;搜索路径文件夹</p>
 <h1 id="B-MATLAB数值数据"><a href="#B-MATLAB数值数据" class="headerlink" title="B MATLAB数值数据"></a>B MATLAB数值数据</h1><h2 id="B-a-数值数据类型的分类-class"><a href="#B-a-数值数据类型的分类-class" class="headerlink" title="B. a 数值数据类型的分类(class)"></a>B. a 数值数据类型的分类(class)</h2><h3 id="1-整形："><a href="#1-整形：" class="headerlink" title="1 整形："></a>1 整形：</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204074427619.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204075463521.png" class title="在这里插入图片描述">
-
 <h3 id="2-浮点型"><a href="#2-浮点型" class="headerlink" title="2 浮点型"></a>2 浮点型</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204076549223.png" class title="在这里插入图片描述">
-
 <p>class函数可以得到参数的数据类型。</p>
 <img src="/2022/01/13/MatLab-1/20200225173308488.png" class title="在这里插入图片描述">
-
 <h3 id="3-复数型"><a href="#3-复数型" class="headerlink" title="3 复数型"></a>3 复数型</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204079263626.png" class title="在这里插入图片描述">
-
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="built_in">real</span>() <span class="comment">%求复数的实部</span></span><br><span class="line"><span class="number">2</span> <span class="built_in">imag</span>() <span class="comment">%求复数的虚部</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="B-b-数值数据的输出格式-format"><a href="#B-b-数值数据的输出格式-format" class="headerlink" title="B. b 数值数据的输出格式(format)"></a>B. b 数值数据的输出格式(format)</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> format  格式符  <span class="comment">% 设置数据的输出格式</span></span><br></pre></td></tr></table></figure>
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204095728428.png" class title="在这里插入图片描述">
-
 <p>不同的格式符输出不同的数据格式。<br>注意：format命令只是影响数据输出的格式，而不影响数据的计算和存储。</p>
 <h2 id="B-c-常用数学函数"><a href="#B-c-常用数学函数" class="headerlink" title="B. c 常用数学函数"></a>B. c 常用数学函数</h2><h3 id="1-函数的调用格式"><a href="#1-函数的调用格式" class="headerlink" title="1 函数的调用格式"></a>1 函数的调用格式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 函数名（函数自变量的值）</span><br></pre></td></tr></table></figure>
-
 <p>函数的自变量规定为矩阵变量（标量本身是矩阵的一种特例）。<br><strong>函数在运算时是将函数逐项作用于矩阵的每个元素上</strong>，所以最后运算的结果就是一个与自变量同型的矩阵。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204106105530.png" class title="在这里插入图片描述">
-
 <h3 id="2-常用函数的应用-sin-sind-abs-取整"><a href="#2-常用函数的应用-sin-sind-abs-取整" class="headerlink" title="2 常用函数的应用(sin,sind;abs;取整)"></a>2 常用函数的应用(sin,sind;abs;取整)</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204106618632.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204107305034.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204107678636.png" class title="在这里插入图片描述">
-
-
-
-
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204108180638.png" class title="在这里插入图片描述">
-
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rem</span>(m,n)   <span class="comment">%求m/n的余数</span></span><br></pre></td></tr></table></figure>
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204117964540.png" class title="在这里插入图片描述">
-
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isprime(n) # 判断n是否是素数，是返回1，否返回0.</span><br></pre></td></tr></table></figure>
-
-
-
 <h1 id="C-变量及其操作"><a href="#C-变量及其操作" class="headerlink" title="C 变量及其操作"></a>C 变量及其操作</h1><p>计算机处理的数据都是存放在内存单元中的，而每一个内存单元都有一个唯一的地址，程序就是通过这个地址来访问对应内存单元的。<br>在如Matlab这种高级语言中，只需要给每个内存单元取一个名字，然后通过这个名字就能访问每个内存单元了。</p>
 <h2 id="C-a-变量与赋值语句"><a href="#C-a-变量与赋值语句" class="headerlink" title="C. a 变量与赋值语句"></a>C. a 变量与赋值语句</h2><ul>
 <li>变量本质上讲是内存单元的一个抽象</li>
 <li>在Matlab中，变量名是以字母开头，后接字母、数字或下划线的字母序列，最多63个字符。</li>
 </ul>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204220065142.png" class title="在这里插入图片描述">
-
 <ul>
 <li><p>变量名区分大小写</p>
 </li>
@@ -419,138 +385,77 @@
 </ul>
 <p>赋值语句两种格式</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 变量=表达式        <span class="comment">% 变量结果会在命令行中显示出来</span></span><br><span class="line"><span class="number">2</span> 变量=表达式；	  <span class="comment">% 变量结果不会在命令行中显示出来</span></span><br></pre></td></tr></table></figure>
-
 <p>例子：</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204227134144.png" class title="在这里插入图片描述">
-
 <h2 id="C-b-预定义变量"><a href="#C-b-预定义变量" class="headerlink" title="C. b 预定义变量"></a>C. b 预定义变量</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204228167446.png" class title="在这里插入图片描述">
-
 <h2 id="C-c-变量的管理"><a href="#C-c-变量的管理" class="headerlink" title="C. c 变量的管理"></a>C. c 变量的管理</h2><h3 id="1-变量的删除和修改（who-whos）"><a href="#1-变量的删除和修改（who-whos）" class="headerlink" title="1  变量的删除和修改（who,whos）"></a>1  变量的删除和修改（who,whos）</h3><p>在工作区选择变量右击即可进行删除和修改。</p>
 <img src="/2022/01/13/MatLab-1/20200225190331526.png" class title="在这里插入图片描述">
-
 <p>who命令和whos命令：<br>who命令只显示已存在变量的名称。而whos显示信息更多。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204232363449.png" class title="在这里插入图片描述">
-
 <h3 id="2-内存变量文件-save-load"><a href="#2-内存变量文件-save-load" class="headerlink" title="2 内存变量文件(save,load)"></a>2 内存变量文件(save,load)</h3><p>用于保存Matlab工作区变量的文件叫做内存变量文件，其扩展名为.mat，也叫MAT文件，是一种标准的二进制格式文件。<br>save命令：创建内存变量文件<br>load命令：载入内存变量文件</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> save mydata a x   <span class="comment">% 将a x保存在mydata.mat文件中</span></span><br><span class="line"><span class="number">2</span> load mydata       <span class="comment">% 载入mydata.mat中的变量</span></span><br></pre></td></tr></table></figure>
-
 <h1 id="D-MATLAB矩阵表示"><a href="#D-MATLAB矩阵表示" class="headerlink" title="D MATLAB矩阵表示"></a>D MATLAB矩阵表示</h1><h2 id="D-a-矩阵的建立"><a href="#D-a-矩阵的建立" class="headerlink" title="D. a 矩阵的建立"></a>D. a 矩阵的建立</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204340867151.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204342140453.png" class title="在这里插入图片描述">
-
 <h2 id="D-b-冒号表达式-linspace"><a href="#D-b-冒号表达式-linspace" class="headerlink" title="D. b 冒号表达式(linspace)"></a>D. b 冒号表达式(linspace)</h2><h3 id="1-用冒号产生行向量t"><a href="#1-用冒号产生行向量t" class="headerlink" title="1 用冒号产生行向量t"></a>1 用冒号产生行向量t</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204343781955.png" class title="在这里插入图片描述">
-
 <h3 id="2-用linspace函数产生行向量x"><a href="#2-用linspace函数产生行向量x" class="headerlink" title="2 用linspace函数产生行向量x"></a>2 用linspace函数产生行向量x</h3><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204344543057.png" class title="在这里插入图片描述">
-
 <h2 id="D-c结构矩阵和单元矩阵"><a href="#D-c结构矩阵和单元矩阵" class="headerlink" title="D. c结构矩阵和单元矩阵"></a>D. c结构矩阵和单元矩阵</h2><h3 id="1-结构矩阵"><a href="#1-结构矩阵" class="headerlink" title="1 结构矩阵"></a>1 结构矩阵</h3><p>在实际应用中，经常会遇到不同类型的数据项组成的实体，例如一个学生的数据实体就包括了年龄，姓名，学号，这些数据是相互联系的。结构数据类型就可以把这些数据类型不同但逻辑上相关的数据组成一个有机的整体。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> 结构矩阵元素.成员名=表达式</span><br></pre></td></tr></table></figure>
-
 <p>例如： 学生这个结构数据包含三个成员，分别是年龄，姓名，学号，由结构数据构成的矩阵就是结构矩阵。结构矩阵里的每个元素都是结构数据类型的。即结构矩阵相当于一个班级，结构矩阵里的元素就是这个班级的学生，每个学生有年龄，姓名，学号三个信息（成员）。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204353200159.png" class title="在这里插入图片描述">
-
 <h3 id="2-单元矩阵"><a href="#2-单元矩阵" class="headerlink" title="2 单元矩阵"></a>2 单元矩阵</h3><p>单元数据类型，也是把不同的数据放在一个变量中，但与结构矩阵所不同的是，结构矩阵的各个元素下还有成员，每个成员都有自己的名字，而单元矩阵的各个元素就是不同类型的数据，每个元素直接由不同类型的数据组成。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204354044661.png" class title="在这里插入图片描述">
-
-
-
 <h1 id="E-矩阵元素的引用"><a href="#E-矩阵元素的引用" class="headerlink" title="E 矩阵元素的引用"></a>E 矩阵元素的引用</h1><h2 id="E-a-矩阵元素的引用方式-sub2ind-ind2sub"><a href="#E-a-矩阵元素的引用方式-sub2ind-ind2sub" class="headerlink" title="E. a 矩阵元素的引用方式(sub2ind,ind2sub)"></a>E. a 矩阵元素的引用方式(sub2ind,ind2sub)</h2><img src="/2022/01/13/MatLab-1/20200225201212298.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204750689263.png" class title="在这里插入图片描述">
-
-
 <p>如果给出的行下标和列下标大于矩阵的行数和列数，Matlab将自动扩展原来的矩阵，并将扩展后没有赋值的元素赋值为0。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204751211765.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204751880767.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204752290069.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204753922071.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204756144973.png" class title="在这里插入图片描述">
-
 <h2 id="E-b-利用冒号表达式获得子矩阵-end"><a href="#E-b-利用冒号表达式获得子矩阵-end" class="headerlink" title="E. b 利用冒号表达式获得子矩阵(end)"></a>E. b 利用冒号表达式获得子矩阵(end)</h2><p>子矩阵是指由矩阵中一部分元素构成的矩阵。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204777353976.png" class title="在这里插入图片描述">
-
 <p>例子:</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204785766578.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204787435480.png" class title="在这里插入图片描述">
-
 <h2 id="E-c利用空矩阵删除矩阵的元素"><a href="#E-c利用空矩阵删除矩阵的元素" class="headerlink" title="E. c利用空矩阵删除矩阵的元素"></a>E. c利用空矩阵删除矩阵的元素</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204788423182.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204788953984.png" class title="在这里插入图片描述">
-
 <h2 id="E-d改变矩阵的形状-reshape"><a href="#E-d改变矩阵的形状-reshape" class="headerlink" title="E. d改变矩阵的形状(reshape)"></a>E. d改变矩阵的形状(reshape)</h2><p>在矩阵总元素保持不变的前提下，将矩阵A重新排成m ∗ n m*nm∗n的二维矩阵。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="built_in">reshape</span>(A,m,n)</span><br></pre></td></tr></table></figure>
-
 <p>注意：reshape函数只是改变原矩阵的行数和列数，但并不改变原矩阵元素个数及其存储顺序。</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204792022986.png" class title="在这里插入图片描述">
-
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A(:)等价于<span class="built_in">reshape</span>(A,<span class="number">6</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164204792481588.png" class title="在这里插入图片描述">
-
 <h1 id="F-MATLAB基本运算"><a href="#F-MATLAB基本运算" class="headerlink" title="F MATLAB基本运算"></a>F MATLAB基本运算</h1><h2 id="F-a算术运算"><a href="#F-a算术运算" class="headerlink" title="F. a算术运算"></a>F. a算术运算</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326090.png" class title="在这里插入图片描述">
-
 <blockquote>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326291.png" class title="在这里插入图片描述">
-</blockquote>
-<blockquote>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326392.png" class title="在这里插入图片描述">
-</blockquote>
-<blockquote>
 <img src="/2022/01/13/MatLab-1/20200225205645610.png" class title="在这里插入图片描述">
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326393.png" class title="在这里插入图片描述">
-</blockquote>
-<blockquote>
 <p>A^2=A*A<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326394.png" class title="在这里插入图片描述"></p>
 </blockquote>
 <hr>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326395.png" class title="在这里插入图片描述">
-<p>例子：</p>
-<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326396.png" class title="在这里插入图片描述">
-<p>例题：</p>
-<img src="/2022/01/13/MatLab-1/20200225210349514.png" class title="在这里插入图片描述">
-
+<p>例子：<br><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326396.png" class title="在这里插入图片描述"><br>例题：<br><img src="/2022/01/13/MatLab-1/20200225210349514.png" class title="在这里插入图片描述"></p>
 <hr>
 <h2 id="F-b-关系运算"><a href="#F-b-关系运算" class="headerlink" title="F. b 关系运算"></a>F. b 关系运算</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326497.png" class title="在这里插入图片描述">
-<p>例题：</p>
-<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326498.png" class title="在这里插入图片描述">
-
+<p>例题：<br><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326498.png" class title="在这里插入图片描述"></p>
 <hr>
 <h2 id="F-c-逻辑运算-amp"><a href="#F-c-逻辑运算-amp" class="headerlink" title="F. c 逻辑运算(&amp;,|,~)"></a>F. c 逻辑运算(&amp;,|,~)</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-164205235326499.png" class title="在这里插入图片描述">
-<p>例子：</p>
-<img src="/2022/01/13/MatLab-1/20200225211054779.png" class title="在这里插入图片描述">
-<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642052353265100.png" class title="在这里插入图片描述">
-
+<p>例子：<br><img src="/2022/01/13/MatLab-1/20200225211054779.png" class title="在这里插入图片描述"><br><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642052353265100.png" class title="在这里插入图片描述"></p>
 <hr>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642052353265101.png" class title="在这里插入图片描述">
-<p>例题：</p>
-<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642052353265102.png" class title="在这里插入图片描述">
-
+<p>例题：<br><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642052353265102.png" class title="在这里插入图片描述"></p>
 <h1 id="G-字符串处理"><a href="#G-字符串处理" class="headerlink" title="G 字符串处理"></a>G 字符串处理</h1><h2 id="G-a-字符串的表示"><a href="#G-a-字符串的表示" class="headerlink" title="G. a 字符串的表示"></a>G. a 字符串的表示</h2><img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053081391119.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053084428121.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053090421123.png" class title="在这里插入图片描述">
-
 <p>要求各行字符数要相等（列数相同）。如果不等，就要用空格调节各行长度，使之数目相等。</p>
 <p>例题：<img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053113113125.png" class title="在这里插入图片描述"></p>
 <h2 id="G-b字符串的操作-strcmp-findstr-strrep"><a href="#G-b字符串的操作-strcmp-findstr-strrep" class="headerlink" title="G. b字符串的操作(strcmp;findstr;strrep)"></a>G. b字符串的操作(strcmp;findstr;strrep)</h2><p>将字符串内容作为MATLAB的命令执行</p>
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053143837127.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053149841129.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053152950131.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053160018133.png" class title="在这里插入图片描述">
-
 <img src="/2022/01/13/MatLab-1/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDM3ODgzNQ==,size_16,color_FFFFFF,t_70-1642053164397135.png" class title="在这里插入图片描述">
-
-
-
 <p><em>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44378835/article/details/104499450">https://blog.csdn.net/weixin_44378835/article/details/104499450</a></em></p>
 
     </div>
@@ -773,6 +678,8 @@
 
 
 
+
+  
 
   
 

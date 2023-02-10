@@ -272,25 +272,28 @@
 <li>springcloud企业最佳实践架构分析</li>
 </ul>
 <span id="more"></span>
-
 <h2 id="springcloud由来"><a href="#springcloud由来" class="headerlink" title="springcloud由来"></a>springcloud由来</h2><ul>
 <li><p>自由演进期：</p>
 <ul>
 <li>单体应用阶段</li>
 </ul>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707211910946.png" class title="image-20220707211910946">
-
 <ul>
 <li><p>垂直应用阶段（重复造轮子）</p>
-<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212006867.png" class title="image-20220707212006867"></li>
+<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212006867.png" class title="image-20220707212006867">
+</li>
 <li><p>分布式系统阶段（应用相互调用杂乱）</p>
-<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212020502.png" class title="image-20220707212020502"></li>
+<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212020502.png" class title="image-20220707212020502">
+</li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p>治理期</p>
 <ul>
 <li><p>服务治理阶段（ESB总线）</p>
-<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212436477.png" class title="image-20220707212436477"></li>
+<img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707212436477.png" class title="image-20220707212436477">
+</li>
 <li><p>微服务阶段（回归应用）</p>
 </li>
 <li><p>服务网络（再次抽离）</p>
@@ -299,27 +302,24 @@
 </li>
 </ul>
 <h2 id="springcloud体系"><a href="#springcloud体系" class="headerlink" title="springcloud体系"></a><strong>springcloud体系</strong></h2><img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707211510857.png" class title="image-20220707211510857">
-
 <p>重点：</p>
 <ol>
 <li>注册中心（服务注册和发现）：<strong>eureka</strong></li>
 </ol>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707215816645.png" class title="image-20220707215816645">
-
 <p>（1）springboot扩展点</p>
 <p>（2）核心流程</p>
 <p>（3）三级缓存作用</p>
-<ol start="2">
+<ol>
 <li>配置中心（分布式，版本化配置）：<strong>config</strong></li>
 </ol>
 <p>集成：与注册中心衔接</p>
 <p>为什么必须要用bootstrap.yml</p>
-<ol start="3">
+<ol>
 <li>网关集群（路由，负载和断路器）：<strong>zuul</strong></li>
 </ol>
 <p>基于springboot扩展</p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708104620506.png" class title="image-20220708104620506">
-
 <p><strong>API网关</strong>是微服务体系对外进行能力开放和服务调用管控的重要手段；API网关通过收敛接口服务和策略控制完成微服务对外的能力开放和接口管控，<strong>包括</strong>：</p>
 <ul>
 <li>认证与授权：支持cookie/session与共享session机制，支持基于OAuth2的单点登录与AccessToken认证等</li>
@@ -332,7 +332,6 @@
 <p><em>认证授权：spring Security Oauth</em></p>
 <p>事件</p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220707214444547.png" class title="image-20220707214444547">
-
 <p>内生态：</p>
 <ul>
 <li>日志体系</li>
@@ -343,26 +342,20 @@
 <li>基本形态</li>
 </ul>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708102857150.png" class title="image-20220708102857150">
-
 <p>运行部署：</p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103145039.png" class title="image-20220708103145039">
-
 <ul>
 <li>阿里形态（nacos）:</li>
 </ul>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103202156.png" class title="image-20220708103202156">
-
 <p>部署运行：</p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103217537.png" class title="image-20220708103217537">
-
 <p><strong>MVC分层模式</strong></p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103436432.png" class title="image-20220708103436432">
-
 <p>外网：微服务与外来调用请求</p>
 <p>内网：各组件之间的通讯</p>
 <p><strong>鉴权过程</strong></p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103650852.png" class title="image-20220708103650852">
-
 <p>鉴权与微服务开发分离</p>
 <p><strong>springcloud开发服务架构</strong></p>
 <img src="/2022/07/08/SpringCloud%E5%AE%9E%E6%88%98/image-20220708103955762.png" class title="image-20220708103955762">
@@ -587,6 +580,8 @@
 
 
 
+
+  
 
   
 

@@ -290,13 +290,11 @@
 </li>
 </ul>
 <span id="more"></span>
-
 <h1 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h1><h2 id="分而治之思想"><a href="#分而治之思想" class="headerlink" title="分而治之思想"></a>分而治之思想</h2><ul>
 <li>Map：第一阶段，负责”拆分”</li>
 <li>Reduce：第二阶段，负责合并</li>
 </ul>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718080415700.png" class title="image-20220718080415700">
-
 <h2 id="设计构思"><a href="#设计构思" class="headerlink" title="设计构思"></a>设计构思</h2><p>（1）如何对付大数据处理场景-&gt;分而治之</p>
 <p>（2）构建抽象编程模型：</p>
 <ul>
@@ -305,7 +303,6 @@
 </ul>
 <p>（3）统一架构、隐藏底层细节</p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="分布式计算"><a href="#分布式计算" class="headerlink" title="分布式计算"></a>分布式计算</h3><img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718081059425.png" class title="image-20220718081059425">
-
 <p>MapReduce：分布式计算框架</p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
 <li>易于编程（提供了许多二次开发的接口）</li>
@@ -326,21 +323,15 @@
 <h3 id="阶段组成"><a href="#阶段组成" class="headerlink" title="阶段组成"></a>阶段组成</h3><p>一个MapReduce编程模型中只能包含一个Map阶段和一个Reduce阶段，或者只有Map阶段</p>
 <p>如果用户的业务逻辑非常复杂，那就只能多个MapReduce程序串行运行</p>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718104355598.png" class title="image-20220718104355598">
-
 <h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>整个MapReduce编程中，数据都是以kv键值对的形式流转的</p>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718104525027.png" class title="image-20220718104525027">
-
 <h2 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h2><img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718105339150.png" class title="image-20220718105339150">
-
 <p>示例程序路径：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;export&#x2F;server&#x2F;hadoop-3.3.0&#x2F;share&#x2F;hadoop&#x2F;mapreduce&#x2F;s</span><br></pre></td></tr></table></figure>
-
 <p>示例程序：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop-mapreduce-examples-3.3.0.jar</span><br></pre></td></tr></table></figure>
-
 <p>MapReduce程序提交命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop jar|yarn jar] hadoop-mapreduce-examples-3.3.0.jar args...</span><br></pre></td></tr></table></figure>
-
 <p>提交到哪里去？</p>
 <p>提交到YARN集群上分布式执行</p>
 <ul>
@@ -353,7 +344,6 @@
 </li>
 <li><p>WordCount概述</p>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718141737534.png" class title="image-20220718141737534">
-
 <ul>
 <li>map阶段的核心：把输入的数据经过切割，全部标记为1，因此输出就是&lt;单词，1&gt;</li>
 <li>shuffle阶段核心：经过MR程序内部自带默认的排序分组等功能，把key相同的单词会作为一个数据构成新的kv对</li>
@@ -382,28 +372,20 @@
 </li>
 </ul>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718143615252.png" class title="image-20220718143615252">
-
-
-
 <h3 id="Reduce阶段执行过程"><a href="#Reduce阶段执行过程" class="headerlink" title="Reduce阶段执行过程"></a>Reduce阶段执行过程</h3><ul>
 <li>第一阶段：ReduceTask会主动从MapTask<strong>复制拉取</strong>属于需要自己处理的数据</li>
 <li>第二阶段：把拉取来数据，全部进行<strong>合并merge</strong>，即把分散的数据合并一个大的数据。再对合并后的数据<strong>排序</strong></li>
 <li>第三阶段：对排序后的键值<strong>对调用reduce方法</strong>。<strong>键相等</strong>的键值对调用一次reduce方法。最后把这些输出的键值对写入到HDFS文件中</li>
 </ul>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718143658375.png" class title="image-20220718143658375">
-
 <h3 id="shuffle机制"><a href="#shuffle机制" class="headerlink" title="shuffle机制"></a>shuffle机制</h3><p><strong>shuffle</strong>：将map端的无规则输出按指定的规则”打乱”成具有一定规则的数据，以便reduce端接收处理</p>
 <p>一般把从<strong>Map产生输出开始</strong>到<strong>Reduce取得数据作为输入之前</strong>的过程称作shuffle</p>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718145544304.png" class title="image-20220718145544304">
-
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718145612518.png" class title="image-20220718145612518">
-
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718145752302.png" class title="image-20220718145752302">
-
 <h1 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h1><p>YARN(Yet Anoter Resource Negotaitar） 另一种资源协调者</p>
 <p>一个<strong>通用资源管理系统</strong>和<strong>调度平台</strong></p>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718204916552.png" class title="image-20220718204916552">
-
 <ul>
 <li>资源管理系统：集群的硬件资源，和程序运行相关，比如内存、CPU等</li>
 <li>调度平台：多个程序同时申请资源如何分配，调度算法</li>
@@ -425,7 +407,6 @@
 </li>
 </ul>
 <img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718205913123.png" class title="image-20220718205913123">
-
 <ul>
 <li>Client</li>
 <li>Containe容器（资源的抽象）</li>
@@ -441,24 +422,17 @@
 <li>第二阶段：由ApplicationMaster根据本次程序内部具体情况，为它申请资源，并监控它的整个运行过程，直到运行完成</li>
 </ul>
 <h3 id="MR提交YARN交互流程"><a href="#MR提交YARN交互流程" class="headerlink" title="MR提交YARN交互流程"></a>MR提交YARN交互流程</h3><img src="/2022/07/18/MapReduce%E4%B8%8EYarn%E6%A6%82%E8%BF%B0/image-20220718211746947.png" class title="image-20220718211746947">
-
 <ol>
 <li><p>用户通过客户端向YARN中<strong>RM</strong>提交应用程序（比如hadoop jar）</p>
 </li>
 <li><p>RM为该应用程序<strong>分配第一个Container</strong>，并与对应的<strong>NM通信</strong>，要求它在这个Container中启动这个应用程序的AM</p>
 </li>
-<li><p>AM启动成功后，首先向RM<strong>注册并保持通信</strong>，这样用户可直接通过RM查看应用程序的运行状态</p>
-</li>
-<li><p>AM为本次程序内部各个Task任务向RM<strong>申请资源</strong>，并<strong>监控</strong>它的运行状态</p>
-</li>
-<li><p>一旦AM申请到资源后，便于对应的NM通信，要求启动任务</p>
-</li>
-<li><p>NM为任务设置后运行环境后，将任务启动命令写到一个脚本中，并通过运行该脚本启动任务</p>
-</li>
-<li><p>各个任务通过某个RPC协议向AM汇报自己的状态和进度，已让AM随时掌握各个任务的运行状态，从而可以在任务失败时重启任务。在应用程序运行过程中，用户可随时通过RPC向AM查询应用程序的当前运行状态</p>
-</li>
-<li><p>应用程序运行完成后，AM向RM注销并关闭自己</p>
-</li>
+<li>AM启动成功后，首先向RM<strong>注册并保持通信</strong>，这样用户可直接通过RM查看应用程序的运行状态</li>
+<li>AM为本次程序内部各个Task任务向RM<strong>申请资源</strong>，并<strong>监控</strong>它的运行状态</li>
+<li>一旦AM申请到资源后，便于对应的NM通信，要求启动任务</li>
+<li>NM为任务设置后运行环境后，将任务启动命令写到一个脚本中，并通过运行该脚本启动任务</li>
+<li>各个任务通过某个RPC协议向AM汇报自己的状态和进度，已让AM随时掌握各个任务的运行状态，从而可以在任务失败时重启任务。在应用程序运行过程中，用户可随时通过RPC向AM查询应用程序的当前运行状态</li>
+<li>应用程序运行完成后，AM向RM注销并关闭自己</li>
 </ol>
 <h2 id="资源调度器Scheduler"><a href="#资源调度器Scheduler" class="headerlink" title="资源调度器Scheduler"></a>资源调度器Scheduler</h2><p>Scheduler：根据一些定义的策略为应用程序分配资源，是RM的核心组件之一</p>
 <p>调度器策略：</p>
@@ -690,6 +664,8 @@
 
 
 
+
+  
 
   
 

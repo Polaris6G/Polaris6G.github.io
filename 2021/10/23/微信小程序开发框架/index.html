@@ -269,8 +269,7 @@
       
         <h1 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h1><p>综设项目滴需求，这里就开个坑吧 hhh</p>
 <span id="more"></span>
-
-<h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><p>微信原生组件JS API （WeixinJSBridge)–》 JS-SDK （开发了功能多样的API）</p>
+<h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><p>微信原生组件JS API （WeixinJSBridge)—》 JS-SDK （开发了功能多样的API）</p>
 <p>JS-SDK特点：</p>
 <ul>
 <li>对内开放-&gt;开源，全部开放</li>
@@ -291,41 +290,40 @@
 </li>
 <li><p>网页开发渲染线程和脚本线程是分开的</p>
 </li>
-<li><p>没有一个完整浏览器对象，因而缺乏相关的DOM API和BOM API</p>
-</li>
-<li><p>一些前端开发的库(jQuery）无法使用</p>
-</li>
-<li><p>一些NPM包无法运行</p>
-</li>
-<li><p>面对两大操作系统：iOS &amp; Android</p>
-</li>
-<li><p>开发环境：</p>
-</li>
+<li>没有一个完整浏览器对象，因而缺乏相关的DOM API和BOM API</li>
+<li>一些前端开发的库(jQuery）无法使用</li>
+<li>一些NPM包无法运行</li>
+<li>面对两大操作系统：iOS &amp; Android</li>
+<li>开发环境：</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left"><strong>运行环境</strong></th>
-<th align="left"><strong>逻辑层</strong></th>
-<th align="left"><strong>渲染层</strong></th>
+<th style="text-align:left"><strong>运行环境</strong></th>
+<th style="text-align:left"><strong>逻辑层</strong></th>
+<th style="text-align:left"><strong>渲染层</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">iOS</td>
-<td align="left">JavaScriptCore</td>
-<td align="left">WKWebView</td>
+<tbody>
+<tr>
+<td style="text-align:left">iOS</td>
+<td style="text-align:left">JavaScriptCore</td>
+<td style="text-align:left">WKWebView</td>
 </tr>
 <tr>
-<td align="left">安卓</td>
-<td align="left">V8</td>
-<td align="left">chromium定制内核</td>
+<td style="text-align:left">安卓</td>
+<td style="text-align:left">V8</td>
+<td style="text-align:left">chromium定制内核</td>
 </tr>
 <tr>
-<td align="left">小程序开发者工具</td>
-<td align="left">NWJS</td>
-<td align="left">Chrome WebView</td>
+<td style="text-align:left">小程序开发者工具</td>
+<td style="text-align:left">NWJS</td>
+<td style="text-align:left">Chrome WebView</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>开发流程：申请小程序账号、安装小程序开发工具、配置项目等</li>
 </ul>
@@ -337,60 +335,68 @@
 </ul>
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>小程序包含一个描述整体程序的 <code>app</code> 和多个描述各自页面的 <code>page</code>。</p>
 <p>一个小程序主体部分由三个文件组成，必须放在项目的根目录，如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">文件</th>
-<th align="left">必需</th>
-<th align="left">作用</th>
+<th style="text-align:left">文件</th>
+<th style="text-align:left">必需</th>
+<th style="text-align:left">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/app.html">app.js</a></td>
-<td align="left">是</td>
-<td align="left">小程序逻辑</td>
+<tbody>
+<tr>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/app.html">app.js</a></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">小程序逻辑</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">app.json</a></td>
-<td align="left">是</td>
-<td align="left">小程序公共配置</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">app.json</a></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">小程序公共配置</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">app.wxss</a></td>
-<td align="left">否</td>
-<td align="left">小程序公共样式表</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">app.wxss</a></td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">小程序公共样式表</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>一个小程序页面由四个文件组成，分别是：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">文件类型</th>
-<th align="left">必需</th>
-<th align="left">作用</th>
+<th style="text-align:left">文件类型</th>
+<th style="text-align:left">必需</th>
+<th style="text-align:left">作用</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html">js</a></td>
-<td align="left">是</td>
-<td align="left">页面逻辑</td>
+<tbody>
+<tr>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/page.html">js</a></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">页面逻辑</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/">wxml</a></td>
-<td align="left">是</td>
-<td align="left">页面结构</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/">wxml</a></td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">页面结构</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#%E9%A1%B5%E9%9D%A2%E9%85%8D%E7%BD%AE">json</a></td>
-<td align="left">否</td>
-<td align="left">页面配置</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html#页面配置">json</a></td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">页面配置</td>
 </tr>
 <tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">wxss</a></td>
-<td align="left">否</td>
-<td align="left">页面样式表</td>
+<td style="text-align:left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">wxss</a></td>
+<td style="text-align:left">否</td>
+<td style="text-align:left">页面样式表</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>注意：为了方便开发者减少配置项，描述页面的四个文件必须具有相同的路径与文件名。</strong></p>
 <h2 id="小程序代码构成"><a href="#小程序代码构成" class="headerlink" title="小程序代码构成"></a>小程序代码构成</h2><ul>
 <li><code>.json</code></li>
@@ -419,11 +425,9 @@
 <li><code>window</code>字段 —— 定义小程序所有页面的顶部背景颜色，文字颜色定义等。</li>
 </ol>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;pages&quot;</span>:[</span><br><span class="line">    <span class="string">&quot;pages/index/index&quot;</span>,</span><br><span class="line">    <span class="string">&quot;pages/logs/logs&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;window&quot;</span>:&#123;</span><br><span class="line">    <span class="attr">&quot;backgroundTextStyle&quot;</span>:<span class="string">&quot;light&quot;</span>,<span class="comment">//导航栏标题颜色</span></span><br><span class="line">    <span class="attr">&quot;navigationBarBackgroundColor&quot;</span>: <span class="string">&quot;#fff&quot;</span>,<span class="comment">//窗口的背景色	</span></span><br><span class="line">    <span class="attr">&quot;navigationBarTitleText&quot;</span>: <span class="string">&quot;Weixin&quot;</span>,<span class="comment">//导航栏标题文字内容</span></span><br><span class="line">    <span class="attr">&quot;navigationBarTextStyle&quot;</span>:<span class="string">&quot;black&quot;</span><span class="comment">//导航栏背景颜色</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h3 id="project-config-json"><a href="#project-config-json" class="headerlink" title="project.config.json"></a>project.config.json</h3><p>工具配置：其中会包括编辑器的颜色、代码上传时自动压缩等等一系列选项。</p>
 <h3 id="page-json"><a href="#page-json" class="headerlink" title="page.json"></a>page.json</h3><p>页面配置：具体到每一个页面（如index.json)的配置。</p>
 <h3 id="WXML模板"><a href="#WXML模板" class="headerlink" title="WXML模板"></a>WXML模板</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;userinfo&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;!hasUserInfo &amp;&amp; canIUse&#125;&#125;&quot;</span>&gt;</span> 获取头像昵称 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:else</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123;userInfo.avatarUrl&#125;&#125;&quot;</span> <span class="attr">background-size</span>=<span class="string">&quot;cover&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;userinfo-nickname&quot;</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;usermotto&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;user-motto&quot;</span>&gt;</span>&#123;&#123;motto&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>与html的区别：</p>
 <ul>
 <li>标签名字：从上边的例子可以看到，小程序的 <code>WXML</code> 用的标签是 <code>view</code>, <code>button</code>, <code>text</code> 等等，这些标签就是小程序给开发者包装好的基本能力，还提供了地图、视频、音频等等组件能力。</li>
@@ -433,10 +437,8 @@
 <p>小程序的框架也是用到了这个思路，如果你需要把一个 <code>Hello World</code> 的字符串显示在界面上。</p>
 <p>WXML 是这么写 :</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>JS 只需要管理状态即可:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.setData(&#123; <span class="attr">msg</span>: <span class="string">&quot;Hello World&quot;</span> &#125;)</span><br></pre></td></tr></table></figure>
-
 <p>通过 <code>&#123;&#123; &#125;&#125;</code> 的语法把一个变量绑定到界面上，我们称为<strong>数据绑定</strong>。仅仅通过数据绑定还不够完整的描述状态和界面的关系，还需要 <code>if</code>/<code>else</code>, <code>for</code>等控制能力，在小程序里边，这些控制能力都用 <code>wx:</code> 开头的属性来表达。</p>
 <h3 id="WXSS样式"><a href="#WXSS样式" class="headerlink" title="WXSS样式"></a>WXSS样式</h3><p>与CSS相比的一些扩充和修改：</p>
 <ul>
@@ -444,14 +446,11 @@
 </li>
 <li><p>提供了全局的样式（<code>app.wxss</code>）和局部样式（<code>page.wss</code>）</p>
 </li>
-<li><p>WXSS仅支持部分CSS选择器</p>
-</li>
+<li>WXSS仅支持部分CSS选择器</li>
 </ul>
 <h3 id="JS逻辑交互"><a href="#JS逻辑交互" class="headerlink" title="JS逻辑交互"></a>JS逻辑交互</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span>&#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">&quot;clickMe&quot;</span>&gt;</span>点击我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>点击 <code>button</code> 按钮的时候，我们希望把界面上 <code>msg</code> 显示成 <code>&quot;Hello World&quot;</code>，于是我们在 <code>button</code> 上声明一个属性: <code>bindtap</code> ，在 JS 文件里边声明了 <code>clickMe</code> 方法来响应这次点击操作：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  clickMe: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.setData(&#123; <span class="attr">msg</span>: <span class="string">&quot;Hello World&quot;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><p>小程序的运行环境也称为宿主环境，由微信客户端提供。</p>
 <p>其分为<strong>渲染层</strong>（WXML、WXSS）和<strong>逻辑层</strong>（JS）。</p>
 <ul>
@@ -459,40 +458,32 @@
 <li>逻辑层采用JsCore线程运行JS脚本</li>
 <li>Native指微信客户端</li>
 </ul>
-<img src="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/01.png" alt="01">
-
+<p><img src="/2021/10/23/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/01.png" alt="01"></p>
 <h2 id="程序与页面"><a href="#程序与页面" class="headerlink" title="程序与页面"></a>程序与页面</h2><p><code>app.json</code>中写在<code>pages</code>的字段的第一个页面就是小程序的首页。</p>
 <p>两个回调：</p>
 <ol>
 <li><code>app.js</code>中定义的<code>App</code>实例的<code>onLaunch</code>回调会被执行：</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 小程序启动之后 触发</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <p>整个小程序只有一个 App 实例，是全部页面共享的。</p>
-<ol start="2">
+<ol>
 <li>page.json-&gt;page.wxml、page.wess-&gt;page.js</li>
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123; <span class="comment">// 参与页面渲染的数据</span></span><br><span class="line">    logs: []</span><br><span class="line">  &#125;,</span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 页面渲染后 执行</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <p><code>Page</code> 是一个页面构造器，这个构造器就生成了一个页面。在生成页面的时候，小程序框架会把 <code>data</code> 数据和 <code>index.wxml</code> 一起渲染出最终的结构，于是就得到了你看到的小程序的样子。</p>
 <p>在渲染完界面之后，页面实例就会收到一个 <code>onLoad</code> 的回调，<strong>在这个回调处理逻辑</strong>。</p>
 <h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>相当于HTML中的标签</p>
 <p>显示地图：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>希望地图一开始的中心的经纬度是广州：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">longitude</span>=<span class="string">&quot;广州经度&quot;</span> <span class="attr">latitude</span>=<span class="string">&quot;广州纬度&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>用户点击了地图上的某个标记：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">map</span> <span class="attr">bindmarkertap</span>=<span class="string">&quot;markertap&quot;</span> <span class="attr">longitude</span>=<span class="string">&quot;广州经度&quot;</span> <span class="attr">latitude</span>=<span class="string">&quot;广州纬度&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>小程序提供了很多API给开发者使用。</p>
 <p>获取用户地理位置：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wx.getLocation(&#123;</span><br><span class="line">    type: <span class="string">&#x27;wgs84&#x27;</span>,</span><br><span class="line">    success: <span class="function">(<span class="params">res</span>)=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> latitude = res.latitude<span class="comment">//纬度</span></span><br><span class="line">        <span class="keyword">var</span> longtitude = res.longitude<span class="comment">//经度</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <p>微信扫一扫：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.scanCode(&#123;</span><br><span class="line">  success: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(res)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
 <p>需要注意的是：多数 API 的回调都是异步，你需要处理好代码逻辑的异步问题。</p>
 
     </div>
@@ -712,6 +703,8 @@
 
 
 
+
+  
 
   
 

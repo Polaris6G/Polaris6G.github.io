@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hadoop介绍  Hadoop部署  大数据基础平台安装实操目标">
+  <meta name="description" content="Hadoop介绍 Hadoop部署  大数据基础平台安装实操目标">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop实操概述">
 <meta property="og:url" content="https://polaris6g.github.io/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Polaris6G&#39;s blog">
-<meta property="og:description" content="Hadoop介绍  Hadoop部署  大数据基础平台安装实操目标">
+<meta property="og:description" content="Hadoop介绍 Hadoop部署  大数据基础平台安装实操目标">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://polaris6g.github.io/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714151807160.png">
 <meta property="og:image" content="https://polaris6g.github.io/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714152057735.png">
@@ -271,15 +271,13 @@
 
       
         <ul>
-<li><p>Hadoop介绍</p>
-</li>
+<li>Hadoop介绍</li>
 <li><p>Hadoop部署</p>
 </li>
 <li><p>大数据基础平台安装实操目标</p>
 </li>
 </ul>
 <span id="more"></span>
-
 <h1 id="Hadoop介绍"><a href="#Hadoop介绍" class="headerlink" title="Hadoop介绍"></a>Hadoop介绍</h1><p>分布式存储组件：HDFS</p>
 <ul>
 <li>分布式存储系统</li>
@@ -296,10 +294,8 @@
 </ul>
 <p><strong>版本技术衍进</strong></p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714151807160.png" class title="image-20220714151807160">
-
 <h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3><p><strong>结构</strong></p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714152057735.png" class title="image-20220714152057735">
-
 <p><strong>特点</strong></p>
 <ul>
 <li><p>扩展性：横向无限扩展</p>
@@ -323,7 +319,6 @@
 <li>可将HDFS看成一个容量巨大、具有高容错性的磁盘</li>
 </ul>
 <h3 id="YARN"><a href="#YARN" class="headerlink" title="YARN"></a>YARN</h3><img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714152500028.png" class title="image-20220714152500028">
-
 <ul>
 <li>Hadoop 2.0新增系统</li>
 <li>负责集群的资源管理和调度</li>
@@ -351,9 +346,6 @@
 </ul>
 <p><strong>计算流程</strong></p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714152950749.png" class title="image-20220714152950749">
-
-
-
 <h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>进程：QuorumPeerMain</p>
 <h3 id="QJM"><a href="#QJM" class="headerlink" title="QJM"></a>QJM</h3><p>进程：JournalNode</p>
 <p><strong>汇总</strong></p>
@@ -362,23 +354,19 @@
 <p>MapReduce： map、reduce</p>
 <p>Zookeeper： QuorumPeerMain</p>
 <h1 id="Hadoop部署"><a href="#Hadoop部署" class="headerlink" title="Hadoop部署"></a>Hadoop部署</h1><img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714153125362.png" class title="image-20220714153125362">
-
 <p><strong>部署模式</strong></p>
 <ul>
-<li><p>本地模式</p>
-</li>
+<li>本地模式</li>
 <li><p>伪分布式模式</p>
 </li>
 <li><p>完全分布式模式</p>
 </li>
 </ul>
 <h3 id="集群部署设置"><a href="#集群部署设置" class="headerlink" title="集群部署设置"></a>集群部署设置</h3><img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714153325977.png" class title="image-20220714153325977">
-
 <h1 id="大数据基础平台安装实操目标"><a href="#大数据基础平台安装实操目标" class="headerlink" title="大数据基础平台安装实操目标"></a>大数据基础平台安装实操目标</h1><img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220714153630885.png" class title="image-20220714153630885">
-
 <h3 id="mysql安装使用"><a href="#mysql安装使用" class="headerlink" title="mysql安装使用"></a>mysql安装使用</h3><p>1、创建安装用户及目录规划</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /iddbs iddbs</span><br><span class="line">cat /etc/passwd</span><br><span class="line">cat /etc/group</span><br><span class="line">passwd iddbs</span><br><span class="line">mkdir /dbdata</span><br><span class="line">chown -R iddbs:iddbs /dbdata</span><br></pre></td></tr></table></figure>
-
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -386,7 +374,8 @@
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>/iddbs</td>
 <td>MySQL程序目录</td>
 </tr>
@@ -434,33 +423,28 @@
 <td>/dbdata/backup</td>
 <td>MySQL备份目录</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>2、上传并解压安装包</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf mysql-5.7.36-linux-glibc2.12-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">mv mysql-5.7.36-linux-glibc2.12-x86_64 /iddbs/mysql-5.7.36</span><br></pre></td></tr></table></figure>
-
 <p>3、准备my.cnf文件</p>
 <p>4、初始化</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/iddbs/mysql-5.7.36/bin/mysqld --defaults-file=/dbdata/3306/3306.cfg --user=iddbs --initialize-insecure</span><br></pre></td></tr></table></figure>
-
 <p>5、启动MySQL服务</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/iddbs/mysql-5.7.36/bin/mysqld_safe --defaults-file=/dbdata/3306/3306.cfg &amp;</span><br></pre></td></tr></table></figure>
-
 <p>6、登录MySQL数据库</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/iddbs/mysql-5.7.36/bin/mysql  -uroot -p  -S /dbdata/3306/mysql.sock</span><br></pre></td></tr></table></figure>
-
 <p>7、创建数据库owndb </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database owndb;</span><br></pre></td></tr></table></figure>
-
 <p>8、给owndb远程登录权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;root&#39;@&#39;%&#39; identified by &#39;N@2510las&#39; with grant option;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
 <p>9、给owndb创建用户owndbuser</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create user &#39;owndbuser&#39;@&#39;%&#39; identified by &#39;Polais6G&#39;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
 <p>10、给owndb用户owndbuser授权</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all on owndb.* to &#39;owndbuser&#39;@&#39;%&#39;;</span><br><span class="line"></span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
-
-<h3 id="大数据基础平面部署准备"><a href="#大数据基础平面部署准备" class="headerlink" title="大数据基础平面部署准备"></a>大数据基础平面部署准备</h3><table>
+<h3 id="大数据基础平面部署准备"><a href="#大数据基础平面部署准备" class="headerlink" title="大数据基础平面部署准备"></a>大数据基础平面部署准备</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>IP</th>
@@ -468,7 +452,8 @@
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>192.168.80.132</td>
 <td>e3base01</td>
 <td>QuorumPeerMain、Namenode、datanode、zkfc、journalnode、resourcemanager、nodemanager</td>
@@ -488,80 +473,59 @@
 <td>mysql01</td>
 <td>mysql</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>1、找一台主机克隆，克隆后配置好对应环境。</p>
 <p>2、配置IP</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
-
 <p>3、关闭防火墙</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld #永久关闭</span><br><span class="line"></span><br><span class="line">systemctl stop firewalld #暂时关闭 </span><br></pre></td></tr></table></figure>
-
 <p>4、修改主机名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname e3base01</span><br></pre></td></tr></table></figure>
-
 <p>5、配置/etc/hosts</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line"></span><br><span class="line">192.168.80.141 e3base01</span><br><span class="line"></span><br><span class="line">192.168.80.142 e3base02</span><br><span class="line"></span><br><span class="line">192.168.80.143 e3base03</span><br></pre></td></tr></table></figure>
-
 <p>6、创建e3base 用户，并创建对应的用数据目录/chunk1 之后授权给e3base:e3base</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useradd -d /e3base e3base</span><br><span class="line"></span><br><span class="line">mkdir /chunk1</span><br><span class="line"></span><br><span class="line">chown -R e3base:e3base  /chunk1</span><br><span class="line"></span><br><span class="line">passwd e3base</span><br></pre></td></tr></table></figure>
-
 <p>7、修改ulimit 的值</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -u 65536 /ulimit -n 1048576 /ulimit -s 262144 /ulimit -c 65536</span><br></pre></td></tr></table></figure>
-
 <p>8、创建/var/run/hadoop-hdfs/ 授权给 e3base:e3base  修改权限为755</p>
 <p>ps：只要重启虚拟机，这个路径就会消失，所以每次重新创建</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir /var/run/hadoop-hdfs/</span><br><span class="line"></span><br><span class="line">chown -R e3base:e3base  /var/run/hadoop-hdfs/</span><br><span class="line"></span><br><span class="line">chmod -R 755 /var/run/hadoop-hdfs/ </span><br></pre></td></tr></table></figure>
-
 <p>9、安装JDK</p>
 <p>10、配置环境变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .bash_profile</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">export PATH</span><br><span class="line"></span><br><span class="line">export IN_HOME=/e3base</span><br><span class="line"></span><br><span class="line">export E3_INFO_HOME=/e3base/e3-info</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\##jdk</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/e3base/jdk</span><br><span class="line"></span><br><span class="line">export PATH=$JAVA_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\##zookeeper</span><br><span class="line"></span><br><span class="line">export ZOO_HOME=$IN_HOME/zookeeper</span><br><span class="line"></span><br><span class="line">export PATH=$ZOO_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">\#hadoop</span><br><span class="line"></span><br><span class="line">export HADOOP_HOME=$IN_HOME/hadoop</span><br><span class="line"></span><br><span class="line">export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">\#hive</span><br><span class="line"></span><br><span class="line">export HIVE_HOME=$IN_HOME/hive</span><br><span class="line"></span><br><span class="line">export PATH=$HIVE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>测试:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -verison</span><br></pre></td></tr></table></figure>
-
 <p>11、克隆主机</p>
 <p>12、修改主机的IP</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens33</span><br></pre></td></tr></table></figure>
-
 <p>13、修改主机名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname e3base02</span><br><span class="line"></span><br><span class="line">hostnamectl set-hostname e3base03</span><br></pre></td></tr></table></figure>
-
 <p>14、配置ssh免密</p>
 <p>root模式下修改：</p>
 <p>SELINUX=disable</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;selinux&#x2F;config</span><br></pre></td></tr></table></figure>
-
 <p>三台主机执行以下命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa	#生成私钥和密钥</span><br><span class="line"></span><br><span class="line">ssh-copy-id e3base01	#发放密匙</span><br></pre></td></tr></table></figure>
-
 <p>在e3base01 主机执行</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys e3base02:/e3base/.ssh/</span><br><span class="line">scp authorized_keys e3base03:/e3base/.ssh/</span><br></pre></td></tr></table></figure>
-
 <h3 id="zookeeper部署"><a href="#zookeeper部署" class="headerlink" title="zookeeper部署"></a>zookeeper部署</h3><p>1、安装解压zookeeper-3.4.5-cdh5.14.0-e3base3.0.0.tar.gz到/e3base/cdh5140</p>
 <p>2、创建软连接（快捷方式）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /e3base/cdh5140/zookeeper-3.4.5-cdh5.14.0-e3base3.0.0 /e3base/zookeeper</span><br></pre></td></tr></table></figure>
-
 <p>3、添加zookeeper相关的环境变量。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi .bash_profile</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export IN_HOME=/e3base/</span><br><span class="line"></span><br><span class="line">export ZOO_HOME=$IN_HOME/zookeeper</span><br><span class="line"></span><br><span class="line">export PATH=$ZOO_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
-
 <p>使其生效：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>4、创建$E3_INFO_HOME/zookeeper/data目录。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $E3_INFO_HOME/zookeeper/data</span><br></pre></td></tr></table></figure>
-
 <p>5、修改/e3base/zookeeper/conf/zookeeper-env.sh</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/e3base/jdk</span><br><span class="line"></span><br><span class="line">export ZOO_LOG_DIR=/e3base/e3-info/zookeeper/logs</span><br></pre></td></tr></table></figure>
-
 <p>6、修改/e3base/zookeeper/conf/zoo.cfg配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">dataDir=/e3base/e3-info/zookeeper/data</span><br><span class="line"></span><br><span class="line">clientPort=11001</span><br><span class="line"></span><br><span class="line">server.1=e3base01:11002:11003</span><br><span class="line"></span><br><span class="line">server.2=e3base02:11002:11003</span><br><span class="line"></span><br><span class="line">server.3=e3base03:11002:11003</span><br><span class="line"></span><br><span class="line">maxClientCnxns=20500</span><br></pre></td></tr></table></figure>
-
 <p>参数解释：</p>
 <ul>
 <li><p><strong>dataDir</strong>指定了在第一步中建立的目录，作为zookeeper操作的数据目录。</p>
@@ -575,15 +539,13 @@
 </ul>
 <p>7、将程序拷贝到其他2台主机：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scp -r zookeeper-3.4.5-cdh5.14.0-e3base3.0.0 e3base02:/e3base/cdh5140/</span><br><span class="line">scp -r zookeeper-3.4.5-cdh5.14.0-e3base3.0.0 e3base03:/e3base/cdh5140/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分别在2台主机上执行创建软连接</span></span><br><span class="line">ln -s /e3base/cdh5140/zookeeper-3.4.5-cdh5.14.0-e3base3.0.0/ /e3base/zookeeper</span><br></pre></td></tr></table></figure>
-
 <p>8、在zoo.cfg 配置的dataDir目录，部署zookeeper服务的主机目录/e3base/e3-info/zookeeper/data下创建myid文件，文件中写入该主机在zoo.cfg配置信息server.id=host：port1：port2项中对应的数字id。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">在e3base03上执行： echo 1 &gt; $E3_INFO_HOME/zookeeper/data/myid </span><br><span class="line"></span><br><span class="line">在e3base04上执行： echo 2 &gt; $E3_INFO_HOME/zookeeper/data/myid </span><br><span class="line"></span><br><span class="line">在e3base05上执行： echo 3 &gt; $E3_INFO_HOME/zookeeper/data/myid </span><br></pre></td></tr></table></figure>
-
 <p>9、<strong>zookeeper启动</strong></p>
 <p>登陆zookeeper集群中每台主机启动zookeeper，命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh start</span><br></pre></td></tr></table></figure>
-
 <p>通过jps查看各主机上进程是否均已启动。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -591,32 +553,29 @@
 <th>进程名</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>在启动的对应主机上查看</td>
 <td>QuorumPeerMain</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>启动后可以使用查看zookeeper进程状态,命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh status</span><br></pre></td></tr></table></figure>
-
 <p>正常的集群状态有两种mode：leader、follower</p>
 <p>可使用<strong>客户端命令</strong>进行测试，是否zookeeper启动正常，命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkCli.sh -server e3base01:11001,e3base02:11001,e3base03:11001（-server后加参数为zookeeper集群服务的地址和端口）</span><br></pre></td></tr></table></figure>
-
 <p>10、zookeep停止</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zkServer.sh stop</span><br></pre></td></tr></table></figure>
-
 <h3 id="HDFS部署"><a href="#HDFS部署" class="headerlink" title="HDFS部署"></a>HDFS部署</h3><p>1、将安装程序hadoop-2.6.0-cdh5.14.0-e3base3.0.0.tar.gz在/e3base/cdh5140目录下解压</p>
 <p>2、设置软连接</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /e3base/cdh5140/hadoop-2.6.0-cdh5.14.0-e3base3.0.0 /e3base/hadoop</span><br></pre></td></tr></table></figure>
-
 <p>3、配置环境变量</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export IN_HOME=/e3base/</span><br><span class="line">export HADOOP_HOME=$IN_HOME/hadoop</span><br><span class="line">export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH</span><br><span class="line">使其生效：</span><br><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>4、hadoop-env.sh文件配置</p>
 <p>特别注意配置文件中的以下参数需要根据实际情况进行修改：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/java/jdk1.8</span><br><span class="line">export HADOOP_HOME=/e3base/hadoop</span><br><span class="line">export E3_INFO_HOME=/e3base/e3-info</span><br><span class="line">export HADOOP_LOG_DIR=$E3_INFO_HOME/hadoop/logs</span><br><span class="line">export HADOOP_PID_DIR=$E3_INFO_HOME/hadoop/pids</span><br></pre></td></tr></table></figure>
-
 <p>参数解释：</p>
 <ul>
 <li><strong>JAVA_HOME</strong>配置上安装jdk的目录。</li>
@@ -627,21 +586,19 @@
 <p>注：配置文件中HADOOP_HEAPSIZE、HADOOP_NAMENODE_OPTS、HADOOP_DATANODE_OPTS参数中的JVM堆内存大小，如在测试环境，请注意修改这些参数中的-Xms -Xms -Xmn值符合当前主机环境，如堆内存值配置过大超过系统可用内存，会导致服务启动失败。</p>
 <p>5、core-site.xml文件配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://drmcluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">name</span>&gt;</span>ha.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base01:11001,e3base02:11001,e3base03:11001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;/<span class="name">property</span>&gt;</span>                                                                                                                                                                </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​      <span class="tag">&lt;<span class="name">value</span>&gt;</span>/e3base/e3-info/hadoop/tmp/hadoop-$&#123;user.name&#125;<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>参数解释：</p>
 <ul>
-<li><p> fs.default.name指定了HDFS的文件系统名称，value格式hdfs://xxxxxx/ 。</p>
+<li><p>fs.default.name指定了HDFS的文件系统名称，value格式hdfs://xxxxxx/ 。</p>
 </li>
-<li><p> ha.zookeeper.quorum指定了用于hadoop namenode失效切换的zookeeper集群信息，填写格式ip:port，多个主机之间以逗号分隔。配置值与zookeeper安装部署保持一致。</p>
+<li><p>ha.zookeeper.quorum指定了用于hadoop namenode失效切换的zookeeper集群信息，填写格式ip:port，多个主机之间以逗号分隔。配置值与zookeeper安装部署保持一致。</p>
 </li>
 <li><p>hadoop.tmp.dir指定了hadoop临时文件存放目录，配置为/e3base/e3-info/hadoop/tmp/hadoop-${user.name}。</p>
 </li>
 </ul>
 <p>6、hdfs-site.xml文件配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.nameservices<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>drmcluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>                                                                     </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.nn1.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base01<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.nn2.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base02<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>                                                                  </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.shared.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span>     <span class="tag">&lt;<span class="name">value</span>&gt;</span>qjournal://e3base01:12007;e3base02:12007;e3base03:12007/drmcluster<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.journalnode.edits.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/e3base/e3-info/hadoop/jn<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>file:///e3base/e3-info/hadoop/nn<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>                                                                     </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">​    <span class="tag">&lt;<span class="name">value</span>&gt;</span>/chunk1/hdfs<span class="tag">&lt;/<span class="name">value</span>&gt;</span> </span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span>  </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p> dfs.nameservices指定了集群服务名称，配置为drmcluster。</p>
+<li><p>dfs.nameservices指定了集群服务名称，配置为drmcluster。</p>
 </li>
 <li><p>dfs.namenode.nn1.hostname,dfs.namenode.nn2.hostname分别指定配置namenode服务的主机名，根据实际情况修改。</p>
 </li>
@@ -658,81 +615,61 @@
 </ul>
 <p>7、slaves文件配置</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/***********************slaves文件内容***********************/</span><br><span class="line"></span><br><span class="line">e3base03</span><br><span class="line"></span><br><span class="line">e3base04</span><br><span class="line"></span><br><span class="line">e3base05</span><br><span class="line"></span><br><span class="line">/************************************************************/</span><br></pre></td></tr></table></figure>
-
 <p>slaves文件中配置了hadoop集群所包含的所有datanode节点，每行对应一个主机名。HDFS和YARN公用。</p>
 <p>8、机架感知配置</p>
 <p>在/e3base/cdh5140/hadoop/etc/hadoop目录下，修改topology.data文件。根据datanode节点修改相应的IP和主机名，以及机架名（rack）。如果datanode都在同一机架，机架名可相同。</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">192.168.248.133 e3base01 /rack1</span><br><span class="line"></span><br><span class="line">192.168.248.134 e3base02 /rack2</span><br><span class="line"></span><br><span class="line">192.168.248.133 e3base03 /rack3</span><br></pre></td></tr></table></figure>
-
 <p>9、将程序拷贝到其他2台主机：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scp -r hadoop-2.6.0-cdh5.14.0-e3base3.0.0 e3base02:/e3base/cdh5140</span><br><span class="line">scp -r hadoop-2.6.0-cdh5.14.0-e3base3.0.0 e3base03:/e3base/cdh5140</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 分别在2台主机上执行创建软连接</span></span><br><span class="line">ln -s /e3base/cdh5140/hadoop-2.6.0-cdh5.14.0-e3base3.0.0/ /e3base/hadoop</span><br></pre></td></tr></table></figure>
-
 <p>10、创建对应的路径（只要重启虚拟机，这个路径就会消失，所以<strong>每次重新创建</strong>）（root下）！！！</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /var/run/hadoop-hdfs/ </span><br><span class="line"></span><br><span class="line">chown -R e3base:e3base  /var/run/hadoop-hdfs/</span><br><span class="line"></span><br><span class="line">chmod -R 755 /var/run/hadoop-hdfs/</span><br></pre></td></tr></table></figure>
-
 <p><strong>11、初始化HDFS</strong></p>
 <p>（1）初始化zkfc</p>
 <p>在ZK中创建znode来存储automatic Failover的数据，任选一个NN执行完成即可。在一个namenode上进入$HADOOP_HOME/bin执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/bin/hdfs zkfc -formatZK</span><br></pre></td></tr></table></figure>
-
 <p>（2）先启动journal node进程。</p>
 <p>在每一个journalnode上进入$HADOOP_HOME执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start journalnode</span><br></pre></td></tr></table></figure>
-
 <p>执行完成后，通过jps查看JournalNode进程是否启动正常。</p>
 <p>（3）初始化主namenode节点</p>
 <p>在需要做主namenode节点主机上进入$HADOOP_HOME/bin执行如下命令实现初始化HDFS目录、文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/bin/hdfs namenode -format</span><br></pre></td></tr></table></figure>
-
 <p>（4）初始化备namenode节点</p>
 <p>启动主namenode节点：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start namenode</span><br></pre></td></tr></table></figure>
-
 <p>在另外备namenode节点拷贝主namenode节点的元数据，保证两个节点数据一致：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/bin/hdfs namenode -bootstrapStandby</span><br></pre></td></tr></table></figure>
-
 <p><strong>12、启动HDFS</strong></p>
 <p>（1）启动hdfs</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/start-dfs.sh</span><br></pre></td></tr></table></figure>
-
 <p>（2）单节点启动namenode进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start namenode</span><br></pre></td></tr></table></figure>
-
 <p>（3）单节点启动zkfc进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start zkfc</span><br></pre></td></tr></table></figure>
-
 <p>（4）单节点启动datanode进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start datanode</span><br></pre></td></tr></table></figure>
-
 <p>（5）单节点启动journalnode进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemon.sh start journalnode</span><br></pre></td></tr></table></figure>
-
 <p>（6）启动所有datanode进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/e3base/hadoop/sbin/hadoop-daemons.sh start datanode</span><br></pre></td></tr></table></figure>
-
 <p>ps：如配置了hadoop环境变量，无需进入/e3base/hadoop/sbin/执行</p>
 <p><strong>13、HDFS停止</strong></p>
 <p>（1）停止hdfs</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;hadoop&#x2F;sbin&#x2F;stop-dfs.sh</span><br></pre></td></tr></table></figure>
-
 <p>（2）单节点停止namenode进程</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;hadoop&#x2F;sbin&#x2F;hadoop-daemon.sh stop namenode</span><br></pre></td></tr></table></figure>
-
 <p>（3）单节点停止zkfc进程（两个namenode单独停止）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;hadoop&#x2F;sbin&#x2F;hadoop-daemon.sh stop zkfc</span><br></pre></td></tr></table></figure>
-
 <p>（4）单节点停止datanode进程</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;hadoop&#x2F;sbin&#x2F;hadoop-daemon.sh stop datanode</span><br></pre></td></tr></table></figure>
-
 <p>（5）单节点启动journalnode进程</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;hadoop&#x2F;sbin&#x2F;hadoop-daemon.sh stop journalnode</span><br></pre></td></tr></table></figure>
-
 <p>（6）停止所有datanode进程</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;e3base&#x2F;cdh5140&#x2F;hadoop&#x2F;sbin&#x2F;hadoop-daemons.sh stop datanode</span><br></pre></td></tr></table></figure>
-
 <p>ps：如配置了hadoop环境变量，无需进入/e3base/hadoop/sbin/执行</p>
 <p><strong>13、HDFS进程查看</strong></p>
 <p>jps</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -740,7 +677,8 @@
 <th>进程名</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>$HADOOP_HOME /etc/hadoop下hdfs.xml文件中dfs.namenode.rpc-address.mycluster..*对应的主机</td>
 <td>NameNode</td>
 </tr>
@@ -756,55 +694,44 @@
 <td>$HADOOP_HOME /etc/hadoop下slaves文件中包含的主机</td>
 <td>DataNode</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>13、HDFS状态查看</strong></p>
 <p>（1） namenode状态查看</p>
 <p>执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs haadmin -getServiceState serviceid</span><br></pre></td></tr></table></figure>
-
 <p>如</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs haadmin -getServiceState nn1</span><br><span class="line"></span><br><span class="line">hdfs haadmin -getServiceState nn2</span><br></pre></td></tr></table></figure>
-
 <p>注：</p>
 <p>两种状态：active、standby。serviceid为该主机在$HADOOP_HOME /etc/hadoop下hdfs.xml文件中dfs.namenode.rpc-address.mycluster.*对应的值。</p>
 <p>（2） namenode状态手动切换</p>
 <p>nn1为active，手动切换成nn2为active，执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop/bin/hdfs haadmin -DFSHAadmin -failover nn1 nn2</span><br></pre></td></tr></table></figure>
-
 <p>（3） namenode离开安全模式</p>
 <p>hdfs 是否进入安全模式检查：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -safemode get</span><br></pre></td></tr></table></figure>
-
 <p>离开安全模式，执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop/bin/hdfs dfsadmin -safemode leave</span><br></pre></td></tr></table></figure>
-
 <p>（4） HDFS 健康状态检查</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfsadmin -report</span><br></pre></td></tr></table></figure>
-
 <p>（5） HDFS数据块完整性检查</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs fsck / </span><br></pre></td></tr></table></figure>
-
 <p><strong>14、HDFS命令使用</strong></p>
 <p>（1）文件列表的命令为: </p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -ls</span><br><span class="line"></span><br><span class="line">hdfs dfs -ls路径</span><br></pre></td></tr></table></figure>
-
 <p>不指名路径，默认用户工作目录，为hdfs下的/user/$USER目录（$USER为当前用户）</p>
 <p>（2）增加文件目录：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -mkdir文件目录路径</span><br></pre></td></tr></table></figure>
-
 <p>（3）用put将文件从本地文件复制到HDFS中去：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put &lt;localsrc&gt; ... &lt;dst&gt;</span><br></pre></td></tr></table></figure>
-
 <p>（4）从HDFS中取回文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -get &lt;localsrc&gt; ... &lt;dst&gt;</span><br></pre></td></tr></table></figure>
-
 <p>（5）删除文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -rm example.txt</span><br></pre></td></tr></table></figure>
-
 <p><strong>15、HDFS监控页面使用</strong></p>
 <p>查看namenode:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;namenodeIP or hostname:port]</span><br><span class="line">(http:&#x2F;&#x2F;masterIP or hostname:port&#x2F;master-status)</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.229.132:12003&#x2F;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong>namenodeIP</strong> or <strong>hostname</strong>为状态为active的namenode对应IP或hostname</p>
 </li>
@@ -813,7 +740,6 @@
 </ul>
 <p>查看 datanode:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;datanodeIP or hostname:port]</span><br><span class="line">(http:&#x2F;&#x2F;regionserverIP or hostname:port &#x2F;rs-status)</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.229.132:12004&#x2F;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong>datanodeIP</strong> or <strong>hostname</strong>为datanode对应IP或hostname</p>
 </li>
@@ -822,13 +748,10 @@
 </ul>
 <p>效果如图：</p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220715193833455.png" class title="image-20220715193833455">
-
 <h3 id="yarn部署"><a href="#yarn部署" class="headerlink" title="yarn部署"></a>yarn部署</h3><p>1、环境变量配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export IN_HOME=/e3base/cdh5140</span><br><span class="line">export HADOOP_HOME=$IN_HOME/hadoop</span><br><span class="line">export PATH=$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH</span><br><span class="line"></span><br><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>2、yarn-env.sh文件配置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/e3base/jdk</span><br><span class="line">export HADOOP_HOME=/e3base/cdh5140/hadoop</span><br><span class="line">export E3_INFO_HOME=/e3base/e3-info</span><br><span class="line">export YARN_PID_DIR=$E3_INFO_HOME/hadoop/pids</span><br><span class="line">export YARN_LOG_DIR=$E3_INFO_HOME/hadoop/logs</span><br><span class="line">128m 128m</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>JAVA_HOME配置上安装jdk的目录,JDK安装路径，默认情况下执行读取linux环境变量${JAVA_HOME}。。</p>
 </li>
@@ -840,137 +763,109 @@
 <p><em>ps：配置文件中YARN_RESOURCEMANAGER_OPTS、YARN_NODEMANAGER_OPTS参数中的JVM堆内存大小，如在测试环境，请注意修改这些参数中的-Xms -Xms -Xmn值符合当前主机环境，如堆内存值配置过大超过系统可用内存，会导致服务启动失败</em></p>
 <p>3、yarn-site.xml文件配置</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.zk-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base01:11001,e3base02:11001,e3base03:11001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.rm1<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base01<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.rm2<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base02<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.local-dirs<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>/chunk1/yarn/local<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.log-dirs<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>/chunk1/yarn/logs<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.admin.acl<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span>     </span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.log-aggregation-enable<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.remote-app-log-dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">value</span>&gt;</span>/hadoop-yarn/aggrelogs<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>4、fair-scheduler.xml文件配置</p>
 <p>集群总容量/内核数量</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">queue</span> <span class="attr">name</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">minResources</span>&gt;</span>1024 mb, 1 vcores<span class="tag">&lt;/<span class="name">minResources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxResources</span>&gt;</span>40960 mb, 40 vcores<span class="tag">&lt;/<span class="name">maxResources</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">queue</span> <span class="attr">name</span>=<span class="string">&quot;default&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">minResources</span>&gt;</span>1024 mb, 1 vcores<span class="tag">&lt;/<span class="name">minResources</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">maxResources</span>&gt;</span>40960 mb, 40 vcores<span class="tag">&lt;/<span class="name">maxResources</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>5、主机间同步</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp yarn-env.sh yarn-site.xml fair-scheduler.xmle3base02:&#x2F;e3base&#x2F;hadoop&#x2F;etc&#x2F;hadoop&#x2F;</span><br><span class="line">scp yarn-env.sh yarn-site.xml fair-scheduler.xmle3base03:&#x2F;e3base&#x2F;hadoop&#x2F;etc&#x2F;hadoop&#x2F;</span><br></pre></td></tr></table></figure>
-
 <p>6、在mapred-env.sh中增加配置：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/e3base/hadoop</span><br><span class="line">export E3_INFO_HOME=/e3base/e3-info</span><br><span class="line">export HADOOP_MAPRED_LOG_DIR=$E3_INFO_HOME/hadoop/logs</span><br></pre></td></tr></table></figure>
-
 <p>7、mapred-site.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>e3base02<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>$&#123;mapreduce.jobhistory.hostname&#125;:13021<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>$&#123;mapreduce.jobhistory.hostname&#125;:13022<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.intermediate-done-dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>/mr-history/idone<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.done-dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">value</span>&gt;</span>/mr-history/done<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p> Mapreduce.jobhistory.hostname 填写jobhistory服务主机名</p>
+<li><p>Mapreduce.jobhistory.hostname 填写jobhistory服务主机名</p>
 </li>
-<li><p> mapreduce.jobhistory.address：MapReduce JobHistory Server地址，地址形式为 主机地址：端口。（注：如部署Jobhistory服务主机处于内外网环境，需配置主机地址为0.0.0.0）在YARN中执行MR代码时，作业向该服务汇报作业的执行历史，从而记录作业的执行信息，供查询用。</p>
+<li><p>mapreduce.jobhistory.address：MapReduce JobHistory Server地址，地址形式为 主机地址：端口。（注：如部署Jobhistory服务主机处于内外网环境，需配置主机地址为0.0.0.0）在YARN中执行MR代码时，作业向该服务汇报作业的执行历史，从而记录作业的执行信息，供查询用。</p>
 </li>
-<li><p> mapreduce.jobhistory.webapp.address：MapReduce JobHistory Server Web UI地址。通过web页面查看MR执行状态的地址。配置方式同上。</p>
+<li><p>mapreduce.jobhistory.webapp.address：MapReduce JobHistory Server Web UI地址。通过web页面查看MR执行状态的地址。配置方式同上。</p>
 </li>
-<li><p> mapreduce.jobhistory.intermediate-done-dir：MapReduce作业产生的日志存放位置</p>
+<li><p>mapreduce.jobhistory.intermediate-done-dir：MapReduce作业产生的日志存放位置</p>
 </li>
-<li><p> mapreduce.jobhistory.done-dir：MR JobHistory Server管理的日志的存放位置</p>
+<li><p>mapreduce.jobhistory.done-dir：MR JobHistory Server管理的日志的存放位置</p>
 </li>
 </ul>
 <p>8、<strong>yarn启动</strong></p>
 <p>（1） 与hdfs同时启动集群</p>
 <p>在hadoop active namenode主机上执行如下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh  </span><br></pre></td></tr></table></figure>
-
 <p>启动hdfs和yarn，若配置了zookeeper，同时启动zkfc</p>
 <p>（2）在主管理节点上运行下面指令，仅启动YARN</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-yarn.sh</span><br></pre></td></tr></table></figure>
-
 <p>（3）在resourcemanager节点启动jobhistoryserver进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr-jobhistory-daemon.sh start historyserver </span><br></pre></td></tr></table></figure>
-
 <p>（4） 在YARN中的两个管理节点分别启动resourcemanager进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemon.sh start resourcemanager</span><br></pre></td></tr></table></figure>
-
 <p>（5） 在YARN集群中的每个计算节点启动nodemanager进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemon.sh start nodemanager</span><br></pre></td></tr></table></figure>
-
 <p>（6） 启动YARN所有nodemanager节点</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemons.sh start nodemanager</span><br></pre></td></tr></table></figure>
-
 <p><em>注：YARN的HA启动在主resourcemanager节点执行<code>start-yarn.sh</code>后，在备节点执行<code>yarn-daemon.sh start resourcemanager</code></em></p>
 <p>9、<strong>yarn停止</strong></p>
 <p>（1） 与hdfs同时停止hdfs集群</p>
 <p>在hadoop active namenode主机e3base01上执行如下命令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stop-all.sh  </span><br></pre></td></tr></table></figure>
-
 <p>（2） 在主管理节点上运行下面指令，仅停止YARN</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stop-yarn.sh</span><br></pre></td></tr></table></figure>
-
 <p>（3） 在namenode的备节点停止jobhistoryserver进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mr-jobhistory-daemon.sh stop historyserver </span><br></pre></td></tr></table></figure>
-
 <p>（4） 在YARN中的两个管理节点分别停止resourcemanager进程</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemon.sh stop resourcemanager</span><br></pre></td></tr></table></figure>
-
 <p>（5） 在YARN集群中的每个计算节点停止nodemanager进程</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemon.sh stop nodemanager</span><br></pre></td></tr></table></figure>
-
 <p>（6） 停止YARN所有nodemanager节点</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn-daemons.sh stop nodemanager</span><br></pre></td></tr></table></figure>
-
 <p>10、yarn进程查看</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">主机</th>
-<th align="center">进程名</th>
+<th style="text-align:center">主机</th>
+<th style="text-align:center">进程名</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">在$HADOOP_HOME/etc/hadoop/slaver中对应主机上查看</td>
-<td align="center">NodeManager</td>
+<tbody>
+<tr>
+<td style="text-align:center">在$HADOOP_HOME/etc/hadoop/slaver中对应主机上查看</td>
+<td style="text-align:center">NodeManager</td>
 </tr>
 <tr>
-<td align="center">在主管理节点</td>
-<td align="center">ResourceManager</td>
+<td style="text-align:center">在主管理节点</td>
+<td style="text-align:center">ResourceManager</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>11、yarn指令执行</p>
 <p>在YARN集群中的任意一个节点中执行下列指令：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn rmadmin -getServiceState rm1</span><br><span class="line"></span><br><span class="line">yarn rmadmin -getServiceState rm2</span><br></pre></td></tr></table></figure>
-
 <p>返回的结果是active或者stanby。只有且必须是两种状态之一，否则YARN工作不正常。</p>
 <p>查看YARN集群的节点状态。执行下列指令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn node -list -all</span><br></pre></td></tr></table></figure>
-
 <p>若返回的节点数量和集群中的$HADOOP_HOME/etc/hadoop/slave的主机一样且显示RUNNING状态，则YARN的计算节点工作正常</p>
 <p>查看所有任务</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn application -list</span><br></pre></td></tr></table></figure>
-
-<p>12、监控页面<a target="_blank" rel="noopener" href="http://${yarn.resourcemanager.rm1}:8088/">http://${yarn.resourcemanager.rm1}: 1</a>3006</p>
+<p>12、监控页面<a target="_blank" rel="noopener" href="http://${yarn.resourcemanager.rm1}:8088">http://${yarn.resourcemanager.rm1}: 1</a>3006</p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220721123948884.png" class title="image-20220721123948884">
-
 <p>13、运行wordcount示例：</p>
 <p>（1）创建几个HDFS目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /zwl/wordcount （输入数据源目录）</span><br><span class="line"></span><br><span class="line">hadoop fs -mkdir -p /output/     （输出结果目录）</span><br></pre></td></tr></table></figure>
-
 <p>2.创建源数据文件 vi inputword </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hello abountyun</span><br><span class="line"></span><br><span class="line">hello master</span><br><span class="line"></span><br><span class="line">hello slave</span><br><span class="line"></span><br><span class="line">hello slave</span><br><span class="line"></span><br><span class="line">abountyun first</span><br></pre></td></tr></table></figure>
-
 <p>3.将本地文件上传到HDFS</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -put inputword /zwl/wordcount</span><br></pre></td></tr></table></figure>
-
 <p>查看文件内容</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -text /zwl/wordcount/inputword</span><br></pre></td></tr></table></figure>
-
 <p>（4） 执行mapreduce程序</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /e3base/hadoop/share/hadoop/mapreduce</span><br><span class="line"></span><br><span class="line">hadoop jar ./hadoop-mapreduce-examples-2.6.0-cdh5.14.0.jar wordcount /zwl/wordcount  /output/wordcount  </span><br></pre></td></tr></table></figure>
-
 <p>等待执行完毕</p>
 <p>（5）查看输出结果</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs dfs -text /output/wordcout/part-r-00000</span><br></pre></td></tr></table></figure>
-
 <p>运行过程如下：</p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220721125506134.png" class title="image-20220721125506134">
-
 <p>输出内容如下：</p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220721125820845.png" class title="image-20220721125820845">
-
-<p>访问<a target="_blank" rel="noopener" href="http://resourcemanager主机ip:13006/">http://ResourceManager主机ip:13006/</a> 可查看任务执行情况</p>
+<p>访问<a target="_blank" rel="noopener" href="http://ResourceManager主机ip:13006/">http://ResourceManager主机ip:13006/</a> 可查看任务执行情况</p>
 <img src="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/image-20220721125417043.png" class title="image-20220721125417043">
-
-
-
 
     </div>
 
@@ -1192,6 +1087,8 @@
 
 
 
+
+  
 
   
 

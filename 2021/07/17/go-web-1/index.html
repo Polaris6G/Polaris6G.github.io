@@ -272,7 +272,6 @@
         <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>介绍使用Go开发web应用的方法，并阐明Go的相对优势；</p>
 <p>对HTTP协议等构成Web应用的关键概念做深入浅出的介绍。</p>
 <span id="more"></span>
-
 <h1 id="1-1-Go编写Web应用的优势"><a href="#1-1-Go编写Web应用的优势" class="headerlink" title="1.1 Go编写Web应用的优势"></a>1.1 Go编写Web应用的优势</h1><ul>
 <li><strong>可扩展</strong>：管理者可以通过添加更多的硬件来获得更强的请求处理能力，go中表现为<strong>高并发（垂直扩展）、架设代理部署web应用（水平扩展）</strong>。</li>
 <li><strong>模块化</strong>：大规模web应用应由可替换的组件构成，这使得开发者能更系统的分工、开发并减少人力、脑力支出。go中表现为<strong>通过它的接口机制对行为进行描述，一次来实现动态类型匹配</strong>。</li>
@@ -289,10 +288,9 @@
 <h1 id="1-3-HTTP简介"><a href="#1-3-HTTP简介" class="headerlink" title="1.3 HTTP简介"></a>1.3 HTTP简介</h1><p>HTTP：万维网的应用层通信协议，Web页面中的所有数据都是通过这个看似简单的文本协议进行传输的。</p>
 <p>HTTP版本有很多，最初版本为HTTP 0.9, HTTP 1.0由大量特性合并而成，HTTP 1.1是目前使用最广泛的版本。这里主要对HTTP 1.1进行讨论，但也适当介绍HTTP 2.0的相关信息。</p>
 <p><strong>HTTP定义</strong>：是一种<strong>无状态</strong>、<strong>由文本构成</strong>的<strong>请求-响应（request-response</strong>）协议，这种协议使用的是<strong>客户端-服务器（client-server）</strong>计算模型。</p>
-<img src="/2021/07/17/go-web-1/01.png" alt="01">
-
+<p><img src="/2021/07/17/go-web-1/01.png" alt="01"></p>
 <p>客户端向服务器发起<strong>对话</strong>，服务器为客户端提供<strong>服务</strong>。</p>
-<p>在HTTP协议中，客户端也被称为<strong>用户代理（user-agent)<strong>，而服务器通常被称为</strong>Web服务器</strong>。</p>
+<p>在HTTP协议中，客户端也被称为<strong>用户代理（user-agent)</strong>，而服务器通常被称为<strong>Web服务器</strong>。</p>
 <p>大多数情况下，HTTP客户端都是一个<strong>Web浏览器</strong>。</p>
 <p>HTTP是一种<strong>无状态协议</strong>，它唯一知道的就是客户端会向服务器发送请求，而服务器则会向客户端返回响应，并且后续发生的请求对之前发生过的请求一无所知，即不会在服务器和客户端见创建一个持续存在的通信通道。但如今HTTP 1.1也可以通过持久化连接来提升性能。</p>
 <p>HTTP以<strong>纯文本方式</strong>而不是二进制方式发送和接收协议数据。这样做是为了让开发者可以在无需使用专门的协议分析工具的情况下，你搞清楚通信中正在发生的事情，从而更容易进行故障排查。</p>
@@ -305,7 +303,6 @@
 </ol>
 <p>一个典型的HTTP请求看上去是这样的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;Protocols&#x2F;rfc2616&#x2F;rfc2616.html HTTP&#x2F;1.1  #请求行</span><br><span class="line">Host: www.w3.org</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0   #首部</span><br><span class="line">(empty line)   #空行+主体</span><br></pre></td></tr></table></figure>
-
 <p>请求行中的第一个单词为<strong>请求方法</strong>（request method），之后跟着的是<strong>统一资源标识符</strong>（Uniform Resource Identifier，<strong>URI</strong>）以及所用的HTTP版本。</p>
 <p>位于请求行之后的两个文本行为请求的<strong>首部</strong>（header）。</p>
 <p>这个报文的最后一行为<strong>空</strong>行，技术报文主体内容为空，这个空行也必须存在，至于报文是否包含主体则需要根据请求使用的方法而定。</p>
@@ -334,54 +331,58 @@
 <p>组成：由任意多个用冒号分隔的纯文本键值对组成，最后以回车（CR）和换行（LF）结尾。</p>
 <p>宿主（<strong>Host</strong>）首部字段是HTTP 1.1 <strong>唯一强制要求的首部</strong>。</p>
 <p>如果请求的报文中包含有可选的主体，那么请求的首部还需要带有内容长度（<strong>Content-Length</strong>）字段或者传输编码（<strong>Transfer-Encoding</strong>)字段。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">首部字段</th>
-<th align="center">作用描述</th>
+<th style="text-align:center">首部字段</th>
+<th style="text-align:center">作用描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Accept</td>
-<td align="center">客户端在HTTP响应中能够接收的内容类型(Accept: text/html)(接收文本文件)</td>
+<tbody>
+<tr>
+<td style="text-align:center">Accept</td>
+<td style="text-align:center">客户端在HTTP响应中能够接收的内容类型(Accept: text/html)(接收文本文件)</td>
 </tr>
 <tr>
-<td align="center">Accept-Charset</td>
-<td align="center">客户端要求服务器使用的字符集编码（Accept-Charset: utf-8)</td>
+<td style="text-align:center">Accept-Charset</td>
+<td style="text-align:center">客户端要求服务器使用的字符集编码（Accept-Charset: utf-8)</td>
 </tr>
 <tr>
-<td align="center">Authorization</td>
-<td align="center">向服务器发送基本的身份验证证书</td>
+<td style="text-align:center">Authorization</td>
+<td style="text-align:center">向服务器发送基本的身份验证证书</td>
 </tr>
 <tr>
-<td align="center"><strong>Cookie</strong></td>
-<td align="center">客户端将这个首部中服务器之前设置的所有cookie回传给服务器</td>
+<td style="text-align:center"><strong>Cookie</strong></td>
+<td style="text-align:center">客户端将这个首部中服务器之前设置的所有cookie回传给服务器</td>
 </tr>
 <tr>
-<td align="center">Content-Length</td>
-<td align="center">请求主体的字节长度</td>
+<td style="text-align:center">Content-Length</td>
+<td style="text-align:center">请求主体的字节长度</td>
 </tr>
 <tr>
-<td align="center">Content-Type</td>
-<td align="center">当请求包含主体的时候，这个首部用于记录主体内容的类型</td>
+<td style="text-align:center">Content-Type</td>
+<td style="text-align:center">当请求包含主体的时候，这个首部用于记录主体内容的类型</td>
 </tr>
 <tr>
-<td align="center">Host</td>
-<td align="center">服务器的名字以及端口号，如果这个首部没有记录服务器的端口号，就表示服务器使用的是80端口</td>
+<td style="text-align:center">Host</td>
+<td style="text-align:center">服务器的名字以及端口号，如果这个首部没有记录服务器的端口号，就表示服务器使用的是80端口</td>
 </tr>
 <tr>
-<td align="center">Referrer</td>
-<td align="center">发起请求的页面所在的地址</td>
+<td style="text-align:center">Referrer</td>
+<td style="text-align:center">发起请求的页面所在的地址</td>
 </tr>
 <tr>
-<td align="center">Server</td>
-<td align="center">说明服务器名称</td>
+<td style="text-align:center">Server</td>
+<td style="text-align:center">说明服务器名称</td>
 </tr>
 <tr>
-<td align="center"><strong>User-Agent</strong></td>
-<td align="center">对发起请求的客户端进行描述</td>
+<td style="text-align:center"><strong>User-Agent</strong></td>
+<td style="text-align:center">对发起请求的客户端进行描述</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h1 id="1-5-HTTP响应"><a href="#1-5-HTTP响应" class="headerlink" title="1.5 HTTP响应"></a>1.5 HTTP响应</h1><p>HTTP响应是对HTTP请求报文的回复。</p>
 <p>HTTP响应构成：</p>
 <ul>
@@ -392,39 +393,42 @@
 </ul>
 <p>栗子：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Sat, 17 Jul 2021 10:47:13 GMT</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2</span><br><span class="line"><span class="attribute">Last-Modified</span><span class="punctuation">: </span>Wed, 22 Jul 2009 19:15:56 GMT</span><br><span class="line"><span class="attribute">ETag</span><span class="punctuation">: </span>&quot;34aa387-d-1568eb00&quot;</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>51</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/plain;charset=iso-8859-1</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;polaris6g homepage&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!--body goes here--&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
 <p>HTTP响应的第一行为HTTP版本、<strong>状态行</strong>（status code）和相应的<strong>原因短语</strong>（reason phrase），原因短语对状态码进行了简单的描述。</p>
 <p>这个栗子还包含了一个HTML格式的报文主体。</p>
 <h2 id="1-5-1-响应状态码"><a href="#1-5-1-响应状态码" class="headerlink" title="1.5.1 响应状态码"></a>1.5.1 响应状态码</h2><p>HTTP响应中的状态码表明了响应的类型。</p>
 <p>HTTP响应状态码共有5种，以不同的数字作为前缀。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">状态码类型</th>
-<th align="center">作用描述</th>
+<th style="text-align:center">状态码类型</th>
+<th style="text-align:center">作用描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1XX</td>
-<td align="center">情报状态码</td>
+<tbody>
+<tr>
+<td style="text-align:center">1XX</td>
+<td style="text-align:center">情报状态码</td>
 </tr>
 <tr>
-<td align="center">2xx</td>
-<td align="center">成功状态码</td>
+<td style="text-align:center">2xx</td>
+<td style="text-align:center">成功状态码</td>
 </tr>
 <tr>
-<td align="center">3xx</td>
-<td align="center">重定向状态码</td>
+<td style="text-align:center">3xx</td>
+<td style="text-align:center">重定向状态码</td>
 </tr>
 <tr>
-<td align="center">4xx</td>
-<td align="center">客户端错误状态码</td>
+<td style="text-align:center">4xx</td>
+<td style="text-align:center">客户端错误状态码</td>
 </tr>
 <tr>
-<td align="center">5xx</td>
-<td align="center">服务器错误状态码</td>
+<td style="text-align:center">5xx</td>
+<td style="text-align:center">服务器错误状态码</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>1XX：服务器通过这些状态码来告知客户端，自己已经接受到了客户端的请求，并已经对请求进行了处理</li>
 <li>2XX：已接受请求+成功处理；标准响应: “200 OK”</li>
@@ -432,14 +436,16 @@
 <li>4XX：客户端发送的请求出现问题。最常见：”404 Not Found”(服务器无法从请求指定的URL中找到客户端想要的资源)</li>
 <li>5XX：服务器因为某些原因而无法正确处理请求。最常见：”500 Internet Server Error”</li>
 </ul>
-<h2 id="1-5-2-响应首部"><a href="#1-5-2-响应首部" class="headerlink" title="1.5.2 响应首部"></a>1.5.2 响应首部</h2><table>
+<h2 id="1-5-2-响应首部"><a href="#1-5-2-响应首部" class="headerlink" title="1.5.2 响应首部"></a>1.5.2 响应首部</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>首部字段</th>
 <th>作用描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Allow</td>
 <td>告知客户端，服务器支持哪些请求方法</td>
 </tr>
@@ -471,12 +477,13 @@
 <td>WWW-Authenticate</td>
 <td>服务器通过这个首部告知客户端，在Authorization请求首部中应该提供哪种类型的身份验证信息</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h1 id="1-6-URI"><a href="#1-6-URI" class="headerlink" title="1.6 URI"></a>1.6 URI</h1><p><strong>统一资源标识符（Uniform Resource Identifier, URI)</strong></p>
 <p><strong>它包含了统一资源名称（URN）和统一资源定位符（URL）</strong>，且这两者有相似的语法和格式。</p>
 <p>URI的一般格式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;方案名称&gt;:&lt;分层部分&gt;[ ? &lt;查询参数&gt; ] [ # &lt;片段&gt; ]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>方案名称：记录了URI正在使用的方案，它定义了URI其余部分的结构。多数情况会使用HTTP方案。</li>
 <li>分层部分：包含了资源的识别信息，这些信息回忆分层的方式进行组织。若以（//）开头，那么说明它包含了可选的用户信息，这些信息将以@符号结尾，后跟分层路径。不带用户信息的分层部分就是一个单纯的路径，每个路径由一连串的分段（segment）组成，各个分段之间使用单斜线（/)分隔。</li>
@@ -488,64 +495,68 @@
 </ul>
 <p>因为每个URL都是一个单独的字符串，所以URL里面不能够包含空格。</p>
 <p><strong>URL编码</strong>：URL编码会把保留字符转换成改字符在ASCⅡ编码中对应的字节值，接着把这个字节值表示为一个两位长的 十六进制数字，最后再这个十六进制数字的前面加上一个百分号（%）。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">序号</th>
-<th align="center">特殊字符</th>
-<th align="center">含义</th>
-<th align="center">十六进制值</th>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">特殊字符</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">十六进制值</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">1.</td>
-<td align="center">+</td>
-<td align="center">URL 中+号表示空格</td>
-<td align="center">%2B</td>
+<tbody>
+<tr>
+<td style="text-align:center">1.</td>
+<td style="text-align:center">+</td>
+<td style="text-align:center">URL 中+号表示空格</td>
+<td style="text-align:center">%2B</td>
 </tr>
 <tr>
-<td align="center">2.</td>
-<td align="center">空格</td>
-<td align="center">URL中的空格可以用+号或者编码</td>
-<td align="center">%20</td>
+<td style="text-align:center">2.</td>
+<td style="text-align:center">空格</td>
+<td style="text-align:center">URL中的空格可以用+号或者编码</td>
+<td style="text-align:center">%20</td>
 </tr>
 <tr>
-<td align="center">3.</td>
-<td align="center">/</td>
-<td align="center">分隔目录和子目录</td>
-<td align="center">%2F</td>
+<td style="text-align:center">3.</td>
+<td style="text-align:center">/</td>
+<td style="text-align:center">分隔目录和子目录</td>
+<td style="text-align:center">%2F</td>
 </tr>
 <tr>
-<td align="center">4.</td>
-<td align="center">?</td>
-<td align="center">分隔实际的 URL 和参数</td>
-<td align="center">%3F</td>
+<td style="text-align:center">4.</td>
+<td style="text-align:center">?</td>
+<td style="text-align:center">分隔实际的 URL 和参数</td>
+<td style="text-align:center">%3F</td>
 </tr>
 <tr>
-<td align="center">5.</td>
-<td align="center">%</td>
-<td align="center">指定特殊字符</td>
-<td align="center">%25</td>
+<td style="text-align:center">5.</td>
+<td style="text-align:center">%</td>
+<td style="text-align:center">指定特殊字符</td>
+<td style="text-align:center">%25</td>
 </tr>
 <tr>
-<td align="center">6.</td>
-<td align="center">#</td>
-<td align="center">表示书签</td>
-<td align="center">%23</td>
+<td style="text-align:center">6.</td>
+<td style="text-align:center">#</td>
+<td style="text-align:center">表示书签</td>
+<td style="text-align:center">%23</td>
 </tr>
 <tr>
-<td align="center">7.</td>
-<td align="center">&amp;</td>
-<td align="center">URL 中指定的参数间的分隔符</td>
-<td align="center">%26</td>
+<td style="text-align:center">7.</td>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">URL 中指定的参数间的分隔符</td>
+<td style="text-align:center">%26</td>
 </tr>
 <tr>
-<td align="center">8.</td>
-<td align="center">=</td>
-<td align="center">URL 中指定参数的值</td>
-<td align="center">%3D</td>
+<td style="text-align:center">8.</td>
+<td style="text-align:center">=</td>
+<td style="text-align:center">URL 中指定参数的值</td>
+<td style="text-align:center">%3D</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h1 id="1-7-HTTP-2-简介"><a href="#1-7-HTTP-2-简介" class="headerlink" title="1.7 HTTP/2 简介"></a>1.7 HTTP/2 简介</h1><ul>
 <li>HTTP/2是一种二进制协议，与纯文本方式表示的HTTP 1.x不同，这使得HTTP/2的语法分析更高效，协议更为紧凑和健壮。</li>
 <li>HTTP/2是完全多路复用（fully multiplexed）的，这意味着多个请求和响应可以在同一时间内使用同一个连接。</li>
@@ -572,23 +583,7 @@
 </ul>
 <h1 id="1-9-Hello-Go"><a href="#1-9-Hello-Go" class="headerlink" title="1.9 Hello Go"></a>1.9 Hello Go</h1><p>实例使用Go语言构建Web应用：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">handler</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;<span class="comment">//responsewriter接口，指向request结构的指针</span></span><br><span class="line">	fmt.Fprintf(w,<span class="string">&quot;Hello World, %s!&quot;</span>,r.URL.Path[<span class="number">1</span>:])<span class="comment">//三个参数，最后一个提取request结构里的路径信息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	http.HandleFunc(<span class="string">&quot;/ping&quot;</span>,handler)<span class="comment">//把handler函数设置成URL（/ping）被访问时的处理器</span></span><br><span class="line">	http.ListenAndServe(<span class="string">&quot;:8080&quot;</span>,<span class="literal">nil</span>)<span class="comment">//启动服务器监听系统的8080端口</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<img src="/2021/07/17/go-web-1/02.png">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p><img src="/2021/07/17/go-web-1/02.png"></p>
 
     </div>
 
@@ -810,6 +805,8 @@
 
 
 
+
+  
 
   
 
