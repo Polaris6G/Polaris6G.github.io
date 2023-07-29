@@ -8624,4 +8624,313 @@ a_i \oplus a_i' = 0</script><p>二者相同，于是得出结论：异或为0的
         <tag>思特奇培训课程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>机器学习-02</title>
+    <url>/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/</url>
+    <content><![CDATA[<ul>
+<li>神经网络概念</li>
+<li>训练神经网络</li>
+<li>构建神经网络</li>
+<li>评估模型的技巧</li>
+<li>模型修正的技巧</li>
+<li>数据迁移</li>
+<li>倾斜数据集的误差度量</li>
+</ul>
+<span id="more"></span>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>Neural networks</p>
+<p>speech -&gt; images -&gt; text(NLP) -&gt; forecast</p>
+<p>比较：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/ff0fda2e5fbfce26e8eb41564ac0ede.jpg" class title="ff0fda2e5fbfce26e8eb41564ac0ede">
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>神经网络栗子：</p>
+<ul>
+<li>input layer</li>
+<li>hidden layer -&gt; activation values</li>
+<li>output layer</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/c89f416a886974c9dd424df449ae5a0.jpg" class title="c89f416a886974c9dd424df449ae5a0">
+<p>前面的四个特征经过特征工程变成了新的3个特征</p>
+<p>神经网络所做的是提炼自己的特征值（在隐藏层中），而不是人为手动的设计</p>
+<p>需要决定的点是神经网络的架构：</p>
+<ul>
+<li>隐藏层的数量</li>
+<li>每个隐藏层中神经元的数量</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/0ae7ee4c12a7591337ea69200522207.jpg" class title="0ae7ee4c12a7591337ea69200522207">
+<p>上下标事项：</p>
+<p>layer 1：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/0d724fd73d714209a1036b11a78edde.jpg" class title="0d724fd73d714209a1036b11a78edde">
+<p>layer 2：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/3660be1075d778841a04872cf471b82.jpg" class title="3660be1075d778841a04872cf471b82">
+<p>上标：层号</p>
+<p>下标：层中神经元号</p>
+<p>layer l的第j个神经元的激活函数：</p>
+<script type="math/tex; mode=display">
+a^{[l]}_j = g(\vec w_j^{[l]} \cdot \vec a ^ {[l - 1]} + b_j^{[l]})</script><p>g -&gt; sigmoid (also called activation function 激活函数)</p>
+<p>PS：输入层可以是 $\vec x = a^{[0]}$</p>
+<h2 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h2><p>forward propagation</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/d6f2a3659b6c1a8fa46a76a83fc13d0.jpg" class title="d6f2a3659b6c1a8fa46a76a83fc13d0">
+<h2 id="tensorflow实现"><a href="#tensorflow实现" class="headerlink" title="tensorflow实现"></a>tensorflow实现</h2><img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/e68e8033098b353528ed105927647dc.jpg" class title="e68e8033098b353528ed105927647dc">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = np.array([<span class="number">200.0</span>, <span class="number">17.0</span>])</span><br><span class="line">layer_1 = Dense(units=<span class="number">3</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a1 = layer_1(x)</span><br><span class="line"></span><br><span class="line">layer_2 = Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">a2 = layer_2(a1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> a2 &gt;= <span class="number">0.5</span></span><br><span class="line">    yhat = <span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    yhat = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = np.array([[<span class="number">200</span>, <span class="number">17</span>]])  <span class="comment"># [200, 17] 1 * 2  矩阵 tensorflow中使用</span></span><br><span class="line">x = np.array([<span class="number">200</span>], [<span class="number">17</span>])  <span class="comment"># [200,  矩阵 tensorflow中使用</span></span><br><span class="line">						   <span class="comment">#  17] 2 * 1</span></span><br><span class="line">x = np.array([<span class="number">200</span>, <span class="number">17</span>])  <span class="comment"># 1D &quot;vector&quot; 线性、逻辑回归中用</span></span><br><span class="line"></span><br><span class="line">x.numpy()  <span class="comment"># tensorflow matrix -&gt; numpy array</span></span><br></pre></td></tr></table></figure>
+<p>tensorflow的设计与发明旨在处理非常大的数据集，所以通过在矩阵而不是一维数组中表示数据</p>
+<p>所以转换的时候需要注意！</p>
+<h3 id="搭建神经网络"><a href="#搭建神经网络" class="headerlink" title="搭建神经网络"></a>搭建神经网络</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layer_1 = Dense(units=<span class="number">3</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">layer_2 = Dense(units=<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line"></span><br><span class="line">model = Sequential([layer_1, layer_2])</span><br><span class="line">x = np.array([<span class="number">200.0</span>, <span class="number">17.0</span>],</span><br><span class="line">			[<span class="number">120.0</span>, <span class="number">5.0</span>],</span><br><span class="line">			[<span class="number">425.0</span>, <span class="number">20.0</span>],</span><br><span class="line">			[<span class="number">212.0</span>, <span class="number">18.0</span>])</span><br><span class="line">y = np.array([<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">model.complie(...)</span><br><span class="line">model.fit(x, y)</span><br><span class="line"></span><br><span class="line">model.predict(x_new)</span><br></pre></td></tr></table></figure>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/cff1b628ab69a521d558a048b2103d5.jpg" class title="cff1b628ab69a521d558a048b2103d5">
+<p>原理 glance</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/image-20230726113926644.png" class title="image-20230726113926644">
+<p>前向传播的一般实现：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/4bad74da019bbd33ca1cb9e289234c6.jpg" class title="4bad74da019bbd33ca1cb9e289234c6">
+<p>人类大脑具有惊人的适应性和可塑性，去处理不同输入范围、不同种类的信息。</p>
+<p>小结论：</p>
+<ul>
+<li>如果当前层的输入为$s_{in}$个单元， 输出为$s_{out}$个单元， 那么$\vec w$ 将是$s_{in} * s_{out}$的矩阵</li>
+<li>b将是一个$s_{out}$的向量</li>
+</ul>
+<p>补充知识：</p>
+<p>向量点乘和矩阵乘法的关系：</p>
+<script type="math/tex; mode=display">
+\vec a \cdot \vec w = \vec a^T \vec w</script><p>a_in是(m, n)，W是(n, j), b是(j, 1)的向量</p>
+<p>矩阵乘法会加速训练过程</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dense</span>(<span class="params">A_in, W, b, g</span>)</span></span><br><span class="line"><span class="function">	# <span class="title">A</span>的转置 <span class="title">A</span>.<span class="title">T</span></span></span><br><span class="line">	z = np.matmul(A_in, W) + b  # 矩阵乘法(m, n)(n, j) = (m, j)</span><br><span class="line">	A_out = g(z)</span><br><span class="line">    <span class="keyword">return</span> A_out</span><br></pre></td></tr></table></figure>
+<p>其中b能加不报错的原因：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/image-20230726201836693.png" class title="image-20230726201836693">
+<h3 id="训练神经网络-多层感知机-的细节"><a href="#训练神经网络-多层感知机-的细节" class="headerlink" title="训练神经网络(多层感知机)的细节"></a>训练神经网络(多层感知机)的细节</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> BinaryCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">	Dense(units=<span class="number">25</span>, activations=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">10</span>, activations=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activations=<span class="string">&#x27;sigmoid&#x27;</span>)</span><br><span class="line">])</span><br><span class="line">x = np.array([<span class="number">200.0</span>, <span class="number">17.0</span>],</span><br><span class="line">			[<span class="number">120.0</span>, <span class="number">5.0</span>],</span><br><span class="line">			[<span class="number">425.0</span>, <span class="number">20.0</span>],</span><br><span class="line">			[<span class="number">212.0</span>, <span class="number">18.0</span>])</span><br><span class="line">y = np.array([<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">model.complie(loss=BinaryCrossentropy())</span><br><span class="line"></span><br><span class="line">model.fit(x, y, epochs=<span class="number">100</span>)  <span class="comment"># epoch: number of steps in gradient descent</span></span><br><span class="line"></span><br><span class="line">model.predict(x_new)</span><br></pre></td></tr></table></figure>
+<p>better version：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> BinaryCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">	Dense(units=<span class="number">25</span>, activations=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">10</span>, activations=<span class="string">&#x27;sigmoid&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">1</span>, activations=<span class="string">&#x27;linear&#x27;</span>)  <span class="comment"># 线性输出</span></span><br><span class="line">])</span><br><span class="line">x = np.array([<span class="number">200.0</span>, <span class="number">17.0</span>],</span><br><span class="line">			[<span class="number">120.0</span>, <span class="number">5.0</span>],</span><br><span class="line">			[<span class="number">425.0</span>, <span class="number">20.0</span>],</span><br><span class="line">			[<span class="number">212.0</span>, <span class="number">18.0</span>])</span><br><span class="line">y = np.array([<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">model.complie(loss=BinaryCrossentropy(from_logits=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">model.fit(x, y, epochs=<span class="number">100</span>)  <span class="comment"># epoch: number of steps in gradient descent</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># predict</span></span><br><span class="line">logit = model(x_new)</span><br><span class="line">f_x = tf.nn.sigmoid(logit)</span><br><span class="line">model.predict(x_new)</span><br></pre></td></tr></table></figure>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/8ff653815c19d47ad4fcb59ac58d2b2.jpg" class title="8ff653815c19d47ad4fcb59ac58d2b2">
+<p>损失函数：</p>
+<ul>
+<li><code>BinaryCrossentropy()</code> 二元交叉熵损失函数</li>
+<li><code>MeanSquareError()</code> 均值方差损失函数</li>
+</ul>
+<p>激活函数：</p>
+<ul>
+<li><p>sigmoid</p>
+<p>$g(z) = \frac{1}{1 + e^{-z}}$</p>
+<ul>
+<li>适用范围：y = 0 / 1</li>
+</ul>
+</li>
+<li><p>ReLU (most common)</p>
+<p>$g(z) = max(0, z)$</p>
+<ul>
+<li>适用范围： y = + / -</li>
+<li>优势：相较于sigmoid往往训练得更快（因为梯度下降flat的地方很少）</li>
+</ul>
+</li>
+<li><p>Linear activation function 线性激活函数(相当于没用)</p>
+<p>$g(z) = z$</p>
+<ul>
+<li>适用范围：y = 0 or +</li>
+</ul>
+</li>
+<li><p>Softmax</p>
+</li>
+<li>LeakyReLU</li>
+<li>tan h</li>
+<li>swish</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/image-20230727082437635.png" class title="image-20230727082437635">
+<p><strong>建议</strong>：</p>
+<ul>
+<li>输出层：<ul>
+<li>sigmoid y = 0 / 1 二分类问题</li>
+<li>linear y = + / -</li>
+<li>ReLU y = 0 or +</li>
+</ul>
+</li>
+<li>隐藏层：<ul>
+<li>ReLU</li>
+</ul>
+</li>
+</ul>
+<p><strong>使用激活函数的必要性</strong>：</p>
+<p>如果所有层（hidden + output) 的激活函数都是线性激活函数（或没有激活函数），那么其等价于一个线性回归模型；</p>
+<p>如果hidden层的激活函数都是线性激活函数（或没有激活函数），output层的激活函数是sigmoid，那么其等价于一个逻辑回归模型</p>
+<p>so, <strong>hidden层不要全部使用linear activation function!</strong></p>
+<h2 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h2><img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/c07f6bd84e7b739f97b128168605e73.jpg" class title="c07f6bd84e7b739f97b128168605e73">
+<p>公式：</p>
+<script type="math/tex; mode=display">
+z_j = \vec w_j \cdot \vec x + b_j \\ j = 1, ..., N</script><script type="math/tex; mode=display">
+a_j = \frac{e^{z_j}}{\sum_{k=1}^{N}e^{z_k}} = P(y=j|\vec x) \\ a_1 + a_2 + ... + a_N = 1</script><p>成本函数：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/dba2f8fab5b6eea09d09e161eb10fdb.jpg" class title="dba2f8fab5b6eea09d09e161eb10fdb">
+<script type="math/tex; mode=display">
+loss(a_1,...,a_N,y) =
+\begin{equation}  
+\left\{  
+             \begin{array}{lr}  
+             -loga_1 & if \ y = 1 \\
+             -loga_2 & if \ y = 2 \\
+             ... \\
+             -loga_n & if \ y = N
+             \end{array}  
+\right.
+\end{equation}</script><p>implement in code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> SparseCategoricalCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">	Dense(units=<span class="number">25</span>, activations=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activations=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">10</span>, activations=<span class="string">&#x27;softmax&#x27;</span>)</span><br><span class="line">])</span><br><span class="line"><span class="comment"># 多分类交叉熵损失函数</span></span><br><span class="line">model.complie(loss=SparseCategoricalCrossentropy())</span><br><span class="line"></span><br><span class="line">model.fit(x, y, epochs=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">model.predict(x_new)</span><br></pre></td></tr></table></figure>
+<p>better version（改进实现）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras.losses <span class="keyword">import</span> SparseCategoricalCrossentropy</span><br><span class="line"></span><br><span class="line">model = Sequential([</span><br><span class="line">	Dense(units=<span class="number">25</span>, activations=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">15</span>, activations=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    Dense(units=<span class="number">10</span>, activations=<span class="string">&#x27;linear&#x27;</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">model.complie(loss=SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>))</span><br><span class="line"></span><br><span class="line">model.fit(x, y, epochs=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">logits = model(X)</span><br><span class="line">preferred = tf.nn.softmax(logits).numpy()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(preferred)):</span><br><span class="line">    print(<span class="string">f&quot;<span class="subst">&#123;preferred[i]&#125;</span>, category: <span class="subst">&#123;np.argmax(preferred[i])&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>原理相同，但在数字计算层面更精准（直接带入，tensorflow自动优化）</p>
+<p><strong>Softmax函数的准确计算</strong>：</p>
+<p>原理：</p>
+<script type="math/tex; mode=display">
+a_j = \frac{e^{z_j - C}}{\sum_{i=1}^{N}e^{z_i - C}} \ \ \ \ \ where \ C = max_j(z)</script><p>可有效防止指数过大的溢出(overflow)现象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_softmax_ns</span>(<span class="params">z</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;numerically stablility improved&quot;&quot;&quot;</span></span><br><span class="line">    bigz = np.<span class="built_in">max</span>(z)</span><br><span class="line">    ez = np.exp(z-bigz)              <span class="comment"># minimize exponent</span></span><br><span class="line">    sm = ez/np.<span class="built_in">sum</span>(ez)</span><br><span class="line">    <span class="keyword">return</span>(sm)</span><br></pre></td></tr></table></figure>
+<p><strong>交叉熵损失函数的准确计算</strong>：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/5190bd720b64c996422b845805e2d09.png" class title="5190bd720b64c996422b845805e2d09">
+<h2 id="多输出-标签-问题"><a href="#多输出-标签-问题" class="headerlink" title="多输出(标签)问题"></a>多输出(标签)问题</h2><img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/afe21018d804369791a5a12f66d4a32.jpg" class title="afe21018d804369791a5a12f66d4a32">
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/5806176ade37502bf35e0212a6ea088.jpg" class title="5806176ade37502bf35e0212a6ea088">
+<h2 id="Adam优化器"><a href="#Adam优化器" class="headerlink" title="Adam优化器"></a>Adam优化器</h2><p><strong>Adam optimizers</strong></p>
+<p>可以自动调整学习率</p>
+<p>对每个参数都有自己的学习率</p>
+<ul>
+<li>如果$w_j$ or b保持向同样一个方向移动，就加大学习率$\alpha_j$</li>
+<li>如果$w_j$ or b持续震荡或弹跳，就缩减学习率$\alpha_j$</li>
+</ul>
+<p>implement code：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.complie(optimizer=tf.keras.optimizers.Adam(learning_rate=<span class="number">1e-3</span>)),</span><br><span class="line">	loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="layer分类"><a href="#layer分类" class="headerlink" title="layer分类"></a>layer分类</h2><ul>
+<li><p>Dense Layer 全连接层</p>
+<p>Each neuron output is a function of all the activation outputs of the previous layer</p>
+<p>主要用于网络的最后一层，负责将前面提取到的特征进行分类和回归</p>
+</li>
+<li><p>Convolutional Layer 卷积层</p>
+<p>Each neuron only looks at part of the previous layer’s inputs</p>
+<p>主要用于提取数据的特征</p>
+<p>优点：</p>
+<ul>
+<li>更快的计算速度</li>
+<li>更少的训练数据需求（不易过拟合）</li>
+</ul>
+<p>CNN范例：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/0a61aab700c38f2946b169323e44d7c.jpg" class title="0a61aab700c38f2946b169323e44d7c">
+</li>
+</ul>
+<p>PS： Python中导数求法</p>
+<p>需要库<code>sympy</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy</span><br><span class="line">J, w = sympy.symbols(<span class="string">&#x27;J, w&#x27;</span>)</span><br><span class="line">J = w ** <span class="number">2</span></span><br><span class="line">w_2</span><br><span class="line">dj_dw = syspy.diff(J, w)  <span class="comment"># 求导</span></span><br><span class="line">2w</span><br><span class="line">dt_dw.subs([(w, <span class="number">2</span>)])  <span class="comment"># 代入</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>从左到右计算损失函数 前向传播</p>
+</li>
+<li><p>从右到左计算导数 反向传播</p>
+</li>
+</ul>
+<p>参考：<a href="https://blog.csdn.net/ft_sunshine/article/details/90221691">https://blog.csdn.net/ft_sunshine/article/details/90221691</a></p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><ul>
+<li>增大训练集</li>
+<li>减少特征值</li>
+<li>获取额外的特征</li>
+<li>增加高次幂特征</li>
+<li>增大、减小正则化系数</li>
+</ul>
+<h2 id="评估模型"><a href="#评估模型" class="headerlink" title="评估模型"></a>评估模型</h2><p>划分数据集：</p>
+<p><strong>方式一</strong>：</p>
+<p>70% 训练集</p>
+<p>30% 测试集</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/cef1df07407d17f24088fc05be9c1fd.jpg" class title="cef1df07407d17f24088fc05be9c1fd">
+<p>针对均方误差：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/722afd10d800286bf0d9cefcdafcba0.jpg" class title="722afd10d800286bf0d9cefcdafcba0">
+<p>针对逻辑回归：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/6a7ced2fc847f99ad13ad2979702c38.jpg" class title="6a7ced2fc847f99ad13ad2979702c38">
+<p>对于分类问题，还可以统计测试集被错误分类的比例</p>
+<p>implement code:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=<span class="number">0.33</span>, random_state=<span class="number">1</span>)  <span class="comment"># 2:1 打乱顺序</span></span><br></pre></td></tr></table></figure>
+<p>方式二：</p>
+<ul>
+<li>60% 训练集</li>
+<li>20% 交叉验证集(验证集 / 开发集) cross validation / development set</li>
+<li>20% 测试集</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/abe129f71614dbde85473b91583df0b.jpg" class title="abe129f71614dbde85473b91583df0b">
+<ul>
+<li>训练集用于训练模型</li>
+<li><p>验证集用于选取模型 （选取最小损失的多项式或神经网络结构）</p>
+</li>
+<li><p>测试集用于测试模型泛化能力</p>
+</li>
+</ul>
+<p>implement code:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># train:cv:test=0.6:0.2:0.2</span></span><br><span class="line">X_train, X_, y_train, y_ = train_test_split(X,y,test_size=<span class="number">0.40</span>, random_state=<span class="number">1</span>)</span><br><span class="line">X_cv, X_test, y_cv, y_test = train_test_split(X_,y_,test_size=<span class="number">0.50</span>, random_state=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="结合偏差和方差"><a href="#结合偏差和方差" class="headerlink" title="结合偏差和方差"></a>结合偏差和方差</h2><p>$J_{train}$ 偏大 -&gt; 模型欠拟合（high bias）</p>
+<p>$J_{train}$小，但$J_{cv}$ 偏大 -&gt; 模型过拟合（high variance）</p>
+<p>$J_{train}$ 小，$J_{cv}$相较于$J_{train}$也偏小 -&gt; just right</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/cb02dd77e38dd312dda78b7795a1af9.jpg" class title="cb02dd77e38dd312dda78b7795a1af9">
+<p><strong>正则化系数</strong></p>
+<p>左侧过拟合，右侧欠拟合</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/678e52f2c2a1b67cba1650ba150362b.jpg" class title="678e52f2c2a1b67cba1650ba150362b">
+<p>所以通过$J_{train}$ 和$J_{cv}$可以帮助$\lambda$的选择</p>
+<p>如何判断J的水平是高的？ -&gt; benchmark</p>
+<ul>
+<li>人类的表现水平</li>
+<li>同类竞争性算法表现</li>
+<li>通过经验推断</li>
+</ul>
+<h2 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h2><p>high bias：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/3b59454ea9941e0432a3147b3e97b7d.jpg" class title="3b59454ea9941e0432a3147b3e97b7d">
+<p>high variance：</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/5eb15537158c73578a97f01107ab6c5.jpg" class title="5eb15537158c73578a97f01107ab6c5">
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>增加特征数量（high bias）</li>
+<li>增加高次幂特征（high bias）</li>
+<li>减小正则化系数（high bias）</li>
+</ul>
+<ul>
+<li>增大训练集（high variance)</li>
+<li>减少特征数量 （high variance）</li>
+<li>增大正则化系数（high variance）</li>
+</ul>
+<p><em>The knowledge above takes short time to learn, but life time to master.</em></p>
+<h2 id="神经网络的修正"><a href="#神经网络的修正" class="headerlink" title="神经网络的修正"></a>神经网络的修正</h2><p>训练、调试的循环</p>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/6324f3585a7651f11c9822f1a71ac2a.jpg" class title="6324f3585a7651f11c9822f1a71ac2a">
+<p>特色：只要正则化方式合适，一个大规模的神经网络通常会比一个小的神经网络表现更好（更小概率出现过拟合现象）代价：计算量更大，训练更慢</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">layer_1= Dense(units=<span class="number">25</span>, activation=<span class="string">&quot;relu&quot;</span>, kernel_regularizer=L2(<span class="number">0.01</span>))</span><br></pre></td></tr></table></figure>
+<p>PS:</p>
+<ul>
+<li>L1：参数绝对值</li>
+<li>L2：参数平方</li>
+<li>L3： L1 + L2</li>
+</ul>
+<h1 id="数据添加的技巧"><a href="#数据添加的技巧" class="headerlink" title="数据添加的技巧"></a>数据添加的技巧</h1><ul>
+<li>添加一些有侧重性的数据</li>
+<li>改变现存数据变为新数据（图像放缩、扭曲、反转、噪点； 语音噪音增加、损失、失真）</li>
+<li>数据生成</li>
+</ul>
+<p><strong>AI = Code + Data</strong></p>
+<h1 id="数据迁移"><a href="#数据迁移" class="headerlink" title="数据迁移"></a>数据迁移</h1><ul>
+<li>监督预训练 Supervised Pre-training</li>
+<li>微调 Fine tuning</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/2234f0a2133e618d6a05635e5088bff.jpg" class title="2234f0a2133e618d6a05635e5088bff">
+<ul>
+<li>只训练自己的最后层的参数</li>
+<li>训练全部参数（拿之前的模型参数做初始化）</li>
+</ul>
+<h1 id="误差度量-倾斜数据集"><a href="#误差度量-倾斜数据集" class="headerlink" title="误差度量(倾斜数据集)"></a>误差度量(倾斜数据集)</h1><ul>
+<li><p>精确率 Precision</p>
+<p>预测为1的多少是实际为1</p>
+<p>precision = true positives / total predicted positive</p>
+</li>
+<li><p>召回率 Recall</p>
+<p>实际为1的多少是预测为1</p>
+<p>recall = true positives / total actual positive</p>
+</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/cfad7f382473e4876946b4fa071341d.jpg" class title="cfad7f382473e4876946b4fa071341d">
+<p><strong>两者的权衡</strong>：</p>
+<p>根据实际情况：</p>
+<ul>
+<li><p>如果预测为1需要很谨慎</p>
+<p>阈值提高（高于0.5）更高精确率，更低召回率</p>
+</li>
+<li><p>如果预测为1很必要</p>
+<p>阈值降低（低于0.5）更低精确率，更高召回率</p>
+</li>
+</ul>
+<img src="/2023/07/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-02/43131854fd6167f157a88798cccd6ce.jpg" class title="43131854fd6167f157a88798cccd6ce">
+<p>综合评判：F1 score P和R的调和平均</p>
+<script type="math/tex; mode=display">
+F1 \ score = \frac{1}{\frac{1}{2}(\frac{1}{P} + \frac{1}{R})} = 2\frac{PR}{P+R}</script>]]></content>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
 </search>
