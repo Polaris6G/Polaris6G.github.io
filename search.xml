@@ -9038,4 +9038,92 @@ a_i \oplus a_i' = 0</script><p>二者相同，于是得出结论：异或为0的
         <tag>思特奇培训课程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>机器学习-05</title>
+    <url>/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/</url>
+    <content><![CDATA[<p>学习异常检测</p>
+<span id="more"></span>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>给定数据集{$x^{(1)}, $ $x^{(2)}$, …, $x^{(m)}$}，建立模型，根据模型判断新数据$x_{test}$是否异常（即是否与元数据集相似）</p>
+<p>算法将找出具有高概率和低概率的值</p>
+<p>如果：</p>
+<ul>
+<li>$p(x_{test}) &lt; \epsilon$ -&gt; 异常的信号</li>
+<li>$p(x_{test}) &gt; \epsilon$ -&gt; OK</li>
+</ul>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><ul>
+<li>欺诈检测</li>
+<li>可疑账号检测</li>
+<li>装置异常检测</li>
+<li>商业、金融</li>
+</ul>
+<h1 id="高斯分布（正态分布）"><a href="#高斯分布（正态分布）" class="headerlink" title="高斯分布（正态分布）"></a>高斯分布（正态分布）</h1><script type="math/tex; mode=display">
+p(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma}}</script><p>估计量：</p>
+<script type="math/tex; mode=display">
+\mu = \frac{1}{m}\sum_{i=1}^{m}x^{(i)}</script><script type="math/tex; mode=display">
+\sigma^2 = \frac{1}{m}\sum_{i=1}^m(x^{(i)} - \mu)^2</script><h1 id="异常检测算法"><a href="#异常检测算法" class="headerlink" title="异常检测算法"></a>异常检测算法</h1><script type="math/tex; mode=display">
+p(\vec x) = \prod_{j=1}^{n}p(x_j;\mu_j;\sigma^{2} )</script><p>各特征的概率独立，因此可以连乘</p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><ul>
+<li>选择n个特征xi</li>
+<li>求出各自的$\mu_j$和$\sigma_j^2$</li>
+<li>根据新给出的样例x，计算p(x)</li>
+</ul>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730184506428.png" class title="image-20230730184506428">
+<h1 id="模型评估与修正"><a href="#模型评估与修正" class="headerlink" title="模型评估与修正"></a>模型评估与修正</h1><ul>
+<li>特征选取</li>
+<li>$\epsilon$选取</li>
+</ul>
+<p>大量好的样例和少量异常的样例(还是标签)</p>
+<ul>
+<li>使用好的样例训练模型</li>
+<li>在交叉验证集(CV)中混杂异常样例，根据损失函数调整$\epsilon$大小和特征</li>
+<li>再测试集(test)中混杂异常样例，查看模型普适性和泛化能力</li>
+</ul>
+<p>或者：</p>
+<p>由于异常数据很少，可以只包含训练集和交叉验证集</p>
+<p>但因为没有测试集，观察不了实际表现，可能会过拟合</p>
+<p>栗子：</p>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730190707956.png" class title="image-20230730190707956">
+<p>在CV上验证评估模型时，可以使用<strong>精确率、召回率、F1分数</strong>（在偏数据集中经常使用）</p>
+<h1 id="异常检测-VS-监督学习"><a href="#异常检测-VS-监督学习" class="headerlink" title="异常检测 VS 监督学习"></a>异常检测 VS 监督学习</h1><p>场景：异常数据远比正常数据少</p>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/8298c62a076425cfe1293abaa00cc41.jpg" class title="8298c62a076425cfe1293abaa00cc41">
+<p>异常检测：</p>
+<ul>
+<li>针对<strong>异常数据很少</strong>的情况</li>
+<li>重点针对正常情况是什么样的进行分析，与正常情况偏离太大的数据都会是异常数据，所以不在数据集中的<strong>新的异常方式也有一定适应性</strong></li>
+</ul>
+<p>监督学习：</p>
+<ul>
+<li>针对<strong>大量</strong>的正常和异常数据</li>
+<li>通过大量数据训练得到依照数据集的规律，所以所能预测的异常都只针对已出现的，<strong>对新型异常的适应性不强</strong></li>
+</ul>
+<h1 id="特征选择技巧"><a href="#特征选择技巧" class="headerlink" title="特征选择技巧"></a>特征选择技巧</h1><h3 id="高斯分布特征"><a href="#高斯分布特征" class="headerlink" title="高斯分布特征"></a>高斯分布特征</h3><p><strong>非高斯分布特征 -&gt; 变换 -&gt; 高斯分布特征</strong></p>
+<p>变换方式：</p>
+<ul>
+<li>次幂</li>
+<li>log(x + C) 据说C越高越好</li>
+</ul>
+<p>python plt的API：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">plt.hist(x, bins=<span class="number">50</span>)   <span class="comment"># bins 直方图区间个数</span></span><br><span class="line">plt.hist(x ** <span class="number">0.4</span>, bins = <span class="number">50</span>)</span><br><span class="line">plt.hist(np.log(x + <span class="number">1</span>), bins = <span class="number">50</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><ul>
+<li>希望p(x)对于正常样例足够大</li>
+<li>希望p(x)对于异常样例足够小</li>
+</ul>
+<p>查看异常数据，如果其p(x)与有的正常数据的p(x)相近，那可能是有特征没有考虑进去</p>
+<h3 id="组合特征"><a href="#组合特征" class="headerlink" title="组合特征"></a>组合特征</h3><p>根据已知特征进行组合</p>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/e2d553b1e386125c1132cdec4588bc1.jpg" class title="e2d553b1e386125c1132cdec4588bc1">
+<h1 id="implement-code"><a href="#implement-code" class="headerlink" title="implement code"></a>implement code</h1><p>计算$\mu$和$\sigma$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate_gaussian</span>(<span class="params">X</span>):</span></span><br><span class="line">    mu = <span class="number">1</span> / m * np.<span class="built_in">sum</span>(X, axis = <span class="number">0</span>)</span><br><span class="line">    var = (<span class="number">1</span> / m) * np.<span class="built_in">sum</span>((X - mu) ** <span class="number">2</span>, axis = <span class="number">0</span>) </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> mu, var</span><br></pre></td></tr></table></figure>
+<p>阈值选择</p>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730203650407.png" class title="image-20230730203650407">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># UNQ_C2</span></span><br><span class="line"><span class="comment"># GRADED FUNCTION: select_threshold</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_threshold</span>(<span class="params">y_val, p_val</span>):</span> </span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Finds the best threshold to use for selecting outliers </span></span><br><span class="line"><span class="string">    based on the results from a validation set (p_val) </span></span><br><span class="line"><span class="string">    and the ground truth (y_val)</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        y_val (ndarray): Ground truth on validation set</span></span><br><span class="line"><span class="string">        p_val (ndarray): Results on validation set</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">        epsilon (float): Threshold chosen </span></span><br><span class="line"><span class="string">        F1 (float):      F1 score by choosing epsilon as threshold</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span> </span><br><span class="line"></span><br><span class="line">    best_epsilon = <span class="number">0</span></span><br><span class="line">    best_F1 = <span class="number">0</span></span><br><span class="line">    F1 = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    step_size = (<span class="built_in">max</span>(p_val) - <span class="built_in">min</span>(p_val)) / <span class="number">1000</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> epsilon <span class="keyword">in</span> np.arange(<span class="built_in">min</span>(p_val), <span class="built_in">max</span>(p_val), step_size):</span><br><span class="line">    </span><br><span class="line">        predictions = (p_val &lt; epsilon)</span><br><span class="line">        </span><br><span class="line">        tp = np.<span class="built_in">sum</span>((predictions == <span class="number">1</span>) &amp; (y_val == <span class="number">1</span>))</span><br><span class="line">        fp = np.<span class="built_in">sum</span>((predictions == <span class="number">1</span>) &amp; (y_val == <span class="number">0</span>))</span><br><span class="line">        fn = np.<span class="built_in">sum</span>((predictions == <span class="number">0</span>) &amp; (y_val == <span class="number">1</span>))</span><br><span class="line">        </span><br><span class="line">        prec = tp / (tp + fp)  <span class="comment"># 精确率</span></span><br><span class="line">        rec = tp / (tp + fn)  <span class="comment"># 召回率</span></span><br><span class="line">        </span><br><span class="line">        F1 = <span class="number">2</span> * prec * rec / (prec + rec)  <span class="comment"># F1分数</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> F1 &gt; best_F1:</span><br><span class="line">            best_F1 = F1</span><br><span class="line">            best_epsilon = epsilon</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> best_epsilon, best_F1</span><br></pre></td></tr></table></figure>
+<p><strong>多元高斯分布计算函数</strong>：</p>
+<img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730204058301.png" class title="image-20230730204058301">
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multivariate_gaussian</span>(<span class="params">X, mu, var</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Computes the probability </span></span><br><span class="line"><span class="string">    density function of the examples X under the multivariate gaussian </span></span><br><span class="line"><span class="string">    distribution with parameters mu and var. If var is a matrix, it is</span></span><br><span class="line"><span class="string">    treated as the covariance matrix. If var is a vector, it is treated</span></span><br><span class="line"><span class="string">    as the var values of the variances in each dimension (a diagonal</span></span><br><span class="line"><span class="string">    covariance matrix</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    k = <span class="built_in">len</span>(mu)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> var.ndim == <span class="number">1</span>:</span><br><span class="line">        var = np.diag(var)</span><br><span class="line">        </span><br><span class="line">    X = X - mu</span><br><span class="line">    p = (<span class="number">2</span>* np.pi)**(-k/<span class="number">2</span>) * np.linalg.det(var)**(-<span class="number">0.5</span>) * \</span><br><span class="line">        np.exp(-<span class="number">0.5</span> * np.<span class="built_in">sum</span>(np.matmul(X, np.linalg.pinv(var)) * X, axis=<span class="number">1</span>))</span><br><span class="line">    <span class="comment"># np.linalg.det表示矩阵行列式，np.linalg.pinv表示矩阵的伪逆</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> p</span><br></pre></td></tr></table></figure>
+<p>调用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Estimate the Gaussian parameters</span></span><br><span class="line">mu, var = estimate_gaussian(X_train_high)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the probabilites for the training set</span></span><br><span class="line">p = multivariate_gaussian(X_train, mu, var)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Evaluate the probabilites for the cross validation set</span></span><br><span class="line">p_val = multivariate_gaussian(X_val, mu, var)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Find the best threshold</span></span><br><span class="line">epsilon, F1 = select_threshold(y_val, p_val)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;Best epsilon found using cross-validation: %e&#x27;</span>% epsilon)</span><br><span class="line">print(<span class="string">&#x27;Best F1 on Cross Validation Set:  %f&#x27;</span>% F1)</span><br><span class="line">print(<span class="string">&#x27;# Anomalies found: %d&#x27;</span>% <span class="built_in">sum</span>(p_high &lt; epsilon))</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
 </search>
