@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://polaris6g.github.io/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730203650407.png">
 <meta property="og:image" content="https://polaris6g.github.io/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/image-20230730204058301.png">
 <meta property="article:published_time" content="2023-07-31T10:11:30.000Z">
-<meta property="article:modified_time" content="2023-07-31T10:11:30.848Z">
+<meta property="article:modified_time" content="2023-07-31T10:40:24.975Z">
 <meta property="article:author" content="Zhao.W.L">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
@@ -228,8 +228,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-07-31 18:11:30" itemprop="dateCreated datePublished" datetime="2023-07-31T18:11:30+08:00">2023-07-31</time>
+              <time title="Created: 2023-07-31 18:11:30 / Modified: 18:40:24" itemprop="dateCreated datePublished" datetime="2023-07-31T18:11:30+08:00">2023-07-31</time>
             </span>
 
           
@@ -312,7 +313,7 @@ p(\vec x) = \prod_{j=1}^{n}p(x_j;\mu_j;\sigma^{2} )</script><p>各特征的概�
 <li>针对<strong>大量</strong>的正常和异常数据</li>
 <li>通过大量数据训练得到依照数据集的规律，所以所能预测的异常都只针对已出现的，<strong>对新型异常的适应性不强</strong></li>
 </ul>
-<h1 id="特征选择技巧"><a href="#特征选择技巧" class="headerlink" title="特征选择技巧"></a>特征选择技巧</h1><h3 id="高斯分布特征"><a href="#高斯分布特征" class="headerlink" title="高斯分布特征"></a>高斯分布特征</h3><p><strong>非高斯分布特征 -&gt; 变换 -&gt; 高斯分布特征</strong></p>
+<h1 id="特征选择技巧"><a href="#特征选择技巧" class="headerlink" title="特征选择技巧"></a>特征选择技巧</h1><h2 id="高斯分布特征"><a href="#高斯分布特征" class="headerlink" title="高斯分布特征"></a>高斯分布特征</h2><p><strong>非高斯分布特征 -&gt; 变换 -&gt; 高斯分布特征</strong></p>
 <p>变换方式：</p>
 <ul>
 <li>次幂</li>
@@ -320,12 +321,12 @@ p(\vec x) = \prod_{j=1}^{n}p(x_j;\mu_j;\sigma^{2} )</script><p>各特征的概�
 </ul>
 <p>python plt的API：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(x, bins=<span class="number">50</span>)   <span class="comment"># bins 直方图区间个数</span></span><br><span class="line">plt.hist(x ** <span class="number">0.4</span>, bins = <span class="number">50</span>)</span><br><span class="line">plt.hist(np.log(x + <span class="number">1</span>), bins = <span class="number">50</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h3><ul>
+<h2 id="错误分析"><a href="#错误分析" class="headerlink" title="错误分析"></a>错误分析</h2><ul>
 <li>希望p(x)对于正常样例足够大</li>
 <li>希望p(x)对于异常样例足够小</li>
 </ul>
 <p>查看异常数据，如果其p(x)与有的正常数据的p(x)相近，那可能是有特征没有考虑进去</p>
-<h3 id="组合特征"><a href="#组合特征" class="headerlink" title="组合特征"></a>组合特征</h3><p>根据已知特征进行组合</p>
+<h2 id="组合特征"><a href="#组合特征" class="headerlink" title="组合特征"></a>组合特征</h2><p>根据已知特征进行组合</p>
 <img src="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/e2d553b1e386125c1132cdec4588bc1.jpg" class title="e2d553b1e386125c1132cdec4588bc1">
 <h1 id="implement-code"><a href="#implement-code" class="headerlink" title="implement code"></a>implement code</h1><p>计算$\mu$和$\sigma$</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate_gaussian</span>(<span class="params">X</span>):</span></span><br><span class="line">    mu = <span class="number">1</span> / m * np.<span class="built_in">sum</span>(X, axis = <span class="number">0</span>)</span><br><span class="line">    var = (<span class="number">1</span> / m) * np.<span class="built_in">sum</span>((X - mu) ** <span class="number">2</span>, axis = <span class="number">0</span>) </span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> mu, var</span><br></pre></td></tr></table></figure>
@@ -435,7 +436,7 @@ p(\vec x) = \prod_{j=1}^{n}p(x_j;\mu_j;\sigma^{2} )</script><p>各特征的概�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%EF%BC%88%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">高斯分布（正态分布）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">异常检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BF%AE%E6%AD%A3"><span class="nav-number">5.</span> <span class="nav-text">模型评估与修正</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-VS-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">6.</span> <span class="nav-text">异常检测 VS 监督学习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E6%8A%80%E5%B7%A7"><span class="nav-number">7.</span> <span class="nav-text">特征选择技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%89%B9%E5%BE%81"><span class="nav-number">7.0.1.</span> <span class="nav-text">高斯分布特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90"><span class="nav-number">7.0.2.</span> <span class="nav-text">错误分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E7%89%B9%E5%BE%81"><span class="nav-number">7.0.3.</span> <span class="nav-text">组合特征</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#implement-code"><span class="nav-number">8.</span> <span class="nav-text">implement code</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%EF%BC%88%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">高斯分布（正态分布）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">异常检测算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E4%B8%8E%E4%BF%AE%E6%AD%A3"><span class="nav-number">5.</span> <span class="nav-text">模型评估与修正</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B-VS-%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0"><span class="nav-number">6.</span> <span class="nav-text">异常检测 VS 监督学习</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E6%8A%80%E5%B7%A7"><span class="nav-number">7.</span> <span class="nav-text">特征选择技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E7%89%B9%E5%BE%81"><span class="nav-number">7.1.</span> <span class="nav-text">高斯分布特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90"><span class="nav-number">7.2.</span> <span class="nav-text">错误分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E7%89%B9%E5%BE%81"><span class="nav-number">7.3.</span> <span class="nav-text">组合特征</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#implement-code"><span class="nav-number">8.</span> <span class="nav-text">implement code</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
