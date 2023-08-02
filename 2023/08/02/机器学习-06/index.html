@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="学习推荐系统~">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习-06">
+<meta property="og:url" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="学习推荐系统~">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/df23a3d1077a92dbc1c1b35fcfb58d9.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/a8f12f0bdac1687ae7d67bc2f36cc30.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/1b518b626a6b9540c937404160fa550.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/fe08813b3780cdb6ae495aa09e0f962.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/64711d21a875f2e25a17f2b4efc5536.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ad754b6cb7d4c491ae788dae6cf7bb7.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/0a0c86c56f769b43fd5c8abf58699b6.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ab4fada99f98bba9efce7dfc017f70d.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/9a3bc6f74cde4405ea78d3bd2dc8c9e.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ec5ddc706a5ccfd063bfc0708ccaff8.jpg">
+<meta property="article:published_time" content="2023-08-02T11:45:41.000Z">
+<meta property="article:modified_time" content="2023-08-02T11:45:41.150Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/df23a3d1077a92dbc1c1b35fcfb58d9.jpg">
+
+<link rel="canonical" href="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>机器学习-06 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习-06
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-02 19:45:41" itemprop="dateCreated datePublished" datetime="2023-08-02T19:45:41+08:00">2023-08-02</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>学习推荐系统~</p>
+<span id="more"></span>
+<h1 id="理论成本函数"><a href="#理论成本函数" class="headerlink" title="理论成本函数"></a>理论成本函数</h1><img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/df23a3d1077a92dbc1c1b35fcfb58d9.jpg" class title="df23a3d1077a92dbc1c1b35fcfb58d9">
+<script type="math/tex; mode=display">
+min\ J(w^{(j)}, b^{(j)}) = \frac{1}{2m^{(j)}} \sum_{i:r(i, j) = 1}(w^{(j)} \cdot x^{(i)} + b^{(j) - y^{(i, j)}})^2</script><p> 正则化表示：</p>
+<script type="math/tex; mode=display">
+min\ J(w^{(j)}, b^{(j)}) = \frac{1}{2m^{(j)}} \sum_{i:r(i, j) = 1}(w^{(j)} \cdot x^{(i)} + b^{(j) - y^{(i, j)}})^2 + \frac{\lambda}{2m^{(j)}\sum_{k=1}^n(w_k^{(j)})^2}</script><p>推广到所有用户</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/a8f12f0bdac1687ae7d67bc2f36cc30.jpg" class title="a8f12f0bdac1687ae7d67bc2f36cc30">
+<h1 id="协同过滤算法"><a href="#协同过滤算法" class="headerlink" title="协同过滤算法"></a>协同过滤算法</h1><p>Collaborative Filtering Algorithm</p>
+<h2 id="引入与概念"><a href="#引入与概念" class="headerlink" title="引入与概念"></a>引入与概念</h2><p>相反地考虑：</p>
+<p>如果已经有w和b的参数值，那么我们也可以反推参数x</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/1b518b626a6b9540c937404160fa550.jpg" class title="1b518b626a6b9540c937404160fa550">
+<script type="math/tex; mode=display">
+J(x^{(1)}, x^{(2)}, ..., x^{(n_m)}) = \frac{1}{2}\sum_{i=1}^{n_m}\sum_{j:r(i,j)=1}(w^{(j)} \cdot x^{(i)} +b^{(j)} - y^{(i, j)})^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script><p>可以组合起来：</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/fe08813b3780cdb6ae495aa09e0f962.jpg" class title="fe08813b3780cdb6ae495aa09e0f962">
+<script type="math/tex; mode=display">
+J(w, b, x) = \frac{1}{2}\sum_{(i, j):r(i, j) = 1}(w^{(j)} \cdot x^{(i)} +b^{(j)} - y^{(i, j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^n(w_k^{(j)})^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script><p>现在损失函数是w,b,x三者的函数</p>
+<p>所以梯度下降是针对三者的同步下降</p>
+<script type="math/tex; mode=display">
+w_i^{(j)} = w_i^{(j)} - \alpha \frac{\partial}{\partial w_i^{(j)}}J(w, b, x)</script><script type="math/tex; mode=display">
+b^{(j)} = b^{(j)} - \alpha\frac{\partial}{\partial b^{(j)}}J(w, b, x)</script><script type="math/tex; mode=display">
+x_k^{(i)} = x_k^{(i)} - \alpha\frac{\partial}{\partial x_k^{(i)}}J(w, b, x)</script><p>针对二进制标签的公式变形：</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/64711d21a875f2e25a17f2b4efc5536.jpg" class title="64711d21a875f2e25a17f2b4efc5536">
+<h2 id="均值归一化"><a href="#均值归一化" class="headerlink" title="均值归一化"></a>均值归一化</h2><p>简而言之：就是先减均值，再加均值</p>
+<p>减完均值后放到$x^{(i)}$中，最后的方程再加上均值</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ad754b6cb7d4c491ae788dae6cf7bb7.jpg" class title="ad754b6cb7d4c491ae788dae6cf7bb7">
+<p>优点：</p>
+<ul>
+<li>加速推荐系统搭建</li>
+<li>针对没给出过样例或样例很少的新用户可以预测的更合理（即均值）</li>
+</ul>
+<h2 id="TensorFlow实现协同过滤算法"><a href="#TensorFlow实现协同过滤算法" class="headerlink" title="TensorFlow实现协同过滤算法"></a>TensorFlow实现协同过滤算法</h2><p>TensorFlow内置的gradient tape可以帮助我们实现偏导数的求解(梯度下降)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">w = tf.Variable(<span class="number">3.0</span>)</span><br><span class="line">x = <span class="number">1.0</span></span><br><span class="line">y = <span class="number">1.0</span> <span class="comment"># target value</span></span><br><span class="line">alpha = <span class="number">0.01</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以J = (wx - 1) ^ 2为例</span></span><br><span class="line"></span><br><span class="line">iterations = <span class="number">30</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        fwb = w * x</span><br><span class="line">        costJ = (fwb - y) ** <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    [dJdw] = tape.gradient(costJ, [w])  <span class="comment"># Auto Diff</span></span><br><span class="line">    </span><br><span class="line">    w.assign_add(-alpha * dJdw)</span><br></pre></td></tr></table></figure>
+<p>协同过滤算法实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Adam优化器</span></span><br><span class="line">optimizer = keras.optimizers.Adam(learning_rate=<span class="number">1e-1</span>)</span><br><span class="line"></span><br><span class="line">iterations = <span class="number">200</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="keyword">with</span> tf.GradienTape() <span class="keyword">as</span> tape:</span><br><span class="line">        cost_value = cofiCostFuncV(X, W, b, Ynorm, R, num_users, num_movies, <span class="keyword">lambda</span>)  <span class="comment"># Ynorm: 归一化后评分y </span></span><br><span class="line">        grads = tape.gradient(cost_value, [X, W, b])</span><br><span class="line">        <span class="comment"># 使用Adam优化器迭代</span></span><br><span class="line">        optimizer.apply_gradients(<span class="built_in">zip</span>(grads, [X, W, b]))</span><br></pre></td></tr></table></figure>
+<h2 id="寻找相关特征"><a href="#寻找相关特征" class="headerlink" title="寻找相关特征"></a>寻找相关特征</h2><p>如何判断两个样例的近似程度呢？</p>
+<p>我们可以通过得到的$x^{(i)}$特征参数的<strong>距离</strong>来判断两个样例的近似程度</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/0a0c86c56f769b43fd5c8abf58699b6.jpg" class title="0a0c86c56f769b43fd5c8abf58699b6">
+<h2 id="目前算法存在的问题"><a href="#目前算法存在的问题" class="headerlink" title="目前算法存在的问题"></a>目前算法存在的问题</h2><p>主要问题：</p>
+<ul>
+<li><p><strong>冷启动</strong>问题</p>
+<ul>
+<li><p>如何处理没有多少评分的新的样例？</p>
+</li>
+<li><p>如何处理没有评过多少分的新用户？</p>
+</li>
+</ul>
+</li>
+<li><p>使用项目或用户的<strong>边缘信息</strong></p>
+<ul>
+<li>项目：类型等</li>
+<li>用户：性别、年龄、位置、偏好</li>
+</ul>
+</li>
+</ul>
+<h2 id="implement-code"><a href="#implement-code" class="headerlink" title="implement code"></a>implement code</h2><p>损失函数计算</p>
+<script type="math/tex; mode=display">
+J(w, b, x) = \frac{1}{2m}\sum_{(i, j):r(i, j) = 1}(w^{(j)} \cdot x^{(i)} +b^{(j)} - y^{(i, j)})^2 + \frac{\lambda}{2}\sum_{j=1}^{n_u}\sum_{k=1}^n(w_k^{(j)})^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script><p>暴力实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cofi_cost_func</span>(<span class="params">X, W, b, Y, R, lambda_</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Returns the cost for the content-based filtering</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">      X (ndarray (num_movies,num_features)): matrix of item features</span></span><br><span class="line"><span class="string">      W (ndarray (num_users,num_features)) : matrix of user parameters</span></span><br><span class="line"><span class="string">      b (ndarray (1, num_users)            : vector of user parameters</span></span><br><span class="line"><span class="string">      Y (ndarray (num_movies,num_users)    : matrix of user ratings of movies</span></span><br><span class="line"><span class="string">      R (ndarray (num_movies,num_users)    : matrix, where R(i, j) = 1 if the i-th movies was rated by the j-th user</span></span><br><span class="line"><span class="string">      lambda_ (float): regularization parameter</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      J (float) : Cost</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    nm, nu = Y.shape</span><br><span class="line">    J = <span class="number">0</span></span><br><span class="line">    <span class="comment">### START CODE HERE ###  </span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(nu):</span><br><span class="line">        w = W[j, :]</span><br><span class="line">        b_j = b[<span class="number">0</span>,j]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(nm):</span><br><span class="line">            x = X[i, :]</span><br><span class="line">            y = Y[i, j]</span><br><span class="line">            r = R[i, j]</span><br><span class="line">            J += np.square(r * (np.dot(w, x) - y + b_j))</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 正则化</span></span><br><span class="line">    J += lambda_ * (np.<span class="built_in">sum</span>(np.square(W)) + np.<span class="built_in">sum</span>(np.square(X)))</span><br><span class="line">    </span><br><span class="line">    J /= <span class="number">2</span></span><br><span class="line">    <span class="comment">### END CODE HERE ### </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> J</span><br></pre></td></tr></table></figure>
+<p>向量API实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cofi_cost_func_v</span>(<span class="params">X, W, b, Y, R, lambda_</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Returns the cost for the content-based filtering</span></span><br><span class="line"><span class="string">    Vectorized for speed. Uses tensorflow operations to be compatible with custom training loop.</span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">      X (ndarray (num_movies,num_features)): matrix of item features</span></span><br><span class="line"><span class="string">      W (ndarray (num_users,num_features)) : matrix of user parameters</span></span><br><span class="line"><span class="string">      b (ndarray (1, num_users)            : vector of user parameters</span></span><br><span class="line"><span class="string">      Y (ndarray (num_movies,num_users)    : matrix of user ratings of movies</span></span><br><span class="line"><span class="string">      R (ndarray (num_movies,num_users)    : matrix, where R(i, j) = 1 if the i-th movies was rated by the j-th user</span></span><br><span class="line"><span class="string">      lambda_ (float): regularization parameter</span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">      J (float) : Cost</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    j = (tf.linalg.matmul(X, tf.transpose(W)) + b - Y)*R</span><br><span class="line">    J = <span class="number">0.5</span> * tf.reduce_sum(j**<span class="number">2</span>) + (lambda_/<span class="number">2</span>) * (tf.reduce_sum(X**<span class="number">2</span>) + tf.reduce_sum(W**<span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> J</span><br></pre></td></tr></table></figure>
+<p>模拟添加新用户及其部分评分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">movieList, movieList_df = load_Movie_List_pd()</span><br><span class="line"></span><br><span class="line">my_ratings = np.zeros(num_movies)          <span class="comment">#  Initialize my ratings</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Check the file small_movie_list.csv for id of each movie in our dataset</span></span><br><span class="line"><span class="comment"># For example, Toy Story 3 (2010) has ID 2700, so to rate it &quot;5&quot;, you can set</span></span><br><span class="line">my_ratings[<span class="number">2700</span>] = <span class="number">5</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">#Or suppose you did not enjoy Persuasion (2007), you can set</span></span><br><span class="line">my_ratings[<span class="number">2609</span>] = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># We have selected a few movies we liked / did not like and the ratings we</span></span><br><span class="line"><span class="comment"># gave are as follows:</span></span><br><span class="line">my_ratings[<span class="number">929</span>]  = <span class="number">5</span>   <span class="comment"># Lord of the Rings: The Return of the King, The</span></span><br><span class="line">my_ratings[<span class="number">246</span>]  = <span class="number">5</span>   <span class="comment"># Shrek (2001)</span></span><br><span class="line">my_ratings[<span class="number">2716</span>] = <span class="number">3</span>   <span class="comment"># Inception</span></span><br><span class="line">my_ratings[<span class="number">1150</span>] = <span class="number">5</span>   <span class="comment"># Incredibles, The (2004)</span></span><br><span class="line">my_ratings[<span class="number">382</span>]  = <span class="number">2</span>   <span class="comment"># Amelie (Fabuleux destin d&#x27;Amélie Poulain, Le)</span></span><br><span class="line">my_ratings[<span class="number">366</span>]  = <span class="number">5</span>   <span class="comment"># Harry Potter and the Sorcerer&#x27;s Stone (a.k.a. Harry Potter and the Philosopher&#x27;s Stone) (2001)</span></span><br><span class="line">my_ratings[<span class="number">622</span>]  = <span class="number">5</span>   <span class="comment"># Harry Potter and the Chamber of Secrets (2002)</span></span><br><span class="line">my_ratings[<span class="number">988</span>]  = <span class="number">3</span>   <span class="comment"># Eternal Sunshine of the Spotless Mind (2004)</span></span><br><span class="line">my_ratings[<span class="number">2925</span>] = <span class="number">1</span>   <span class="comment"># Louis Theroux: Law &amp; Disorder (2008)</span></span><br><span class="line">my_ratings[<span class="number">2937</span>] = <span class="number">1</span>   <span class="comment"># Nothing to Declare (Rien à déclarer)</span></span><br><span class="line">my_ratings[<span class="number">793</span>]  = <span class="number">5</span>   <span class="comment"># Pirates of the Caribbean: The Curse of the Black Pearl (2003)</span></span><br><span class="line">my_rated = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(my_ratings)) <span class="keyword">if</span> my_ratings[i] &gt; <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;\nNew user ratings:\n&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(my_ratings)):</span><br><span class="line">    <span class="keyword">if</span> my_ratings[i] &gt; <span class="number">0</span> :</span><br><span class="line">        print(<span class="string">f&#x27;Rated <span class="subst">&#123;my_ratings[i]&#125;</span> for  <span class="subst">&#123;movieList_df.loc[i,<span class="string">&quot;title&quot;</span>]&#125;</span>&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>将新用户加入数据集中并归一化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Reload ratings and add new ratings</span></span><br><span class="line">Y, R = load_ratings_small()</span><br><span class="line">Y    = np.c_[my_ratings, Y]</span><br><span class="line">R    = np.c_[(my_ratings != <span class="number">0</span>).astype(<span class="built_in">int</span>), R]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize the Dataset</span></span><br><span class="line">Ynorm, Ymean = normalizeRatings(Y, R)</span><br></pre></td></tr></table></figure>
+<p>归一化函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalizeRatings</span>(<span class="params">Y, R</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Preprocess data by subtracting mean rating for every movie (every row).</span></span><br><span class="line"><span class="string">    Only include real ratings R(i,j)=1.</span></span><br><span class="line"><span class="string">    [Ynorm, Ymean] = normalizeRatings(Y, R) normalized Y so that each movie</span></span><br><span class="line"><span class="string">    has a rating of 0 on average. Unrated moves then have a mean rating (0)</span></span><br><span class="line"><span class="string">    Returns the mean rating in Ymean.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    Ymean = (np.<span class="built_in">sum</span>(Y*R,axis=<span class="number">1</span>)/(np.<span class="built_in">sum</span>(R, axis=<span class="number">1</span>)+<span class="number">1e-12</span>)).reshape(-<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">    Ynorm = Y - np.multiply(Ymean, R) </span><br><span class="line">    <span class="keyword">return</span>(Ynorm, Ymean)</span><br></pre></td></tr></table></figure>
+<p>初始化参数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#  Useful Values</span></span><br><span class="line">num_movies, num_users = Y.shape</span><br><span class="line">num_features = <span class="number">100</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set Initial Parameters (W, X), use tf.Variable to track these variables</span></span><br><span class="line">tf.random.set_seed(<span class="number">1234</span>) <span class="comment"># for consistent results</span></span><br><span class="line">W = tf.Variable(tf.random.normal((num_users,  num_features),dtype=tf.float64),  name=<span class="string">&#x27;W&#x27;</span>)</span><br><span class="line">X = tf.Variable(tf.random.normal((num_movies, num_features),dtype=tf.float64),  name=<span class="string">&#x27;X&#x27;</span>)</span><br><span class="line">b = tf.Variable(tf.random.normal((<span class="number">1</span>,          num_users),   dtype=tf.float64),  name=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Instantiate an optimizer.</span></span><br><span class="line">optimizer = keras.optimizers.Adam(learning_rate=<span class="number">1e-1</span>)</span><br></pre></td></tr></table></figure>
+<p>训练模型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">iterations = <span class="number">200</span></span><br><span class="line">lambda_ = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">iter</span> <span class="keyword">in</span> <span class="built_in">range</span>(iterations):</span><br><span class="line">    <span class="comment"># Use TensorFlow’s GradientTape</span></span><br><span class="line">    <span class="comment"># to record the operations used to compute the cost </span></span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Compute the cost (forward pass included in cost)</span></span><br><span class="line">        cost_value = cofi_cost_func_v(X, W, b, Ynorm, R, lambda_)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Use the gradient tape to automatically retrieve</span></span><br><span class="line">    <span class="comment"># the gradients of the trainable variables with respect to the loss</span></span><br><span class="line">    grads = tape.gradient( cost_value, [X,W,b] )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Run one step of gradient descent by updating</span></span><br><span class="line">    <span class="comment"># the value of the variables to minimize the loss.</span></span><br><span class="line">    optimizer.apply_gradients( <span class="built_in">zip</span>(grads, [X,W,b]) )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Log periodically.</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">iter</span> % <span class="number">20</span> == <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">f&quot;Training loss at iteration <span class="subst">&#123;<span class="built_in">iter</span>&#125;</span>: <span class="subst">&#123;cost_value:<span class="number">0.1</span>f&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>推荐与查看模型效果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Make a prediction using trained weights and biases</span></span><br><span class="line">p = np.matmul(X.numpy(), np.transpose(W.numpy())) + b.numpy()</span><br><span class="line"></span><br><span class="line"><span class="comment">#restore the mean</span></span><br><span class="line">pm = p + Ymean</span><br><span class="line"></span><br><span class="line">my_predictions = pm[:,<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># sort predictions</span></span><br><span class="line">ix = tf.argsort(my_predictions, direction=<span class="string">&#x27;DESCENDING&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">17</span>):</span><br><span class="line">    j = ix[i]</span><br><span class="line">    <span class="keyword">if</span> j <span class="keyword">not</span> <span class="keyword">in</span> my_rated:</span><br><span class="line">        print(<span class="string">f&#x27;Predicting rating <span class="subst">&#123;my_predictions[j]:<span class="number">0.2</span>f&#125;</span> for movie <span class="subst">&#123;movieList[j]&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">&#x27;\n\nOriginal vs Predicted ratings:\n&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(my_ratings)):</span><br><span class="line">    <span class="keyword">if</span> my_ratings[i] &gt; <span class="number">0</span>:</span><br><span class="line">        print(<span class="string">f&#x27;Original <span class="subst">&#123;my_ratings[i]&#125;</span>, Predicted <span class="subst">&#123;my_predictions[i]:<span class="number">0.2</span>f&#125;</span> for <span class="subst">&#123;movieList[i]&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>表格查询：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">filter</span>=(movieList_df[<span class="string">&quot;number of ratings&quot;</span>] &gt; <span class="number">20</span>)</span><br><span class="line">movieList_df[<span class="string">&quot;pred&quot;</span>] = my_predictions</span><br><span class="line">movieList_df = movieList_df.reindex(columns=[<span class="string">&quot;pred&quot;</span>, <span class="string">&quot;mean rating&quot;</span>, <span class="string">&quot;number of ratings&quot;</span>, <span class="string">&quot;title&quot;</span>])</span><br><span class="line">movieList_df.loc[ix[:<span class="number">300</span>]].loc[<span class="built_in">filter</span>].sort_values(<span class="string">&quot;mean rating&quot;</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="基于内容的过滤算法"><a href="#基于内容的过滤算法" class="headerlink" title="基于内容的过滤算法"></a>基于内容的过滤算法</h1><p>协同过滤算法：根据与你相似的用户给出的评分去给你推荐产品</p>
+<p>基于内容过滤算法：根据用户和项目特征去找到好的<strong>匹配</strong>去给你推荐产品</p>
+<h2 id="神经网络架构"><a href="#神经网络架构" class="headerlink" title="神经网络架构"></a>神经网络架构</h2><p>如何做用户特征$X_u$，项目特征$X_m$到$V_u$，$V_m$的映射？通过神经网络</p>
+<p>$V_u$和$V_m$具有相同的结构，所以输出层的神经元个数先沟通</p>
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ab4fada99f98bba9efce7dfc017f70d.jpg" class title="ab4fada99f98bba9efce7dfc017f70d">
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/9a3bc6f74cde4405ea78d3bd2dc8c9e.jpg" class title="9a3bc6f74cde4405ea78d3bd2dc8c9e">
+<img src="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/ec5ddc706a5ccfd063bfc0708ccaff8.jpg" class title="ec5ddc706a5ccfd063bfc0708ccaff8">
+<h2 id="推荐步骤"><a href="#推荐步骤" class="headerlink" title="推荐步骤"></a>推荐步骤</h2><ul>
+<li>检索<ul>
+<li>生成一个候选项目大列表<ul>
+<li>针对用户最近看的10部电影推荐10部相似的</li>
+<li>针对用户最多看的3中类型，找10个最高评分电影</li>
+<li>20部最高评分电影</li>
+</ul>
+</li>
+<li>合并这些电影成为列表，删除冗余（用户已看过）</li>
+</ul>
+</li>
+<li>排序<ul>
+<li>根据上述列表（对大型目录的缩减）使用模型去打分排序</li>
+<li>根据排序向用户展示推荐列表</li>
+</ul>
+</li>
+</ul>
+<p>权衡：</p>
+<ul>
+<li>检索更多项目会导致推荐系统更好的表现，但会降低推荐的速率</li>
+<li>去分析和优化，可以去做离线实验</li>
+</ul>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><ul>
+<li>电影推荐</li>
+<li>产品推荐（最可能下单）</li>
+<li>广告推荐（最可能点击）</li>
+<li>高利润产品推荐（用户需求不一定处于第一位）</li>
+<li>视频黏性增加用户观看时长</li>
+</ul>
+<h2 id="TensorFlow实现基于内容过滤算法"><a href="#TensorFlow实现基于内容过滤算法" class="headerlink" title="TensorFlow实现基于内容过滤算法"></a>TensorFlow实现基于内容过滤算法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">num_outputs = <span class="number">32</span></span><br><span class="line">tf.random.set_seed(<span class="number">1</span>)</span><br><span class="line">user_NN = tf.keras.models.Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ###   </span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">256</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    tf.keras.layers.Dense(<span class="number">128</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    tf.keras.layers.Dense(num_outputs),</span><br><span class="line">    <span class="comment">### END CODE HERE ###  </span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">item_NN = tf.keras.models.Sequential([</span><br><span class="line">    <span class="comment">### START CODE HERE ###     </span></span><br><span class="line">    tf.keras.layers.Dense(<span class="number">256</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    tf.keras.layers.Dense(<span class="number">128</span>, activation=<span class="string">&#x27;relu&#x27;</span>),</span><br><span class="line">    tf.keras.layers.Dense(num_outputs),</span><br><span class="line">    <span class="comment">### END CODE HERE ###  </span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line"><span class="comment"># create the user input and point to the base network</span></span><br><span class="line">input_user = tf.keras.layers.Input(shape=(num_user_features))</span><br><span class="line">vu = user_NN(input_user)</span><br><span class="line">vu = tf.linalg.l2_normalize(vu, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># create the item input and point to the base network</span></span><br><span class="line">input_item = tf.keras.layers.Input(shape=(num_item_features))</span><br><span class="line">vm = item_NN(input_item)</span><br><span class="line">vm = tf.linalg.l2_normalize(vm, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># compute the dot product of the two vectors vu and vm</span></span><br><span class="line">output = tf.keras.layers.Dot(axes=<span class="number">1</span>)([vu, vm])</span><br><span class="line"></span><br><span class="line"><span class="comment"># specify the inputs and output of the model</span></span><br><span class="line">model = Model([input_user, input_item], output)</span><br><span class="line"></span><br><span class="line">model.summary()</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(<span class="number">1</span>)</span><br><span class="line">cost_fn = tf.keras.losses.MeanSquaredError()</span><br><span class="line">opt = keras.optimizers.Adam(learning_rate=<span class="number">0.01</span>)</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=opt, loss=cost_fn)</span><br><span class="line"></span><br><span class="line">tf.random.set_seed(<span class="number">1</span>)</span><br><span class="line">model.fit([user_train[:, u_s:], item_train[:, i_s:]], ynorm_train, epochs=<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line">model.evaluate([user_test[:, u_s:], item_test[:, i_s:]], ynorm_test)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/" title="机器学习-06">https://polaris6g.github.io/2023/08/02/机器学习-06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/07/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-05/" rel="prev" title="机器学习-05">
+      <i class="fa fa-chevron-left"></i> 机器学习-05
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E6%88%90%E6%9C%AC%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">理论成本函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">协同过滤算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5%E4%B8%8E%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">引入与概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%87%E5%80%BC%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">2.2.</span> <span class="nav-text">均值归一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow%E5%AE%9E%E7%8E%B0%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">TensorFlow实现协同过滤算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E7%9B%B8%E5%85%B3%E7%89%B9%E5%BE%81"><span class="nav-number">2.4.</span> <span class="nav-text">寻找相关特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%89%8D%E7%AE%97%E6%B3%95%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.5.</span> <span class="nav-text">目前算法存在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#implement-code"><span class="nav-number">2.6.</span> <span class="nav-text">implement code</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E7%9A%84%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">基于内容的过滤算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">神经网络架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">3.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.3.</span> <span class="nav-text">推荐步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">3.4.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow%E5%AE%9E%E7%8E%B0%E5%9F%BA%E4%BA%8E%E5%86%85%E5%AE%B9%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95"><span class="nav-number">3.5.</span> <span class="nav-text">TensorFlow实现基于内容过滤算法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
