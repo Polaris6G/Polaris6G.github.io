@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="激动人心的强化学习！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习-07">
+<meta property="og:url" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="激动人心的强化学习！">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/07aeeabab85e1629fd718b20c5e1bb4.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/26e2ac6442fb346eb345025357091f9.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/250f99a361490a801e43e693eafbce0.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/bc51caa0fa3452ca7a835955c0c348e.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/b1a7ad9b4d1f98addfc0fd4c1a34f4c.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/8987f5cbee0e53fa00e0ffbe763126b.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/35c5b0c1267470902fa0376a0e37813.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/9be3de8231f6a522b7d8c8a7846d549.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/702dfcaaaa8fd35c1aaba922f89d9b6.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/9c91245ed424c469e11967c26f791f8.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/1c111be7f84d83707286d807b534154.jpg">
+<meta property="article:published_time" content="2023-08-04T10:10:09.000Z">
+<meta property="article:modified_time" content="2023-08-04T10:10:09.597Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/07aeeabab85e1629fd718b20c5e1bb4.jpg">
+
+<link rel="canonical" href="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>机器学习-07 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习-07
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-08-04 18:10:09" itemprop="dateCreated datePublished" datetime="2023-08-04T18:10:09+08:00">2023-08-04</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>激动人心的强化学习！</p>
+<span id="more"></span>
+<h1 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h1><ul>
+<li>机器人控制</li>
+<li>工厂优化</li>
+<li>金融股票交易</li>
+<li>游戏AI</li>
+</ul>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>奖惩机制</p>
+<p>内部自己学习，黑盒</p>
+<ul>
+<li>State</li>
+<li>Action</li>
+<li>Reword</li>
+<li>new State’</li>
+</ul>
+<script type="math/tex; mode=display">
+(S_g, a_g, R(S), S')</script><ul>
+<li><p>the return 回报</p>
+</li>
+<li><p>折扣因子 discount factor</p>
+<p>让算法关注眼前的程度（每一步长乘一个r，就像利率折现）</p>
+</li>
+</ul>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/07aeeabab85e1629fd718b20c5e1bb4.jpg" class title="07aeeabab85e1629fd718b20c5e1bb4">
+<p>所以，该算法的效果可以总结为：</p>
+<ul>
+<li>趁早得到正反馈</li>
+<li>推迟遭受或不遭受负反馈</li>
+</ul>
+<p>强化学习算法的<strong>目标</strong>：找到一个策略，在获知每一种所处情况下，可以提供相应的行动去最大化回报 State — function($\pi$) —&gt; Action</p>
+<h2 id="马尔科夫决策过程-MDP"><a href="#马尔科夫决策过程-MDP" class="headerlink" title="马尔科夫决策过程 MDP"></a>马尔科夫决策过程 MDP</h2><p>在强化学习中，智能体观测得到环境的当前状态之后，采取动作，环境进入下一个状态，智能体又得到下一个环境状态的信息，形成一个循环回路。</p>
+<script type="math/tex; mode=display">
+\pi(S) = a</script><h2 id="状态动作价值函数"><a href="#状态动作价值函数" class="headerlink" title="状态动作价值函数"></a>状态动作价值函数</h2><p>Q函数</p>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/26e2ac6442fb346eb345025357091f9.jpg" class title="26e2ac6442fb346eb345025357091f9">
+<script type="math/tex; mode=display">
+max\ Q(s, a)</script><h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><h2 id="贝尔曼方程"><a href="#贝尔曼方程" class="headerlink" title="贝尔曼方程"></a>贝尔曼方程</h2><img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/250f99a361490a801e43e693eafbce0.jpg" class title="250f99a361490a801e43e693eafbce0">
+<script type="math/tex; mode=display">
+Q(s,a) = R(s) + \gamma \ maxQ(s', a')</script><p>递归终点</p>
+<script type="math/tex; mode=display">
+Q(s,a)=R(s)</script><h2 id="random-stochastic-environment"><a href="#random-stochastic-environment" class="headerlink" title="random stochastic environment"></a>random stochastic environment</h2><p>模拟随机环境</p>
+<p>会加入走相反方向或尝试其他操作的概率</p>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/bc51caa0fa3452ca7a835955c0c348e.jpg" class title="bc51caa0fa3452ca7a835955c0c348e">
+<script type="math/tex; mode=display">
+Q(s,a) = R(s) + \gamma \ E[maxQ(s', a')]</script><p>最终未来回报部分演化为期望，即均值</p>
+<h1 id="连续状态空间应用"><a href="#连续状态空间应用" class="headerlink" title="连续状态空间应用"></a>连续状态空间应用</h1><p><strong>汽车控制</strong>（二维平面内假设）：</p>
+<ul>
+<li>$x$ x轴位置</li>
+<li>$y$ y轴位置</li>
+<li>$\theta$ 面朝方向</li>
+<li>$\dot x$ x方向速度</li>
+<li>$\dot y$ y方向速度</li>
+<li>$\dot \theta$ 旋转角速度</li>
+</ul>
+<p><strong>直升机控制</strong>：</p>
+<ul>
+<li>$x$ x轴位置</li>
+<li>$y$ y轴位置</li>
+<li>$z$ 面朝方向</li>
+<li>$\phi$ 向左翻滚向右翻滚  x &amp; z</li>
+<li>$\theta$ 向前翻滚向后翻滚 y &amp; z</li>
+<li>$\omega$ 机头朝向 x &amp; y</li>
+<li>$\dot x$ x方向速度</li>
+<li>$\dot y$ y方向速度</li>
+<li>$\dot z$ z方向速度</li>
+<li>$\dot \phi$ 向左翻滚向右翻滚  x &amp; z</li>
+<li>$\dot \theta$ 向前翻滚向后翻滚 y &amp; z</li>
+<li>$\dot \omega$ 机头朝向 x &amp; y</li>
+</ul>
+<h2 id="实际案例：登月器"><a href="#实际案例：登月器" class="headerlink" title="实际案例：登月器"></a>实际案例：登月器</h2><img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/b1a7ad9b4d1f98addfc0fd4c1a34f4c.jpg" class title="b1a7ad9b4d1f98addfc0fd4c1a34f4c">
+<p>状态定义：</p>
+<ul>
+<li>$x$ x轴位置</li>
+<li>$y$ y轴位置</li>
+<li>$\dot x$ x轴径向速度</li>
+<li>$\dot y$ y轴径向速度</li>
+<li>$\theta$ 偏离角度</li>
+<li>$\dot \theta$ 角速度</li>
+<li>$l$ 左脚是否着地（二进制 01）</li>
+<li>$r$ 右脚是否着地（二进制 01）</li>
+</ul>
+<p>奖惩函数：</p>
+<ul>
+<li>降落到指定区域：100~140（根据降落位置差别给出）</li>
+<li>对于靠近着陆点奖励，对于远离着陆点惩罚</li>
+<li>Crash：-100</li>
+<li>软着陆：+100</li>
+<li>有腿着陆：+10</li>
+<li>每启动一次主推进器（向上推进）：-0.3</li>
+<li>每启动一次侧推进器（向左右推进）：-0.03</li>
+</ul>
+<h2 id="深度强化学习"><a href="#深度强化学习" class="headerlink" title="深度强化学习"></a>深度强化学习</h2><p>DQN</p>
+<p>输入向量：</p>
+<ul>
+<li>8个状态特征 + 4个行为特征（nothing，left，main，right）</li>
+</ul>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/8987f5cbee0e53fa00e0ffbe763126b.jpg" class title="8987f5cbee0e53fa00e0ffbe763126b">
+<ul>
+<li>迭代地创建映射数据和训练网络，优化模型</li>
+</ul>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/35c5b0c1267470902fa0376a0e37813.jpg" class title="35c5b0c1267470902fa0376a0e37813">
+<h2 id="改进方式"><a href="#改进方式" class="headerlink" title="改进方式"></a>改进方式</h2><h3 id="输出改进"><a href="#输出改进" class="headerlink" title="输出改进"></a>输出改进</h3><p>输出从一个特征转为四个特征，之后选最大值即可</p>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/9be3de8231f6a522b7d8c8a7846d549.jpg" class title="9be3de8231f6a522b7d8c8a7846d549">
+<h3 id="epsilon-贪婪策略"><a href="#epsilon-贪婪策略" class="headerlink" title="$\epsilon$贪婪策略"></a>$\epsilon$贪婪策略</h3><p>随机选取 -&gt; 有目的选取</p>
+<ul>
+<li><p>方式一：</p>
+<p>选取行动a使得最大化$Q(s, a)$ </p>
+</li>
+<li><p>方式二：</p>
+<p>95%概率选取行动a最大化$Q(s, a)$；（<strong>剥削步骤</strong> Exploitation）</p>
+<p>5%概率随机选取行动a （<strong>探索步骤</strong> Exploration）</p>
+<p>其中$\epsilon$ = 0.05</p>
+</li>
+</ul>
+<p>$\epsilon$的变化过程：<strong>Gradually decrease</strong>（1.0 -&gt; 0.01）</p>
+<p>注意：超参数的选择很重要，选择不好训练会花费的时间可能超级加倍</p>
+<h3 id="小批量"><a href="#小批量" class="headerlink" title="小批量"></a>小批量</h3><p>mini-batch</p>
+<p>如果<strong>数据量太大</strong>，每一次计算损失函数和梯度下降的过程都要全部过一遍，速度会极慢</p>
+<p>可以选择每次迭代都换一批训练集，使用不同的小的训练集进行迭代训练和梯度下降，效果会如下：</p>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/702dfcaaaa8fd35c1aaba922f89d9b6.jpg" class title="702dfcaaaa8fd35c1aaba922f89d9b6">
+<p>对应到应用的改进：</p>
+<img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/9c91245ed424c469e11967c26f791f8.jpg" class title="9c91245ed424c469e11967c26f791f8">
+<h3 id="软更新"><a href="#软更新" class="headerlink" title="软更新"></a>软更新</h3><p>$Set Q = Q_{new}$转变为：</p>
+<p>$W = 0.01 W_{new} + 0.09W$</p>
+<p>$B = 0.01B_{new} + 0.99B$</p>
+<h1 id="强化学习的局限性"><a href="#强化学习的局限性" class="headerlink" title="强化学习的局限性"></a>强化学习的局限性</h1><ul>
+<li>将强化学习运用到模拟环境或游戏中的难度会比真正运用到机器人的难度要低，所以要找好技术适用方向</li>
+<li>如今的强化学习运用远比监督和无监督学习少</li>
+<li>强化学习的未来研究潜力会很大</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><img src="/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/1c111be7f84d83707286d807b534154.jpg" class title="1c111be7f84d83707286d807b534154">
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2023/08/04/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-07/" title="机器学习-07">https://polaris6g.github.io/2023/08/04/机器学习-07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/08/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-06/" rel="prev" title="机器学习-06">
+      <i class="fa fa-chevron-left"></i> 机器学习-06
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A9%AC%E5%B0%94%E7%A7%91%E5%A4%AB%E5%86%B3%E7%AD%96%E8%BF%87%E7%A8%8B-MDP"><span class="nav-number">2.1.</span> <span class="nav-text">马尔科夫决策过程 MDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E5%8A%A8%E4%BD%9C%E4%BB%B7%E5%80%BC%E5%87%BD%E6%95%B0"><span class="nav-number">2.2.</span> <span class="nav-text">状态动作价值函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">贝尔曼方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#random-stochastic-environment"><span class="nav-number">3.2.</span> <span class="nav-text">random stochastic environment</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4%E5%BA%94%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">连续状态空间应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%99%BB%E6%9C%88%E5%99%A8"><span class="nav-number">4.1.</span> <span class="nav-text">实际案例：登月器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">4.2.</span> <span class="nav-text">深度强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B%E6%96%B9%E5%BC%8F"><span class="nav-number">4.3.</span> <span class="nav-text">改进方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%94%B9%E8%BF%9B"><span class="nav-number">4.3.1.</span> <span class="nav-text">输出改进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#epsilon-%E8%B4%AA%E5%A9%AA%E7%AD%96%E7%95%A5"><span class="nav-number">4.3.2.</span> <span class="nav-text">$\epsilon$贪婪策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E6%89%B9%E9%87%8F"><span class="nav-number">4.3.3.</span> <span class="nav-text">小批量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E6%9B%B4%E6%96%B0"><span class="nav-number">4.3.4.</span> <span class="nav-text">软更新</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">5.</span> <span class="nav-text">强化学习的局限性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
