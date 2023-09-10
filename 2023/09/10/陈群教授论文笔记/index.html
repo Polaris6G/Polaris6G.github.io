@@ -20,32 +20,20 @@
     var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="大数据课程介绍及体系 大数据时代背景 Hadoop生态介绍">
+  <meta name="description" content="渐进学习概念以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。 两大特性：  易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设） 通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）  基本过程：  简单实例标记（Easy Instance Labeling）  这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop时代背景">
-<meta property="og:url" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/index.html">
+<meta property="og:title" content="陈群教授论文笔记">
+<meta property="og:url" content="https://polaris6g.github.io/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Polaris6G&#39;s blog">
-<meta property="og:description" content="大数据课程介绍及体系 大数据时代背景 Hadoop生态介绍">
+<meta property="og:description" content="渐进学习概念以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。 两大特性：  易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设） 通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）  基本过程：  简单实例标记（Easy Instance Labeling）  这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712150920005.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712151455980.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712151802288.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712152225890.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712155030425.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712160855246.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712160051075.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712161004803.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712162710914.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712163045049.png">
-<meta property="og:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712163411465.png">
-<meta property="article:published_time" content="2022-07-12T09:33:43.000Z">
-<meta property="article:modified_time" content="2022-07-14T15:21:47.025Z">
+<meta property="article:published_time" content="2023-09-10T01:08:34.000Z">
+<meta property="article:modified_time" content="2023-09-10T01:08:34.718Z">
 <meta property="article:author" content="Zhao.W.L">
-<meta property="article:tag" content="思特奇培训课程">
+<meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712150920005.png">
 
-<link rel="canonical" href="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/">
+<link rel="canonical" href="https://polaris6g.github.io/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
@@ -58,7 +46,7 @@
   };
 </script>
 
-  <title>hadoop时代背景 | Polaris6G's blog</title>
+  <title>陈群教授论文笔记 | Polaris6G's blog</title>
   
 
 
@@ -211,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -224,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hadoop时代背景
+          陈群教授论文笔记
         </h1>
 
         <div class="post-meta">
@@ -234,15 +222,8 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2022-07-12 17:33:43" itemprop="dateCreated datePublished" datetime="2022-07-12T17:33:43+08:00">2022-07-12</time>
+              <time title="Created: 2023-09-10 09:08:34" itemprop="dateCreated datePublished" datetime="2023-09-10T09:08:34+08:00">2023-09-10</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-14 23:21:47" itemprop="dateModified" datetime="2022-07-14T23:21:47+08:00">2022-07-14</time>
-              </span>
 
           
   
@@ -253,8 +234,8 @@
       </span>
       <span class="post-meta-item-text">Valine: </span>
     
-    <a title="valine" href="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/" itemprop="commentCount"></span>
+    <a title="valine" href="/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -269,137 +250,73 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <ul>
-<li>大数据课程介绍及体系</li>
-<li>大数据时代背景</li>
-<li>Hadoop生态介绍</li>
-</ul>
-<span id="more"></span>
-<h1 id="大数据课程介绍及体系"><a href="#大数据课程介绍及体系" class="headerlink" title="大数据课程介绍及体系"></a>大数据课程介绍及体系</h1><p><strong>大数据科学体系</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712150920005.png" class title="image-20220712150920005">
+        <h1 id="渐进学习"><a href="#渐进学习" class="headerlink" title="渐进学习"></a>渐进学习</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。</p>
+<p>两大特性：</p>
 <ul>
-<li><p>一个目标：从数据中提取出有价值信息，以及支撑商业活动、科学研究及社会活动</p>
-</li>
-<li><p>三大范畴：数据统计学、行业经验、工具支撑</p>
-</li>
-<li><p>六大分析过程：业务理解、数据理解、数据准备、模型建立、模型评估、部署应用</p>
-</li>
-<li><p>七大数据流程：数据采集、数据建模、数据存储、数据处理、数据分析、数据可视化、数据应用</p>
-</li>
-<li><p>九大知识体系：统计学、数据平台、<strong>大数据</strong>、数据处理开发、编程语言、数据分析、数据挖掘、机器学习、人工智能、数据可视化</p>
-</li>
+<li>易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
+<li>通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）</li>
 </ul>
-<h1 id="大数据时代背景"><a href="#大数据时代背景" class="headerlink" title="大数据时代背景"></a>大数据时代背景</h1><img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712151455980.png" class title="image-20220712151455980">
-<p><strong>大数据定义</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712151802288.png" class title="image-20220712151802288">
-<p>大数据，指的是所涉及的资料量规模巨大到无法透过目前主流软件工具，在<strong>合理时间内</strong>达到抓取、管理、处理、并整理成为帮助企业经营决策更积极目的的资讯</p>
-<p><strong>大数据产生过程：</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712152225890.png" class title="image-20220712152225890">
-<p><strong>萌芽期</strong></p>
+<p>基本过程：</p>
 <ul>
-<li><p>1990~2000</p>
-<p>运营式系统</p>
-<p>收银系统、办公系统</p>
-</li>
-</ul>
-<p><strong>成熟期</strong></p>
+<li><p><strong>简单实例标记（Easy Instance Labeling）</strong></p>
 <ul>
-<li><p>2000~2010</p>
-<p>用户原创内容</p>
-<p>互联网的发展：微博、微信等</p>
-</li>
+<li>这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而相似度中等的通常是难实例。</li>
+<li>简单实例可通过（1）用户指定规则；（2）现有无监督学习方法 来搞定</li>
 </ul>
-<p><strong>大规模应用</strong></p>
+</li>
+<li><p><strong>特征提取和模型修正（Feature Extraction and Inffuence Modeling）</strong></p>
 <ul>
-<li><p>2010年至今</p>
-<p>感知式系统</p>
-<p>物联网的迅速发展：摄像头、温度监控等</p>
-</li>
+<li>特征成为联系起简单实例和困难实例的媒介</li>
+<li>尽可能多的抓取各种各样的特征信息</li>
+<li>针对每个抓取的特征，需要修正相关实例的标签？？</li>
 </ul>
-<p><strong>大数据技术支撑</strong></p>
-<ul>
-<li>存储：MB、GB、TB、PB</li>
-<li>计算：资源、服务共享、虚拟化</li>
-<li>网络：带宽、千兆万兆网</li>
-</ul>
-<p><strong>大数据4V特征</strong></p>
-<p>Volume：大量化</p>
-<p>Variety：多样化（其中以非结构化数据居多）</p>
-<p>Velocity：快速化</p>
-<p>Value：价值密度低 </p>
-<p><strong>应用场景：</strong></p>
-<p>交通优化、边防、研究改进、物流规划、热点跟踪、环境监控、社交网络意识、就业分析、欺诈检测、经济预测</p>
-<p><strong>大数据面临的挑战：</strong></p>
-<ul>
-<li>存储（HDFS）</li>
-<li>分析（Hive、MR）</li>
-<li>管理</li>
-</ul>
-<p><strong>大数据给传统数据存储带来的问题</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712155030425.png" class title="image-20220712155030425">
-<ul>
-<li>数据的存储能力<ul>
-<li>数据量大</li>
-<li>数据种类多</li>
-</ul>
-</li>
-<li>数据的处理能力<ul>
-<li>非结构化数据</li>
-<li>处理时间</li>
-</ul>
-</li>
-<li>扩展性与容错性<ul>
-<li>在线扩容</li>
-<li>容错与高可用</li>
-</ul>
-</li>
-<li>成本<ul>
-<li>软硬件成本</li>
-<li>管理维护成本</li>
-</ul>
-</li>
-</ul>
-<h2 id="Hadoop生态的大数据解决方案"><a href="#Hadoop生态的大数据解决方案" class="headerlink" title="Hadoop生态的大数据解决方案"></a>Hadoop生态的大数据解决方案</h2><p><strong>解决方案</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712160855246.png" class title="image-20220712160855246">
-<p><strong>Hadoop生态体系</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712160051075.png" class title="image-20220712160051075">
-<p>数据采集、数据存储、资源管理、计算框架、处理分析</p>
-<p><strong>大数据开发运维技术场景简图</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712161004803.png" class title="image-20220712161004803">
-<p><strong>hadoop优势</strong></p>
-<ul>
-<li><p>高可靠、大存储（高并发、保证数据正确完整、满足高容量数据存储）</p>
-</li>
-<li><p>平滑扩展、线性扩展</p>
-<p>（具备线性扩展能力，在不停业务的情况下实现节点线性扩容，且在扩容后自动实现数据的重新分步）</p>
-</li>
-<li><p>高效性（并行，加快任务的处理速度）</p>
-</li>
-<li><p>高容错（自动地将失败的任务进行分配）</p>
-</li>
-</ul>
-<p><strong>学习Hadoop前应掌握的技能</strong></p>
+<p>三种类型的<strong>特征</strong>：</p>
 <ol>
-<li>虚拟机、Linux系统</li>
-<li>网络、SSH、防火墙</li>
-<li>JDK、系统参数、Java</li>
-<li>MySQL DDL DML</li>
-<li>hadoop环境变量</li>
+<li>属性值相似度（Attribute value similarity）</li>
+<li>连续令牌的最大数量（Similarity based on the maximal number of common con-secutive tokens in string attributes）</li>
+<li>两个记录中均出现或只出现在其中一个记录的令牌信息（The tokens occurring in both records or in one and only one record）</li>
 </ol>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712162710914.png" class title="image-20220712162710914">
-<p><strong>Hadoop定义</strong></p>
-<p>Apache开源软件基金会开发的</p>
-<ul>
-<li>运行与大规模普通服务器上的</li>
-<li>用于大数据存储、计算、分析的</li>
-<li>分布式存储系统和分布式框架</li>
+<p>特征影响力计算公式（使用sigmoid调制）：</p>
+<script type="math/tex; mode=display">
+P_f(d) = \frac{1}{1 + e^{-\tau_f(x_f(d)-\alpha_f)}}</script><p>其中，f代表一个特征，d代表一组实例，$\alpha_f$表示函数对称中点，$\tau_f$衡量曲线陡率，$x_f(d)$表示d这组实例的f型特征值。</p>
+</li>
 </ul>
-<p>Hadoop之父：Doug Cutting</p>
-<p><strong>Hadoop发展史：</strong></p>
-<img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712163045049.png" class title="image-20220712163045049">
-<p><strong>Hadoop生态发展史</strong>：</p>
-<p><img src="/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/image-20220712163411465.png" alt="image-20220712163411465" style="zoom:150%;"></p>
-
+<ul>
+<li><p><strong>渐进推理（Gradual Inference）</strong></p>
+<ul>
+<li>逐渐标注难度更高的样例</li>
+<li>实现角度/评估依据：<strong>evidential certainty</strong></li>
+<li>在每一次迭代循环中，选择最高evidential certainty的标签进行标注</li>
+<li>在所有实例都被标注后停止</li>
+<li>新被标记的实例会作为依据加入下一次迭代之中</li>
+</ul>
+</li>
+</ul>
+<h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
+<li><p>实体统一（Entity Resolution）</p>
+</li>
+<li><p>情感分析</p>
+</li>
+</ul>
+<p>作为一种通用范式，GML可以推广到各种<strong>分类</strong>任务中</p>
+<p>开源项目：<a target="_blank" rel="noopener" href="https://github.com/gml-explore/gml">https://github.com/gml-explore/gml</a></p>
+<h3 id="实体统一"><a href="#实体统一" class="headerlink" title="实体统一"></a>实体统一</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
+<p>经典的二分类问题</p>
+<ul>
+<li><p>基于两实体相似度sim(str1, str2)的方法</p>
+<ul>
+<li>例如：两字符串可量化为编辑距离（看至少需要多少次的处理才能将一个字符串变成另一个字符串 <em>删除、替换、添加</em>）</li>
+</ul>
+</li>
+<li><p>基于规则的方法</p>
+<p>设计规则将实体转变为原型（prototype）</p>
+</li>
+<li><p>在文本中应用、在图中应用</p>
+</li>
+</ul>
+<h2 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h2><p>注意力增强 attention enhancement</p>
+<p>AGML</p>
+<h1 id="AI风险分析"><a href="#AI风险分析" class="headerlink" title="AI风险分析"></a>AI风险分析</h1>
     </div>
 
     
@@ -414,7 +331,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="https://polaris6g.github.io/2022/07/12/hadoop%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF/" title="hadoop时代背景">https://polaris6g.github.io/2022/07/12/hadoop时代背景/</a>
+    <a href="https://polaris6g.github.io/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="陈群教授论文笔记">https://polaris6g.github.io/2023/09/10/陈群教授论文笔记/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
@@ -425,7 +342,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%80%9D%E7%89%B9%E5%A5%87%E5%9F%B9%E8%AE%AD%E8%AF%BE%E7%A8%8B/" rel="tag"># 思特奇培训课程</a>
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># 论文笔记</a>
           </div>
 
         
@@ -434,13 +351,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/07/09/vue%E5%AE%9E%E6%88%98/" rel="prev" title="vue实战">
-      <i class="fa fa-chevron-left"></i> vue实战
+    <a href="/2023/08/31/%E8%8B%B1%E8%AF%AD%E5%8F%A3%E8%AF%AD%E5%A4%8D%E4%B9%A0/" rel="prev" title="英语口语复习">
+      <i class="fa fa-chevron-left"></i> 英语口语复习
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/07/15/Hadoop%E5%AE%9E%E6%93%8D%E6%A6%82%E8%BF%B0/" rel="next" title="Hadoop实操概述">
-      Hadoop实操概述 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -500,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%AF%BE%E7%A8%8B%E4%BB%8B%E7%BB%8D%E5%8F%8A%E4%BD%93%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text">大数据课程介绍及体系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%97%B6%E4%BB%A3%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">大数据时代背景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop%E7%94%9F%E6%80%81%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.1.</span> <span class="nav-text">Hadoop生态的大数据解决方案</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%90%E8%BF%9B%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">渐进学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E5%AE%9E%E7%8E%B0%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">已实现应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%BB%9F%E4%B8%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">实体统一</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">优化方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AI%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">AI风险分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -624,6 +538,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
