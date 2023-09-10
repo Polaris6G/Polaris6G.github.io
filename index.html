@@ -218,8 +218,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-09-10 09:08:34" itemprop="dateCreated datePublished" datetime="2023-09-10T09:08:34+08:00">2023-09-10</time>
+              <time title="Created: 2023-09-10 09:08:34 / Modified: 09:25:30" itemprop="dateCreated datePublished" datetime="2023-09-10T09:08:34+08:00">2023-09-10</time>
             </span>
 
           
@@ -247,73 +248,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="渐进学习"><a href="#渐进学习" class="headerlink" title="渐进学习"></a>渐进学习</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。</p>
-<p>两大特性：</p>
-<ul>
-<li>易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
-<li>通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）</li>
-</ul>
-<p>基本过程：</p>
-<ul>
-<li><p><strong>简单实例标记（Easy Instance Labeling）</strong></p>
-<ul>
-<li>这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而相似度中等的通常是难实例。</li>
-<li>简单实例可通过（1）用户指定规则；（2）现有无监督学习方法 来搞定</li>
-</ul>
-</li>
-<li><p><strong>特征提取和模型修正（Feature Extraction and Inffuence Modeling）</strong></p>
-<ul>
-<li>特征成为联系起简单实例和困难实例的媒介</li>
-<li>尽可能多的抓取各种各样的特征信息</li>
-<li>针对每个抓取的特征，需要修正相关实例的标签？？</li>
-</ul>
-<p>三种类型的<strong>特征</strong>：</p>
-<ol>
-<li>属性值相似度（Attribute value similarity）</li>
-<li>连续令牌的最大数量（Similarity based on the maximal number of common con-secutive tokens in string attributes）</li>
-<li>两个记录中均出现或只出现在其中一个记录的令牌信息（The tokens occurring in both records or in one and only one record）</li>
-</ol>
-<p>特征影响力计算公式（使用sigmoid调制）：</p>
-<script type="math/tex; mode=display">
-P_f(d) = \frac{1}{1 + e^{-\tau_f(x_f(d)-\alpha_f)}}</script><p>其中，f代表一个特征，d代表一组实例，$\alpha_f$表示函数对称中点，$\tau_f$衡量曲线陡率，$x_f(d)$表示d这组实例的f型特征值。</p>
-</li>
-</ul>
-<ul>
-<li><p><strong>渐进推理（Gradual Inference）</strong></p>
-<ul>
-<li>逐渐标注难度更高的样例</li>
-<li>实现角度/评估依据：<strong>evidential certainty</strong></li>
-<li>在每一次迭代循环中，选择最高evidential certainty的标签进行标注</li>
-<li>在所有实例都被标注后停止</li>
-<li>新被标记的实例会作为依据加入下一次迭代之中</li>
-</ul>
-</li>
-</ul>
-<h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
-<li><p>实体统一（Entity Resolution）</p>
-</li>
-<li><p>情感分析</p>
-</li>
-</ul>
-<p>作为一种通用范式，GML可以推广到各种<strong>分类</strong>任务中</p>
-<p>开源项目：<a target="_blank" rel="noopener" href="https://github.com/gml-explore/gml">https://github.com/gml-explore/gml</a></p>
-<h3 id="实体统一"><a href="#实体统一" class="headerlink" title="实体统一"></a>实体统一</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
-<p>经典的二分类问题</p>
-<ul>
-<li><p>基于两实体相似度sim(str1, str2)的方法</p>
-<ul>
-<li>例如：两字符串可量化为编辑距离（看至少需要多少次的处理才能将一个字符串变成另一个字符串 <em>删除、替换、添加</em>）</li>
-</ul>
-</li>
-<li><p>基于规则的方法</p>
-<p>设计规则将实体转变为原型（prototype）</p>
-</li>
-<li><p>在文本中应用、在图中应用</p>
-</li>
-</ul>
-<h2 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h2><p>注意力增强 attention enhancement</p>
-<p>AGML</p>
-<h1 id="AI风险分析"><a href="#AI风险分析" class="headerlink" title="AI风险分析"></a>AI风险分析</h1>
+          <p>持续更新中~</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

@@ -9468,7 +9468,42 @@ Q(s,a) = R(s) + \gamma \ E[maxQ(s', a')]</script><p>最终未来回报部分演�
   <entry>
     <title>陈群教授论文笔记</title>
     <url>/2023/09/10/%E9%99%88%E7%BE%A4%E6%95%99%E6%8E%88%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="渐进学习"><a href="#渐进学习" class="headerlink" title="渐进学习"></a>渐进学习</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。</p>
+    <content><![CDATA[<p>持续更新中~</p>
+<span id="more"></span>
+<p>陈群教授个人主页：<a href="https://chenbenben.org/">https://chenbenben.org/</a></p>
+<p><strong>已读论文</strong></p>
+<p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a></p>
+<p><strong>在读论文</strong></p>
+<p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a></p>
+<p><a href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a></p>
+<p><strong>论文列表</strong></p>
+<p>渐进机器学习：</p>
+<ul>
+<li><p>实体统一：</p>
+<ul>
+<li><p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a> （简短）</p>
+</li>
+<li><p><a href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a> （长）</p>
+</li>
+<li><a href="https://chenbenben.org/paper/attentionGML.pdf（注意力增强优化）">https://chenbenben.org/paper/attentionGML.pdf（注意力增强优化）</a></li>
+</ul>
+</li>
+<li><p>情感分析：</p>
+<ul>
+<li><a href="https://chenbenben.org/paper/tkde2019wang.pdf">https://chenbenben.org/paper/tkde2019wang.pdf</a></li>
+<li><a href="https://chenbenben.org/paper/GML_ALSA_clean.pdf">https://chenbenben.org/paper/GML_ALSA_clean.pdf</a></li>
+<li><a href="https://chenbenben.org/paper/driven-DNN-GML.pdf（DNN-driven）">https://chenbenben.org/paper/driven-DNN-GML.pdf（DNN-driven）</a></li>
+<li><a href="https://chenbenben.org/paper/tacl-sgml.pdf">https://chenbenben.org/paper/tacl-sgml.pdf</a></li>
+</ul>
+</li>
+<li><p>AL风险分析：</p>
+<ul>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<p>框架笔记：</p>
+<h1 id="渐进学习"><a href="#渐进学习" class="headerlink" title="渐进学习"></a>渐进学习</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。</p>
 <p>两大特性：</p>
 <ul>
 <li>易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
