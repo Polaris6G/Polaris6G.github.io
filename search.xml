@@ -9481,18 +9481,18 @@ Q(s,a) = R(s) + \gamma \ E[maxQ(s', a')]</script><p>最终未来回报部分演�
 <ul>
 <li><p>实体统一：</p>
 <ul>
-<li><p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a> （简短）</p>
+<li><p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a>  （简短）</p>
 </li>
-<li><p><a href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a> （长）</p>
+<li><p><a href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a>  （长）</p>
 </li>
-<li><a href="https://chenbenben.org/paper/attentionGML.pdf（注意力增强优化）">https://chenbenben.org/paper/attentionGML.pdf（注意力增强优化）</a></li>
+<li><a href="https://chenbenben.org/paper/attentionGML.pdf">https://chenbenben.org/paper/attentionGML.pdf</a> （注意力增强优化）</li>
 </ul>
 </li>
 <li><p>情感分析：</p>
 <ul>
 <li><a href="https://chenbenben.org/paper/tkde2019wang.pdf">https://chenbenben.org/paper/tkde2019wang.pdf</a></li>
 <li><a href="https://chenbenben.org/paper/GML_ALSA_clean.pdf">https://chenbenben.org/paper/GML_ALSA_clean.pdf</a></li>
-<li><a href="https://chenbenben.org/paper/driven-DNN-GML.pdf（DNN-driven）">https://chenbenben.org/paper/driven-DNN-GML.pdf（DNN-driven）</a></li>
+<li><a href="https://chenbenben.org/paper/driven-DNN-GML.pdf">https://chenbenben.org/paper/driven-DNN-GML.pdf</a> （DNN-driven）</li>
 <li><a href="https://chenbenben.org/paper/tacl-sgml.pdf">https://chenbenben.org/paper/tacl-sgml.pdf</a></li>
 </ul>
 </li>
@@ -9553,7 +9553,7 @@ P_f(d) = \frac{1}{1 + e^{-\tau_f(x_f(d)-\alpha_f)}}</script><p>其中，f代表�
 </ul>
 <p>作为一种通用范式，GML可以推广到各种<strong>分类</strong>任务中</p>
 <p>开源项目：<a href="https://github.com/gml-explore/gml">https://github.com/gml-explore/gml</a></p>
-<h3 id="实体统一"><a href="#实体统一" class="headerlink" title="实体统一"></a>实体统一</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
+<h3 id="实体统一介绍"><a href="#实体统一介绍" class="headerlink" title="实体统一介绍"></a>实体统一介绍</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
 <p>经典的二分类问题</p>
 <ul>
 <li><p>基于两实体相似度sim(str1, str2)的方法</p>
