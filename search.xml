@@ -9545,6 +9545,17 @@ P_f(d) = \frac{1}{1 + e^{-\tau_f(x_f(d)-\alpha_f)}}</script><p>其中，f代表�
 </ul>
 </li>
 </ul>
+<p><strong>计算过程</strong>：</p>
+<p>针对未标记实例，计算其各选出特征值$x_f(d)$，后根据如上公式计算确信度(evidential certainty)$P_f(d)$，其中$\tau_f$和$\alpha_f$是各特征的超参数，也是迭代训练的目标变量。根据计算得到的$P_f(d)$，通过以下公式计算得到分配的权重：</p>
+<script type="math/tex; mode=display">
+\omega_f(d) = \theta_f(d) \cdot log(\frac{P_f(d)}{1-P_f(d)}) = \theta_f(d) \cdot \tau_f(x_f(d)-\alpha_f)</script><p>其中，$\theta_f(d)$表示对该实例d的该特征f的置信度(confidence)。</p>
+<p>得到特征值和权重后，可以计算出总体上的确信度(evidential certainty)：</p>
+<script type="math/tex; mode=display">
+P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{w_f(d)}}</script><p>根据已标记公式与计算的P(d)，可以通过梯度下降来更新$\alpha$和$\tau$</p>
+<script type="math/tex; mode=display">
+(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{V_I} P_{\alpha, \tau}(Λ, V_I)</script><p>Λ表示已标记实例或易实例，$V_I$表示未标记实例或推理实例，由于已标记或未标记实例都相互独立，所以可以写到一起：</p>
+<script type="math/tex; mode=display">
+(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p>优化方式：子图划分？</p>
 <h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
 <li><p>实体统一（Entity Resolution）</p>
 </li>
