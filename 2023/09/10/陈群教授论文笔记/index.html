@@ -28,7 +28,7 @@
 <meta property="og:description" content="持续更新中~">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T01:08:34.000Z">
-<meta property="article:modified_time" content="2023-09-11T03:29:50.211Z">
+<meta property="article:modified_time" content="2023-09-17T03:46:35.984Z">
 <meta property="article:author" content="Zhao.W.L">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-11 11:29:50" itemprop="dateModified" datetime="2023-09-11T11:29:50+08:00">2023-09-11</time>
+                <time title="Modified: 2023-09-17 11:46:35" itemprop="dateModified" datetime="2023-09-17T11:46:35+08:00">2023-09-17</time>
               </span>
 
           
@@ -263,7 +263,6 @@
 <p><strong>已读论文</strong></p>
 <p><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a></p>
 <p><strong>在读论文</strong></p>
-<p><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a></p>
 <p><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a></p>
 <p><strong>论文列表</strong></p>
 <p>渐进机器学习：</p>
@@ -274,7 +273,7 @@
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a>  （长）</p>
 </li>
-<li><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/attentionGML.pdf">https://chenbenben.org/paper/attentionGML.pdf</a> （注意力增强优化）</li>
+<li><a target="_blank" rel="noopener" href="https://chenbenben.org/paper/attentionGML.pdf">https://chenbenben.org/paper/attentionGML.pdf</a>  （注意力增强优化）</li>
 </ul>
 </li>
 <li><p>情感分析：</p>
@@ -298,15 +297,20 @@
 <li>易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
 <li>通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）</li>
 </ul>
-<p>基本过程：</p>
-<ul>
+<h2 id="基本任务"><a href="#基本任务" class="headerlink" title="基本任务"></a>基本任务</h2><p><strong>定义1</strong>：实体统一：给定一个由记录对组成的数据集$D = {d_1, d_2, …, d_n}$，entity resolution的任务就是针对数据集D给出一种标注方案S使得$f_1(D, S)$最大。</p>
+<p>其中，使用$f_1(D, S)$这种F1分数的方式衡量方案质量：</p>
+<script type="math/tex; mode=display">
+f_1(D,S) = \frac{2}{\frac{1}{precision(D,S)} + \frac{1}{recall(D,S)}}</script><p>precision：精确度（判断为真的多少实际为真）；</p>
+<p>recall：召回率（实际为真的多少判断为真）</p>
+<p>F1分数为两者的综合考虑（调和平均）</p>
+<h2 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h2><ul>
 <li><p><strong>简单实例标记（Easy Instance Labeling）</strong></p>
 <ul>
 <li>这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而相似度中等的通常是难实例。</li>
 <li>简单实例可通过（1）用户指定规则；（2）现有无监督学习方法 来搞定</li>
 </ul>
 </li>
-<li><p><strong>特征提取和模型修正（Feature Extraction and Inffuence Modeling）</strong></p>
+<li><p><strong>特征提取和模型修正（Feature Extraction and Influence Modeling）</strong></p>
 <ul>
 <li>特征成为联系起简单实例和困难实例的媒介</li>
 <li>尽可能多的抓取各种各样的特征信息</li>
@@ -345,6 +349,11 @@ P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{
 (\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{V_I} P_{\alpha, \tau}(Λ, V_I)</script><p>Λ表示已标记实例或易实例，$V_I$表示未标记实例或推理实例，由于已标记或未标记实例都相互独立，所以可以写到一起：</p>
 <script type="math/tex; mode=display">
 (\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p>优化方式：子图划分？</p>
+<ul>
+<li>measurement of evidential support</li>
+<li>approximate estimation of inference probability</li>
+<li>construction of inference subgraph</li>
+</ul>
 <h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
 <li><p>实体统一（Entity Resolution）</p>
 </li>
@@ -354,6 +363,21 @@ P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{
 <p>作为一种通用范式，GML可以推广到各种<strong>分类</strong>任务中</p>
 <p>开源项目：<a target="_blank" rel="noopener" href="https://github.com/gml-explore/gml">https://github.com/gml-explore/gml</a></p>
 <h3 id="实体统一介绍"><a href="#实体统一介绍" class="headerlink" title="实体统一介绍"></a>实体统一介绍</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
+<p>主要研究方向：</p>
+<ul>
+<li><p>无监督：设计不同的距离函数去测量成对相似度</p>
+</li>
+<li><p>监督方法：</p>
+<ul>
+<li><p>rules</p>
+</li>
+<li><p>probabilistic theory 概率论 / 可靠度理论</p>
+</li>
+<li><p>machine learning</p>
+</li>
+</ul>
+</li>
+</ul>
 <p>经典的二分类问题</p>
 <ul>
 <li><p>基于两实体相似度sim(str1, str2)的方法</p>
@@ -367,6 +391,21 @@ P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{
 <li><p>在文本中应用、在图中应用</p>
 </li>
 </ul>
+<h2 id="其他相关机器学习模型"><a href="#其他相关机器学习模型" class="headerlink" title="其他相关机器学习模型"></a>其他相关机器学习模型</h2><ul>
+<li>Traditional supervised machine learning</li>
+<li>Semi-supervised learning</li>
+<li>self-supervised learning</li>
+<li>Active learning</li>
+<li>Online learning</li>
+<li>incremental learning</li>
+<li>Curriculum learning</li>
+<li>self-paced learning</li>
+<li>self-paced deep clustering</li>
+<li>transfer learning </li>
+<li>lifelong learning</li>
+<li>multi-task learning</li>
+</ul>
+<p>当代学者关于ER的研究趋势：众包 crowd-sourcing</p>
 <h2 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h2><p>注意力增强 attention enhancement</p>
 <p>AGML</p>
 <h1 id="AI风险分析"><a href="#AI风险分析" class="headerlink" title="AI风险分析"></a>AI风险分析</h1>
@@ -467,7 +506,7 @@ P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%90%E8%BF%9B%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">渐进学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E5%AE%9E%E7%8E%B0%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.</span> <span class="nav-text">已实现应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%BB%9F%E4%B8%80%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.2.1.</span> <span class="nav-text">实体统一介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text">优化方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AI%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">AI风险分析</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%90%E8%BF%9B%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">渐进学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.2.</span> <span class="nav-text">基本任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">基本过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%B2%E5%AE%9E%E7%8E%B0%E5%BA%94%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">已实现应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%BB%9F%E4%B8%80%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.4.1.</span> <span class="nav-text">实体统一介绍</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.5.</span> <span class="nav-text">其他相关机器学习模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">优化方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AI%E9%A3%8E%E9%99%A9%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">AI风险分析</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
