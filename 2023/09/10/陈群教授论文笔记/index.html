@@ -28,7 +28,7 @@
 <meta property="og:description" content="持续更新中~">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-10T01:08:34.000Z">
-<meta property="article:modified_time" content="2023-09-17T03:46:35.984Z">
+<meta property="article:modified_time" content="2023-09-22T03:22:15.608Z">
 <meta property="article:author" content="Zhao.W.L">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -229,7 +229,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-17 11:46:35" itemprop="dateModified" datetime="2023-09-17T11:46:35+08:00">2023-09-17</time>
+                <time title="Modified: 2023-09-22 11:22:15" itemprop="dateModified" datetime="2023-09-22T11:22:15+08:00">2023-09-22</time>
               </span>
 
           
@@ -306,8 +306,8 @@ f_1(D,S) = \frac{2}{\frac{1}{precision(D,S)} + \frac{1}{recall(D,S)}}</script><p
 <h2 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h2><ul>
 <li><p><strong>简单实例标记（Easy Instance Labeling）</strong></p>
 <ul>
-<li>这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而相似度中等的通常是难实例。</li>
-<li>简单实例可通过（1）用户指定规则；（2）现有无监督学习方法 来搞定</li>
+<li>这里简单实例指的是分类任务中相似度高的（更高可能性认为是一类）或相似度低的（更高可能性认为不是一类），而相似度中等的通常是难实例。（基于<strong>精度单调性假设</strong>）</li>
+<li>简单实例可通过（1）用户指定规则；（2）现有无监督学习方法来搞定</li>
 </ul>
 </li>
 <li><p><strong>特征提取和模型修正（Feature Extraction and Influence Modeling）</strong></p>
@@ -318,9 +318,9 @@ f_1(D,S) = \frac{2}{\frac{1}{precision(D,S)} + \frac{1}{recall(D,S)}}</script><p
 </ul>
 <p>三种类型的<strong>特征</strong>：</p>
 <ol>
-<li>属性值相似度（Attribute value similarity）</li>
+<li><strong>属性值相似度</strong>（Attribute value similarity）</li>
 <li>连续令牌的最大数量（Similarity based on the maximal number of common con-secutive tokens in string attributes）</li>
-<li>两个记录中均出现或只出现在其中一个记录的令牌信息（The tokens occurring in both records or in one and only one record）</li>
+<li><strong>两个记录中均出现或只出现在其中一个记录的令牌信息</strong>（The tokens occurring in both records or in one and only one record）</li>
 </ol>
 <p>特征影响力计算公式（使用sigmoid调制）：</p>
 <script type="math/tex; mode=display">
@@ -348,7 +348,15 @@ P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{
 <script type="math/tex; mode=display">
 (\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{V_I} P_{\alpha, \tau}(Λ, V_I)</script><p>Λ表示已标记实例或易实例，$V_I$表示未标记实例或推理实例，由于已标记或未标记实例都相互独立，所以可以写到一起：</p>
 <script type="math/tex; mode=display">
-(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p>优化方式：子图划分？</p>
+(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p><em>熵的计算公式（参考帖子：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang911007xing/article/details/106767072）">https://blog.csdn.net/zhang911007xing/article/details/106767072）</a></em></p>
+<script type="math/tex; mode=display">
+H(p) = -\sum_{i}p_ilog_2(p_i) = \sum_{i}p_ilog_2(1/p_i)</script><p><em>其中，i代表事件i，$p_i$代表该事件发生的概率。熵很好的衡量了事件的不确定性（如果H(p)=1，则该不确定事件变为确定事件）</em></p>
+<p>这里针对一个实例d的evidential certainty计算采用熵的逆（熵越大，不确定性越大，evidential certainty越小）：</p>
+<script type="math/tex; mode=display">
+E(d)= \frac{1}{H(d)} = \frac{1}{-\sum_{1<=i<=l}P_i(d) \cdot log_2P_i(d)}</script><p>其中，$l$是一个标签种类集${L_1, L_2, …, L_l}$</p>
+<p>给定两个集合A,B，Jaccard 系数定义为A与B交集的大小与A与B并集的大小的比值，定义如下：</p>
+<script type="math/tex; mode=display">
+J(A,B)=\frac{|A\bigcap B|}{|A\bigcup B|}</script><p>优化方式：子图划分？</p>
 <ul>
 <li>measurement of evidential support</li>
 <li>approximate estimation of inference probability</li>
