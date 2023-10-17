@@ -9473,8 +9473,9 @@ Q(s,a) = R(s) + \gamma \ E[maxQ(s', a')]</script><p>最终未来回报部分演�
 <p>陈群教授个人主页：<a href="https://chenbenben.org/">https://chenbenben.org/</a></p>
 <p><strong>已读论文</strong></p>
 <p><a href="https://chenbenben.org/paper/www2019hou.pdf">https://chenbenben.org/paper/www2019hou.pdf</a></p>
-<p><strong>在读论文</strong></p>
 <p><a href="https://chenbenben.org/paper/tkde2020hou.pdf">https://chenbenben.org/paper/tkde2020hou.pdf</a></p>
+<p><strong>在读论文</strong></p>
+<p><a href="https://chenbenben.org/paper/attentionGML.pdf">https://chenbenben.org/paper/attentionGML.pdf</a>  </p>
 <p><strong>论文列表</strong></p>
 <p>渐进机器学习：</p>
 <ul>
@@ -9505,7 +9506,7 @@ Q(s,a) = R(s) + \gamma \ E[maxQ(s', a')]</script><p>最终未来回报部分演�
 <h1 id="渐进学习"><a href="#渐进学习" class="headerlink" title="渐进学习"></a>渐进学习</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>以一种逐步学习的思想，由易到难不断迭代的一种利用数据的方法。</p>
 <p>两大特性：</p>
 <ul>
-<li>易实例与难实例可存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
+<li>易实例与难实例可能存在分布偏差（即可不满足数据独立同分布的基本假设）</li>
 <li>通过小阶段迭代去渐进学习和训练（可在无监督条件下自动执行）</li>
 </ul>
 <h2 id="基本任务"><a href="#基本任务" class="headerlink" title="基本任务"></a>基本任务</h2><p><strong>定义1</strong>：实体统一：给定一个由记录对组成的数据集$D = {d_1, d_2, …, d_n}$，entity resolution的任务就是针对数据集D给出一种标注方案S使得$f_1(D, S)$最大。</p>
@@ -9553,35 +9554,34 @@ P_f(d) = \frac{1}{1 + e^{-\tau_f(x_f(d)-\alpha_f)}}</script><p>其中，f代表�
 <p>针对未标记实例，计算其各选出特征值$x_f(d)$，后根据如上公式计算确信度(evidential certainty)$P_f(d)$，其中$\tau_f$和$\alpha_f$是各特征的超参数，也是迭代训练的目标变量。根据计算得到的$P_f(d)$，通过以下公式计算得到分配的权重：</p>
 <script type="math/tex; mode=display">
 \omega_f(d) = \theta_f(d) \cdot log(\frac{P_f(d)}{1-P_f(d)}) = \theta_f(d) \cdot \tau_f(x_f(d)-\alpha_f)</script><p>其中，$\theta_f(d)$表示对该实例d的该特征f的置信度(confidence)。</p>
-<p>得到特征值和权重后，可以计算出总体上的确信度(evidential certainty)：</p>
+<p>得到特征值和权重后，可以计算出总体上的确信度(evidential probablity)：</p>
 <script type="math/tex; mode=display">
 P(d) = \frac{\prod \limits_{f \in F_d}e^{w_f(d)}}{1+\prod \limits_{f \in F_d}e^{w_f(d)}}</script><p>根据已标记公式与计算的P(d)，可以通过梯度下降来更新$\alpha$和$\tau$</p>
 <script type="math/tex; mode=display">
 (\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{V_I} P_{\alpha, \tau}(Λ, V_I)</script><p>Λ表示已标记实例或易实例，$V_I$表示未标记实例或推理实例，由于已标记或未标记实例都相互独立，所以可以写到一起：</p>
 <script type="math/tex; mode=display">
-(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p><em>熵的计算公式（参考帖子：<a href="https://blog.csdn.net/zhang911007xing/article/details/106767072）">https://blog.csdn.net/zhang911007xing/article/details/106767072）</a></em></p>
+(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I} P_{\alpha, \tau}(d)</script><p>如果考虑到数据集中不匹配和匹配的数量差距较大的情况，我们可以添加超参数来调整模型的梯度下降公式：在样本集中动态记录不匹配的数量$n_-$和匹配的数量$n_+$，我们分别为不匹配实例和匹配实例设置权重为1和$\frac{n_-}{n_+}$（这里我认为可以理解为不匹配的信息量大于匹配信息量，所以给予更快的梯度下降程度）</p>
+<script type="math/tex; mode=display">
+(\hat{a},\hat{\tau}) = arg \min({\alpha, \tau}) - log\sum_{d \in Λ \cup V_I}t_d \cdot P_{\alpha, \tau}(d)</script><p>其中，如果d是不匹配实例则$t_d = 1$, 如果是匹配实例则$t_d = \frac{n_-}{n_+}$。</p>
+<p><em>熵的计算公式（参考帖子：<a href="https://blog.csdn.net/zhang911007xing/article/details/106767072）">https://blog.csdn.net/zhang911007xing/article/details/106767072）</a></em></p>
 <script type="math/tex; mode=display">
 H(p) = -\sum_{i}p_ilog_2(p_i) = \sum_{i}p_ilog_2(1/p_i)</script><p><em>其中，i代表事件i，$p_i$代表该事件发生的概率。熵很好的衡量了事件的不确定性（如果H(p)=1，则该不确定事件变为确定事件）</em></p>
 <p>这里针对一个实例d的evidential certainty计算采用熵的逆（熵越大，不确定性越大，evidential certainty越小）：</p>
 <script type="math/tex; mode=display">
 E(d)= \frac{1}{H(d)} = \frac{1}{-\sum_{1<=i<=l}P_i(d) \cdot log_2P_i(d)}</script><p>其中，$l$是一个标签种类集${L_1, L_2, …, L_l}$</p>
-<p>给定两个集合A,B，Jaccard 系数定义为A与B交集的大小与A与B并集的大小的比值，定义如下：</p>
+<p>针对ER任务场景，上述公式简化为二分类问题：</p>
 <script type="math/tex; mode=display">
-J(A,B)=\frac{|A\bigcap B|}{|A\bigcup B|}</script><p>优化方式：子图划分？</p>
-<ul>
-<li>measurement of evidential support</li>
-<li>approximate estimation of inference probability</li>
-<li>construction of inference subgraph</li>
-</ul>
-<h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
+E(d) = \frac{1}{-(P(d) \cdot log_2P(d) + (1-P(d)) \cdot log_2(1 - P(d)))}</script><h2 id="知识性备注"><a href="#知识性备注" class="headerlink" title="知识性备注"></a>知识性备注</h2><p>给定两个集合A,B，<strong>Jaccard 系数</strong>定义为A与B交集的大小与A与B并集的大小的比值，定义如下：</p>
+<script type="math/tex; mode=display">
+J(A,B)=\frac{|A\bigcap B|}{|A\bigcup B|}</script><h2 id="已实现应用"><a href="#已实现应用" class="headerlink" title="已实现应用"></a>已实现应用</h2><ul>
 <li><p>实体统一（Entity Resolution）</p>
 </li>
-<li><p>情感分析</p>
+<li><p>情感分析（Sentiment Analysis）</p>
 </li>
 </ul>
 <p>作为一种通用范式，GML可以推广到各种<strong>分类</strong>任务中</p>
 <p>开源项目：<a href="https://github.com/gml-explore/gml">https://github.com/gml-explore/gml</a></p>
-<h3 id="实体统一介绍"><a href="#实体统一介绍" class="headerlink" title="实体统一介绍"></a>实体统一介绍</h3><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
+<h2 id="实体统一介绍"><a href="#实体统一介绍" class="headerlink" title="实体统一介绍"></a>实体统一介绍</h2><p>问题定义：给定两个实体，判断是否是指向同一个实体</p>
 <p>主要研究方向：</p>
 <ul>
 <li><p>无监督：设计不同的距离函数去测量成对相似度</p>
@@ -9625,7 +9625,20 @@ J(A,B)=\frac{|A\bigcap B|}{|A\bigcup B|}</script><p>优化方式：子图划分�
 <li>multi-task learning</li>
 </ul>
 <p>当代学者关于ER的研究趋势：众包 crowd-sourcing</p>
-<h2 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h2><p>注意力增强 attention enhancement</p>
+<h2 id="实验验证方法学习"><a href="#实验验证方法学习" class="headerlink" title="实验验证方法学习"></a>实验验证方法学习</h2><ul>
+<li>实验说明（建立方式）</li>
+<li>对比研究（与其他模型对比）指标：F1分数</li>
+<li>敏感性评估 对m和k的调整 纵向对比准确率</li>
+<li>可扩展性分析 通过调整输入数据集大小判断运行速度</li>
+</ul>
+<h2 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h2><h3 id="scalable"><a href="#scalable" class="headerlink" title="scalable"></a>scalable</h3><p>优化方式：提高效率，做出决策</p>
+<ul>
+<li>measurement of evidential support</li>
+<li>approximate estimation of inference probability</li>
+<li>construction of inference subgraph</li>
+</ul>
+<p>ps：这段实在是悟性不够</p>
+<h3 id="attention"><a href="#attention" class="headerlink" title="attention"></a>attention</h3><p>注意力增强 attention enhancement</p>
 <p>AGML</p>
 <h1 id="AI风险分析"><a href="#AI风险分析" class="headerlink" title="AI风险分析"></a>AI风险分析</h1>]]></content>
       <tags>
