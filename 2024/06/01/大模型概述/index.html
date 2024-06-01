@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="来自https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV17t4218761&#x2F;的视频笔记，用于帮助自己快速了解和上手大模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大模型概述">
+<meta property="og:url" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="来自https:&#x2F;&#x2F;www.bilibili.com&#x2F;video&#x2F;BV17t4218761&#x2F;的视频笔记，用于帮助自己快速了解和上手大模型">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531172954893.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180207823.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180012430.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180024348.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180228446.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185751630.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531183447651.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531183512190.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180748695.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180516536.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185133048.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185337648.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531191433080.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531191602883.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192138636.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192150335.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192445716.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192640190.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531193545260.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194025595.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194259301.png">
+<meta property="og:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194413740.png">
+<meta property="article:published_time" content="2024-06-01T02:53:28.000Z">
+<meta property="article:modified_time" content="2024-06-01T02:53:28.491Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="大模型">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531172954893.png">
+
+<link rel="canonical" href="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>大模型概述 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大模型概述
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-06-01 10:53:28" itemprop="dateCreated datePublished" datetime="2024-06-01T10:53:28+08:00">2024-06-01</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>来自<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17t4218761/的视频笔记，用于帮助自己快速了解和上手大模型">https://www.bilibili.com/video/BV17t4218761/的视频笔记，用于帮助自己快速了解和上手大模型</a></p>
+<span id="more"></span>
+<h1 id="AIGC"><a href="#AIGC" class="headerlink" title="AIGC"></a>AIGC</h1><p>AI Generated Content：</p>
+<ul>
+<li>文本</li>
+<li>代码</li>
+<li>图片</li>
+<li>音频</li>
+<li>视频</li>
+</ul>
+<p>生成式AI（Generated AI）—生成—&gt; AIGC</p>
+<h2 id="关系："><a href="#关系：" class="headerlink" title="关系："></a>关系：</h2><img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531172954893.png" class title="image-20240531172954893">
+<p><strong>生成式AI</strong>：是深度学习的一种应用，它利用神经网络来识别现有内容的模式和结构，学习和生成新的内容</p>
+<p><strong>大语言模型（LLM）</strong>：也是深度学习的一种应用，专门用于进行<strong>自然语言处理</strong>任务。</p>
+<p>大：1）参数庞大 2）所需高质量训练数据大</p>
+<p>图像生成：属于生成式AI但不是大语言模型</p>
+<p>BERT：属于大语言模型但不是生成式AI（主要用于搜索（排名、信息摘录准确性）、情感分析、文本分类、命名实体识别），不擅长文本生成</p>
+<h1 id="大语言模型"><a href="#大语言模型" class="headerlink" title="大语言模型"></a>大语言模型</h1><p>Large Language Model</p>
+<ul>
+<li>生成</li>
+<li>分类</li>
+<li>总结</li>
+<li>改写</li>
+</ul>
+<p>参数数量：GPT1(1.17亿)；GPT2(15亿)；GPT3(1750亿)</p>
+<p><strong>Attention Is All You Need -&gt; 提出Transformer架构</strong></p>
+<p><strong>GPT(Generative Pre-trained Transformer)</strong>：生成式预训练Transformer</p>
+<p><strong>RNN</strong>：循环神经网络 按顺序逐字处理</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180207823.png" class title="image-20240531180207823">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180012430.png" class title="image-20240531180012430">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180024348.png" class title="image-20240531180024348">
+<p>难以有效捕获到长距离的语义关系</p>
+<p><strong>LSTM（长短期记忆网络）</strong>：弥补RNN对长距离依赖性方面的不足</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180228446.png" class title="image-20240531180228446">
+<p>无法解决传统RNN无法并行计算的问题</p>
+<p><strong>Transformer</strong>:</p>
+<ul>
+<li><strong>自注意力机制</strong>：使之有能力学习输入序列里所有词的相关性和上下文，不会受到短时记忆的影响</li>
+<li><strong>位置编码</strong>：词 -&gt; 词向量（意义）；词的位置 -&gt; 位置向量（位置）；汇总后输入神经网络 -&gt; 词可以不按顺序输入 -&gt; 实现并行</li>
+</ul>
+<h1 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h1><img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185751630.png" class title="image-20240531185751630">
+<ul>
+<li>编码器（Encoder）</li>
+<li>解码器（Decoder）</li>
+</ul>
+<p>过程：</p>
+<ol>
+<li>原始文本 -&gt; 拆分为token（短单词为1个token，长单词可能被划分为多个token）-&gt; token ID（整数数字）</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531183447651.png" class title="image-20240531183447651">
+<ol>
+<li>向量嵌入（一个数字 -&gt; 多个数字表示）</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531183512190.png" class title="image-20240531183512190">
+<p> 词向量 -&gt; 不仅可以帮助模型理解词的语义，也可以帮助模型理解，也可以捕捉词与词之间的复杂关系</p>
+<ol>
+<li>位置编码</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180748695.png" class title="image-20240531180748695">
+<ol>
+<li>编码器（自注意力机制）</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531180516536.png" class title="image-20240531180516536">
+<p>多头自注意力：</p>
+<p>每个头都有它自己的注意力权重，用来关注文本里不同特征或方面，可做并行运算</p>
+<ol>
+<li>解码器</li>
+</ol>
+<p>解码器不仅会接收来自编码器的输入序列的抽象表示作为输入，还会把之前已经生成的文本也作为输入，来保持输出的连贯性和上下文相关性</p>
+<p>带掩码的多头自注意力机制（masked）：（针对已生成的输出序列）</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185133048.png" class title="image-20240531185133048">
+<p> 架构：</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531185337648.png" class title="image-20240531185337648">
+<ol>
+<li>linear和softmax层</li>
+</ol>
+<p>将解码器的输出转化为词汇表的概率分布（代表下一个被生成token的概率）</p>
+<p><strong>Hallucination（幻觉）</strong>：模型一本正经的胡说八道</p>
+<p>三个类别：</p>
+<ul>
+<li>仅编码器/自编码模型：BERT（掩码语言建模、情感分析等）</li>
+<li>仅解码器/自回归模型：GPT2、GPT3（文本生成）</li>
+<li>编码器 - 解码器/序列到序列模型：T5、BART（翻译、总结）</li>
+</ul>
+<h1 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h1><ol>
+<li><strong>无监督预训练</strong>：通过海量文本进行无监督学习 得到能进行文本生成的基座模型（最耗时烧钱的）</li>
+<li><strong>监督微调</strong>(Supervised Fine-Tuning，SFT)：通过人类撰写的高质量对话数据，对基座模型进行监督微调，得到一个微调后的模型（除续写文本外，模型也会具备更好的对话能力）</li>
+<li><strong>训练奖励模型 + 强化学习训练</strong>：用问题和多个对应回答的数据，让人类标注员对回答进行质量排序（3H原则：Helpful有用性、Honest真实性、Harmless无害性），然后基于这些数据，训练出一个能对回答进行评分预测的奖励模型；接下来用奖励模型给回答进行评分，利用评分作为反馈进行强化学习训练。</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531191433080.png" class title="image-20240531191433080">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531191602883.png" class title="image-20240531191602883">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192138636.png" class title="image-20240531192138636">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192150335.png" class title="image-20240531192150335">
+<h1 id="提示工程"><a href="#提示工程" class="headerlink" title="提示工程"></a>提示工程</h1><p>（Prompt Engineering）</p>
+<p>调教AI给出想要的回答：</p>
+<ol>
+<li>小样本提示</li>
+</ol>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192445716.png" class title="image-20240531192445716">
+<ol>
+<li>思维链</li>
+</ol>
+<p>展示中间的推理步骤 -&gt; 针对复杂任务有更大概率得到正确的结果</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531192640190.png" class title="image-20240531192640190">
+<ol>
+<li>分步骤思考</li>
+</ol>
+<p>加上<strong>请你分布思考</strong></p>
+<h1 id="武装GPT"><a href="#武装GPT" class="headerlink" title="武装GPT"></a>武装GPT</h1><p>存在问题：</p>
+<ul>
+<li>编造事实</li>
+<li>计算不准确</li>
+<li>数据过时</li>
+</ul>
+<p>实现方式：</p>
+<ul>
+<li><strong>RAG（Retrieval Augmented Generation，索引增强生成）</strong> </li>
+</ul>
+<p>输入外部知识文档 -&gt; 转化为向量 -&gt; 储存进向量数据库中</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531193545260.png" class title="image-20240531193545260">
+<p>有利于搭建企业知识库或个人知识库</p>
+<ul>
+<li><strong>PAL（Program-Aided Language Models，程序辅助语言模型）</strong></li>
+</ul>
+<p>不让AI直接生成计算结果，而是借助其他善于做计算的工具（如Python解释器） -&gt; 生成对应代码，运行，给出结果</p>
+<ul>
+<li><strong>ReAct（推理行动结合 在语言模型中协同推理与行动）</strong></li>
+</ul>
+<p>针对问题把步骤进行拆分，每个步骤要经过推理、行动、观察</p>
+<p>推理：针对问题或上一步观察的思考</p>
+<p>行动：基于推理与外部环境的一些交互（如搜索浏览器、运行代码等）</p>
+<p>观察：对行动得到的结果进行查看</p>
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194025595.png" class title="image-20240531194025595">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194259301.png" class title="image-20240531194259301">
+<img src="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/image-20240531194413740.png" class title="image-20240531194413740">
+<p>黑匣子 大数据 语言</p>
+<ul>
+<li>降噪（师兄）</li>
+<li>语音识别（成熟 难度高 老师经验不算丰富 有一个师兄在做 ）</li>
+<li></li>
+</ul>
+<p>学习的机会</p>
+<p>还没有签 500元/月 最终奖励</p>
+<p>6月份开始</p>
+<p>一个礼拜在线沟通一次</p>
+<p>弹性 可以调整 可以取消</p>
+<p>入学后不能随便请假</p>
+<p>语音识别的模型</p>
+<p>黑匣子的录音</p>
+<p>几个人在讲 录音转文字识别</p>
+<p>难度：</p>
+<ul>
+<li>背景噪音</li>
+<li>方言识别</li>
+<li>主要针对中文</li>
+</ul>
+<p>搜一些开源的系统、技术和论文</p>
+<p>一个博士生与硕士生在做</p>
+<p>商业 最好的 不做开源</p>
+<p>跑模型 数据</p>
+<p>找开源的数据集 -&gt; 也可以生成</p>
+<p>每周四</p>
+<p>可以加群 但是相对独立一些</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/" title="大模型概述">https://polaris6g.github.io/2024/06/01/大模型概述/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" rel="tag"># 大模型</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/03/02/PyTorch%E7%AC%94%E8%AE%B02/" rel="prev" title="PyTorch笔记">
+      <i class="fa fa-chevron-left"></i> PyTorch笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AIGC"><span class="nav-number">1.</span> <span class="nav-text">AIGC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">关系：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">大语言模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transformer"><span class="nav-number">3.</span> <span class="nav-text">Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">训练过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B"><span class="nav-number">5.</span> <span class="nav-text">提示工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A6%E8%A3%85GPT"><span class="nav-number">6.</span> <span class="nav-text">武装GPT</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
