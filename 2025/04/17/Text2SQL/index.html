@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Text2SQL综述学习 论文名称：A Survey of NL2SQL with Large Language Models">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Text2SQL.md">
+<meta property="og:url" content="https://polaris6g.github.io/2025/04/17/Text2SQL/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="Text2SQL综述学习 论文名称：A Survey of NL2SQL with Large Language Models">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-706c58fa79b83e17b54c81883b8434c2_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-386a28945fb4dc29ef22fc31130ec1c8_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-c8d05c8189f491f1b23dc23c192914d0_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-df804d101a8197d18a25f59769694513_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-bb0d7304edc63c013ba68b6092c985e0_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-d17b58fa451e842570ad7346bc5e8679_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-a333caac78ba19ee190d96bed95d146d_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-7e69ae1d218ab10b4b09d6d8d35d48d8_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-776617fa832bf0c680a9c66fe3962ce8_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-a20b38d9d1c83bafd5130d6a41f4786c_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-4c272ad7dbe3cc487fcc5f90c65cce95_1440w.jpg">
+<meta property="og:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/image-20250414111058905.png">
+<meta property="article:published_time" content="2025-04-17T04:01:58.000Z">
+<meta property="article:modified_time" content="2025-04-17T04:01:58.128Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="Text2SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://polaris6g.github.io/2025/04/17/Text2SQL/v2-706c58fa79b83e17b54c81883b8434c2_1440w.jpg">
+
+<link rel="canonical" href="https://polaris6g.github.io/2025/04/17/Text2SQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Text2SQL.md | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2025/04/17/Text2SQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Text2SQL.md
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2025-04-17 12:01:58" itemprop="dateCreated datePublished" datetime="2025-04-17T12:01:58+08:00">2025-04-17</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2025/04/17/Text2SQL/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2025/04/17/Text2SQL/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Text2SQL综述学习</p>
+<p>论文名称：A Survey of NL2SQL with Large Language Models</p>
+<span id="more"></span>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><img src="/2025/04/17/Text2SQL/v2-706c58fa79b83e17b54c81883b8434c2_1440w.jpg" class title="img">
+<p><strong>(a) NL2SQL模型演化流图</strong></p>
+<p>从2004年开始，NL2SQL 的解决方案经历了多个发展阶段，包括基于规则的方法、神经网络基础方法、预训练语言模型（PLM）基础方法和大型语言模型（LLM）基础方法。</p>
+<p>图片上方列出了各个阶段的重要模型，如PRECISE、BELA、ATHENA、SQLizer、Spider、SParC、ChatGPT等。下方列出了NL2SQL任务的数据集，如WikiSQL、Spider、SParC等</p>
+<ul>
+<li>NL2SQL任务的输入：自然语言查询（NL Query）和数据库（Database）。</li>
+<li>NL2SQL任务的输出：SQL查询（SQL Query）。</li>
+</ul>
+<p><strong>(b) Benchmarks 和 训练数据合成</strong></p>
+<p>训练数据构建方法：从数据库开始，通过不同的方法生成自然语言查询，然后转换为SQL查询。主要有以下三种方法：</p>
+<ul>
+<li>人工标注</li>
+<li>基于规则生成</li>
+<li>用大模型生成（LLMs）</li>
+</ul>
+<p><strong>(c) NL2SQL评估</strong></p>
+<p>整个NL2SQL生命周期是一个循环过程，从数据集开始（如Spider、BIRD、Dr.Spider、WikiSQL等）-&gt; 到使用模型生成SQL（如DAIL-SQL、DINSQL等模型）-&gt; 评估（Execution Accuracy 执行准确率、Exact-Match 完全匹配准确率）-&gt; Filter（SQL的复杂性/特征、数据领域）-&gt; 评估（定量评估/定性评估）-&gt; Analysis（可视化分析/可视化仪表板）</p>
+<p><strong>(d) NL2SQL错误分析</strong></p>
+<p>错误类型：图中展示了SQL查询中常见的错误类型及其比例，如SELECT（25.5%）、WHERE（15.2%）、FROM（15.3%）、GROUP BY（16.6%）等。</p>
+<p>论文对基于大模型的NL2SQL做了全面回顾，涵盖了NL2SQL任务的整个生命周期，从以下四个方面进行：</p>
+<p>（1）模型：NL2SQL转换技术不仅解决了自然语言的歧义和不明确性问题，而且还正确地将自然语言与数据库模式和实例映射；</p>
+<p>（2）数据：从训练数据的收集，由于训练数据稀缺导致的数据合成，到NL2SQL基准测试；</p>
+<p>（3）评估：使用不同的指标和粒度从多个角度评估NL2SQL方法；</p>
+<p>（4）错误分析：分析NL2SQL错误以找到根本原因，并指导NL2SQL模型的发展。此外，我们还提供了开发NL2SQL解决方案的经验法则。最后，我们讨论了LLMs时代NL2SQL的研究挑战和开放性问题。</p>
+<h1 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h1><p><strong>C1：不确定的自然语言查询。</strong>自然语言查询由于歧义和不明确性常常包含不确定性。在NL2SQL任务中，与自然语言相关的挑战可以总结如下：</p>
+<ul>
+<li>词汇歧义：当一个单词有多种含义时就会发生这种情况。例如，“bat”这个词可以指代一种动物，也可以指棒球棒（名词），或者指挥动的动作（动词）。</li>
+<li>句法歧义：当一个句子可以有多种解析方式时就会发生这种情况。例如，在句子“玛丽用望远镜看到了那个男人”中，短语“with the telescope”可以表示玛丽使用望远镜看到了那个男人，或者那个男人拥有望远镜。</li>
+<li>不明确性：当语言表达缺乏足够的细节来清晰地传达特定的意图或含义时就会发生这种情况。例如，“2023年劳动节”在美国指的是9月4日，但在中国指的是5月1日。</li>
+</ul>
+<p><strong>C2：复杂数据库和脏数据。</strong>NL2SQL任务需要对数据库模式有深入的理解，包括表名、列、关系和数据属性。现代模式的复杂性和大数据量使这项任务特别具有挑战性。</p>
+<ul>
+<li>表之间的复杂关系：数据库通常包含数百个具有复杂相互关系的表。NL2SQL解决方案必须准确理解和利用这些关系来生成SQL查询。</li>
+<li>属性和值的歧义性：数据库中模糊不清的值和属性可能会使NL2SQL系统难以识别正确的上下文。</li>
+<li>特定领域的模式设计：不同领域通常具有独特的数据库设计和模式模式。跨领域的模式设计变化使得开发通用的NL2SQL解决方案变得困难。</li>
+<li>大型和脏数据：在大型数据库中有效处理大量数据至关重要，因为将所有数据作为输入进行处理是不切实际的。此外，脏数据（如缺失值、重复项或不一致性）如果管理不当，可能会导致错误的查询结果（例如，影响WHERE子句）。</li>
+</ul>
+<p><strong>C3：NL2SQL翻译。</strong>NL2SQL任务与将高级编程语言编译为低级机器语言不同，因为它通常在输入的自然语言和输出的SQL查询之间存在多对一的映射。具体来说，NL2SQL任务面临几个独特的挑战：</p>
+<ul>
+<li>自由形式的自然语言与受限和正式的SQL：自然语言是灵活的，而SQL查询必须遵循严格的语法。将自然语言翻译成SQL需要精确性以确保生成的查询是可执行的。</li>
+<li>多种可能的SQL查询：单个自然语言查询可以对应多个满足查询意图的SQL查询，这导致在确定适当的SQL翻译时存在歧义（参见图2(a)中的例子）。</li>
+<li>数据库模式依赖性：NL2SQL翻译高度依赖于底层数据库模式。如图2(a)和(b)所示，相同的自然语言可能会根据模式变化产生不同的SQL查询。这要求NL2SQL模型在训练数据和现实世界模式差异之间架起桥梁。</li>
+</ul>
+<p>除了NL2SQL任务的内在挑战外，开发者还必须克服几个技术障碍，以构建可靠和高效的NL2SQL系统，如下所述。</p>
+<p><strong>C4：开发NL2SQL解决方案中的技术挑战。</strong>开发强大的NL2SQL解决方案需要解决几个关键的技术挑战，包括：</p>
+<ul>
+<li>成本效益解决方案：部署NL2SQL模型，特别是那些使用大型语言模型的模型，需要显著的资源，如硬件和/或API成本。在模型性能和成本效益之间实现最佳平衡仍然是一个关键挑战。</li>
+<li>模型效率：模型大小和性能之间通常存在权衡，较大的模型通常能产生更好的结果。在不牺牲准确性的情况下优化效率是必要的，特别是在需要低延迟的交互式查询场景中。</li>
+<li>SQL效率：NL2SQL模型生成的SQL必须既正确又优化以提高性能。这包括优化连接操作、索引使用和查询结构。高效的查询可以减少数据库负载，提高系统响应速度和吞吐量。</li>
+<li>训练数据不足和噪声：获取高质量的NL2SQL训练数据是具有挑战性的。公共数据集通常有限，可能包含噪声注释，影响模型性能。注释需要数据库专业知识，增加成本，而NL2SQL任务的复杂性常常导致错误。</li>
+<li>可信度和可靠性：NL2SQL模型必须可信且可靠，始终在不同的数据集和场景中产生准确的结果。可信度需要透明度，允许用户理解和验证生成的SQL。</li>
+<li><img src="/2025/04/17/Text2SQL/v2-386a28945fb4dc29ef22fc31130ec1c8_1440w.jpg" class title="img">
+</li>
+</ul>
+<h1 id="LLMs时代的NL2SQL解决方案"><a href="#LLMs时代的NL2SQL解决方案" class="headerlink" title="LLMs时代的NL2SQL解决方案"></a>LLMs时代的NL2SQL解决方案</h1><p>一般来说，利用LLMs（大型语言模型）的能力进行NL2SQL（自然语言到SQL）有两种主要方法：1）上下文学习，2）为NL2SQL专门预训练/微调LLMs。</p>
+<p><strong>NL2SQL的上下文学习（i</strong>n-context learning,<strong>）</strong>：对于NL2SQL的上下文学习方法，目标是优化提示函数P以引导LLMs，可以公式化如下：</p>
+<script type="math/tex; mode=display">
+F_{LLM}(P|NL,DB,K) -> SQL</script><p>其中K表示与NL或DB相关的附加信息或特定领域的知识。P是一个提示函数，将输入（NL, DB, K）转换为LLMs的合适文本提示。适当设计的P可以有效地引导LLMs更准确地执行NL2SQL任务。</p>
+<p>在NL2SQL中采用上下文学习策略将LLMs视为现成的工具，无需修改其参数。然而，如果用户有足够的训练数据或硬件资源，校准LLMs的参数可以提高性能和准确性，使模型更紧密地适应特定的NL2SQL任务。</p>
+<p><strong>为NL2SQL预训练和微调LLMs</strong>：为NL2SQL完全优化LLMs的参数涉及两个关键阶段：</p>
+<p>预训练和微调，可以公式化为如下：</p>
+<script type="math/tex; mode=display">
+LLM^* = F_{fine-tune}(F_{pre-train}(LLM,D_P), D_f)</script><p>在预训练期间，LLM在包括广泛语言模式和领域通用知识的大规模和多样化数据集 Dp</p>
+<p>在随后的微调阶段，预训练模型在与NL2SQL任务更紧密对齐的更专业数据集 Df 上进一步调整。这种针对性训练细化了模型的能力，使其能够更有效地基于自然语言查询解释和生成SQL。</p>
+<h1 id="语言模型驱动的NL2SQL概述"><a href="#语言模型驱动的NL2SQL概述" class="headerlink" title="语言模型驱动的NL2SQL概述"></a>语言模型驱动的NL2SQL概述</h1><img src="/2025/04/17/Text2SQL/v2-c8d05c8189f491f1b23dc23c192914d0_1440w.jpg" class title="img">
+<p><strong>预处理方法</strong>：预处理作为模型在NL2SQL解析过程中的输入增强。虽然不是严格必需的，但预处理显著有助于改进NL2SQL解析[52]。</p>
+<ul>
+<li>Schema Linking 模式链接：此关键模块从NL2SQL中识别最相关的表和列。基于大模型的解决方案有：</li>
+</ul>
+<blockquote>
+<p>- C3-SQL<C3: zero-shot text-to-sql with chatgpt>：使用GPT-3.5的零次提示和自一致性进行表和列链接。对于表链接，根据相关性对表进行排名和列出；对于列链接，在相关表内对列进行排名并输出为字典，优先考虑与问题术语或外键匹配。<br>- MAC-SQL <Mac-sql:Amulti-agent：collaborative framework for text-to-sql>提出了一个多代理协作框架用于NL2SQL，其中选择器代理处理模式链接，仅在数据库模式提示超过指定长度时激活。CHESS[53]利用GPT-4从自然语言和证据（来自BIRD[51]的附加信息）中提取关键词，实现具有不同提示的三阶段模式修剪协议。</Mac-sql:Amulti-agent：collaborative></C3:></p>
+</blockquote>
+<ul>
+<li>Database Content Retrieval 数据库内容检索：此关键模块访问制定SQL所需的适当数据库内容或单元格值。</li>
+</ul>
+<blockquote>
+<p>- CHESS[53]使用局部敏感哈希[89]进行近似最近邻域搜索，索引唯一单元格值以快速找到与自然语言查询最相关的匹配项。简单来说就是把高维的向量映射到低维哈希空间，在查询时，只需在与查询点哈希值相同或相近的哈希桶中寻找近似最近邻，大大提高了搜索效率。</p>
+</blockquote>
+<ul>
+<li><p>Additional Inormation Acquisition 附加信息获取：此关键模块通过整合特定领域的知识丰富上下文背景。</p>
+</li>
+<li><p>Additional Information Acquisitio：整合特定领域的知识丰富上下文背景。</p>
+</li>
+</ul>
+<blockquote>
+<p>- 基于示例： DIN-SQL 在 选表、查询分类、任务分解，自我纠正等多个模块构建prompt的时候，来整合额外信息；BIRD 也包含对各种NL2SQL的领域知识<br>- 基于检索：例如，PET-SQL构建问题框架和问题-SQL对的池，选择与目标查询最相似的k个示例，然后用于提示。</p>
+</blockquote>
+<p><strong>NL2SQL翻译方法</strong>：这是NL2SQL解决方案的核心，负责将输入的NL查询转换为SQL。</p>
+<img src="/2025/04/17/Text2SQL/v2-df804d101a8197d18a25f59769694513_1440w.jpg" class title="img">
+<ul>
+<li><strong>编码策略</strong>：此关键模块将输入的NL和数据库模式转换为内部表示，捕获输入数据的语义和结构信息，包括序列编码和图编码和分离编码策略。</li>
+</ul>
+<img src="/2025/04/17/Text2SQL/v2-bb0d7304edc63c013ba68b6092c985e0_1440w.jpg" class title="img">
+<ul>
+<li><strong>解码策略</strong>：此关键模块将内部表示转换为SQL查询。包括贪婪搜索（GPT4）、束搜索和约束感知增量解码策略。</li>
+</ul>
+<img src="/2025/04/17/Text2SQL/v2-d17b58fa451e842570ad7346bc5e8679_1440w.jpg" class title="img">
+<ul>
+<li><strong>特定任务提示策略</strong>：此模块为NL2SQL模型提供定制指导，优化NL2SQL翻译工作流程，包括思维链（COT）和分解策略。</li>
+</ul>
+<p>​    思维链（CoT）提示：CoT提示[108]以其有效性而闻名，展示了LLM的推理过程，提高了生成结果的准确性和可解释性。在NL2SQL任务中，CoT增强了模型性能，并确保生成的SQL语句更符合人类的期望[109]。</p>
+<p>​    分解策略将NL2SQL任务分解为顺序子任务，允许每个子模块专注于特定的生成步骤，从而提高准确性、质量和可解释性。</p>
+<ul>
+<li><strong>中间表示</strong>：此模块作为NL和SQL翻译之间的桥梁，提供结构化的方法来抽象、对齐和优化NL理解，简化复杂推理，并指导生成准确的SQL查询。</li>
+</ul>
+<img src="/2025/04/17/Text2SQL/v2-a333caac78ba19ee190d96bed95d146d_1440w.jpg" class title="img">
+<p>​    NL2SQL任务由于自然语言查询的复杂性和歧义性，加上SQL的语法约束特性，使得任务变得具有挑战性。为了简化这一过程，研究人员开发了一种无语法限制的中间表示（IR），以桥接“自由形式”的自然语言问题和“受限且正式”的SQL。这种IR提供了一种结构化但灵活的格式，捕捉自然语言查询中的基本组成部分和关系，而无需遵循SQL的严格语法要求。</p>
+<p><strong>后处理方法</strong>：后处理是优化生成的SQL查询以提高准确性的关键步骤。</p>
+<ul>
+<li><strong>SQL校正策略</strong>：旨在识别和纠正生成的SQL中的语法错误。</li>
+</ul>
+<blockquote>
+<p>- NL2SQL模型生成的SQL可能包含语法错误或不必要的关键字，如DESC、DISTINCT和聚合函数。DIN-SQL[5]引入了一个自我修正模块，该模块在零样本设置中运行，模型仅接收错误的SQL并尝试修正它。使用了两个提示：一个用于CodeX的通用提示，直接要求识别和修正错误；一个用于GPT-4的温和提示，寻求潜在问题而不预设错误。为了处理谓词预测中的错误，如错误的列或值，ZeroNL2SQL[43]采用了多级匹配方法。这种方法逐步扩展列、表和数据库之间的匹配，允许将匹配的值返回给LLMs，以生成与数据库内容一致的SQL查询。</p>
+</blockquote>
+<ul>
+<li><strong>输出一致性</strong>：此模块通过采样多个推理结果并选择最一致的结果来确保SQL的一致性。</li>
+</ul>
+<blockquote>
+<p> C3-SQL 通过投票选择更一致的SQL、Fin-SQL并行生成N个候选SQL</p>
+</blockquote>
+<ul>
+<li><strong>执行引导策略</strong>：它使用SQL的执行结果来指导后续改进。</li>
+</ul>
+<blockquote>
+<ul>
+<li>CHESS：把表schema、query、候选SQL、以及查询结果传给大模型，让大模型做优化，然后根据结果调整错误</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>N最佳排名策略</strong>：旨在重新排列NL2SQL模型生成的前k个结果，以提高查询准确性。</li>
+</ul>
+<img src="/2025/04/17/Text2SQL/v2-7e69ae1d218ab10b4b09d6d8d35d48d8_1440w.jpg" class title="img">
+<h1 id="NL2SQL的Benchmarks"><a href="#NL2SQL的Benchmarks" class="headerlink" title="NL2SQL的Benchmarks"></a>NL2SQL的Benchmarks</h1><p>​    现在NL2SQL的Benchmarks有很多，论文随着时间线，从单领域、跨领域、多轮次、稳健性、知识增强、SQL效率、模糊问题等方向对各个数据集做了分类。</p>
+<img src="/2025/04/17/Text2SQL/v2-776617fa832bf0c680a9c66fe3962ce8_1440w.jpg" class title="img">
+<p>然后使用NL2SQL360系统 对各个数据集做了统计，包括</p>
+<ul>
+<li>冗余：问题数量、SQL查询数量、问题/SQL查询比率</li>
+<li>数据库的复杂性：数据库总数、表总数、每个数据库的平均表数、每个表的平均列数据</li>
+<li>query复杂度：平均每个SQL，查了几张表、SELECT了几个字段、是否agg 、是否标量函数、是否数学计算</li>
+</ul>
+<img src="/2025/04/17/Text2SQL/v2-a20b38d9d1c83bafd5130d6a41f4786c_1440w.jpg" class title="img">
+<h1 id="评估和误差分析"><a href="#评估和误差分析" class="headerlink" title="评估和误差分析"></a>评估和误差分析</h1><p>评估指标:</p>
+<ul>
+<li>执行准确率EX: 比较SQL取数结果和真实的结果是否一致。这个指标有可能虚高，因为有可能SQL是错误的，但是查询是对的。</li>
+<li>组件匹配率CM : 比较不同的SQL组件（比如SELECT、WHERE）等是否一致。每个组件都能算出来一个准确率。</li>
+<li>完全匹配准确率EM：基于组件匹配准确率得到，只有所有组件都准确时，这个query才算正确。</li>
+<li>字符串匹配率SM：比较真实的SQL和预测的SQL是否相同。</li>
+<li>有效效率得分 VES：衡量有效SQL查询的执行效率。同时考虑了准确性和效率。比较了预测SQL相比真实SQL 的执行效率，可以参考执行时间、内存使用等。</li>
+<li>查询变化测试 QVT：衡量NL2SQL在处理问题变化时的鲁棒性</li>
+</ul>
+<p>论文提出了一个两级的NL2SQL错误分析的分类法：</p>
+<ol>
+<li>首先识别错误发生的SQL组件：比如SELECT、WHERE 等，应该覆盖所有可能的错误类型，且是互斥的</li>
+<li>错误的根本原因：比如WHERE错误可能是由于数据检索导致的</li>
+</ol>
+<h1 id="NL2SQL解决方案实用指南"><a href="#NL2SQL解决方案实用指南" class="headerlink" title="NL2SQL解决方案实用指南"></a>NL2SQL解决方案实用指南</h1><img src="/2025/04/17/Text2SQL/v2-4c272ad7dbe3cc487fcc5f90c65cce95_1440w.jpg" class title="img">
+<p>A部分：比如数据有隐私，那么就要选择本地部署开源大模型，可以微调。如果没有隐私，就可以使用外部API。</p>
+<p>B部分：前面介绍了NL2SQL的各个模块，这里介绍了什么情况建议使用什么模块，以及各种模块的优点和缺点。比如你的表特多，那么建议你选表，这样会减少噪声，同时也会增加耗时。</p>
+<p>参考：</p>
+<p>（1）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30560067376">https://zhuanlan.zhihu.com/p/30560067376</a></p>
+<p>（2）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/25904655307">https://zhuanlan.zhihu.com/p/25904655307</a></p>
+<p>（3）<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26260440108">https://zhuanlan.zhihu.com/p/26260440108</a></p>
+<img src="/2025/04/17/Text2SQL/image-20250414111058905.png" class title="image-20250414111058905">
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2025/04/17/Text2SQL/" title="Text2SQL.md">https://polaris6g.github.io/2025/04/17/Text2SQL/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Text2SQL/" rel="tag"># Text2SQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/06/01/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%A6%82%E8%BF%B0/" rel="prev" title="大模型概述">
+      <i class="fa fa-chevron-left"></i> 大模型概述
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%91%E6%88%98"><span class="nav-number">2.</span> <span class="nav-text">挑战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LLMs%E6%97%B6%E4%BB%A3%E7%9A%84NL2SQL%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">LLMs时代的NL2SQL解决方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E9%A9%B1%E5%8A%A8%E7%9A%84NL2SQL%E6%A6%82%E8%BF%B0"><span class="nav-number">4.</span> <span class="nav-text">语言模型驱动的NL2SQL概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NL2SQL%E7%9A%84Benchmarks"><span class="nav-number">5.</span> <span class="nav-text">NL2SQL的Benchmarks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E5%92%8C%E8%AF%AF%E5%B7%AE%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">评估和误差分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NL2SQL%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%AE%9E%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">7.</span> <span class="nav-text">NL2SQL解决方案实用指南</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
