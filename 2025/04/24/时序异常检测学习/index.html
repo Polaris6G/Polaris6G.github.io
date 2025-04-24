@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"polaris6g.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="异常检测算法学习路径">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时序异常检测学习">
+<meta property="og:url" content="https://polaris6g.github.io/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Polaris6G&#39;s blog">
+<meta property="og:description" content="异常检测算法学习路径">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-04-24T06:47:48.000Z">
+<meta property="article:modified_time" content="2025-04-24T06:47:48.484Z">
+<meta property="article:author" content="Zhao.W.L">
+<meta property="article:tag" content="Anomaly Detection">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://polaris6g.github.io/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>时序异常检测学习 | Polaris6G's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Polaris6G's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Stay humble,stay hungry.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://polaris6g.github.io/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Zhao.W.L">
+      <meta itemprop="description" content="This is a blog in order to record my learning and growth.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Polaris6G's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          时序异常检测学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2025-04-24 14:47:48" itemprop="dateCreated datePublished" datetime="2025-04-24T14:47:48+08:00">2025-04-24</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine: </span>
+    
+    <a title="valine" href="/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>异常检测算法学习路径</p>
+<span id="more"></span>
+<h1 id="异常检测"><a href="#异常检测" class="headerlink" title="异常检测"></a>异常检测</h1><p>基于社区算法的参数分组技术</p>
+<ul>
+<li>相关性图构建：利用Pearson和MIC来筛选出相关度高的属性分组，根据阈值进行连边</li>
+<li><p>划分相关参数团：采用Louvin社区发现算法对相关性图进行划分</p>
+</li>
+<li><p>密集子团过滤：相关参数团通过计算图的联通分量进行必要的剪枝处理</p>
+</li>
+</ul>
+<h2 id="预测型和重构型"><a href="#预测型和重构型" class="headerlink" title="预测型和重构型"></a>预测型和重构型</h2><p>理解预测型（<strong>Prediction-based</strong>）和重构型（<strong>Reconstruction-based</strong>）方法的区别，关键在于它们<strong>任务目标</strong>、<strong>模型结构</strong>和<strong>异常判据</strong>的差异。以下是两者的对比分析：</p>
+<hr>
+<h3 id="1-核心思想对比"><a href="#1-核心思想对比" class="headerlink" title="1. 核心思想对比"></a><strong>1. 核心思想对比</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法类型</strong></th>
+<th style="text-align:center"><strong>任务目标</strong></th>
+<th style="text-align:center"><strong>异常判据</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>预测型</strong></td>
+<td style="text-align:center">基于历史时序数据，预测<strong>下一时刻</strong>或<strong>未来序列</strong>的正常值。</td>
+<td style="text-align:center">预测值与实际值的误差（如MSE）越大，判定为异常的概率越高。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>重构型</strong></td>
+<td style="text-align:center">基于当前或历史时序数据，重建<strong>当前时刻</strong>或<strong>历史窗口</strong>的正常数据分布。</td>
+<td style="text-align:center">输入数据与重建数据的误差越大，判定为异常的概率越高。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="关键区别"><a href="#关键区别" class="headerlink" title="关键区别"></a><strong>关键区别</strong></h4><ul>
+<li><strong>预测型</strong>：模型是“向前看”的，目标是学习<strong>历史→未来</strong>的映射规律（时序预测）。</li>
+<li><strong>重构型</strong>：模型是“向后看”的，目标是学习<strong>输入→输入</strong>的压缩-重建规律（数据表征）。</li>
+</ul>
+<hr>
+<h3 id="2-模型结构与数据利用方式"><a href="#2-模型结构与数据利用方式" class="headerlink" title="2. 模型结构与数据利用方式"></a><strong>2. 模型结构与数据利用方式</strong></h3><h4 id="1-预测型方法（如LSTM、RNN）"><a href="#1-预测型方法（如LSTM、RNN）" class="headerlink" title="(1) 预测型方法（如LSTM、RNN）"></a><strong>(1) 预测型方法（如LSTM、RNN）</strong></h4><ul>
+<li><strong>模型结构</strong>：<br>输入历史窗口数据（如 <em>X**t</em>−<em>k</em>:<em>t</em>​），输出未来时刻的预测值（如 <em>X</em>^<em>t</em>+1​）。</li>
+<li><strong>数据关系</strong>：<br>关注<strong>时间维度</strong>的依赖关系（如周期性、趋势性）。<br>例如：用过去10分钟的温度序列，预测下一分钟的温度。</li>
+<li><strong>典型应用</strong>：<br>强时序依赖场景（如传感器监测、股票价格预测）。</li>
+</ul>
+<h4 id="2-重构型方法（如自编码器、VAE）"><a href="#2-重构型方法（如自编码器、VAE）" class="headerlink" title="(2) 重构型方法（如自编码器、VAE）"></a><strong>(2) 重构型方法（如自编码器、VAE）</strong></h4><ul>
+<li><strong>模型结构</strong>：<br>输入当前或历史窗口数据（如 $||X_{t - k:t}||$），输出对同一窗口的重建数据（如 $||X_{t - k:t}||$）。</li>
+<li><strong>数据关系</strong>：<br>关注<strong>变量维度</strong>的关联性（如多元变量间的依赖关系）和时序局部模式。<br>例如：用当前时刻的CPU、内存、磁盘IO数据，重建同一时刻的多元变量。</li>
+<li><strong>典型应用</strong>：<br>多变量关联复杂场景（如服务器监控、工业设备故障检测）。</li>
+</ul>
+<hr>
+<h3 id="3-误差计算方式对比"><a href="#3-误差计算方式对比" class="headerlink" title="3. 误差计算方式对比"></a><strong>3. 误差计算方式对比</strong></h3><h4 id="预测型"><a href="#预测型" class="headerlink" title="预测型"></a><strong>预测型</strong></h4><ul>
+<li><strong>误差公式</strong>：Error=$||X_{t+1} - \hat{X_{t+1}}||^2$</li>
+<li><strong>特点</strong>：<br>仅对<strong>单个未来时刻</strong>计算误差，适合检测突发异常（如骤升/骤降）。</li>
+</ul>
+<h4 id="重构型"><a href="#重构型" class="headerlink" title="重构型"></a><strong>重构型</strong></h4><ul>
+<li><strong>误差公式</strong>：Error=$||X_{t - k:t} - \hat{X_{t - k:t}}||^2$</li>
+<li><strong>特点</strong>：<br>对整个<strong>输入窗口</strong>计算误差，适合检测长期模式偏离（如变量关联性破坏）。</li>
+</ul>
+<hr>
+<h3 id="4-适用场景对比"><a href="#4-适用场景对比" class="headerlink" title="4. 适用场景对比"></a><strong>4. 适用场景对比</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>场景特征</strong></th>
+<th style="text-align:center"><strong>预测型更优</strong></th>
+<th style="text-align:center"><strong>重构型更优</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>数据特性</strong></td>
+<td style="text-align:center">强时序依赖（如温度、流量）</td>
+<td style="text-align:center">多变量关联复杂（如CPU-内存-磁盘IO）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>异常类型</strong></td>
+<td style="text-align:center">突发异常（如峰值、骤降）</td>
+<td style="text-align:center">模式偏离（如变量关系异常）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>实时性要求</strong></td>
+<td style="text-align:center">需快速响应未来时刻的异常</td>
+<td style="text-align:center">需综合分析当前窗口的整体异常</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="5-实例说明"><a href="#5-实例说明" class="headerlink" title="5. 实例说明"></a><strong>5. 实例说明</strong></h3><h4 id="1-预测型案例：电力负荷预测异常检测"><a href="#1-预测型案例：电力负荷预测异常检测" class="headerlink" title="(1) 预测型案例：电力负荷预测异常检测"></a><strong>(1) 预测型案例：电力负荷预测异常检测</strong></h4><ul>
+<li><strong>任务</strong>：预测未来1小时的用电负荷。</li>
+<li>异常检测逻辑：<ul>
+<li>正常情况：历史负荷数据有周期性（如早晚高峰），模型能准确预测下一时刻负荷。</li>
+<li>异常情况：若某时刻实际负荷远高于预测值（如电网故障），则判定为异常。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-重构型案例：服务器多指标异常检测"><a href="#2-重构型案例：服务器多指标异常检测" class="headerlink" title="(2) 重构型案例：服务器多指标异常检测"></a><strong>(2) 重构型案例：服务器多指标异常检测</strong></h4><ul>
+<li><strong>任务</strong>：基于CPU、内存、磁盘IO重建当前状态。</li>
+<li>异常检测逻辑：<ul>
+<li>正常情况：CPU利用率高时，内存和磁盘IO通常同步升高（变量关联性）。</li>
+<li>异常情况：CPU利用率高但磁盘IO极低（如磁盘故障），重建误差显著增大。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="6-优缺点对比"><a href="#6-优缺点对比" class="headerlink" title="6. 优缺点对比"></a><strong>6. 优缺点对比</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法类型</strong></th>
+<th style="text-align:center"><strong>优点</strong></th>
+<th style="text-align:center"><strong>缺点</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>预测型</strong></td>
+<td style="text-align:center">直接捕捉时序因果性，适合检测突发异常。</td>
+<td style="text-align:center">依赖时序的强规律性，对多变量关联性建模能力弱。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>重构型</strong></td>
+<td style="text-align:center">能建模变量间复杂关系，适合检测模式偏离。</td>
+<td style="text-align:center">可能过度泛化（异常数据被较好重建），需额外机制（如GAN、记忆模块）提升鲁棒性。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>预测型</strong>：像一名“预言家”，通过历史规律预测未来，关注<strong>时间维度</strong>的连续性。</li>
+<li><strong>重构型</strong>：像一名“修复师”，通过压缩-重建理解数据本质，关注<strong>变量维度</strong>的关联性。</li>
+<li><strong>选择依据</strong>：根据数据特性（时序性 vs. 多变量关联性）和异常类型（突发 vs. 模式偏离）决定。</li>
+</ul>
+<h2 id="表征学习"><a href="#表征学习" class="headerlink" title="表征学习"></a>表征学习</h2><p>表征学习（Representation Learning）是机器学习的核心分支之一，其核心目标是<strong>自动从原始数据中提取高层次、有意义的特征表示</strong>，替代传统方法中依赖人工设计特征的过程。在异常检测中，表征学习通过深度网络学习数据的<strong>本质结构</strong>，使得正常数据和异常数据在特征空间中更容易区分。</p>
+<hr>
+<h3 id="一、表征学习的核心思想"><a href="#一、表征学习的核心思想" class="headerlink" title="一、表征学习的核心思想"></a><strong>一、表征学习的核心思想</strong></h3><ol>
+<li><strong>特征自动提取</strong><br>无需人工设计统计特征（如均值、方差），而是通过神经网络自动学习数据的<strong>低维稠密表示</strong>​（即“嵌入向量”），这些表示能捕捉数据的关键模式（如时序依赖、变量关联性）。</li>
+<li><strong>优化目标</strong><br>通过设计损失函数，使同类数据（如正常样本）在特征空间中<strong>聚集</strong>，不同类数据（如异常样本）​<strong>远离</strong>。</li>
+<li><strong>可解释性增强</strong><br>部分方法（如DAGMM、interFusion）通过概率建模或归因分析，解释哪些特征或变量对异常检测贡献最大。</li>
+</ol>
+<hr>
+<h3 id="二、在异常检测中的应用"><a href="#二、在异常检测中的应用" class="headerlink" title="二、在异常检测中的应用"></a><strong>二、在异常检测中的应用</strong></h3><h4 id="1-典型流程"><a href="#1-典型流程" class="headerlink" title="1. 典型流程"></a><strong>1. 典型流程</strong></h4><ul>
+<li><strong>步骤1</strong>：用深度网络（如TS2Vec）将原始数据（如时间序列）映射为低维特征向量。</li>
+<li><strong>步骤2</strong>：基于特征向量计算异常得分（如距离、概率密度）。</li>
+<li><strong>步骤3</strong>：根据得分阈值判定异常。</li>
+</ul>
+<h4 id="2-与传统方法的对比"><a href="#2-与传统方法的对比" class="headerlink" title="2. 与传统方法的对比"></a><strong>2. 与传统方法的对比</strong></h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法</strong></th>
+<th style="text-align:center"><strong>特征来源</strong></th>
+<th style="text-align:center"><strong>优势</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>传统方法</strong></td>
+<td style="text-align:center">人工设计统计特征</td>
+<td style="text-align:center">简单直观，但依赖专家经验，易遗漏复杂模式。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>表征学习</strong></td>
+<td style="text-align:center">自动学习特征表示</td>
+<td style="text-align:center">捕捉复杂非线性关系，解决维度灾难。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="三、典型模型与原理"><a href="#三、典型模型与原理" class="headerlink" title="三、典型模型与原理"></a><strong>三、典型模型与原理</strong></h3><h4 id="1-TS2Vec：时间序列嵌入"><a href="#1-TS2Vec：时间序列嵌入" class="headerlink" title="1. TS2Vec：时间序列嵌入"></a><strong>1. TS2Vec：时间序列嵌入</strong></h4><ul>
+<li><strong>核心思想</strong><br>通过对比学习（Contrastive Learning），将时间序列的不同子序列（如滑动窗口）映射为低维向量，使得<strong>相邻子序列的嵌入相似</strong>，非相邻子序列的嵌入差异大。</li>
+<li><strong>异常检测</strong><br>异常时序的嵌入向量会偏离正常区域，通过计算与正常簇的距离判定异常。</li>
+</ul>
+<h4 id="2-DAGMM：深度自编码高斯混合模型"><a href="#2-DAGMM：深度自编码高斯混合模型" class="headerlink" title="2. DAGMM：深度自编码高斯混合模型"></a><strong>2. DAGMM：深度自编码高斯混合模型</strong></h4><ul>
+<li><p>核心思想</p>
+<p>结合自编码器（特征提取）和高斯混合模型（概率建模）：</p>
+<ol>
+<li>自编码器将输入压缩为低维特征。</li>
+<li>高斯混合模型（GMM）对特征空间建模，计算样本属于各高斯分布的概率。</li>
+<li>使用EM算法迭代优化，最大化似然函数。</li>
+</ol>
+</li>
+<li><p><strong>异常得分</strong><br>异常样本的概率密度低（偏离GMM分布）。</p>
+</li>
+</ul>
+<h4 id="3-interFusion：可解释的多元时序异常检测"><a href="#3-interFusion：可解释的多元时序异常检测" class="headerlink" title="3. interFusion：可解释的多元时序异常检测"></a><strong>3. interFusion：可解释的多元时序异常检测</strong></h4><ul>
+<li>核心思想<ol>
+<li>用马尔科夫链蒙特卡罗（MCMC）方法学习正常数据的联合分布。</li>
+<li>检测时，计算每个变量的条件概率，定位导致异常的<strong>具体指标</strong>。</li>
+</ol>
+</li>
+<li><strong>可解释性</strong><br>例如：服务器监控中，明确显示是CPU、内存还是磁盘IO偏离正常模式。</li>
+</ul>
+<hr>
+<h3 id="四、表征学习的优势与挑战"><a href="#四、表征学习的优势与挑战" class="headerlink" title="四、表征学习的优势与挑战"></a><strong>四、表征学习的优势与挑战</strong></h3><h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a><strong>优势</strong></h4><ol>
+<li><strong>自动化特征提取</strong><br>避免人工设计特征的繁琐，适应复杂数据（如高维、非线性时序）。</li>
+<li><strong>维度灾难缓解</strong><br>通过低维嵌入减少冗余信息，提升计算效率。</li>
+<li><strong>可解释性改进</strong><br>结合概率模型或归因方法（如MCMC）解释异常来源。</li>
+</ol>
+<h4 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a><strong>挑战</strong></h4><ol>
+<li><strong>模型复杂性</strong><br>深度网络需要大量数据和计算资源。</li>
+<li><strong>解释性局限</strong><br>部分黑盒模型（如TS2Vec）仍需借助外部工具解释。</li>
+<li><strong>类别不平衡</strong><br>异常样本稀少时，特征空间可能偏向正常数据。</li>
+</ol>
+<hr>
+<h3 id="五、与其他方法的对比"><a href="#五、与其他方法的对比" class="headerlink" title="五、与其他方法的对比"></a><strong>五、与其他方法的对比</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法类型</strong></th>
+<th style="text-align:center"><strong>关注重点</strong></th>
+<th style="text-align:center"><strong>典型模型</strong></th>
+<th style="text-align:center"><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>预测型</strong></td>
+<td style="text-align:center">时序因果性（历史→未来）</td>
+<td style="text-align:center">LSTM、Transformer</td>
+<td style="text-align:center">强时序依赖（如电力负荷预测）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>重构型</strong></td>
+<td style="text-align:center">输入→重建（压缩-恢复）</td>
+<td style="text-align:center">Autoencoder、VAE</td>
+<td style="text-align:center">多变量关联复杂（如设备监控）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>表征学习型</strong></td>
+<td style="text-align:center">数据→特征空间（嵌入表示）</td>
+<td style="text-align:center">TS2Vec、DAGMM</td>
+<td style="text-align:center">高维数据、需解释性（如医疗）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>表征学习通过<strong>自动化特征提取</strong>和<strong>低维嵌入</strong>，为异常检测提供了更灵活、可扩展的解决方案。其在可解释性（如interFusion）和复杂模式捕捉（如TS2Vec）上的优势，使其在工业监控、医疗诊断等领域逐渐成为主流方法。然而，模型复杂性和数据依赖性仍是实际应用中的挑战。</p>
+<h2 id="Embedding和表征学习的区别"><a href="#Embedding和表征学习的区别" class="headerlink" title="Embedding和表征学习的区别"></a>Embedding和表征学习的区别</h2><p><strong>Embedding（嵌入）是表征学习（Representation Learning）的核心技术之一</strong>，属于表征学习的具体实现手段。以下是详细解释：</p>
+<hr>
+<h3 id="1-什么是Embedding？"><a href="#1-什么是Embedding？" class="headerlink" title="1. 什么是Embedding？"></a><strong>1. 什么是Embedding？</strong></h3><ul>
+<li><strong>定义</strong>：Embedding是将<strong>高维、离散或复杂数据</strong>（如文本、图结构、时间序列等）映射到<strong>低维连续向量空间</strong>的过程。生成的向量（即嵌入向量）能够保留原始数据的语义或结构信息。</li>
+<li>典型应用：<ul>
+<li>词嵌入（Word2Vec、GloVe）：将词语映射为向量，使语义相似的词在向量空间中距离接近。</li>
+<li>图嵌入（Node2Vec）：将图中的节点或边表示为低维向量。</li>
+<li>时间序列嵌入（TS2Vec）：将时间序列片段映射为向量，捕捉时序模式。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-Embedding与表征学习的关系"><a href="#2-Embedding与表征学习的关系" class="headerlink" title="2. Embedding与表征学习的关系"></a><strong>2. Embedding与表征学习的关系</strong></h3><h4 id="1-Embedding是表征学习的子集"><a href="#1-Embedding是表征学习的子集" class="headerlink" title="(1) Embedding是表征学习的子集"></a><strong>(1) Embedding是表征学习的子集</strong></h4><ul>
+<li>表征学习：泛指从数据中自动学习有用特征的所有方法，包括但不限于：<ul>
+<li>自编码器（Autoencoder）的压缩表示。</li>
+<li>卷积神经网络（CNN）的视觉特征。</li>
+<li>Embedding生成的向量表示。</li>
+</ul>
+</li>
+<li><strong>Embedding</strong>：特指通过特定算法（如神经网络、矩阵分解）生成的<strong>低维稠密向量</strong>，是表征学习的一种具体技术。</li>
+</ul>
+<h4 id="2-核心目标一致"><a href="#2-核心目标一致" class="headerlink" title="(2) 核心目标一致"></a><strong>(2) 核心目标一致</strong></h4><ul>
+<li>Embedding和表征学习的共同目标是将数据转换为更容易被机器学习模型处理的形式，同时保留关键信息。例如：<ul>
+<li>图像分类中，CNN的最后一层输出是表征学习的特征。</li>
+<li>在自然语言处理中，词嵌入是文本的表征学习结果。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="3-为什么说Embedding属于表征学习？"><a href="#3-为什么说Embedding属于表征学习？" class="headerlink" title="3. 为什么说Embedding属于表征学习？"></a><strong>3. 为什么说Embedding属于表征学习？</strong></h3><h4 id="1-特征自动提取"><a href="#1-特征自动提取" class="headerlink" title="(1) 特征自动提取"></a><strong>(1) 特征自动提取</strong></h4><p>Embedding无需人工设计特征，而是通过模型（如神经网络）自动学习数据中的潜在规律。例如：</p>
+<ul>
+<li><strong>词嵌入</strong>：通过上下文预测任务（如Word2Vec），模型自动学习词语的语义相似性。</li>
+<li><strong>时间序列嵌入</strong>：通过对比学习（如TS2Vec），模型自动学习时序片段的相似性。</li>
+</ul>
+<h4 id="2-解决维度灾难"><a href="#2-解决维度灾难" class="headerlink" title="(2) 解决维度灾难"></a><strong>(2) 解决维度灾难</strong></h4><p>将高维稀疏数据（如One-Hot编码的文本）映射为低维稠密向量，减少冗余并提升计算效率。</p>
+<h4 id="3-支持下游任务"><a href="#3-支持下游任务" class="headerlink" title="(3) 支持下游任务"></a><strong>(3) 支持下游任务</strong></h4><p>学习到的嵌入向量可直接用于分类、聚类、异常检测等任务。例如：</p>
+<ul>
+<li>用词嵌入向量计算句子相似度。</li>
+<li>用时间序列嵌入检测异常片段（异常向量偏离正常簇）。</li>
+</ul>
+<hr>
+<h3 id="4-表征学习的其他形式（非Embedding）"><a href="#4-表征学习的其他形式（非Embedding）" class="headerlink" title="4. 表征学习的其他形式（非Embedding）"></a><strong>4. 表征学习的其他形式（非Embedding）</strong></h3><p>并非所有表征学习都生成Embedding，其他方法包括：</p>
+<ol>
+<li><strong>自编码器的隐空间表示</strong><br>通过编码器将输入压缩为低维向量，但目标是通过解码器重建输入（而Embedding不一定需要重建任务）。</li>
+<li><strong>CNN的中间层特征</strong><br>例如ResNet的某一层输出作为图像的特征表示。</li>
+<li><strong>概率模型的潜在变量</strong><br>如变分自编码器（VAE）中学习的潜在分布参数。</li>
+</ol>
+<hr>
+<h3 id="5-Embedding在异常检测中的典型应用"><a href="#5-Embedding在异常检测中的典型应用" class="headerlink" title="5. Embedding在异常检测中的典型应用"></a><strong>5. Embedding在异常检测中的典型应用</strong></h3><h4 id="1-TS2Vec（时间序列嵌入）"><a href="#1-TS2Vec（时间序列嵌入）" class="headerlink" title="(1) TS2Vec（时间序列嵌入）"></a><strong>(1) TS2Vec（时间序列嵌入）</strong></h4><ul>
+<li><strong>原理</strong>：将时间序列片段映射为向量，正常时序的嵌入在空间中聚集，异常嵌入偏离正常区域。</li>
+<li><strong>异常得分</strong>：计算嵌入向量与正常簇中心的距离（如欧氏距离）。</li>
+</ul>
+<h4 id="2-DAGMM（深度自编码高斯混合模型）"><a href="#2-DAGMM（深度自编码高斯混合模型）" class="headerlink" title="(2) DAGMM（深度自编码高斯混合模型）"></a><strong>(2) DAGMM（深度自编码高斯混合模型）</strong></h4><ul>
+<li><strong>原理</strong>：先用自编码器生成低维嵌入，再用高斯混合模型（GMM）建模嵌入空间分布。</li>
+<li><strong>异常得分</strong>：异常样本在GMM中的概率密度较低。</li>
+</ul>
+<h4 id="3-图嵌入异常检测"><a href="#3-图嵌入异常检测" class="headerlink" title="(3) 图嵌入异常检测"></a><strong>(3) 图嵌入异常检测</strong></h4><ul>
+<li><strong>原理</strong>：将图中的节点映射为向量，异常节点（如孤岛节点）的嵌入远离大多数节点。</li>
+<li><strong>应用</strong>：社交网络中的虚假账号检测。</li>
+</ul>
+<hr>
+<h3 id="6-Embedding-vs-传统特征工程"><a href="#6-Embedding-vs-传统特征工程" class="headerlink" title="6. Embedding vs. 传统特征工程"></a><strong>6. Embedding vs. 传统特征工程</strong></h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>方法</strong></th>
+<th style="text-align:center"><strong>特征来源</strong></th>
+<th style="text-align:center"><strong>优势</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>传统特征工程</strong></td>
+<td style="text-align:center">人工设计统计特征（如均值、方差）</td>
+<td style="text-align:center">可解释性强，但依赖专家经验，难以捕捉复杂模式。</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Embedding</strong></td>
+<td style="text-align:center">自动学习低维向量</td>
+<td style="text-align:center">捕捉非线性关系，泛化能力强，减少人工干预。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a><strong>总结</strong></h3><ul>
+<li><strong>Embedding是表征学习的一种重要技术</strong>，专注于生成低维、稠密且语义丰富的向量表示。</li>
+<li><strong>表征学习范围更广</strong>，包括Embedding、自编码器、CNN特征提取等多种方法。</li>
+<li>在异常检测中，Embedding通过将数据映射到可解释的低维空间，帮助模型更高效地捕捉异常模式。</li>
+</ul>
+<h1 id="商业计划书"><a href="#商业计划书" class="headerlink" title="商业计划书"></a>商业计划书</h1><h3 id="一、医疗行业"><a href="#一、医疗行业" class="headerlink" title="一、医疗行业"></a><strong>一、医疗行业</strong></h3><h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ol>
+<li><strong>电子病历查询与分析</strong><ul>
+<li>医生或研究人员可通过自然语言快速检索患者病历，例如“查找2024年诊断为糖尿病的患者数量及用药记录”，自动生成包含多表联查的SQL语句。</li>
+<li><strong>技术缺口</strong>：需处理医疗术语的歧义性（如“高血压”可能对应不同ICD编码），且需满足HIPAA等隐私合规要求。</li>
+</ul>
+</li>
+<li><strong>医学影像数据管理</strong><ul>
+<li>通过自然语言描述影像特征（如“显示最近三个月CT影像中肺部结节直径大于5mm的患者”），生成高效检索SQL，优化PACS系统性能。</li>
+</ul>
+</li>
+</ol>
+<h4 id="意向客户"><a href="#意向客户" class="headerlink" title="意向客户"></a><strong>意向客户</strong></h4><ul>
+<li><strong>医疗信息化服务商</strong>：如东软医疗、卫宁健康，需集成Text-to-SQL至HIS（医院信息系统）中，提升非技术人员的数据访问效率。</li>
+<li><strong>基因测序公司</strong>：华大基因等需处理TB级基因数据，通过自然语言查询加速科研分析。</li>
+</ul>
+<hr>
+<h3 id="二、军工行业"><a href="#二、军工行业" class="headerlink" title="二、军工行业"></a><strong>二、军工行业</strong></h3><h4 id="应用场景-1"><a href="#应用场景-1" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ol>
+<li><strong>武器系统数据模拟与日志审计</strong><ul>
+<li>生成复杂战场环境数据的模拟查询（如“统计某型号导弹在高温环境下的故障率”），并确保加密日志的合规存储与访问控制。</li>
+<li><strong>技术缺口</strong>：需支持多节点数据库的实时同步，并防御SQL注入攻击。</li>
+</ul>
+</li>
+<li><strong>卫星遥测数据分析</strong><ul>
+<li>航天科工等企业需从海量遥测数据中提取关键指标（如“筛选某卫星过去24小时温度异常的数据”），优化查询性能。</li>
+</ul>
+</li>
+</ol>
+<h4 id="意向客户-1"><a href="#意向客户-1" class="headerlink" title="意向客户"></a><strong>意向客户</strong></h4><ul>
+<li><strong>军工软件开发商</strong>：中国电子科技集团下属企业，需在指挥系统中嵌入Text-to-SQL，提升战场决策效率。</li>
+<li><strong>涉密单位</strong>：如航空航天研究所，需结合国密标准实现安全可控的SQL生成。</li>
+</ul>
+<hr>
+<h3 id="三、金融行业"><a href="#三、金融行业" class="headerlink" title="三、金融行业"></a><strong>三、金融行业</strong></h3><h4 id="应用场景-2"><a href="#应用场景-2" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ol>
+<li><strong>高频交易与风控模型验证</strong><ul>
+<li>模拟千万级交易订单生成SQL（如“统计过去5分钟交易额前10的股票”），验证数据库事务处理能力。</li>
+<li><strong>技术缺口</strong>：需处理嵌套子查询和窗口函数等复杂语法，且需满足低延迟要求。</li>
+</ul>
+</li>
+<li><strong>客户行为分析与反欺诈</strong><ul>
+<li>通过自然语言生成聚合查询（如“统计同一IP地址的异常登录次数”），支持实时风控决策。</li>
+</ul>
+</li>
+</ol>
+<h4 id="意向客户-2"><a href="#意向客户-2" class="headerlink" title="意向客户"></a><strong>意向客户</strong></h4><ul>
+<li><strong>证券交易平台</strong>：如东方财富、同花顺，需优化实时行情数据的查询效率。</li>
+<li><strong>金融科技公司</strong>：蚂蚁集团等需在分布式数据库中实现跨表联合查询的自动化生成。</li>
+</ul>
+<hr>
+<h3 id="四、电商行业"><a href="#四、电商行业" class="headerlink" title="四、电商行业"></a><strong>四、电商行业</strong></h3><h4 id="应用场景-3"><a href="#应用场景-3" class="headerlink" title="应用场景"></a><strong>应用场景</strong></h4><ol>
+<li><strong>用户行为分析与推荐系统优化</strong><ul>
+<li>将点击流数据转化为SQL（如“统计用户浏览但未购买的商品TOP”），支持个性化推荐算法迭代。</li>
+<li><strong>技术缺口</strong>：需处理高并发场景下的查询性能瓶颈，如“双11”秒杀活动的库存扣减事务。</li>
+</ul>
+</li>
+<li><strong>跨境物流数据管理</strong><ul>
+<li>顺丰等物流企业需支持多语言查询（如“查询从中国发往美国的包裹平均运输时长”），兼容多货币和时区数据。</li>
+</ul>
+</li>
+</ol>
+<h4 id="意向客户-3"><a href="#意向客户-3" class="headerlink" title="意向客户"></a><strong>意向客户</strong></h4><ul>
+<li><strong>头部电商平台</strong>：如阿里巴巴、京东，需通过Text-to-SQL优化大促期间的数据库吞吐量。</li>
+<li><strong>独立站技术服务商</strong>：Shopify合作伙伴需为中小商家提供低代码数据查询工具。</li>
+</ul>
+<hr>
+<h3 id="五、技术缺口与解决方案"><a href="#五、技术缺口与解决方案" class="headerlink" title="五、技术缺口与解决方案"></a><strong>五、技术缺口与解决方案</strong></h3><ol>
+<li><strong>复杂查询处理能力不足</strong><ul>
+<li><strong>现状</strong>：现有模型对嵌套子查询、外连接等复杂操作支持有限。</li>
+<li><strong>解决方案</strong>：采用检索增强生成（RAG）技术，结合ReAct机制迭代修正SQL（如诺谛智能的竞赛方案）。</li>
+</ul>
+</li>
+<li><strong>跨领域泛化能力弱</strong><ul>
+<li><strong>现状</strong>：医疗与金融领域的术语差异导致模型迁移成本高。</li>
+<li><strong>解决方案</strong>：通过多领域数据训练与垂直领域微调（如数栈的模块化设计）。</li>
+</ul>
+</li>
+<li><strong>数据安全与隐私合规</strong><ul>
+<li><strong>现状</strong>：军工和金融行业需加密查询日志并限制权限。</li>
+<li><strong>解决方案</strong>：本地化部署大模型（如阿里云OpenSearch-SQL的私有化方案）。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="典型客户案例参考"><a href="#典型客户案例参考" class="headerlink" title="典型客户案例参考"></a><strong>典型客户案例参考</strong></h3><ol>
+<li><strong>医疗</strong>：诺谛智能的对话式分析平台，助力某三甲医院临时问询效率提升90%。</li>
+<li><strong>金融</strong>：阿里云OpenSearch-SQL在BIRD榜单中优化高频交易查询延迟。</li>
+<li><strong>电商</strong>：Spring AI实现的Netflix节目数据库查询，准确生成过滤条件SQL。</li>
+</ol>
+<h1 id="文献阅读"><a href="#文献阅读" class="headerlink" title="文献阅读"></a>文献阅读</h1><p>双视角：</p>
+<ul>
+<li>Anomaly Transformer</li>
+<li>DCDetecor</li>
+<li>BYOL</li>
+<li>SimSiam</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>维度</strong></th>
+<th style="text-align:center"><strong>BYOL</strong></th>
+<th style="text-align:center"><strong>SimSiam</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>网络结构</strong></td>
+<td style="text-align:center">双网络（在线+目标） + 动量更新</td>
+<td style="text-align:center">单对称网络 + 梯度截断</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>参数更新</strong></td>
+<td style="text-align:center">目标网络通过EMA更新</td>
+<td style="text-align:center">无动量更新，直接共享权重</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>负样本依赖</strong></td>
+<td style="text-align:center">完全无负样本</td>
+<td style="text-align:center">完全无负样本</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>防坍缩关键</strong></td>
+<td style="text-align:center">动量更新 + 预测头</td>
+<td style="text-align:center">梯度截断 + 预测头非对称</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>计算开销</strong></td>
+<td style="text-align:center">较高（需维护双网络）</td>
+<td style="text-align:center">较低（单网络+轻量预测头）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>典型应用</strong></td>
+<td style="text-align:center">ImageNet预训练、多模态对齐</td>
+<td style="text-align:center">小规模数据集、轻量化部署</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="Anomaly-Transformer"><a href="#Anomaly-Transformer" class="headerlink" title="Anomaly Transformer"></a>Anomaly Transformer</h2><p>创新点：</p>
+<ul>
+<li>架构：Anomaly Transformer的Anomaly-Attention模块</li>
+<li>训练策略：Minimax  Association Learning</li>
+<li>Criterion：异常检测分数创新</li>
+</ul>
+<p>论文解读：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lyj19941231/article/details/123994042">https://blog.csdn.net/lyj19941231/article/details/123994042</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17L411A7dJ/">https://www.bilibili.com/video/BV17L411A7dJ/</a></p>
+<h2 id="DCDetector"><a href="#DCDetector" class="headerlink" title="DCDetector"></a>DCDetector</h2><p>创新点：</p>
+<ul>
+<li>第一，构造对比学习中的两个View。</li>
+<li>第二，模仿BYOL，SimSiam这类不需要负样本的对比学习方法。</li>
+<li>第三，使用Contrastive Loss来进行对比学习。</li>
+</ul>
+<h2 id="基于强化学习的方式"><a href="#基于强化学习的方式" class="headerlink" title="基于强化学习的方式"></a>基于强化学习的方式</h2><h3 id="DAEMON"><a href="#DAEMON" class="headerlink" title="DAEMON"></a>DAEMON</h3><p>DAEMON: Unsupervised Anomaly Detection and Interpretation for Multivariate Time Series</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>Zhao.W.L
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://polaris6g.github.io/2025/04/24/%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E5%AD%A6%E4%B9%A0/" title="时序异常检测学习">https://polaris6g.github.io/2025/04/24/时序异常检测学习/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Anomaly-Detection/" rel="tag"># Anomaly Detection</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/04/17/Text2SQL/" rel="prev" title="Text2SQL.md">
+      <i class="fa fa-chevron-left"></i> Text2SQL.md
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.</span> <span class="nav-text">异常检测</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%9E%8B%E5%92%8C%E9%87%8D%E6%9E%84%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">预测型和重构型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 核心思想对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">关键区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 模型结构与数据利用方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A2%84%E6%B5%8B%E5%9E%8B%E6%96%B9%E6%B3%95%EF%BC%88%E5%A6%82LSTM%E3%80%81RNN%EF%BC%89"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">(1) 预测型方法（如LSTM、RNN）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%87%8D%E6%9E%84%E5%9E%8B%E6%96%B9%E6%B3%95%EF%BC%88%E5%A6%82%E8%87%AA%E7%BC%96%E7%A0%81%E5%99%A8%E3%80%81VAE%EF%BC%89"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">(2) 重构型方法（如自编码器、VAE）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AF%AF%E5%B7%AE%E8%AE%A1%E7%AE%97%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 误差计算方式对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E5%9E%8B"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">预测型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E5%9E%8B"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">重构型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.4.</span> <span class="nav-text">4. 适用场景对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%AE%9E%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.5.</span> <span class="nav-text">5. 实例说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A2%84%E6%B5%8B%E5%9E%8B%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%94%B5%E5%8A%9B%E8%B4%9F%E8%8D%B7%E9%A2%84%E6%B5%8B%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">(1) 预测型案例：电力负荷预测异常检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%87%8D%E6%9E%84%E5%9E%8B%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%A4%9A%E6%8C%87%E6%A0%87%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">(2) 重构型案例：服务器多指标异常检测</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E4%BC%98%E7%BC%BA%E7%82%B9%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.6.</span> <span class="nav-text">6. 优缺点对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.2.</span> <span class="nav-text">表征学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、表征学习的核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、在异常检测中的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%B8%E5%9E%8B%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1. 典型流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2. 与传统方法的对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%B8%E5%9E%8B%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、典型模型与原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-TS2Vec%EF%BC%9A%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%B5%8C%E5%85%A5"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1. TS2Vec：时间序列嵌入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-DAGMM%EF%BC%9A%E6%B7%B1%E5%BA%A6%E8%87%AA%E7%BC%96%E7%A0%81%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2. DAGMM：深度自编码高斯混合模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-interFusion%EF%BC%9A%E5%8F%AF%E8%A7%A3%E9%87%8A%E7%9A%84%E5%A4%9A%E5%85%83%E6%97%B6%E5%BA%8F%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">3. interFusion：可解释的多元时序异常检测</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BC%98%E5%8A%BF%E4%B8%8E%E6%8C%91%E6%88%98"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、表征学习的优势与挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%91%E6%88%98"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">挑战</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%8E%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、与其他方法的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Embedding%E5%92%8C%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.</span> <span class="nav-text">Embedding和表征学习的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFEmbedding%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 什么是Embedding？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Embedding%E4%B8%8E%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. Embedding与表征学习的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Embedding%E6%98%AF%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%AD%90%E9%9B%86"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">(1) Embedding是表征学习的子集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E7%9B%AE%E6%A0%87%E4%B8%80%E8%87%B4"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">(2) 核心目标一致</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4Embedding%E5%B1%9E%E4%BA%8E%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%EF%BC%9F"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 为什么说Embedding属于表征学习？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%89%B9%E5%BE%81%E8%87%AA%E5%8A%A8%E6%8F%90%E5%8F%96"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">(1) 特征自动提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%A7%A3%E5%86%B3%E7%BB%B4%E5%BA%A6%E7%81%BE%E9%9A%BE"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">(2) 解决维度灾难</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%94%AF%E6%8C%81%E4%B8%8B%E6%B8%B8%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">(3) 支持下游任务</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E8%A1%A8%E5%BE%81%E5%AD%A6%E4%B9%A0%E7%9A%84%E5%85%B6%E4%BB%96%E5%BD%A2%E5%BC%8F%EF%BC%88%E9%9D%9EEmbedding%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 表征学习的其他形式（非Embedding）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Embedding%E5%9C%A8%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E4%B8%AD%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8"><span class="nav-number">1.3.5.</span> <span class="nav-text">5. Embedding在异常检测中的典型应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-TS2Vec%EF%BC%88%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E5%B5%8C%E5%85%A5%EF%BC%89"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">(1) TS2Vec（时间序列嵌入）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-DAGMM%EF%BC%88%E6%B7%B1%E5%BA%A6%E8%87%AA%E7%BC%96%E7%A0%81%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">(2) DAGMM（深度自编码高斯混合模型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9B%BE%E5%B5%8C%E5%85%A5%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">(3) 图嵌入异常检测</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-Embedding-vs-%E4%BC%A0%E7%BB%9F%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.3.6.</span> <span class="nav-text">6. Embedding vs. 传统特征工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">1.3.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%95%86%E4%B8%9A%E8%AE%A1%E5%88%92%E4%B9%A6"><span class="nav-number">2.</span> <span class="nav-text">商业计划书</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%8C%BB%E7%96%97%E8%A1%8C%E4%B8%9A"><span class="nav-number">2.0.1.</span> <span class="nav-text">一、医疗行业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E5%90%91%E5%AE%A2%E6%88%B7"><span class="nav-number">2.0.1.2.</span> <span class="nav-text">意向客户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%86%9B%E5%B7%A5%E8%A1%8C%E4%B8%9A"><span class="nav-number">2.0.2.</span> <span class="nav-text">二、军工行业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E5%90%91%E5%AE%A2%E6%88%B7-1"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">意向客户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%87%91%E8%9E%8D%E8%A1%8C%E4%B8%9A"><span class="nav-number">2.0.3.</span> <span class="nav-text">三、金融行业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E5%90%91%E5%AE%A2%E6%88%B7-2"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">意向客户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%94%B5%E5%95%86%E8%A1%8C%E4%B8%9A"><span class="nav-number">2.0.4.</span> <span class="nav-text">四、电商行业</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-3"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%84%8F%E5%90%91%E5%AE%A2%E6%88%B7-3"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">意向客户</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%8A%80%E6%9C%AF%E7%BC%BA%E5%8F%A3%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.0.5.</span> <span class="nav-text">五、技术缺口与解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E5%AE%A2%E6%88%B7%E6%A1%88%E4%BE%8B%E5%8F%82%E8%80%83"><span class="nav-number">2.0.6.</span> <span class="nav-text">典型客户案例参考</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB"><span class="nav-number">3.</span> <span class="nav-text">文献阅读</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anomaly-Transformer"><span class="nav-number">3.1.</span> <span class="nav-text">Anomaly Transformer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCDetector"><span class="nav-number">3.2.</span> <span class="nav-text">DCDetector</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">基于强化学习的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DAEMON"><span class="nav-number">3.3.1.</span> <span class="nav-text">DAEMON</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Zhao.W.L"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Zhao.W.L</p>
+  <div class="site-description" itemprop="description">This is a blog in order to record my learning and growth.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021-02 – 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao.W.L</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '4xaQ3oibwykcx9Txo8mrwUu6-gzGzoHsz',
+      appKey     : 'QMeC2pntBViR7uy1yqBAtAuH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
